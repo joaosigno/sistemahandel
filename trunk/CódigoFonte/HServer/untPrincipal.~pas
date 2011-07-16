@@ -8,7 +8,7 @@ uses
   RXShell, AppEvnts, DB, DBClient, MConnect, SConnect, ComCtrls,
   IdThreadMgr, IdThreadMgrDefault, IdAntiFreezeBase, IdAntiFreeze,
   IdBaseComponent, IdComponent, IdTCPServer, StrUtils, ShellApi, Contnrs,
-  jpeg;
+  jpeg, Mask, ToolEdit;
 
 type
   PConexao = ^TConexao;
@@ -55,6 +55,15 @@ type
     Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
+    tbBackupRestore: TTabSheet;
+    rgBR: TRadioGroup;
+    Label9: TLabel;
+    cmbedt_pathbanco: TComboEdit;
+    Panel2: TPanel;
+    CheckBox1: TCheckBox;
+    Image2: TImage;
+    Label10: TLabel;
+    edtHoraBR: TEdit;
     procedure btnFecharClick(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure Fechar1Click(Sender: TObject);

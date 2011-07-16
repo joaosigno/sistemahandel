@@ -34,9 +34,9 @@ type
     cdsDepAutdtnasc: TDateField;
     cdsDepAuttelefo: TStringField;
     cdsDepAutcdclien: TIntegerField;
-    cdsDepAutdepend: TStringField;
     cdsDepAutdtcada: TDateField;
     cdsDepAutcdempr: TIntegerField;
+    cdsDepAuttipo: TStringField;
     procedure dbeNomeExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure tbGravarClick(Sender: TObject);

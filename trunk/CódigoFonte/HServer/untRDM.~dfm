@@ -824,7 +824,7 @@ object RDM: TRDM
     object qryClilimite: TFloatField
       FieldName = 'limite'
     end
-    object qryClicdcrfi: TLargeintField
+    object qryClicdcrfi: TIntegerField
       FieldName = 'cdcrfi'
     end
   end
@@ -881,10 +881,6 @@ object RDM: TRDM
     object qryDepAutcdclien: TIntegerField
       FieldName = 'cdclien'
     end
-    object qryDepAutdepend: TStringField
-      FieldName = 'depend'
-      Size = 1
-    end
     object qryDepAutnome: TStringField
       FieldName = 'nome'
       Size = 50
@@ -902,6 +898,10 @@ object RDM: TRDM
       FieldName = 'compra'
       Size = 1
     end
+    object qryDepAuttipo: TStringField
+      FieldName = 'tipo'
+      Size = 2
+    end
     object qryDepAutdtcada: TDateField
       FieldName = 'dtcada'
     end
@@ -917,10 +917,6 @@ object RDM: TRDM
     Params = <>
     Left = 360
     Top = 64
-    object qryCartFidnrcart: TLargeintField
-      FieldName = 'nrcart'
-      Required = True
-    end
     object qryCartFiddtcada: TDateField
       FieldName = 'dtcada'
     end
@@ -936,6 +932,10 @@ object RDM: TRDM
     object qryCartFidemail: TStringField
       FieldName = 'email'
       Size = 50
+    end
+    object qryCartFidnrcart: TIntegerField
+      FieldName = 'nrcart'
+      Required = True
     end
   end
   object dspCartFid: TDataSetProvider

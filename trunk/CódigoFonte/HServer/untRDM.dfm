@@ -881,10 +881,6 @@ object RDM: TRDM
     object qryDepAutcdclien: TIntegerField
       FieldName = 'cdclien'
     end
-    object qryDepAutdepend: TStringField
-      FieldName = 'depend'
-      Size = 1
-    end
     object qryDepAutnome: TStringField
       FieldName = 'nome'
       Size = 50
@@ -901,6 +897,10 @@ object RDM: TRDM
     object qryDepAutcompra: TStringField
       FieldName = 'compra'
       Size = 1
+    end
+    object qryDepAuttipo: TStringField
+      FieldName = 'tipo'
+      Size = 2
     end
     object qryDepAutdtcada: TDateField
       FieldName = 'dtcada'
@@ -943,5 +943,37 @@ object RDM: TRDM
     Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
     Left = 448
     Top = 64
+  end
+  object dspLogErros: TDataSetProvider
+    DataSet = qryLogErros
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
+    Left = 448
+    Top = 120
+  end
+  object qryLogErros: TZReadOnlyQuery
+    Connection = con
+    SQL.Strings = (
+      'select * from loger')
+    Params = <>
+    Left = 360
+    Top = 120
+    object qryLogErroscdlog: TIntegerField
+      FieldName = 'cdlog'
+      Required = True
+    end
+    object qryLogErroscdempr: TIntegerField
+      FieldName = 'cdempr'
+    end
+    object qryLogErrosdtcada: TDateField
+      FieldName = 'dtcada'
+    end
+    object qryLogErroshrcada: TTimeField
+      FieldName = 'hrcada'
+    end
+    object qryLogErrosdescri: TMemoField
+      FieldName = 'descri'
+      Required = True
+      BlobType = ftMemo
+    end
   end
 end

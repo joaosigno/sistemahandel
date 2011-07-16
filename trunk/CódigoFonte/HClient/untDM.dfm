@@ -1090,9 +1090,10 @@ object dm: Tdm
     object cdsAutoricdclien: TIntegerField
       FieldName = 'cdclien'
     end
-    object cdsAutoridepend: TStringField
-      FieldName = 'depend'
-      Size = 1
+    object cdsAutoritipo: TStringField
+      DisplayLabel = 'Tipo'
+      FieldName = 'tipo'
+      Size = 2
     end
     object cdsAutoridtcada: TDateField
       FieldName = 'dtcada'
@@ -1134,9 +1135,10 @@ object dm: Tdm
     object cdsDepencdclien: TIntegerField
       FieldName = 'cdclien'
     end
-    object cdsDependepend: TStringField
-      FieldName = 'depend'
-      Size = 1
+    object cdsDepentipo: TStringField
+      DisplayLabel = 'Tipo'
+      FieldName = 'tipo'
+      Size = 2
     end
     object cdsDependtcada: TDateField
       FieldName = 'dtcada'
@@ -1176,6 +1178,32 @@ object dm: Tdm
       DisplayLabel = 'E-mail'
       FieldName = 'email'
       Size = 50
+    end
+  end
+  object cdsLogErros: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspLogErros'
+    RemoteServer = scHC
+    Left = 112
+    Top = 232
+    object cdsLogErroscdlog: TIntegerField
+      FieldName = 'cdlog'
+      Required = True
+    end
+    object cdsLogErroscdempr: TIntegerField
+      FieldName = 'cdempr'
+    end
+    object cdsLogErrosdtcada: TDateField
+      FieldName = 'dtcada'
+    end
+    object cdsLogErroshrcada: TTimeField
+      FieldName = 'hrcada'
+    end
+    object cdsLogErrosdescri: TMemoField
+      FieldName = 'descri'
+      Required = True
+      BlobType = ftMemo
     end
   end
 end
