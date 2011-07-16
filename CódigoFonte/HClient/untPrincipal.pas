@@ -7,7 +7,8 @@ uses
   Dialogs, XPStyleActnCtrls, ActnList, ActnMan, ToolWin, ActnCtrls,
   ActnMenus, ComCtrls, ExtCtrls, jpeg, StdCtrls, ImgList, RxGIF, UCBase,
   UCDataConnector, UCMidasConn, DB, DBClient, UCIdle, UCSettings, HkHints,
-  XpMan, Menus, untDeclaracoes, DAO, Formulario, UCMail, RXShell;
+  XpMan, Menus, untDeclaracoes, DAO, Formulario, UCMail, RXShell, AppEvnts,
+  Buttons;
 
 type
    TConfiguracao = record  //Configurações do software
@@ -156,6 +157,7 @@ procedure TfrmPrincipal.FormCreate(Sender: TObject);
 }
 var f:TFuncoes;
 begin
+  application.icon.loadfromfile('C:\handel\Imagens\hclient.ico');
   SetHkHintStyle(htPrateado);
   Application.HintHidePause:= 100000;
   UserControl.DataConnector := dm.UCCon;

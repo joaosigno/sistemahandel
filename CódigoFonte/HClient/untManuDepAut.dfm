@@ -1,6 +1,6 @@
 inherited frmManuDepAut: TfrmManuDepAut
-  Left = 692
-  Top = 178
+  Left = 561
+  Top = 130
   Caption = 'Manuten'#231#227'o de Dependentes/Autorizados'
   ClientHeight = 240
   OldCreateOrder = True
@@ -209,15 +209,15 @@ inherited frmManuDepAut: TfrmManuDepAut
         Height = 17
         Caption = 'Dependente?'
         Ctl3D = False
-        DataField = 'depend'
+        DataField = 'tipo'
         DataSource = DataSource
         Enabled = False
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
         TabOrder = 5
-        ValueChecked = 'S'
-        ValueUnchecked = 'N'
+        ValueChecked = 'DP'
+        ValueUnchecked = 'AT'
       end
       object dbcbCompra: TDBCheckBox
         Left = 136
@@ -242,6 +242,7 @@ inherited frmManuDepAut: TfrmManuDepAut
     Top = 96
   end
   inherited DataSource: TDataSource
+    DataSet = cdsDepAut
     Left = 416
     Top = 104
   end
@@ -283,9 +284,10 @@ inherited frmManuDepAut: TfrmManuDepAut
     object cdsDepAutcdclien: TIntegerField
       FieldName = 'cdclien'
     end
-    object cdsDepAutdepend: TStringField
-      FieldName = 'depend'
-      Size = 1
+    object cdsDepAuttipo: TStringField
+      DisplayLabel = 'Tipo'
+      FieldName = 'tipo'
+      Size = 2
     end
     object cdsDepAutdtcada: TDateField
       FieldName = 'dtcada'

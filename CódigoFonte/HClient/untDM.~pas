@@ -215,7 +215,6 @@ type
     cdsAutoridtnasc: TDateField;
     cdsAutoritelefo: TStringField;
     cdsAutoricdclien: TIntegerField;
-    cdsAutoridepend: TStringField;
     cdsAutoridtcada: TDateField;
     cdsAutoricdempr: TIntegerField;
     cdsDepen: TClientDataSet;
@@ -225,7 +224,6 @@ type
     cdsDependtnasc: TDateField;
     cdsDepentelefo: TStringField;
     cdsDepencdclien: TIntegerField;
-    cdsDependepend: TStringField;
     cdsDependtcada: TDateField;
     cdsDepencdempr: TIntegerField;
     cdsCartFid: TClientDataSet;
@@ -236,6 +234,9 @@ type
     cdsCartFidnrcart: TIntegerField;
     cdsClicdcrfi: TIntegerField;
     cdsCliprocuraCartaoFidelidade: TStringField;
+    cdsDepentipo: TStringField;
+    cdsAutoritipo: TStringField;
+    cdsLogErros: TClientDataSet;
     function verificaBD():Boolean;
     function Autenticacao(cdemp:integer;login:String;senha:string): boolean;
   private

@@ -218,7 +218,6 @@ type
     dspDepAut: TDataSetProvider;
     qryDepAut: TZReadOnlyQuery;
     qryDepAutcdclien: TIntegerField;
-    qryDepAutdepend: TStringField;
     qryDepAutnome: TStringField;
     qryDepAutdocume: TStringField;
     qryDepAutdtnasc: TDateField;
@@ -226,14 +225,15 @@ type
     qryDepAutcompra: TStringField;
     qryDepAutdtcada: TDateField;
     qryDepAutcdempr: TIntegerField;
-    qryClicdcrfi: TLargeintField;
     qryCartFid: TZReadOnlyQuery;
     dspCartFid: TDataSetProvider;
-    qryCartFidnrcart: TLargeintField;
     qryCartFiddtcada: TDateField;
     qryCartFidnmcart: TStringField;
     qryCartFidativo: TStringField;
     qryCartFidemail: TStringField;
+    qryCartFidnrcart: TIntegerField;
+    qryClicdcrfi: TIntegerField;
+    qryDepAuttipo: TStringField;
     procedure RemoteDataModuleCreate(Sender: TObject);
     procedure RemoteDataModuleDestroy(Sender: TObject);
   private

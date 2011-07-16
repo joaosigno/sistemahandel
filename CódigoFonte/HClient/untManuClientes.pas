@@ -213,9 +213,9 @@ begin
   if DataSource.State in [dsEdit] then
   begin
     ManuDAO.SQL.executaSQlPorEmp(dm.cdsAutori,'*','depaut',' and cdclien='+QuotedStr(dbeCod.Text)
-             +' and depend=''N''');
+             +' and tipo=''DP''');
     ManuDAO.SQL.executaSQlPorEmp(dm.cdsDepen,'*','depaut',' and cdclien='+QuotedStr(dbeCod.Text)
-            +' and depend=''S''');
+            +' and tipo=''AT''');
   end;          
 end;
 
@@ -224,8 +224,8 @@ begin
   ManuDAO := TManutencaoDAO.Create(dm.cdsCli);
   inherited;
   DataSource.DataSet := dm.cdsCli;
-  dsAutorizados.DataSet := dm.cdsDepen;
-  dsDependentes.DataSet := dm.cdsAutori;
+  dsAutorizados.DataSet := dm.cdsAutori;
+  dsDependentes.DataSet := dm.cdsDepen;
 end;
 
 procedure TfrmManuClientes.FormClose(Sender: TObject;
@@ -450,11 +450,11 @@ end;
 procedure TfrmManuClientes.btnCadaDependentesClick(Sender: TObject);
 begin
   dm.executaSqlPorEmpresa(dm.cdsDepen,'*'
-                      ,'depaut',' and cdclien='+QuotedStr(dbeCod.Text)+' and depend=''S''');
+                      ,'depaut',' and cdclien='+QuotedStr(dbeCod.Text)+' and tipo=''DP''');
   frmManuDepAut := tfrmManuDepAut.create(application);
   frmManuDepAut.c :=0;
   dm.cdsDepen.Append;
-  dm.cdsDependepend.AsString := 'S';
+  dm.cdsDepentipo.AsString := 'DP';
   dm.cdsDepencdclien.AsInteger := dm.cdsClicdclie.AsInteger;
   dm.cdsDepencdempr.AsInteger := frmPrincipal.Configuracao.EmpresaCodigo;
   frmManuDepAut.ShowModal;
@@ -500,11 +500,11 @@ end;
 procedure TfrmManuClientes.btnCadAutorizadosClick(Sender: TObject);
 begin
   dm.executaSqlPorEmpresa(dm.cdsAutori,'*'
-                      ,'depaut',' and cdclien='+QuotedStr(dbeCod.Text)+' and depend=''N''');
+                      ,'depaut',' and cdclien='+QuotedStr(dbeCod.Text)+' and tipo=''AT''');
   frmManuDepAut := tfrmManuDepAut.create(application);
   frmManuDepAut.c :=1;
   dm.cdsAutori.Append;
-  dm.cdsAutoridepend.AsString := 'N';
+  dm.cdsAutoritipo.AsString := 'AT';
   dm.cdsAutoricdclien.AsInteger := dm.cdsClicdclie.AsInteger;
   dm.cdsAutoricdempr.AsInteger := frmPrincipal.Configuracao.EmpresaCodigo;
   frmManuDepAut.ShowModal;
@@ -521,7 +521,7 @@ begin
   frmManuDepAut.Free;
 
   dm.executaSqlPorEmpresa(dm.cdsDepen,'*'
-                      ,'depaut',' and cdclien='+QuotedStr(dbeCod.Text)+' and depend=''S''');
+                      ,'depaut',' and cdclien='+QuotedStr(dbeCod.Text)+' and tipo=''DP''');
 end;
 
 procedure TfrmManuClientes.btnExclDepeClick(Sender: TObject);
@@ -558,7 +558,7 @@ begin
   frmManuDepAut.Free;
 
  dm.executaSqlPorEmpresa(dm.cdsAutori,'*'
-                      ,'depaut',' and cdclien='+QuotedStr(dbeCod.Text)+' and depend=''N''');
+                      ,'depaut',' and cdclien='+QuotedStr(dbeCod.Text)+' and tipo=''AT''');
 end;
 
 procedure TfrmManuClientes.dbeCodCartFidelidadeKeyPress(Sender: TObject;
