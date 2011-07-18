@@ -242,6 +242,23 @@ type
     cdsLogErrosdtcada: TDateField;
     cdsLogErroshrcada: TTimeField;
     cdsLogErrosdescri: TMemoField;
+    cdsCheque: TClientDataSet;
+    cdsChequecodBan: TIntegerField;
+    cdsChequecodAge: TIntegerField;
+    cdsChequenumChq: TIntegerField;
+    cdsChequenumCCo: TStringField;
+    cdsChequenumC3: TIntegerField;
+    cdsChequeemtChq: TStringField;
+    cdsChequevalor: TFloatField;
+    cdsChequedtVenc: TDateField;
+    cdsChequeobs: TStringField;
+    cdsChequestatus: TStringField;
+    cdsChequerecebi: TStringField;
+    cdsChequedtcada: TDateField;
+    cdsChequecdempr: TIntegerField;
+    cdsChequecmc7: TStringField;
+    cdsChequecdchq: TIntegerField;
+    cdsChequecodcli: TIntegerField;
     function verificaBD():Boolean;
     function Autenticacao(cdemp:integer;login:String;senha:string): boolean;
   private

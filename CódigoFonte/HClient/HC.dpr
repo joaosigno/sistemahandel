@@ -24,7 +24,8 @@ uses
   untManuClientes in 'untManuClientes.pas' {frmManuClientes},
   untManuBanco in 'untManuBanco.pas' {frmManuBanco},
   untManuDepAut in 'untManuDepAut.pas' {frmManuDepAut},
-  untManuCartaoFidelidade in 'untManuCartaoFidelidade.pas' {frmManuCartaoFidelidade};
+  untManuCartaoFidelidade in 'untManuCartaoFidelidade.pas' {frmManuCartaoFidelidade},
+  untManuCheques in 'untManuCheques.pas' {frmManuCheques};
 
 {$R *.res}
 

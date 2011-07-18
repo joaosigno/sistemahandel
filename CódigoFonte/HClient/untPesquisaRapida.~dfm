@@ -1,5 +1,5 @@
 object frmPesquisaRapida: TfrmPesquisaRapida
-  Left = 265
+  Left = 339
   Top = 170
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle

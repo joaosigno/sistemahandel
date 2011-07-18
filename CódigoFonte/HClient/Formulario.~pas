@@ -265,11 +265,11 @@ begin
       begin
         grid.Columns.Add;
         grid.Columns[0].FieldName := 'nrcart';
-        grid.Columns[0].Width := 80;
+        grid.Columns[0].Width := 200;
 
         grid.Columns.Add;
         grid.Columns[1].FieldName := 'ativo';
-        grid.Columns[1].Width := 100;
+        grid.Columns[1].Width := 80;
 
         grid.Columns.Add;
         grid.Columns[2].FieldName := 'dtcada';
@@ -285,6 +285,58 @@ begin
         grid.Columns[4].Width := 325;
 
       end;
+    end
+
+      else if FTabela = 'cheqs' then
+   begin
+    with frmVizualizaDados do
+      begin
+        grid.Columns.Add;
+        grid.Columns[0].FieldName := 'cdchq';
+        grid.Columns[0].Width := 150;
+
+        grid.Columns.Add;
+        grid.Columns[1].FieldName := 'dtcada';
+        grid.Columns[1].Width := 100;
+
+        grid.Columns.Add;
+        grid.Columns[2].FieldName := 'codage';
+        grid.Columns[2].Width := 80;
+
+        grid.Columns.Add;
+        grid.Columns[3].FieldName := 'codban';
+        grid.Columns[3].Width := 100;
+
+        grid.Columns.Add;
+        grid.Columns[4].FieldName := 'numchq';
+        grid.Columns[4].Width := 150;
+
+        grid.Columns.Add;
+        grid.Columns[5].FieldName := 'numcco';
+        grid.Columns[5].Width := 150;
+
+        grid.Columns.Add;
+        grid.Columns[6].FieldName := 'numc3';
+        grid.Columns[6].Width := 50;
+
+        grid.Columns.Add;
+        grid.Columns[7].FieldName := 'emtchq';
+        grid.Columns[7].Width := 320;
+
+        grid.Columns.Add;
+        grid.Columns[8].FieldName := 'valor';
+        grid.Columns[8].Width := 150;
+
+        grid.Columns.Add;
+        grid.Columns[9].FieldName := 'status';
+        grid.Columns[9].Width := 100;
+
+        grid.Columns.Add;
+        grid.Columns[10].FieldName := 'cmc7';
+        grid.Columns[10].Width := 325;
+
+      end;
+
    end;
 
    with frmVizualizaDados do

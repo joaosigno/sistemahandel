@@ -1,7 +1,7 @@
 object dm: Tdm
   OldCreateOrder = False
-  Left = 799
-  Top = 203
+  Left = 342
+  Top = 314
   Height = 445
   Width = 448
   object cdsUsu: TClientDataSet
@@ -428,7 +428,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspGRPro'
     RemoteServer = scHC
-    Left = 208
+    Left = 217
     Top = 8
     object cdsGRProcdgrup: TIntegerField
       DisplayLabel = 'C'#243'd.'
@@ -677,7 +677,7 @@ object dm: Tdm
     Connection = scHC
     ProviderName = 'dspCUsu'
     BancoDados = bdFirebird
-    Left = 112
+    Left = 105
     Top = 8
   end
   object cdsDepa: TClientDataSet
@@ -709,6 +709,7 @@ object dm: Tdm
     end
   end
   object cdsCli: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspCli'
@@ -1061,7 +1062,7 @@ object dm: Tdm
     Aggregates = <>
     Params = <>
     ProviderName = 'dspDepAut'
-    RemoteServer = dm.scHC
+    RemoteServer = scHC
     Left = 164
     Top = 177
     object cdsAutorinome: TStringField
@@ -1106,8 +1107,8 @@ object dm: Tdm
     Aggregates = <>
     Params = <>
     ProviderName = 'dspDepAut'
-    RemoteServer = dm.scHC
-    Left = 220
+    RemoteServer = scHC
+    Left = 218
     Top = 177
     object cdsDepennome: TStringField
       DisplayLabel = 'Nome'
@@ -1148,6 +1149,7 @@ object dm: Tdm
     end
   end
   object cdsCartFid: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspCartFid'
@@ -1183,7 +1185,121 @@ object dm: Tdm
   object cdsLogErros: TClientDataSet
     Aggregates = <>
     Params = <>
+    ProviderName = 'dspLogErros'
+    RemoteServer = scHC
     Left = 112
     Top = 232
+    object cdsLogErroscdlog: TIntegerField
+      FieldName = 'cdlog'
+      Required = True
+    end
+    object cdsLogErroscdempr: TIntegerField
+      FieldName = 'cdempr'
+    end
+    object cdsLogErrosdtcada: TDateField
+      FieldName = 'dtcada'
+    end
+    object cdsLogErroshrcada: TTimeField
+      FieldName = 'hrcada'
+    end
+    object cdsLogErrosdescri: TMemoField
+      FieldName = 'descri'
+      Required = True
+      BlobType = ftMemo
+    end
+  end
+  object cdsCheque: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspChq'
+    RemoteServer = scHC
+    Left = 161
+    Top = 8
+    object cdsChequecdchq: TIntegerField
+      Alignment = taCenter
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'cdchq'
+      Required = True
+    end
+    object cdsChequecodBan: TIntegerField
+      Alignment = taCenter
+      DisplayLabel = 'C'#243'd. Banco'
+      FieldName = 'codBan'
+    end
+    object cdsChequecodAge: TIntegerField
+      Alignment = taCenter
+      DisplayLabel = 'Ag'#234'ncia'
+      FieldName = 'codAge'
+    end
+    object cdsChequenumChq: TIntegerField
+      Alignment = taCenter
+      DisplayLabel = 'N'#250'm. Cheque'
+      FieldName = 'numChq'
+    end
+    object cdsChequenumCCo: TStringField
+      Alignment = taCenter
+      DisplayLabel = 'N'#250'm. Conta'
+      FieldName = 'numCCo'
+      Size = 15
+    end
+    object cdsChequenumC3: TIntegerField
+      Alignment = taCenter
+      DisplayLabel = 'C3'
+      FieldName = 'numC3'
+    end
+    object cdsChequeemtChq: TStringField
+      DisplayLabel = 'Emitente'
+      FieldName = 'emtChq'
+      Size = 100
+    end
+    object cdsChequevalor: TFloatField
+      Alignment = taCenter
+      DisplayLabel = 'Valor'
+      FieldName = 'valor'
+    end
+    object cdsChequedtVenc: TDateField
+      Alignment = taCenter
+      DisplayLabel = 'Vencimento'
+      FieldName = 'dtVenc'
+    end
+    object cdsChequeobs: TStringField
+      DisplayLabel = 'Observa'#231#227'o'
+      FieldName = 'obs'
+      Size = 255
+    end
+    object cdsChequestatus: TStringField
+      Alignment = taCenter
+      DisplayLabel = 'Status'
+      FieldName = 'status'
+      Size = 10
+    end
+    object cdsChequerecebi: TStringField
+      Alignment = taCenter
+      DisplayLabel = 'Recebi'
+      FieldName = 'recebi'
+      Size = 1
+    end
+    object cdsChequedtcada: TDateField
+      Alignment = taCenter
+      DisplayLabel = 'Data Cadastro'
+      FieldName = 'dtcada'
+    end
+    object cdsChequecdempr: TIntegerField
+      Alignment = taCenter
+      DisplayLabel = 'C'#243'd. Empresa'
+      FieldName = 'cdempr'
+    end
+    object cdsChequecmc7: TStringField
+      Alignment = taCenter
+      DisplayLabel = 'CMC7'
+      FieldName = 'cmc7'
+      Size = 50
+    end
+    object cdsChequecodcli: TIntegerField
+      Alignment = taCenter
+      DisplayLabel = 'C'#243'd. Cliente'
+      FieldName = 'codcli'
+    end
   end
 end

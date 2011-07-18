@@ -57,6 +57,7 @@ procedure TfrmManuBanco.tbGravarClick(Sender: TObject);
 begin
   if verificaDadosAntesGravar =false then
     abort else
+    //dm.cdsBanccdempr.AsInteger := frmPrincipal.Configuracao.EmpresaCodigo;
   inherited;
 end;
 

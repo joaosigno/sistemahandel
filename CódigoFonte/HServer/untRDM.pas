@@ -241,6 +241,8 @@ type
     qryLogErrosdtcada: TDateField;
     qryLogErroshrcada: TTimeField;
     qryLogErrosdescri: TMemoField;
+    dspChq: TDataSetProvider;
+    qryChq: TZReadOnlyQuery;
     procedure RemoteDataModuleCreate(Sender: TObject);
     procedure RemoteDataModuleDestroy(Sender: TObject);
   private

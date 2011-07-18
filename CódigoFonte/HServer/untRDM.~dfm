@@ -2,8 +2,8 @@ object RDM: TRDM
   OldCreateOrder = False
   OnCreate = RemoteDataModuleCreate
   OnDestroy = RemoteDataModuleDestroy
-  Left = 351
-  Top = 129
+  Left = 300
+  Top = 236
   Height = 489
   Width = 651
   object con: TZConnection
@@ -348,6 +348,7 @@ object RDM: TRDM
   end
   object qryBanco: TZReadOnlyQuery
     Connection = con
+    Active = True
     SQL.Strings = (
       'select * from banco'
       'order by descri')
@@ -943,5 +944,52 @@ object RDM: TRDM
     Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
     Left = 448
     Top = 64
+  end
+  object dspLogErros: TDataSetProvider
+    DataSet = qryLogErros
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
+    Left = 448
+    Top = 120
+  end
+  object qryLogErros: TZReadOnlyQuery
+    Connection = con
+    SQL.Strings = (
+      'select * from loger')
+    Params = <>
+    Left = 360
+    Top = 120
+    object qryLogErroscdlog: TIntegerField
+      FieldName = 'cdlog'
+      Required = True
+    end
+    object qryLogErroscdempr: TIntegerField
+      FieldName = 'cdempr'
+    end
+    object qryLogErrosdtcada: TDateField
+      FieldName = 'dtcada'
+    end
+    object qryLogErroshrcada: TTimeField
+      FieldName = 'hrcada'
+    end
+    object qryLogErrosdescri: TMemoField
+      FieldName = 'descri'
+      Required = True
+      BlobType = ftMemo
+    end
+  end
+  object dspChq: TDataSetProvider
+    DataSet = qryChq
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
+    Left = 449
+    Top = 182
+  end
+  object qryChq: TZReadOnlyQuery
+    Connection = con
+    Active = True
+    SQL.Strings = (
+      'select * from cheqs order by cdchq')
+    Params = <>
+    Left = 360
+    Top = 183
   end
 end

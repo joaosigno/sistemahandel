@@ -72,8 +72,11 @@ uses untDM, untPrincipal;
 //6.Clientes
 //7.Banco
 //8.Cartão Fidelidade
+//9.Cheque
 
 procedure TfrmPesquisaRapida.pesquisar;
+var
+auxSQL : String;
 {
   Faz o select de acordo com radiobuton selecionado
 }
@@ -188,6 +191,20 @@ begin
                   ' where nmcart like '+
                           QuotedStr('%'+edtPesquisa.Text+'%')+' order by nmcart ');
   end;
+  9:
+   begin
+        if (rb1.Checked) and (edtpesquisa.text <> '') then
+          //auxSQL := 'PENDENTE';
+          SQL.executaSql(cdsProcuraRapida,'select numchq,dtcada,valor,status,cmc7 from cheqs'+
+                ' where numchq = '+
+                          QuotedStr(edtPesquisa.Text)+' ');
+
+        if (rb2.Checked) and (edtpesquisa.text <> '') then
+          SQL.executaSql(cdsProcuraRapida,'select numchq,dtcada,valor,status,cmc7 from cheqs'+
+                  ' where cmc7 = '+
+                          QuotedStr(edtPesquisa.Text)+' ');
+  end;
+
   end;
   atualizaGrid;
 end;
@@ -264,7 +281,14 @@ begin
           rb2.Caption := 'Nome';
           SQL.executaSql(cdsProcuraRapida,'select nrcart,nmcart from crfid order by nrcart');
       end;
-
+      9:
+      begin
+          rb1.Visible := true;
+          rb1.Caption := 'Número Cheque';
+          rb2.Visible := true;
+          rb2.Caption := 'CMC7';
+          SQL.executaSql(cdsProcuraRapida,'select numchq,dtcada,valor,status,cmc7 from cheqs order by dtcada');
+      end;
 
     end;
     atualizaGrid;  
@@ -343,6 +367,10 @@ begin
       begin
           dm.cdsCartFid.Locate('NRCART', VarArrayOf([IntToStr(cdsProcuraRapida.Fields[0].AsInteger)]), [loPartialKey]);
       end;
+      9:
+      begin
+          dm.cdsCheque.Locate('NUMCHQ', VarArrayOf([IntToStr(cdsProcuraRapida.Fields[0].AsInteger)]), [loPartialKey]);
+      end;
     end;
     sql.Destroy;
 end;
@@ -420,6 +448,21 @@ begin
           gridPesquisa.Columns.Items[1].Title.Caption := 'Nome';
           gridPesquisa.Columns.Items[1].Width := 300;
       end;
+      9:
+      begin
+          gridPesquisa.Columns.Items[0].Title.Caption := 'Nr. Cheque';
+          gridPesquisa.Columns.Items[0].Width := 100;
+          gridPesquisa.Columns.Items[0].Alignment := taCenter;
+          gridPesquisa.Columns.Items[1].Title.Caption := 'dtcada';
+          gridPesquisa.Columns.Items[1].Width := 100;
+          gridPesquisa.Columns.Items[2].Title.Caption := 'valor';
+          gridPesquisa.Columns.Items[2].Alignment := taLeftJustify;
+          gridPesquisa.Columns.Items[2].Width := 100;
+          gridPesquisa.Columns.Items[3].Title.Caption := 'status';
+          gridPesquisa.Columns.Items[3].Width := 100;
+          gridPesquisa.Columns.Items[4].Title.Caption := 'cmc7';
+          gridPesquisa.Columns.Items[4].Width := 300;
+      end;
     end;  
 end;
 
@@ -482,6 +525,8 @@ begin
     c:=7;
   if pesq = 'crfid' then
     c:=8;
+  if pesq = 'cheqs' then
+    c:=9;
 end;
 
 procedure TfrmPesquisaRapida.FormCreate(Sender: TObject);
