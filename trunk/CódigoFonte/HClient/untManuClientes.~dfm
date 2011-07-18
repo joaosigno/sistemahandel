@@ -1,6 +1,6 @@
 inherited frmManuClientes: TfrmManuClientes
-  Left = 400
-  Top = 172
+  Left = 391
+  Top = 231
   Caption = 'Manuten'#231#227'o de Clientes'
   ClientHeight = 369
   ClientWidth = 553
@@ -18,7 +18,7 @@ inherited frmManuClientes: TfrmManuClientes
     Top = 0
     Width = 553
     Height = 309
-    ActivePage = tsBasicos
+    ActivePage = tsDepAut
     Align = alClient
     TabOrder = 1
     object tsBasicos: TTabSheet

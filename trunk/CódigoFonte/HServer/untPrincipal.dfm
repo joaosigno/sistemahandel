@@ -327,7 +327,7 @@ object frmPrincipal: TfrmPrincipal
     Top = 0
     Width = 514
     Height = 321
-    ActivePage = tbInicio
+    ActivePage = tbChatServer
     Align = alClient
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText

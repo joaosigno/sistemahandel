@@ -2,8 +2,8 @@ object RDM: TRDM
   OldCreateOrder = False
   OnCreate = RemoteDataModuleCreate
   OnDestroy = RemoteDataModuleDestroy
-  Left = 351
-  Top = 129
+  Left = 300
+  Top = 236
   Height = 489
   Width = 651
   object con: TZConnection
@@ -348,6 +348,7 @@ object RDM: TRDM
   end
   object qryBanco: TZReadOnlyQuery
     Connection = con
+    Active = True
     SQL.Strings = (
       'select * from banco'
       'order by descri')
@@ -975,5 +976,20 @@ object RDM: TRDM
       Required = True
       BlobType = ftMemo
     end
+  end
+  object dspChq: TDataSetProvider
+    DataSet = qryChq
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
+    Left = 449
+    Top = 182
+  end
+  object qryChq: TZReadOnlyQuery
+    Connection = con
+    Active = True
+    SQL.Strings = (
+      'select * from cheqs order by cdchq')
+    Params = <>
+    Left = 360
+    Top = 183
   end
 end

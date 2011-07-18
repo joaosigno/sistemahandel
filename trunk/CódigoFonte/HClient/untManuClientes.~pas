@@ -223,7 +223,6 @@ procedure TfrmManuClientes.FormCreate(Sender: TObject);
 begin
   ManuDAO := TManutencaoDAO.Create(dm.cdsCli);
   inherited;
-  dm.executaSql(dm.cdsAux,'select * from gruiji');
   DataSource.DataSet := dm.cdsCli;
   dsAutorizados.DataSet := dm.cdsAutori;
   dsDependentes.DataSet := dm.cdsDepen;

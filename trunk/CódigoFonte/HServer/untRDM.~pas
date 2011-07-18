@@ -234,6 +234,15 @@ type
     qryCartFidnrcart: TIntegerField;
     qryClicdcrfi: TIntegerField;
     qryDepAuttipo: TStringField;
+    dspLogErros: TDataSetProvider;
+    qryLogErros: TZReadOnlyQuery;
+    qryLogErroscdlog: TIntegerField;
+    qryLogErroscdempr: TIntegerField;
+    qryLogErrosdtcada: TDateField;
+    qryLogErroshrcada: TTimeField;
+    qryLogErrosdescri: TMemoField;
+    dspChq: TDataSetProvider;
+    qryChq: TZReadOnlyQuery;
     procedure RemoteDataModuleCreate(Sender: TObject);
     procedure RemoteDataModuleDestroy(Sender: TObject);
   private

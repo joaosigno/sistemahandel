@@ -70,6 +70,7 @@ type
     acClientes: TAction;
     acBanco: TAction;
     acCadCartoaFidelidade: TAction;
+    acCheques: TAction;
     procedure AcFornecedoresExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -96,6 +97,7 @@ type
     procedure acClientesExecute(Sender: TObject);
     procedure acBancoExecute(Sender: TObject);
     procedure acCadCartoaFidelidadeExecute(Sender: TObject);
+    procedure tbChequesClick(Sender: TObject);
   private
     F : TFuncoes;
     { Private declarations }
@@ -115,7 +117,7 @@ uses untDM, untMensagem, untConfBD,
   untInicial, untAutenticacao, untManutencao, untVisualizaDados, Untfrmcalendario,
   untManuFornecedores, untfrmManuEmpresas, untGruposProdutos,
   untManuProfissoes, untManuDepartamento, untManuFuncionarios,
-  untManuClientes, untManuBanco, untManuCartaoFidelidade;
+  untManuClientes, untManuBanco, untManuCartaoFidelidade, untManuCheques;
 
 {$R *.dfm}
 
@@ -389,6 +391,13 @@ begin
   RegisterClass (TfrmManuCartaoFidelidade);
   VD.showForm('Bancos',dm.cdsCartFid,'TfrmManuCartaoFidelidade',
                          '*','crfid',' order by nrcart');
+end;
+
+procedure TfrmPrincipal.tbChequesClick(Sender: TObject);
+begin
+ RegisterClass(TfrmManuCheques);
+ VD.showForm('Cheques',dm.cdsCheque,'TfrmManuCheques',
+                         '*','cheqs',' order by cdchq');
 end;
 
 end.
