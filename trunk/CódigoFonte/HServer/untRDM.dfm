@@ -2,8 +2,8 @@ object RDM: TRDM
   OldCreateOrder = False
   OnCreate = RemoteDataModuleCreate
   OnDestroy = RemoteDataModuleDestroy
-  Left = 300
-  Top = 236
+  Left = 287
+  Top = 134
   Height = 489
   Width = 651
   object con: TZConnection
@@ -300,9 +300,6 @@ object RDM: TRDM
     end
     object qryFunsalari: TFloatField
       FieldName = 'salari'
-    end
-    object qryFuncomisa: TFloatField
-      FieldName = 'comisa'
     end
     object qryFunprferi: TDateField
       FieldName = 'prferi'
@@ -938,6 +935,9 @@ object RDM: TRDM
       FieldName = 'nrcart'
       Required = True
     end
+    object qryCartFidcdempr: TIntegerField
+      FieldName = 'cdempr'
+    end
   end
   object dspCartFid: TDataSetProvider
     DataSet = qryCartFid
@@ -945,43 +945,11 @@ object RDM: TRDM
     Left = 448
     Top = 64
   end
-  object dspLogErros: TDataSetProvider
-    DataSet = qryLogErros
-    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
-    Left = 448
-    Top = 120
-  end
-  object qryLogErros: TZReadOnlyQuery
-    Connection = con
-    SQL.Strings = (
-      'select * from loger')
-    Params = <>
-    Left = 360
-    Top = 120
-    object qryLogErroscdlog: TIntegerField
-      FieldName = 'cdlog'
-      Required = True
-    end
-    object qryLogErroscdempr: TIntegerField
-      FieldName = 'cdempr'
-    end
-    object qryLogErrosdtcada: TDateField
-      FieldName = 'dtcada'
-    end
-    object qryLogErroshrcada: TTimeField
-      FieldName = 'hrcada'
-    end
-    object qryLogErrosdescri: TMemoField
-      FieldName = 'descri'
-      Required = True
-      BlobType = ftMemo
-    end
-  end
   object dspChq: TDataSetProvider
     DataSet = qryChq
     Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
     Left = 449
-    Top = 182
+    Top = 118
   end
   object qryChq: TZReadOnlyQuery
     Connection = con
@@ -990,6 +958,61 @@ object RDM: TRDM
       'select * from cheqs order by cdchq')
     Params = <>
     Left = 360
-    Top = 183
+    Top = 119
+  end
+  object qryVende: TZReadOnlyQuery
+    Connection = con
+    SQL.Strings = (
+      'select * from vende order by nome')
+    Params = <>
+    Left = 360
+    Top = 175
+    object qryVendecdvend: TIntegerField
+      FieldName = 'cdvend'
+      Required = True
+    end
+    object qryVendecdempr: TIntegerField
+      FieldName = 'cdempr'
+    end
+    object qryVendecdfunc: TIntegerField
+      FieldName = 'cdfunc'
+    end
+    object qryVendedtcada: TDateField
+      FieldName = 'dtcada'
+    end
+    object qryVendenome: TStringField
+      FieldName = 'nome'
+      Required = True
+      Size = 30
+    end
+    object qryVendereccom: TStringField
+      FieldName = 'reccom'
+      Size = 1
+    end
+    object qryVendecomiss: TFloatField
+      FieldName = 'comiss'
+    end
+    object qryVendevenvis: TStringField
+      FieldName = 'venvis'
+      Size = 1
+    end
+    object qryVendevenpra: TStringField
+      FieldName = 'venpra'
+      Size = 1
+    end
+    object qryVendevencar: TStringField
+      FieldName = 'vencar'
+      Size = 1
+    end
+    object qryVendevenche: TStringField
+      FieldName = 'venche'
+      Size = 1
+    end
+  end
+  object dspVende: TDataSetProvider
+    DataSet = qryVende
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
+    Left = 441
+    Top = 174
   end
 end

@@ -48,7 +48,7 @@ inherited frmManuFuncionario: TfrmManuFuncionario
     Top = 0
     Width = 503
     Height = 284
-    ActivePage = tbDadosPrincipais
+    ActivePage = tbOutros
     Align = alClient
     TabOrder = 1
     object tbDadosPrincipais: TTabSheet
@@ -284,7 +284,6 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         Top = 32
         Width = 112
         Height = 21
-        Hint = 'Digite ou escolha a data de cadastro do fornecedor'
         DataField = 'dtcada'
         DataSource = DataSource
         ButtonHint = 'Clique para abrir o calend'#225'rio'
@@ -451,7 +450,6 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         Top = 200
         Width = 112
         Height = 21
-        Hint = 'Digite ou escolha a data de cadastro do fornecedor'
         DataField = 'dtnasc'
         DataSource = DataSource
         ButtonHint = 'Clique para abrir o calend'#225'rio'
@@ -638,13 +636,6 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         Height = 14
         Caption = 'Sal'#225'rio.......:'
       end
-      object Label22: TLabel
-        Left = 280
-        Top = 146
-        Width = 91
-        Height = 14
-        Caption = 'Comiss'#227'o(%).:'
-      end
       object Label23: TLabel
         Left = 0
         Top = 172
@@ -728,7 +719,6 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         Top = 8
         Width = 112
         Height = 21
-        Hint = 'Digite ou escolha a data de cadastro do fornecedor'
         DataField = 'dtadmi'
         DataSource = DataSource
         ButtonHint = 'Clique para abrir o calend'#225'rio'
@@ -796,7 +786,6 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         Top = 8
         Width = 112
         Height = 21
-        Hint = 'Digite ou escolha a data de cadastro do fornecedor'
         DataField = 'dtsaid'
         DataSource = DataSource
         ButtonHint = 'Clique para abrir o calend'#225'rio'
@@ -883,14 +872,13 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 15
+        TabOrder = 14
       end
       object dbdePrFerias: TDBDateEdit
         Left = 108
         Top = 168
         Width = 112
         Height = 21
-        Hint = 'Digite ou escolha a data de cadastro do fornecedor'
         DataField = 'prferi'
         DataSource = DataSource
         ButtonHint = 'Clique para abrir o calend'#225'rio'
@@ -951,7 +939,7 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 13
+        TabOrder = 12
       end
       object dbeCartProf: TDBEdit
         Left = 108
@@ -963,7 +951,7 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         DataField = 'cartpr'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 14
+        TabOrder = 13
       end
       object dblcdDepartamento: TDBLookupComboBox
         Left = 192
@@ -1105,73 +1093,6 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         ParentShowHint = False
         ShowHint = True
         TabOrder = 11
-      end
-      object dbecomissao: TRxDBCalcEdit
-        Left = 372
-        Top = 143
-        Width = 109
-        Height = 21
-        DataField = 'comisa'
-        DataSource = DataSource
-        Ctl3D = False
-        DisplayFormat = 'R$ ,0.00;-R$ ,0.00'
-        GlyphKind = gkCustom
-        Glyph.Data = {
-          36060000424D3606000000000000360000002800000020000000100000000100
-          1800000000000006000000000000000000000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEF
-          8080808080808080808080808080808080808080808080808080808080808080
-          80808080F4EEE1FFFFFFFFFFFFFFFFEFC0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0
-          C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0FFFFFFFFFFFFFFFFFF808080
-          A29E858C896A86825F908A61958E638E855A91885D9288608981599F97728681
-          627F7B63808080FFFFFFFFFFFFC0C0C0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC0C0C0FFFFFFFFFFFF808080
-          CFCCB0C0BF99BEBD91C2BD90D0CA9DB2A781CFC39FC0B58FC3BC91C3BF8FC2C2
-          949B9B77808080FFFFFFFFFFFFC0C0C0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC0C0C0FFFFFFFFFFFF808080
-          D8D6B8BFC096727242736F3EBBB588837551756645CBBF9B79724776743EBDBF
-          8BAAAC82808080FFFFFFFFFFFFC0C0C0FFFFFFFFFFFFC0C0C0C0C0C0FFFFFFC0
-          C0C0C0C0C0FFFFFFC0C0C0C0C0C0FFFFFFFFFFFFC0C0C0FFFFFFFFFFFF808080
-          E1DEBFCAC89FC9C797C4BE8FCCC398C0B190C7B79AC6B796C6BD92B6B27DC0C0
-          8AAFB084808080FFFFFFFFFFFFC0C0C0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC0C0C0FFFFFFFFFFFF808080
-          D3CDB0BBB78E7571417A7447C1B78F7E6F4F79694CC8B9997E744C817D4ABFBF
-          89A2A175808080FFFFFFFFFFFFC0C0C0FFFFFFFFFFFFC0C0C0C0C0C0FFFFFFC0
-          C0C0C0C0C0FFFFFFC0C0C0C0C0C0FFFFFFFFFFFFC0C0C0FFFFFFFFFFFF808080
-          D7D1B4C0BB94C4BF92C5BE93CEC59FB9AB8ECFC1A5BCAE91C8BD97C3BF8CC2C1
-          8EA3A276808080FFFFFFFFFFFFC0C0C0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC0C0C0FFFFFFFFFFFF808080
-          E0D9BEC0BA95787249766E46B8AF8A877A6072644DC5B99D7C734E757141BCBB
-          89B0B185808080FFFFFFFFFFFFC0C0C0FFFFFFFFFFFFC0C0C0C0C0C0FFFFFFC0
-          C0C0C0C0C0FFFFFFC0C0C0C0C0C0FFFFFFFFFFFFC0C0C0FFFFFFFFFFFF808080
-          D6CEB7BFB897C8C39CBEB691C9C09FBFB29CC1B3A0BCB098C6BF9EBDBA8DBCBC
-          8CA2A379808080FFFFFFFFFFFFC0C0C0FFFFFFC0C0C0C0C0C0C0C0C0C0C0C0C0
-          C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0FFFFFFC0C0C0FFFFFFFFFFFF808080
-          DDD4C0C6C1A2FFFFE6FFFFDEFFFCDFFFFFF1FFFFF0FFFFF0FFFFE5FFFFE2B6B8
-          8AB9BA92808080FFFFFFFFFFFFC0C0C0FFFFFFC0C0C0FFFFE6FFFFDEFFFCDFFF
-          FFF1FFFFF0FFFFF0FFFFE5FFFFE2C0C0C0FFFFFFC0C0C0FFFFFFFFFFFF808080
-          C5BFB4B2AC99FFFFEEFFFFF0FFFFF2FFFFFBFDF6F3FFFFF8FFFFF2FFFFE9A4AC
-          849BA080808080FFFFFFFFFFFFC0C0C0FFFFFFC0C0C0FFFFEEFFFFF0FFFFF2FF
-          FFFBFDF6F3FFFFF8FFFFF2FFFFE9C0C0C0FFFFFFC0C0C0FFFFFFFFFFFF808080
-          EEE7DEA9A593BEBDA8B9B8A49F9E90BEB9B6C0BCBBBAB7B2B2B5A5A4AA8BC3CA
-          A7B3B99A808080FFFFFFFFFFFFC0C0C0FFFFFFC0C0C0C0C0C0C0C0C0C0C0C0C0
-          C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0FFFFFFC0C0C0FFFFFFFFFFFF808080
-          FBF5EEFFFFF4FAFAE8F9F9E9FFFFF8FFFEFFF2EFF1FBFAF6FFFFF5FFFFEBFEFF
-          E6C6CEB0808080FFFFFFFFFFFFC0C0C0FBF5EEFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC0C0C0FFFFFFFFFFFFFFFBFB
-          8080808080808080808080808080808080808080808080808080808080808080
-          80808080FFFFEDFFFFFFFFFFFFFFFBFBC0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0
-          C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0FFFFEDFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-        NumGlyphs = 2
-        ParentCtl3D = False
-        ParentShowHint = False
-        ShowHint = True
-        TabOrder = 12
       end
     end
   end

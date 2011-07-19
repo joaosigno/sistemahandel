@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, untManutencao, DB, ImgList, ComCtrls, ToolWin, StdCtrls, Mask,
-  DBCtrls, ToolEdit, RXDBCtrl,untDeclaracoes, ExtCtrls;
+  DBCtrls, ToolEdit, RXDBCtrl,untDeclaracoes, ExtCtrls, CurrEdit;
 
 type
   TfrmManuCheques = class(TfrmManutencao)
@@ -26,23 +26,23 @@ type
     Label7: TLabel;
     dbeEmitente: TDBEdit;
     Label8: TLabel;
-    dbeValor: TDBEdit;
     Label9: TLabel;
     Label11: TLabel;
     Label13: TLabel;
     Label15: TLabel;
     dbeCMC7: TDBEdit;
     Label16: TLabel;
-    ddbcbStatus: TDBComboBox;
-    dbDtVencimento: TDBDateEdit;
     dbcbEmitido: TDBCheckBox;
     tsChqObs: TTabSheet;
     DBMemo1: TDBMemo;
-    dbdtCadastro: TDBDateEdit;
     Bevel1: TBevel;
     Bevel2: TBevel;
-    DataSourceAux: TDataSource;
+    dbdtCadastro: TDBDateEdit;
+    dbDtVencimento: TDBDateEdit;
+    ddbcbStatus: TDBComboBox;
+    dbeCodCli: TDBEdit;
     dblkpcbCliente: TDBLookupComboBox;
+    dbeValor: TRxDBCalcEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure tbGravarClick(Sender: TObject);
@@ -242,6 +242,7 @@ procedure TfrmManuCheques.FormCreate(Sender: TObject);
 begin
   ManuDAO := TManutencaoDAO.Create(dm.cdsCheque);
   inherited;
+  DataSource.DataSet := dm.cdsCheque;
 end;
 
 procedure TfrmManuCheques.FormClose(Sender: TObject;
@@ -305,11 +306,13 @@ procedure TfrmManuCheques.dbcbEmitidoClick(Sender: TObject);
 begin
  if dbcbEmitido.Checked = true then
   begin
+    dbeCodCli.Enabled := false;
     dblkpcbCliente.Enabled := false;
     dbcbEmitido.ValueChecked := 'N';
   end
     else
   begin
+    dbeCodCli.Enabled := true;
     dblkpcbCliente.Enabled := true;
     dbcbEmitido.ValueChecked := 'S';
   end;

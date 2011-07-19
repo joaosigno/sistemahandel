@@ -181,7 +181,4 @@ inherited frmManuGrupoProdutos: TfrmManuGrupoProdutos
     Left = 104
     Top = 136
   end
-  inherited DataSource: TDataSource
-    DataSet = dm.cdsGRPro
-  end
 end

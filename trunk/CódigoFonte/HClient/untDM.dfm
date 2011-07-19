@@ -1,7 +1,7 @@
 object dm: Tdm
   OldCreateOrder = False
-  Left = 342
-  Top = 314
+  Left = 580
+  Top = 135
   Height = 445
   Width = 448
   object cdsUsu: TClientDataSet
@@ -653,11 +653,7 @@ object dm: Tdm
       DisplayLabel = 'Sal'#225'rio'
       FieldName = 'salari'
       DisplayFormat = '#.00'
-    end
-    object cdsFunccomisa: TFloatField
-      DisplayLabel = 'Comiss'#227'o'
-      FieldName = 'comisa'
-      DisplayFormat = '#.00'
+      EditFormat = '#.00'
     end
     object cdsFuncprferi: TDateField
       DisplayLabel = 'Pr.F'#233'rias'
@@ -1161,6 +1157,10 @@ object dm: Tdm
       FieldName = 'nrcart'
       Required = True
     end
+    object cdsCartFidcdempr: TIntegerField
+      DisplayLabel = 'C'#243'd.Emrpesa'
+      FieldName = 'cdempr'
+    end
     object cdsCartFiddtcada: TDateField
       DisplayLabel = 'Dt.Cadastro'
       FieldName = 'dtcada'
@@ -1182,34 +1182,7 @@ object dm: Tdm
       Size = 50
     end
   end
-  object cdsLogErros: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'dspLogErros'
-    RemoteServer = scHC
-    Left = 112
-    Top = 232
-    object cdsLogErroscdlog: TIntegerField
-      FieldName = 'cdlog'
-      Required = True
-    end
-    object cdsLogErroscdempr: TIntegerField
-      FieldName = 'cdempr'
-    end
-    object cdsLogErrosdtcada: TDateField
-      FieldName = 'dtcada'
-    end
-    object cdsLogErroshrcada: TTimeField
-      FieldName = 'hrcada'
-    end
-    object cdsLogErrosdescri: TMemoField
-      FieldName = 'descri'
-      Required = True
-      BlobType = ftMemo
-    end
-  end
   object cdsCheque: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspChq'
@@ -1257,6 +1230,8 @@ object dm: Tdm
       Alignment = taCenter
       DisplayLabel = 'Valor'
       FieldName = 'valor'
+      DisplayFormat = '#.00'
+      EditFormat = '#.00'
     end
     object cdsChequedtVenc: TDateField
       Alignment = taCenter
@@ -1300,6 +1275,90 @@ object dm: Tdm
       Alignment = taCenter
       DisplayLabel = 'C'#243'd. Cliente'
       FieldName = 'codcli'
+    end
+    object cdsChequeprocuraCLiente: TStringField
+      DisplayLabel = 'Cliente'
+      FieldKind = fkLookup
+      FieldName = 'procuraCLiente'
+      LookupDataSet = cdsCli
+      LookupKeyFields = 'cdclie'
+      LookupResultField = 'nome'
+      KeyFields = 'codcli'
+      Size = 30
+      Lookup = True
+    end
+  end
+  object cdsVende: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspVende'
+    RemoteServer = scHC
+    Left = 176
+    Top = 232
+    object cdsVendecdvend: TIntegerField
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'cdvend'
+      Required = True
+    end
+    object cdsVendecdempr: TIntegerField
+      DisplayLabel = 'C'#243'd.Empresa'
+      FieldName = 'cdempr'
+    end
+    object cdsVendecdfunc: TIntegerField
+      DisplayLabel = 'C'#243'd.Funcion'#225'rio'
+      FieldName = 'cdfunc'
+    end
+    object cdsVendeprocuraFuncionario: TStringField
+      DisplayLabel = 'Funcion'#225'rio'
+      FieldKind = fkLookup
+      FieldName = 'procuraFuncionario'
+      LookupDataSet = cdsFunc
+      LookupKeyFields = 'cdfunc'
+      LookupResultField = 'nome'
+      KeyFields = 'cdfunc'
+      Size = 30
+      Lookup = True
+    end
+    object cdsVendedtcada: TDateField
+      DisplayLabel = 'Dt.Cadastro'
+      FieldName = 'dtcada'
+    end
+    object cdsVendenome: TStringField
+      DisplayLabel = 'Nome'
+      FieldName = 'nome'
+      Required = True
+      Size = 30
+    end
+    object cdsVendereccom: TStringField
+      DisplayLabel = 'Recebe Comiss'#227'o?'
+      FieldName = 'reccom'
+      Size = 1
+    end
+    object cdsVendecomiss: TFloatField
+      DisplayLabel = 'Comiss'#227'o(%)'
+      FieldName = 'comiss'
+      DisplayFormat = '#.00'
+      EditFormat = '#.00'
+    end
+    object cdsVendevenvis: TStringField
+      DisplayLabel = 'Venda a Vista'
+      FieldName = 'venvis'
+      Size = 1
+    end
+    object cdsVendevenpra: TStringField
+      DisplayLabel = 'Venda a Prazo'
+      FieldName = 'venpra'
+      Size = 1
+    end
+    object cdsVendevencar: TStringField
+      DisplayLabel = 'Venda a Cart'#227'o'
+      FieldName = 'vencar'
+      Size = 1
+    end
+    object cdsVendevenche: TStringField
+      DisplayLabel = 'Venda a Cheque'
+      FieldName = 'venche'
+      Size = 1
     end
   end
 end

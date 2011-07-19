@@ -1,6 +1,6 @@
 inherited frmManuDepartamento: TfrmManuDepartamento
-  Left = 841
-  Top = 182
+  Left = 395
+  Top = 183
   Caption = 'Manuten'#231#227'o de Departamentos'
   ClientHeight = 160
   ClientWidth = 489
@@ -107,7 +107,6 @@ inherited frmManuDepartamento: TfrmManuDepartamento
         Top = 9
         Width = 112
         Height = 21
-        Hint = 'Digite ou escolha a data de cadastro do fornecedor'
         DataField = 'dtcada'
         DataSource = DataSource
         ButtonHint = 'Clique para abrir o calend'#225'rio'

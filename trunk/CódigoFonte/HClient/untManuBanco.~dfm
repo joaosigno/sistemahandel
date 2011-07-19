@@ -1,6 +1,6 @@
 inherited frmManuBanco: TfrmManuBanco
-  Left = 431
-  Top = 207
+  Left = 549
+  Top = 224
   Caption = 'Manuten'#231#227'o de Bancos'
   ClientHeight = 166
   OldCreateOrder = True
@@ -96,7 +96,6 @@ inherited frmManuBanco: TfrmManuBanco
         Top = 7
         Width = 112
         Height = 21
-        Hint = 'Digite ou escolha a data de cadastro do fornecedor'
         DataField = 'dtcada'
         DataSource = DataSource
         ButtonHint = 'Clique para abrir o calend'#225'rio'

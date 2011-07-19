@@ -50,6 +50,8 @@ procedure TfrmManuGrupoProdutos.dbeDescricaoExit(Sender: TObject);
 begin
  if DataSource.State IN [dsInsert] then
   begin
+    if dbeDescricao.Text <> '' then
+    begin
       ManuDAO.SQL.executaSQlPorEmp(dm.cdsAux,'*','grPro',' and descri='+
         QuotedStr(dbeDescricao.Text));
         if dm.cdsAux.RecordCount <> 0 then
@@ -57,6 +59,7 @@ begin
             dm.cdsGRProdescri.AsString:= '';
             f.Mensagem(false,'Descrição Ja esta Gravado!');
         end;
+     end;   
   end;
 
 end;

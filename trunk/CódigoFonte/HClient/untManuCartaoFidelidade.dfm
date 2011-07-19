@@ -1,6 +1,6 @@
 inherited frmManuCartaoFidelidade: TfrmManuCartaoFidelidade
-  Left = 353
-  Top = 230
+  Left = 209
+  Top = 335
   Caption = 'Manuten'#231#227'o de Cart'#227'o Fidelidade'
   ClientHeight = 195
   OldCreateOrder = True
@@ -56,6 +56,7 @@ inherited frmManuCartaoFidelidade: TfrmManuCartaoFidelidade
         Top = 25
         Width = 144
         Height = 20
+        CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'nrcart'
         DataSource = DataSource
@@ -68,6 +69,7 @@ inherited frmManuCartaoFidelidade: TfrmManuCartaoFidelidade
         Top = 48
         Width = 401
         Height = 20
+        CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'nmcart'
         DataSource = DataSource
@@ -143,7 +145,6 @@ inherited frmManuCartaoFidelidade: TfrmManuCartaoFidelidade
         Top = 24
         Width = 112
         Height = 21
-        Hint = 'Digite ou escolha a data de cadastro do fornecedor'
         DataField = 'dtcada'
         DataSource = DataSource
         ButtonHint = 'Clique para abrir o calend'#225'rio'

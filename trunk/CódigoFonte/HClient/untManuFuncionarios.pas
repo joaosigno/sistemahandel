@@ -51,7 +51,6 @@ type
     Label20: TLabel;
     dbeCHoraria: TDBEdit;
     Label21: TLabel;
-    Label22: TLabel;
     Label23: TLabel;
     dbmmObs: TDBMemo;
     dbdePrFerias: TDBDateEdit;
@@ -71,7 +70,6 @@ type
     Label27: TLabel;
     Label28: TLabel;
     dbeSalario: TRxDBCalcEdit;
-    dbecomissao: TRxDBCalcEdit;
     procedure dbeCNPJKeyPress(Sender: TObject; var Key: Char);
     procedure dbetelefoneKeyPress(Sender: TObject; var Key: Char);
     procedure dbeCodProfiKeyPress(Sender: TObject; var Key: Char);

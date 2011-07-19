@@ -84,7 +84,6 @@ type
     qryFundtsaid: TDateField;
     qryFunchorar: TIntegerField;
     qryFunsalari: TFloatField;
-    qryFuncomisa: TFloatField;
     qryFunprferi: TDateField;
     qryFunobserv: TStringField;
     qryProfcdprof: TIntegerField;
@@ -243,6 +242,20 @@ type
     qryLogErrosdescri: TMemoField;
     dspChq: TDataSetProvider;
     qryChq: TZReadOnlyQuery;
+    qryCartFidcdempr: TIntegerField;
+    qryVende: TZReadOnlyQuery;
+    dspVende: TDataSetProvider;
+    qryVendecdvend: TIntegerField;
+    qryVendecdempr: TIntegerField;
+    qryVendecdfunc: TIntegerField;
+    qryVendedtcada: TDateField;
+    qryVendenome: TStringField;
+    qryVendereccom: TStringField;
+    qryVendecomiss: TFloatField;
+    qryVendevenvis: TStringField;
+    qryVendevenpra: TStringField;
+    qryVendevencar: TStringField;
+    qryVendevenche: TStringField;
     procedure RemoteDataModuleCreate(Sender: TObject);
     procedure RemoteDataModuleDestroy(Sender: TObject);
   private

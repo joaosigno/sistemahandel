@@ -71,7 +71,7 @@ inherited frmManuProfissoes: TfrmManuProfissoes
       object Label18: TLabel
         Left = 200
         Top = 10
-        Width = 106
+        Width = 105
         Height = 14
         Caption = 'Data Cadastro.:'
         Transparent = True
@@ -107,7 +107,6 @@ inherited frmManuProfissoes: TfrmManuProfissoes
         Top = 8
         Width = 112
         Height = 21
-        Hint = 'Digite ou escolha a data de cadastro do fornecedor'
         DataField = 'dtcada'
         DataSource = DataSource
         ButtonHint = 'Clique para abrir o calend'#225'rio'
@@ -178,7 +177,6 @@ inherited frmManuProfissoes: TfrmManuProfissoes
     Top = 96
   end
   inherited DataSource: TDataSource
-    DataSet = dm.cdsProfi
     Left = 104
     Top = 104
   end
