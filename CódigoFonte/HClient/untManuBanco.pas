@@ -57,7 +57,6 @@ procedure TfrmManuBanco.tbGravarClick(Sender: TObject);
 begin
   if verificaDadosAntesGravar =false then
     abort else
-    //dm.cdsBanccdempr.AsInteger := frmPrincipal.Configuracao.EmpresaCodigo;
   inherited;
 end;
 
@@ -67,7 +66,7 @@ begin
   begin
       if dbeDescri.Text <> '' then
       begin
-      ManuDAO.SQL.executaSQlPorEmp(dm.cdsAux,'*','banco',' and descri='+
+      ManuDAO.SQL.executaSql(dm.cdsAux,'select * from banco where descri='+
         QuotedStr(dbeDescri.Text));
         if dm.cdsAux.RecordCount <> 0 then
         begin

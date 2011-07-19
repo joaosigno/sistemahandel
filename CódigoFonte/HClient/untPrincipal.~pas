@@ -71,6 +71,7 @@ type
     acBanco: TAction;
     acCadCartoaFidelidade: TAction;
     acCheques: TAction;
+    acVendedores: TAction;
     procedure AcFornecedoresExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -97,7 +98,8 @@ type
     procedure acClientesExecute(Sender: TObject);
     procedure acBancoExecute(Sender: TObject);
     procedure acCadCartoaFidelidadeExecute(Sender: TObject);
-    procedure tbChequesClick(Sender: TObject);
+    procedure acVendedoresExecute(Sender: TObject);
+    procedure acChequesExecute(Sender: TObject);
   private
     F : TFuncoes;
     { Private declarations }
@@ -117,7 +119,8 @@ uses untDM, untMensagem, untConfBD,
   untInicial, untAutenticacao, untManutencao, untVisualizaDados, Untfrmcalendario,
   untManuFornecedores, untfrmManuEmpresas, untGruposProdutos,
   untManuProfissoes, untManuDepartamento, untManuFuncionarios,
-  untManuClientes, untManuBanco, untManuCartaoFidelidade, untManuCheques;
+  untManuClientes, untManuBanco, untManuCartaoFidelidade, untManuCheques,
+  untManuVendedores;
 
 {$R *.dfm}
 
@@ -393,9 +396,16 @@ begin
                          '*','crfid',' order by nrcart');
 end;
 
-procedure TfrmPrincipal.tbChequesClick(Sender: TObject);
+procedure TfrmPrincipal.acVendedoresExecute(Sender: TObject);
 begin
- RegisterClass(TfrmManuCheques);
+ RegisterClass(TfrmManuVendedores);
+ VD.showForm('Vendedores',dm.cdsVende,'TfrmManuVendedores',
+                         '*','vende',' order by cdvend');
+end;
+
+procedure TfrmPrincipal.acChequesExecute(Sender: TObject);
+begin
+  RegisterClass(TfrmManuCheques);
  VD.showForm('Cheques',dm.cdsCheque,'TfrmManuCheques',
                          '*','cheqs',' order by cdchq');
 end;

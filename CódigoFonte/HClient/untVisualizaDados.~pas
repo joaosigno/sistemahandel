@@ -178,7 +178,7 @@ begin
   frmVizualizaDados.Caption := lblVizualizaDados;
   frmVizualizaDados.lblVizualizaDados.Caption := lblVizualizaDados;
   frmVizualizaDados.dataSource.DataSet := cds;
-  if (vd.FTabela = 'empre') or (vd.FTabela = 'banco')  then
+  if (vd.FTabela = 'empre') or (vd.FTabela = 'banco') or (vd.FTabela = 'crfid')   then
   begin
     vd.SQL.executaSql(cds,'select '+campos+' from '+tabela
                       +' '+sql);

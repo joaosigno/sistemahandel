@@ -1,6 +1,6 @@
 inherited frmManuClientes: TfrmManuClientes
-  Left = 391
-  Top = 231
+  Left = 620
+  Top = 219
   Caption = 'Manuten'#231#227'o de Clientes'
   ClientHeight = 369
   ClientWidth = 553
@@ -18,7 +18,7 @@ inherited frmManuClientes: TfrmManuClientes
     Top = 0
     Width = 553
     Height = 309
-    ActivePage = tsDepAut
+    ActivePage = tsBasicos
     Align = alClient
     TabOrder = 1
     object tsBasicos: TTabSheet
@@ -247,7 +247,6 @@ inherited frmManuClientes: TfrmManuClientes
         Top = 31
         Width = 90
         Height = 22
-        Hint = 'Escolha a UF do fornecedor'
         Style = csDropDownList
         CharCase = ecUpperCase
         Ctl3D = False
@@ -267,7 +266,6 @@ inherited frmManuClientes: TfrmManuClientes
         Top = 224
         Width = 112
         Height = 21
-        Hint = 'Digite ou escolha a data de cadastro do fornecedor'
         DataField = 'dtnasc'
         DataSource = DataSource
         ButtonHint = 'Clique para abrir o calend'#225'rio'
@@ -335,7 +333,6 @@ inherited frmManuClientes: TfrmManuClientes
         Top = 8
         Width = 112
         Height = 21
-        Hint = 'Digite ou escolha a data de cadastro do fornecedor'
         DataField = 'dtcada'
         DataSource = DataSource
         ButtonHint = 'Clique para abrir o calend'#225'rio'
@@ -404,7 +401,6 @@ inherited frmManuClientes: TfrmManuClientes
         Top = 32
         Width = 112
         Height = 21
-        Hint = 'Digite ou escolha a data de cadastro do fornecedor'
         DataField = 'cldesd'
         DataSource = DataSource
         ButtonHint = 'Clique para abrir o calend'#225'rio'

@@ -41,7 +41,7 @@ var
 
 implementation
 
-uses untDM;
+uses untDM, untPrincipal;
 
 {$R *.dfm}
 
@@ -77,7 +77,7 @@ begin
   begin
       if dbeNrcartao.Text <> '' then
       begin
-      ManuDAO.SQL.executaSql(dm.cdsAux,'select * from crfid where nrcart='+
+      ManuDAO.SQL.executaSQlPorEmp(dm.cdsAux,'*','crfid','and nrcart='+
         QuotedStr(dbeNrcartao.Text));
         if dm.cdsAux.RecordCount <> 0 then
         begin
@@ -95,7 +95,7 @@ begin
   begin
       if dbeNome.Text <> '' then
       begin
-      ManuDAO.SQL.executaSql(dm.cdsAux,'select * from crfid where nmcart='+
+      ManuDAO.SQL.executaSQlPorEmp(dm.cdsAux,'*',' crfid ','and nmcart='+
         QuotedStr(dbeNrcartao.Text));
         if dm.cdsAux.RecordCount <> 0 then
         begin
@@ -123,6 +123,10 @@ procedure TfrmManuCartaoFidelidade.tbGravarClick(Sender: TObject);
 begin
   if verificaDadosAntesGravar = false then
     Abort else
+  if DataSource.State in [dsInsert] then
+  begin
+     dm.cdsCartFidcdempr.AsInteger := frmPrincipal.Configuracao.EmpresaCodigo;
+  end;
   inherited;
 end;
 

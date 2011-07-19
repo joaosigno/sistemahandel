@@ -326,7 +326,6 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         Top = 56
         Width = 112
         Height = 21
-        Hint = 'Digite ou escolha a data de cadastro do fornecedor'
         DataField = 'dtcada'
         DataSource = DataSource
         ButtonHint = 'Clique para abrir o calend'#225'rio'
@@ -629,7 +628,6 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         Top = 20
         Width = 105
         Height = 21
-        Hint = 'Digite ou escolha a data de funda'#231#227'o do fornecedor'
         DataField = 'dtfund'
         DataSource = DataSource
         ButtonHint = 'Clique para abrir o calend'#225'rio'

@@ -244,7 +244,7 @@ begin
       if dbeRazaoSocial.Text <> '' then
       begin
       ManuDAO.SQL.executaSql(dm.cdsAux,'select * from empr where crzsoci='+
-        QuotedStr(dbeCNPJ.Text));
+        QuotedStr(dbeRazaoSocial.Text));
         if dm.cdsAux.RecordCount <> 0 then
         begin
             dm.cdsForCGC.AsString := '';

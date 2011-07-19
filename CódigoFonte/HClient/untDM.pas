@@ -117,7 +117,6 @@ type
     cdsFuncdtsaid: TDateField;
     cdsFuncchorar: TIntegerField;
     cdsFuncsalari: TFloatField;
-    cdsFunccomisa: TFloatField;
     cdsFuncprferi: TDateField;
     cdsFuncobserv: TStringField;
     cdsFuncdtcada: TDateField;
@@ -236,12 +235,6 @@ type
     cdsCliprocuraCartaoFidelidade: TStringField;
     cdsDepentipo: TStringField;
     cdsAutoritipo: TStringField;
-    cdsLogErros: TClientDataSet;
-    cdsLogErroscdlog: TIntegerField;
-    cdsLogErroscdempr: TIntegerField;
-    cdsLogErrosdtcada: TDateField;
-    cdsLogErroshrcada: TTimeField;
-    cdsLogErrosdescri: TMemoField;
     cdsCheque: TClientDataSet;
     cdsChequecodBan: TIntegerField;
     cdsChequecodAge: TIntegerField;
@@ -259,6 +252,21 @@ type
     cdsChequecmc7: TStringField;
     cdsChequecdchq: TIntegerField;
     cdsChequecodcli: TIntegerField;
+    cdsChequeprocuraCLiente: TStringField;
+    cdsCartFidcdempr: TIntegerField;
+    cdsVende: TClientDataSet;
+    cdsVendecdvend: TIntegerField;
+    cdsVendecdempr: TIntegerField;
+    cdsVendecdfunc: TIntegerField;
+    cdsVendedtcada: TDateField;
+    cdsVendenome: TStringField;
+    cdsVendereccom: TStringField;
+    cdsVendecomiss: TFloatField;
+    cdsVendevenvis: TStringField;
+    cdsVendevenpra: TStringField;
+    cdsVendevencar: TStringField;
+    cdsVendevenche: TStringField;
+    cdsVendeprocuraFuncionario: TStringField;
     function verificaBD():Boolean;
     function Autenticacao(cdemp:integer;login:String;senha:string): boolean;
   private

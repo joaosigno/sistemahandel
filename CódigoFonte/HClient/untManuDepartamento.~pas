@@ -45,6 +45,8 @@ procedure TfrmManuDepartamento.dbeDescriExit(Sender: TObject);
 begin
  if DataSource.State IN [dsInsert] then
   begin
+     if dbeDescri.Text <> '' then
+     begin
       ManuDAO.SQL.executaSQlPorEmp(dm.cdsAux,'*','depar',' and descri='+
         QuotedStr(dbeDescri.Text));
         if dm.cdsAux.RecordCount <> 0 then
@@ -52,6 +54,7 @@ begin
             dm.cdsDepadescri.AsString:= '';
             f.Mensagem(false,'Departamento Ja esta Gravado!');
         end;
+       end; 
   end;
 
 end;
