@@ -211,7 +211,7 @@ inherited frmManuCheques: TfrmManuCheques
         CharCase = ecUpperCase
         DataField = 'emtChq'
         DataSource = DataSource
-        TabOrder = 9
+        TabOrder = 10
         OnExit = dbeEmitenteExit
       end
       object dbeCMC7: TDBEdit
@@ -372,7 +372,7 @@ inherited frmManuCheques: TfrmManuCheques
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 10
+        TabOrder = 11
       end
       object ddbcbStatus: TDBComboBox
         Left = 79
@@ -392,7 +392,7 @@ inherited frmManuCheques: TfrmManuCheques
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 11
+        TabOrder = 12
       end
       object dbeCodCli: TDBEdit
         Left = 80
@@ -404,7 +404,7 @@ inherited frmManuCheques: TfrmManuCheques
         DataField = 'codcli'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 12
+        TabOrder = 13
       end
       object dblkpcbCliente: TDBLookupComboBox
         Left = 189
@@ -415,7 +415,7 @@ inherited frmManuCheques: TfrmManuCheques
         DataField = 'procuraCLiente'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 13
+        TabOrder = 14
       end
       object dbeValor: TRxDBCalcEdit
         Left = 345
@@ -483,7 +483,7 @@ inherited frmManuCheques: TfrmManuCheques
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 14
+        TabOrder = 9
       end
     end
     object tsChqObs: TTabSheet

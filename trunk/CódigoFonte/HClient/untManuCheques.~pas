@@ -268,21 +268,33 @@ end;
 
 procedure TfrmManuCheques.dbeCMC7Exit(Sender: TObject);
 begin
-  if Valida_CMC7(dbeCMC7.Text) = false then
+  if DataSource.State IN [dsInsert] then
   begin
-    ShowMessage('Número de cheque inválido');
-    dbeCMC7.SetFocus;
-  end
-    else
-  begin
-   //ShowMessage('Cheque válido');
-   dbeNumBanco.Text  := LeftStr(dbeCMC7.Text,3);
-   dbeAgencia.Text   := MidStr(dbeCMC7.Text,4,4);
-   dbeNumChq.Text    := MidStr(dbeCMC7.Text,12,6);
-   dbeNumConta.Text  := MidStr(dbeCMC7.Text,23,6);
-   dbeC3.Text        := CalculaC3(dbeNumChq.Text);
-   dbeValor.SetFocus;
+      ManuDAO.SQL.executaSQlPorEmp(dm.cdsAux,'*','cheqs',' and cmc7='+
+        QuotedStr(dbeCMC7.Text));
+        if dm.cdsAux.RecordCount <> 0 then
+        begin
+            dm.cdsChequecmc7.AsString:= '';
+            f.Mensagem(false,'CMC7 já foi gravado!');
+        end
+        else
+          if Valida_CMC7(dbeCMC7.Text) = false then
+            begin
+              ShowMessage('Número de cheque inválido');
+              dbeCMC7.SetFocus;
+            end
+             else
+            begin
+              //ShowMessage('Cheque válido');
+              dbeNumBanco.Text  := LeftStr(dbeCMC7.Text,3);
+              dbeAgencia.Text   := MidStr(dbeCMC7.Text,4,4);
+              dbeNumChq.Text    := MidStr(dbeCMC7.Text,12,6);
+              dbeNumConta.Text  := MidStr(dbeCMC7.Text,23,6);
+              dbeC3.Text        := CalculaC3(dbeNumChq.Text);
+              dbeValor.SetFocus;
+            end;
   end;
+
 end;
 
 procedure TfrmManuCheques.dbeValorExit(Sender: TObject);
