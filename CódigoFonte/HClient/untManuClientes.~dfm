@@ -18,7 +18,7 @@ inherited frmManuClientes: TfrmManuClientes
     Top = 0
     Width = 553
     Height = 309
-    ActivePage = tsBasicos
+    ActivePage = tsEmrpego
     Align = alClient
     TabOrder = 1
     object tsBasicos: TTabSheet
@@ -1648,7 +1648,6 @@ inherited frmManuClientes: TfrmManuClientes
     Top = 312
   end
   inherited DataSource: TDataSource
-    DataSet = dm.cdsCli
     Left = 224
     Top = 16
   end
