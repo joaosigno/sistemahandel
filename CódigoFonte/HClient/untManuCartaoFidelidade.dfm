@@ -54,7 +54,7 @@ inherited frmManuCartaoFidelidade: TfrmManuCartaoFidelidade
       object dbeNrcartao: TDBEdit
         Left = 81
         Top = 25
-        Width = 144
+        Width = 189
         Height = 20
         CharCase = ecUpperCase
         Ctl3D = False
@@ -63,6 +63,7 @@ inherited frmManuCartaoFidelidade: TfrmManuCartaoFidelidade
         ParentCtl3D = False
         TabOrder = 1
         OnExit = dbeNrcartaoExit
+        OnKeyPress = dbeNrcartaoKeyPress
       end
       object dbeNome: TDBEdit
         Left = 80
@@ -215,6 +216,7 @@ inherited frmManuCartaoFidelidade: TfrmManuCartaoFidelidade
     Top = 0
   end
   inherited DataSource: TDataSource
+    DataSet = dm.cdsCartFid
     Left = 200
     Top = 16
   end

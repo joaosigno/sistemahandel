@@ -72,6 +72,8 @@ type
     acCadCartoaFidelidade: TAction;
     acCheques: TAction;
     acVendedores: TAction;
+    acMarca: TAction;
+    acDefineEmpresaUsuario: TAction;
     procedure AcFornecedoresExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -100,6 +102,8 @@ type
     procedure acCadCartoaFidelidadeExecute(Sender: TObject);
     procedure acVendedoresExecute(Sender: TObject);
     procedure acChequesExecute(Sender: TObject);
+    procedure acMarcaExecute(Sender: TObject);
+    procedure acDefineEmpresaUsuarioExecute(Sender: TObject);
   private
     F : TFuncoes;
     { Private declarations }
@@ -120,7 +124,7 @@ uses untDM, untMensagem, untConfBD,
   untManuFornecedores, untfrmManuEmpresas, untGruposProdutos,
   untManuProfissoes, untManuDepartamento, untManuFuncionarios,
   untManuClientes, untManuBanco, untManuCartaoFidelidade, untManuCheques,
-  untManuVendedores;
+  untManuVendedores, untManuMarcaProdutos, untDefineEmpresaUsuario;
 
 {$R *.dfm}
 
@@ -408,6 +412,24 @@ begin
   RegisterClass(TfrmManuCheques);
  VD.showForm('Cheques',dm.cdsCheque,'TfrmManuCheques',
                          '*','cheqs',' order by cdchq');
+end;
+
+procedure TfrmPrincipal.acMarcaExecute(Sender: TObject);
+begin
+  RegisterClass(TfrmManuMarcaProdutos);
+ VD.showForm('Marcas',dm.cdsMcPro,'TfrmManuMarcaProdutos',
+                         '*','mcpro',' order by cdmarc');
+end;
+
+procedure TfrmPrincipal.acDefineEmpresaUsuarioExecute(Sender: TObject);
+begin
+   frmManuDefineEmpresaUsuario := TfrmManuDefineEmpresaUsuario.Create(Application);
+   ManuDAO.SQL.executaSQlPorEmp(dm.cdsUsu,'*',' uctabusers',' or' +
+              ' cdempr is null and uctyperec=''U''');
+   frmManuDefineEmpresaUsuario.ShowModal;
+   frmManuDefineEmpresaUsuario.Free;
+
+   //uciduser<>1 and cdempr=1 
 end;
 
 end.

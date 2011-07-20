@@ -1,6 +1,6 @@
 inherited frmManuProfissoes: TfrmManuProfissoes
-  Left = 500
-  Top = 203
+  Left = 655
+  Top = 274
   Caption = 'Manuten;'#225'o de Profiss'#245'es'
   ClientHeight = 158
   ClientWidth = 486

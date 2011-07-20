@@ -214,15 +214,17 @@ object RDM: TRDM
     object qryUsuucinative: TIntegerField
       FieldName = 'ucinative'
     end
-    object qryUsucdempresa: TIntegerField
-      FieldName = 'cdempresa'
-    end
-    object qryUsucdfuncionario: TIntegerField
-      FieldName = 'cdfuncionario'
-    end
     object qryUsutodasEmpresas: TStringField
       FieldName = 'todasEmpresas'
       Size = 1
+    end
+    object qryUsucdempr: TIntegerField
+      DisplayLabel = 'C'#243'd.Empresa'
+      FieldName = 'cdempr'
+    end
+    object qryUsucdfunc: TIntegerField
+      DisplayLabel = 'C'#243'd.Funcion'#225'rio'
+      FieldName = 'cdfunc'
     end
   end
   object qryFun: TZReadOnlyQuery
@@ -822,7 +824,7 @@ object RDM: TRDM
     object qryClilimite: TFloatField
       FieldName = 'limite'
     end
-    object qryClicdcrfi: TIntegerField
+    object qryClicdcrfi: TStringField
       FieldName = 'cdcrfi'
     end
   end
@@ -918,11 +920,6 @@ object RDM: TRDM
     object qryCartFiddtcada: TDateField
       FieldName = 'dtcada'
     end
-    object qryCartFidnmcart: TStringField
-      FieldName = 'nmcart'
-      Required = True
-      Size = 50
-    end
     object qryCartFidativo: TStringField
       FieldName = 'ativo'
       Size = 1
@@ -931,12 +928,17 @@ object RDM: TRDM
       FieldName = 'email'
       Size = 50
     end
-    object qryCartFidnrcart: TIntegerField
-      FieldName = 'nrcart'
-      Required = True
-    end
     object qryCartFidcdempr: TIntegerField
       FieldName = 'cdempr'
+    end
+    object qryCartFidnmcart: TStringField
+      FieldName = 'nmcart'
+      Required = True
+      Size = 50
+    end
+    object qryCartFidnrcart: TStringField
+      FieldName = 'nrcart'
+      Required = True
     end
   end
   object dspCartFid: TDataSetProvider
@@ -945,43 +947,11 @@ object RDM: TRDM
     Left = 448
     Top = 64
   end
-  object dspLogErros: TDataSetProvider
-    DataSet = qryLogErros
-    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
-    Left = 448
-    Top = 120
-  end
-  object qryLogErros: TZReadOnlyQuery
-    Connection = con
-    SQL.Strings = (
-      'select * from loger')
-    Params = <>
-    Left = 360
-    Top = 120
-    object qryLogErroscdlog: TIntegerField
-      FieldName = 'cdlog'
-      Required = True
-    end
-    object qryLogErroscdempr: TIntegerField
-      FieldName = 'cdempr'
-    end
-    object qryLogErrosdtcada: TDateField
-      FieldName = 'dtcada'
-    end
-    object qryLogErroshrcada: TTimeField
-      FieldName = 'hrcada'
-    end
-    object qryLogErrosdescri: TMemoField
-      FieldName = 'descri'
-      Required = True
-      BlobType = ftMemo
-    end
-  end
   object dspChq: TDataSetProvider
     DataSet = qryChq
     Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
     Left = 449
-    Top = 182
+    Top = 118
   end
   object qryChq: TZReadOnlyQuery
     Connection = con
@@ -990,7 +960,7 @@ object RDM: TRDM
       'select * from cheqs order by cdchq')
     Params = <>
     Left = 360
-    Top = 183
+    Top = 119
   end
   object qryVende: TZReadOnlyQuery
     Connection = con
@@ -998,7 +968,7 @@ object RDM: TRDM
       'select * from vende order by nome')
     Params = <>
     Left = 360
-    Top = 239
+    Top = 175
     object qryVendecdvend: TIntegerField
       FieldName = 'cdvend'
       Required = True
@@ -1045,6 +1015,35 @@ object RDM: TRDM
     DataSet = qryVende
     Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
     Left = 441
-    Top = 238
+    Top = 174
+  end
+  object dspMcPro: TDataSetProvider
+    DataSet = qryMcPro
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
+    Left = 441
+    Top = 230
+  end
+  object qryMcPro: TZReadOnlyQuery
+    Connection = con
+    SQL.Strings = (
+      'select * from mcpro order by descri')
+    Params = <>
+    Left = 360
+    Top = 231
+    object qryMcProcdmarc: TIntegerField
+      FieldName = 'cdmarc'
+      Required = True
+    end
+    object qryMcProcdempr: TIntegerField
+      FieldName = 'cdempr'
+    end
+    object qryMcProdtcada: TDateField
+      FieldName = 'dtcada'
+    end
+    object qryMcProdescri: TStringField
+      FieldName = 'descri'
+      Required = True
+      Size = 30
+    end
   end
 end

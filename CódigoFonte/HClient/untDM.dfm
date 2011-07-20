@@ -1,7 +1,7 @@
 object dm: Tdm
   OldCreateOrder = False
-  Left = 580
-  Top = 135
+  Left = 857
+  Top = 111
   Height = 445
   Width = 448
   object cdsUsu: TClientDataSet
@@ -58,15 +58,39 @@ object dm: Tdm
     object cdsUsuucinative: TIntegerField
       FieldName = 'ucinative'
     end
-    object cdsUsucdempresa: TIntegerField
-      FieldName = 'cdempresa'
+    object cdsUsucdempr: TIntegerField
+      DisplayLabel = 'C'#243'd.Empresa'
+      FieldName = 'cdempr'
     end
-    object cdsUsucdfuncionario: TIntegerField
-      FieldName = 'cdfuncionario'
+    object cdsUsucdfunc: TIntegerField
+      DisplayLabel = 'C'#243'd.Funcion'#225'rio'
+      FieldName = 'cdfunc'
     end
     object cdsUsutodasEmpresas: TStringField
       FieldName = 'todasEmpresas'
       Size = 1
+    end
+    object cdsUsuprocuraEmpresa: TStringField
+      DisplayLabel = 'Empresa'
+      FieldKind = fkLookup
+      FieldName = 'procuraEmpresa'
+      LookupDataSet = cdsEmp
+      LookupKeyFields = 'cdempr'
+      LookupResultField = 'nmfant'
+      KeyFields = 'cdempr'
+      Size = 30
+      Lookup = True
+    end
+    object cdsUsuprocuraFuncioanrio: TStringField
+      DisplayLabel = 'Funcion'#225'rio'
+      FieldKind = fkLookup
+      FieldName = 'procuraFuncioanrio'
+      LookupDataSet = cdsFunc
+      LookupKeyFields = 'cdfunc'
+      LookupResultField = 'nome'
+      KeyFields = 'cdfunc'
+      Size = 30
+      Lookup = True
     end
   end
   object scHC: TSocketConnection
@@ -463,7 +487,6 @@ object dm: Tdm
     end
   end
   object cdsProfi: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspProf'
@@ -705,7 +728,6 @@ object dm: Tdm
     end
   end
   object cdsCli: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspCli'
@@ -859,8 +881,8 @@ object dm: Tdm
       Size = 30
       Lookup = True
     end
-    object cdsClicdcrfi: TIntegerField
-      DisplayLabel = 'C'#243'd.Cart'#227'o FIdelidade'
+    object cdsClicdcrfi: TStringField
+      DisplayLabel = 'C'#243'd.Cart'#227'o Fidelidade'
       FieldName = 'cdcrfi'
     end
     object cdsCliprocuraCartaoFidelidade: TStringField
@@ -1145,14 +1167,13 @@ object dm: Tdm
     end
   end
   object cdsCartFid: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspCartFid'
     RemoteServer = scHC
     Left = 48
     Top = 232
-    object cdsCartFidnrcart: TIntegerField
+    object cdsCartFidnrcart: TStringField
       DisplayLabel = 'Nr.Cart'#227'o'
       FieldName = 'nrcart'
       Required = True
@@ -1166,7 +1187,6 @@ object dm: Tdm
       FieldName = 'dtcada'
     end
     object cdsCartFidnmcart: TStringField
-      DisplayLabel = 'Nome Cart'#227'o'
       FieldName = 'nmcart'
       Required = True
       Size = 50
@@ -1293,7 +1313,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspVende'
     RemoteServer = scHC
-    Left = 176
+    Left = 112
     Top = 232
     object cdsVendecdvend: TIntegerField
       DisplayLabel = 'C'#243'd.'
@@ -1359,6 +1379,33 @@ object dm: Tdm
       DisplayLabel = 'Venda a Cheque'
       FieldName = 'venche'
       Size = 1
+    end
+  end
+  object cdsMcPro: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspMcPro'
+    RemoteServer = scHC
+    Left = 176
+    Top = 232
+    object cdsMcProcdmarc: TIntegerField
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'cdmarc'
+      Required = True
+    end
+    object cdsMcProcdempr: TIntegerField
+      DisplayLabel = 'C'#243'd.Empresa'
+      FieldName = 'cdempr'
+    end
+    object cdsMcProdtcada: TDateField
+      DisplayLabel = 'Dt.Cadastro'
+      FieldName = 'dtcada'
+    end
+    object cdsMcProdescri: TStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'descri'
+      Required = True
+      Size = 30
     end
   end
 end

@@ -26,7 +26,9 @@ uses
   untManuDepAut in 'untManuDepAut.pas' {frmManuDepAut},
   untManuCartaoFidelidade in 'untManuCartaoFidelidade.pas' {frmManuCartaoFidelidade},
   untManuCheques in 'untManuCheques.pas' {frmManuCheques},
-  untManuVendedores in 'untManuVendedores.pas' {frmManuVendedores};
+  untManuVendedores in 'untManuVendedores.pas' {frmManuVendedores},
+  untManuMarcaProdutos in 'untManuMarcaProdutos.pas' {frmManuMarcaProdutos},
+  untDefineEmpresaUsuario in 'untDefineEmpresaUsuario.pas' {frmManuDefineEmpresaUsuario};
 
 {$R *.res}
 
@@ -35,5 +37,7 @@ begin
   Application.Title := 'HClient';
   Application.CreateForm(Tdm, dm);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmManuMarcaProdutos, frmManuMarcaProdutos);
+  Application.CreateForm(TfrmManuDefineEmpresaUsuario, frmManuDefineEmpresaUsuario);
   Application.Run;
 end.

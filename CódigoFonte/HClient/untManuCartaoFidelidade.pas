@@ -27,6 +27,7 @@ type
     procedure tbGravarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure dbeNrcartaoKeyPress(Sender: TObject; var Key: Char);
   private
   F: TFuncoes;
   function verificaDadosAntesGravar():Boolean;
@@ -143,6 +144,12 @@ begin
   inherited;
   DataSource.DataSet := dm.cdsCartFid;
 
+end;
+
+procedure TfrmManuCartaoFidelidade.dbeNrcartaoKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+   If not( key in['0'..'9',#8] ) then key := #0;
 end;
 
 end.

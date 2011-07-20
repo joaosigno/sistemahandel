@@ -37,8 +37,6 @@ type
     qryUsuucprofile: TIntegerField;
     qryUsuuckey: TStringField;
     qryUsuucinative: TIntegerField;
-    qryUsucdempresa: TIntegerField;
-    qryUsucdfuncionario: TIntegerField;
     qryUsutodasEmpresas: TStringField;
     qryPesq: TZReadOnlyQuery;
     qryBanco: TZReadOnlyQuery;
@@ -227,11 +225,8 @@ type
     qryCartFid: TZReadOnlyQuery;
     dspCartFid: TDataSetProvider;
     qryCartFiddtcada: TDateField;
-    qryCartFidnmcart: TStringField;
     qryCartFidativo: TStringField;
     qryCartFidemail: TStringField;
-    qryCartFidnrcart: TIntegerField;
-    qryClicdcrfi: TIntegerField;
     qryDepAuttipo: TStringField;
     dspChq: TDataSetProvider;
     qryChq: TZReadOnlyQuery;
@@ -249,6 +244,17 @@ type
     qryVendevenpra: TStringField;
     qryVendevencar: TStringField;
     qryVendevenche: TStringField;
+    dspMcPro: TDataSetProvider;
+    qryMcPro: TZReadOnlyQuery;
+    qryMcProcdmarc: TIntegerField;
+    qryMcProcdempr: TIntegerField;
+    qryMcProdtcada: TDateField;
+    qryMcProdescri: TStringField;
+    qryCartFidnmcart: TStringField;
+    qryClicdcrfi: TStringField;
+    qryCartFidnrcart: TStringField;
+    qryUsucdempr: TIntegerField;
+    qryUsucdfunc: TIntegerField;
     procedure RemoteDataModuleCreate(Sender: TObject);
     procedure RemoteDataModuleDestroy(Sender: TObject);
   private

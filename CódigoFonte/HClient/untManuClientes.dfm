@@ -18,7 +18,7 @@ inherited frmManuClientes: TfrmManuClientes
     Top = 0
     Width = 553
     Height = 309
-    ActivePage = tsBasicos
+    ActivePage = tsEmrpego
     Align = alClient
     TabOrder = 1
     object tsBasicos: TTabSheet
@@ -1445,7 +1445,7 @@ inherited frmManuClientes: TfrmManuClientes
         Height = 3
       end
       object Label47: TLabel
-        Left = 0
+        Left = 1
         Top = 112
         Width = 77
         Height = 14
@@ -1597,7 +1597,7 @@ inherited frmManuClientes: TfrmManuClientes
       object dbeCodCartFidelidade: TDBEdit
         Left = 80
         Top = 111
-        Width = 97
+        Width = 146
         Height = 20
         CharCase = ecUpperCase
         Ctl3D = False
@@ -1609,9 +1609,9 @@ inherited frmManuClientes: TfrmManuClientes
         OnKeyPress = dbeCodCartFidelidadeKeyPress
       end
       object dblcbCartFidelidade: TDBLookupComboBox
-        Left = 181
+        Left = 229
         Top = 111
-        Width = 345
+        Width = 297
         Height = 20
         Ctl3D = False
         DataField = 'procuraCartaoFidelidade'
