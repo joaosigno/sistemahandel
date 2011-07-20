@@ -41,7 +41,7 @@ var
 
 implementation
 
-uses untDM;
+uses untDM, untPrincipal;
 
 {$R *.dfm}
 

@@ -363,6 +363,25 @@ begin
         grid.Columns[4].Width := 150;
 
       end;
+    end
+
+    else if FTabela = 'mcpro' then
+   begin
+    with frmVizualizaDados do
+      begin
+        grid.Columns.Add;
+        grid.Columns[0].FieldName := 'cdmarc';
+        grid.Columns[0].Width := 80;
+
+        grid.Columns.Add;
+        grid.Columns[1].FieldName := 'dtcada';
+        grid.Columns[1].Width := 150;
+
+        grid.Columns.Add;
+        grid.Columns[2].FieldName := 'descri';
+        grid.Columns[2].Width := 300;
+
+      end;
     end;
 
    with frmVizualizaDados do

@@ -74,6 +74,8 @@ uses untDM, untPrincipal;
 //8.Cartão Fidelidade
 //9.Cheque
 //10.vendedores
+//11.Marca de Produtos
+//12.Define Empresa Usuario
 
 procedure TfrmPesquisaRapida.pesquisar;
 var
@@ -216,6 +218,28 @@ begin
                   ' and nome like '+
                           QuotedStr('%'+edtPesquisa.Text+'%')+' order by nome ');
   end;
+  11:
+   begin
+        if (rb1.Checked) and (edtpesquisa.text <> '') then
+          SQL.executaSQlPorEmp(cdsProcuraRapida,'cdmarc,descri',' mcpro ',
+                ' and cdmarc='+ QuotedStr(edtPesquisa.Text)+' order by cdmarc ');
+
+        if (rb2.Checked) and (edtpesquisa.text <> '') then
+          SQL.executaSQlPorEmp(cdsProcuraRapida,'cdmarc,descri',' mcpro',
+                  ' and descri like '+
+                          QuotedStr('%'+edtPesquisa.Text+'%')+' order by descri ');
+  end;
+  12:
+   begin
+        if (rb1.Checked) and (edtpesquisa.text <> '') then
+          SQL.executaSQlPorEmp(cdsProcuraRapida,'uciduser,uclogin',' uctabusers ',
+                ' cdempr=1 or cdempr is null and uctyperec=''U'' and uciduser='+ QuotedStr(edtPesquisa.Text)+' order by uciduser ');
+
+        if (rb2.Checked) and (edtpesquisa.text <> '') then
+          SQL.executaSQlPorEmp(cdsProcuraRapida,'uciduser,uclogin',' uctabusers',
+                  ' cdempr=1 or cdempr is null and uctyperec=''U'' and uclogin like '+
+                          QuotedStr('%'+edtPesquisa.Text+'%')+' order by uclogin ');
+  end;
 
   end;
   atualizaGrid;
@@ -287,7 +311,9 @@ begin
       end;
       8: visible(true,'Nr.Cartão',true,'Nome',false,'','nrcart,nmcart','crfid','order by nrcart');
       9:  visible(true,'Número Cheque',true,'CMC7',false,'','numchq,dtcada,valor,status,cmc7','cheqs','order by dtcada');
-      10: visible(true,'Código',true,'Nome',,'','cdvend,nome','vende','order by cdvend');
+      10: visible(true,'Código',true,'Nome',false,'','cdvend,nome','vende','order by cdvend');
+      11: visible(true,'Código',true,'Descrição',false,'','cdmarc,descri','mcpro','order by cdmarc');
+      12: visible(true,'Código',true,'Login',false,'','uciduser,uclogin','uctabusers','cdempr=1 or cdempr is null and uctyperec=''U'' order by uciduser');
 
     end;
     atualizaGrid;  
@@ -364,7 +390,7 @@ begin
       end;
        8:
       begin
-          dm.cdsCartFid.Locate('NRCART', VarArrayOf([IntToStr(cdsProcuraRapida.Fields[0].AsInteger)]), [loPartialKey]);
+          dm.cdsCartFid.Locate('NRCART', VarArrayOf([cdsProcuraRapida.Fields[0].AsString]), [loPartialKey]);
       end;
       9:
       begin
@@ -373,6 +399,14 @@ begin
       10:
       begin
           dm.cdsVende.Locate('CDVEND', VarArrayOf([IntToStr(cdsProcuraRapida.Fields[0].AsInteger)]), [loPartialKey]);
+      end;
+      11:
+      begin
+          dm.cdsMcPro.Locate('CDMARC', VarArrayOf([IntToStr(cdsProcuraRapida.Fields[0].AsInteger)]), [loPartialKey]);
+      end;
+      12:
+      begin
+          dm.cdsUsu.Locate('UCIDUSER', VarArrayOf([IntToStr(cdsProcuraRapida.Fields[0].AsInteger)]), [loPartialKey]);
       end;
     end;
     sql.Destroy;
@@ -474,6 +508,22 @@ begin
           gridPesquisa.Columns.Items[1].Title.Caption := 'Nome';
           gridPesquisa.Columns.Items[1].Width := 300;
       end;
+      11:
+      begin
+          gridPesquisa.Columns.Items[0].Title.Caption := 'Código';
+          gridPesquisa.Columns.Items[0].Width := 70;
+          gridPesquisa.Columns.Items[0].Alignment := taCenter;
+          gridPesquisa.Columns.Items[1].Title.Caption := 'Descrição';
+          gridPesquisa.Columns.Items[1].Width := 300;
+      end;
+      12:
+      begin
+          gridPesquisa.Columns.Items[0].Title.Caption := 'Código';
+          gridPesquisa.Columns.Items[0].Width := 70;
+          gridPesquisa.Columns.Items[0].Alignment := taCenter;
+          gridPesquisa.Columns.Items[1].Title.Caption := 'Login';
+          gridPesquisa.Columns.Items[1].Width := 300;
+      end;
     end;  
 end;
 
@@ -540,6 +590,11 @@ begin
     c:=9;
   if pesq = 'vende' then
     c:=10;
+  if pesq = 'mcpro' then
+    c:=11;
+  if pesq = 'defineempresausuario' then
+    c:=12;
+
 end;
 
 procedure TfrmPesquisaRapida.FormCreate(Sender: TObject);

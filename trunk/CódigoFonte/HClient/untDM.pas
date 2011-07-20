@@ -27,8 +27,6 @@ type
     cdsUsuucprofile: TIntegerField;
     cdsUsuuckey: TStringField;
     cdsUsuucinative: TIntegerField;
-    cdsUsucdempresa: TIntegerField;
-    cdsUsucdfuncionario: TIntegerField;
     cdsUsutodasEmpresas: TStringField;
     cdsFor: TClientDataSet;
     cdsEmp: TClientDataSet;
@@ -227,12 +225,8 @@ type
     cdsDepencdempr: TIntegerField;
     cdsCartFid: TClientDataSet;
     cdsCartFiddtcada: TDateField;
-    cdsCartFidnmcart: TStringField;
     cdsCartFidativo: TStringField;
     cdsCartFidemail: TStringField;
-    cdsCartFidnrcart: TIntegerField;
-    cdsClicdcrfi: TIntegerField;
-    cdsCliprocuraCartaoFidelidade: TStringField;
     cdsDepentipo: TStringField;
     cdsAutoritipo: TStringField;
     cdsCheque: TClientDataSet;
@@ -267,6 +261,19 @@ type
     cdsVendevencar: TStringField;
     cdsVendevenche: TStringField;
     cdsVendeprocuraFuncionario: TStringField;
+    cdsMcPro: TClientDataSet;
+    cdsMcProcdmarc: TIntegerField;
+    cdsMcProcdempr: TIntegerField;
+    cdsMcProdtcada: TDateField;
+    cdsMcProdescri: TStringField;
+    cdsCartFidnmcart: TStringField;
+    cdsCartFidnrcart: TStringField;
+    cdsClicdcrfi: TStringField;
+    cdsCliprocuraCartaoFidelidade: TStringField;
+    cdsUsucdempr: TIntegerField;
+    cdsUsucdfunc: TIntegerField;
+    cdsUsuprocuraEmpresa: TStringField;
+    cdsUsuprocuraFuncioanrio: TStringField;
     function verificaBD():Boolean;
     function Autenticacao(cdemp:integer;login:String;senha:string): boolean;
   private
@@ -367,7 +374,7 @@ begin
         result:=true
      end
 
-     else if cdsUsucdempresa.AsInteger = cdemp then
+     else if cdsUsucdempr.AsInteger = cdemp then
      begin
         result:= true
      end
