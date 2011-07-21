@@ -1,7 +1,7 @@
 object dm: Tdm
   OldCreateOrder = False
-  Left = 516
-  Top = 122
+  Left = 919
+  Top = 113
   Height = 445
   Width = 448
   object cdsUsu: TClientDataSet
@@ -69,6 +69,28 @@ object dm: Tdm
     object cdsUsutodasEmpresas: TStringField
       FieldName = 'todasEmpresas'
       Size = 1
+    end
+    object cdsUsuprocuraEmpresa: TStringField
+      DisplayLabel = 'Empresa'
+      FieldKind = fkLookup
+      FieldName = 'procuraEmpresa'
+      LookupDataSet = cdsEmp
+      LookupKeyFields = 'cdempr'
+      LookupResultField = 'nmfant'
+      KeyFields = 'cdempr'
+      Size = 30
+      Lookup = True
+    end
+    object cdsUsuprocuraFuncioanrio: TStringField
+      DisplayLabel = 'Funcion'#225'rio'
+      FieldKind = fkLookup
+      FieldName = 'procuraFuncioanrio'
+      LookupDataSet = cdsFunc
+      LookupKeyFields = 'cdfunc'
+      LookupResultField = 'nome'
+      KeyFields = 'cdfunc'
+      Size = 30
+      Lookup = True
     end
   end
   object scHC: TSocketConnection
@@ -426,6 +448,7 @@ object dm: Tdm
     end
   end
   object cdsGRPro: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspGRPro'
@@ -1360,6 +1383,7 @@ object dm: Tdm
     end
   end
   object cdsMcPro: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspMcPro'
@@ -1384,6 +1408,190 @@ object dm: Tdm
       FieldName = 'descri'
       Required = True
       Size = 30
+    end
+  end
+  object cdsProd: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspProd'
+    RemoteServer = scHC
+    Left = 232
+    Top = 232
+    object cdsProdcdprod: TIntegerField
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'cdprod'
+      Required = True
+    end
+    object cdsProdcdempr: TIntegerField
+      DisplayLabel = 'C'#243'd.Empresa'
+      FieldName = 'cdempr'
+      Required = True
+    end
+    object cdsProdtipopr: TStringField
+      DisplayLabel = 'Tipo'
+      FieldName = 'tipopr'
+      Size = 1
+    end
+    object cdsProddtcada: TDateField
+      DisplayLabel = 'Dt.Cadastro'
+      FieldName = 'dtcada'
+    end
+    object cdsProdativo: TStringField
+      DisplayLabel = 'Ativo'
+      FieldName = 'ativo'
+      Size = 1
+    end
+    object cdsProddescri: TStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'descri'
+      Required = True
+      Size = 50
+    end
+    object cdsProdcdmarc: TIntegerField
+      DisplayLabel = 'C'#243'd.Marca'
+      FieldName = 'cdmarc'
+      Required = True
+    end
+    object cdsProdprocuraMarca: TStringField
+      DisplayLabel = 'Marca'
+      FieldKind = fkLookup
+      FieldName = 'procuraMarca'
+      LookupDataSet = cdsMcPro
+      LookupKeyFields = 'cdmarc'
+      LookupResultField = 'descri'
+      KeyFields = 'cdmarc'
+      Size = 30
+      Lookup = True
+    end
+    object cdsProdcdgrup: TIntegerField
+      DisplayLabel = 'C'#243'd.Grupo'
+      FieldName = 'cdgrup'
+      Required = True
+    end
+    object cdsProdprocuraGrupo: TStringField
+      DisplayLabel = 'Grupo'
+      FieldKind = fkLookup
+      FieldName = 'procuraGrupo'
+      LookupDataSet = cdsGRPro
+      LookupKeyFields = 'cdgrup'
+      LookupResultField = 'descri'
+      KeyFields = 'cdgrup'
+      Size = 30
+      Lookup = True
+    end
+    object cdsProdtipcon: TStringField
+      DisplayLabel = 'Tipo Controle'
+      FieldName = 'tipcon'
+      Size = 1
+    end
+    object cdsProdunidad: TStringField
+      DisplayLabel = 'Unidade'
+      FieldName = 'unidad'
+      Size = 15
+    end
+    object cdsProdestatu: TFloatField
+      DisplayLabel = 'Est.Atual'
+      FieldName = 'estatu'
+      DisplayFormat = '#.00'
+    end
+    object cdsProdcodfab: TStringField
+      DisplayLabel = 'C'#243'd.Fabrica'
+      FieldName = 'codfab'
+      Size = 50
+    end
+    object cdsProdrefere: TStringField
+      DisplayLabel = 'Refer'#234'ncia'
+      FieldName = 'refere'
+      Size = 30
+    end
+    object cdsProdpreven: TFloatField
+      DisplayLabel = 'Pr.Venda'
+      FieldName = 'preven'
+      Required = True
+      DisplayFormat = '#.00'
+    end
+    object cdsProdprecus: TFloatField
+      DisplayLabel = 'Pr.Custo'
+      FieldName = 'precus'
+      DisplayFormat = '#.00'
+    end
+    object cdsProdestmin: TFloatField
+      DisplayLabel = 'Est.Minimo'
+      FieldName = 'estmin'
+      DisplayFormat = '#.00'
+    end
+    object cdsProdcusrea: TFloatField
+      DisplayLabel = 'Custo Real'
+      FieldName = 'cusrea'
+      DisplayFormat = '#.00'
+    end
+    object cdsProdpesliq: TFloatField
+      DisplayLabel = 'Peso Liquido'
+      FieldName = 'pesliq'
+      DisplayFormat = '#.00'
+    end
+    object cdsProdpesbru: TFloatField
+      DisplayLabel = 'Peso Bruto'
+      FieldName = 'pesbru'
+      DisplayFormat = '#.00'
+    end
+    object cdsProdcodncm: TStringField
+      DisplayLabel = 'C'#243'd.NCM'
+      FieldName = 'codncm'
+      Size = 10
+    end
+    object cdsProdprzgar: TStringField
+      DisplayLabel = 'Prazo Garantia'
+      FieldName = 'przgar'
+      Size = 30
+    end
+    object cdsProdmarluc: TFloatField
+      DisplayLabel = 'Margem de Lucro'
+      FieldName = 'marluc'
+      DisplayFormat = '#.00'
+    end
+    object cdsProdcusmed: TFloatField
+      DisplayLabel = 'Custo M'#233'dio'
+      FieldName = 'cusmed'
+      DisplayFormat = '#.00'
+    end
+    object cdsProdultcom: TDateField
+      DisplayLabel = #218'lt.Compra'
+      FieldName = 'ultcom'
+    end
+    object cdsProdultven: TDateField
+      DisplayLabel = #218'lt.Venda'
+      FieldName = 'ultven'
+    end
+    object cdsProdclaori: TStringField
+      DisplayLabel = 'Class. qto '#224#160' Origem'
+      FieldName = 'claori'
+      OnGetText = cdsProdclaoriGetText
+      Size = 1
+    end
+    object cdsProdsittri: TStringField
+      DisplayLabel = 'Situa'#231#227'o Tribut'#225'ria'
+      FieldName = 'sittri'
+      Size = 2
+    end
+    object cdsProdicms: TFloatField
+      DisplayLabel = 'ICMS(%)'
+      FieldName = 'icms'
+    end
+    object cdsProdipi: TFloatField
+      DisplayLabel = 'IPI(%)'
+      FieldName = 'ipi'
+    end
+    object cdsProdclfisc: TStringField
+      DisplayLabel = 'Classifica'#231#227'o Fiscal'
+      FieldName = 'clfisc'
+      Size = 30
+    end
+    object cdsProdobserv: TStringField
+      DisplayLabel = 'Obs.'
+      FieldName = 'observ'
+      Size = 200
     end
   end
 end

@@ -287,7 +287,7 @@ begin
       end;
     end
 
-      else if FTabela = 'cheqs' then
+   else if FTabela = 'cheqs' then
    begin
     with frmVizualizaDados do
       begin
@@ -382,7 +382,54 @@ begin
         grid.Columns[2].Width := 300;
 
       end;
+    end
+
+    else if FTabela = 'produ' then
+   begin
+    with frmVizualizaDados do
+      begin
+        grid.Columns.Add;
+        grid.Columns[0].FieldName := 'cdprod';
+        grid.Columns[0].Width := 80;
+
+        grid.Columns.Add;
+        grid.Columns[1].FieldName := 'codfab';
+        grid.Columns[1].Width := 130;
+
+        grid.Columns.Add;
+        grid.Columns[2].FieldName := 'refere';
+        grid.Columns[2].Width := 130;
+
+        grid.Columns.Add;
+        grid.Columns[3].FieldName := 'descri';
+        grid.Columns[3].Width := 285;
+
+        grid.Columns.Add;
+        grid.Columns[4].FieldName := 'procuraMarca';
+        grid.Columns[4].Width := 150;
+
+        grid.Columns.Add;
+        grid.Columns[5].FieldName := 'procuraGrupo';
+        grid.Columns[5].Width := 150;
+
+        grid.Columns.Add;
+        grid.Columns[6].FieldName := 'unidad';
+        grid.Columns[6].Width := 100;
+
+        grid.Columns.Add;
+        grid.Columns[7].FieldName := 'estatu';
+        grid.Columns[7].Width := 90;
+
+        grid.Columns.Add;
+        grid.Columns[8].FieldName := 'estmin';
+        grid.Columns[8].Width := 90;
+
+        grid.Columns.Add;
+        grid.Columns[9].FieldName := 'preven';
+        grid.Columns[9].Width := 90;
+      end;
     end;
+
 
    with frmVizualizaDados do
    begin

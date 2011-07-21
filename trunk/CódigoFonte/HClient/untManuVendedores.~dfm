@@ -57,6 +57,7 @@ inherited frmManuVendedores: TfrmManuVendedores
         Top = 32
         Width = 117
         Height = 20
+        CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'cdfunc'
         DataSource = DataSource
@@ -81,6 +82,7 @@ inherited frmManuVendedores: TfrmManuVendedores
         Top = 56
         Width = 419
         Height = 20
+        CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'nome'
         DataSource = DataSource

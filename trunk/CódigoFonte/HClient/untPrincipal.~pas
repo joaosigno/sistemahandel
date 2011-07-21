@@ -74,6 +74,7 @@ type
     acVendedores: TAction;
     acMarca: TAction;
     acDefineEmpresaUsuario: TAction;
+    acProduto: TAction;
     procedure AcFornecedoresExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -104,6 +105,7 @@ type
     procedure acChequesExecute(Sender: TObject);
     procedure acMarcaExecute(Sender: TObject);
     procedure acDefineEmpresaUsuarioExecute(Sender: TObject);
+    procedure acProdutoExecute(Sender: TObject);
   private
     F : TFuncoes;
     { Private declarations }
@@ -124,7 +126,8 @@ uses untDM, untMensagem, untConfBD,
   untManuFornecedores, untfrmManuEmpresas, untGruposProdutos,
   untManuProfissoes, untManuDepartamento, untManuFuncionarios,
   untManuClientes, untManuBanco, untManuCartaoFidelidade, untManuCheques,
-  untManuVendedores, untManuMarcaProdutos, untDefineEmpresaUsuario;
+  untManuVendedores, untManuMarcaProdutos, untDefineEmpresaUsuario,
+  untManuProdutos;
 
 {$R *.dfm}
 
@@ -430,6 +433,13 @@ begin
    frmManuDefineEmpresaUsuario.Free;
 
    //uciduser<>1 and cdempr=1 
+end;
+
+procedure TfrmPrincipal.acProdutoExecute(Sender: TObject);
+begin
+   RegisterClass(TfrmManuProdutos);
+ VD.showForm('Produtos',dm.cdsProd,'TfrmManuProdutos',
+                         '*','produ',' order by cdprod');
 end;
 
 end.

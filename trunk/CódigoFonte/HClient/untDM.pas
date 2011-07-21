@@ -274,8 +274,46 @@ type
     cdsUsucdfunc: TIntegerField;
     cdsUsuprocuraEmpresa: TStringField;
     cdsUsuprocuraFuncioanrio: TStringField;
+    cdsProd: TClientDataSet;
+    cdsProdcdprod: TIntegerField;
+    cdsProdcdempr: TIntegerField;
+    cdsProdtipopr: TStringField;
+    cdsProddtcada: TDateField;
+    cdsProdativo: TStringField;
+    cdsProddescri: TStringField;
+    cdsProdcdmarc: TIntegerField;
+    cdsProdcdgrup: TIntegerField;
+    cdsProdtipcon: TStringField;
+    cdsProdunidad: TStringField;
+    cdsProdestatu: TFloatField;
+    cdsProdcodfab: TStringField;
+    cdsProdrefere: TStringField;
+    cdsProdpreven: TFloatField;
+    cdsProdestmin: TFloatField;
+    cdsProdcusrea: TFloatField;
+    cdsProdpesliq: TFloatField;
+    cdsProdpesbru: TFloatField;
+    cdsProdcodncm: TStringField;
+    cdsProdprzgar: TStringField;
+    cdsProdmarluc: TFloatField;
+    cdsProdcusmed: TFloatField;
+    cdsProdultcom: TDateField;
+    cdsProdultven: TDateField;
+    cdsProdclaori: TStringField;
+    cdsProdsittri: TStringField;
+    cdsProdicms: TFloatField;
+    cdsProdipi: TFloatField;
+    cdsProdclfisc: TStringField;
+    cdsProdobserv: TStringField;
+    cdsProdprocuraMarca: TStringField;
+    cdsProdprocuraGrupo: TStringField;
+    cdsProdprecus: TFloatField;
     function verificaBD():Boolean;
     function Autenticacao(cdemp:integer;login:String;senha:string): boolean;
+    procedure cdsProdclaoriGetText(Sender: TField; var Text: String;
+      DisplayText: Boolean);
+    procedure cdsProdsittriGetText(Sender: TField; var Text: String;
+      DisplayText: Boolean);
   private
     F: TFuncoes;
     { Private declarations }
@@ -383,6 +421,32 @@ begin
   begin
        result:=false;
   end;
+end;
+
+procedure Tdm.cdsProdclaoriGetText(Sender: TField; var Text: String;
+  DisplayText: Boolean);
+begin
+  If Sender.Value ='0' then Text:='0 - Nacional' else
+  If Sender.Value ='1' then Text:='1 - Importado' else
+  If Sender.Value ='2' then Text:='2 - Importado adquirido mercado interno' else
+    Text := '';
+end;
+
+procedure Tdm.cdsProdsittriGetText(Sender: TField; var Text: String;
+  DisplayText: Boolean);
+begin
+  If Sender.Value ='00' then Text:='00 - Tributado integralmente' else
+  If Sender.Value ='10' then Text:='10 - Tributado com substitução tributária' else
+  If Sender.Value ='20' then Text:='20 - Com redução de base de cálculo' else
+  If Sender.Value ='30' then Text:='30 - Isento c/ substituição tributária' else
+  If Sender.Value ='40' then Text:='40 - Isento' else
+  If Sender.Value ='41' then Text:='41 - Não Tributado' else
+  If Sender.Value ='50' then Text:='50 - Com suspensão' else
+  If Sender.Value ='51' then Text:='51 - Com Diferimento' else
+  If Sender.Value ='60' then Text:='60 - ICMS cobrado anteriormente' else
+  If Sender.Value ='70' then Text:='70 - Não Incidente' else
+  If Sender.Value ='90' then Text:='90 - Outras' else
+    Text := '';
 end;
 
 end.

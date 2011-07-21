@@ -214,10 +214,6 @@ object RDM: TRDM
     object qryUsuucinative: TIntegerField
       FieldName = 'ucinative'
     end
-    object qryUsutodasEmpresas: TStringField
-      FieldName = 'todasEmpresas'
-      Size = 1
-    end
     object qryUsucdempr: TIntegerField
       DisplayLabel = 'C'#243'd.Empresa'
       FieldName = 'cdempr'
@@ -225,6 +221,10 @@ object RDM: TRDM
     object qryUsucdfunc: TIntegerField
       DisplayLabel = 'C'#243'd.Funcion'#225'rio'
       FieldName = 'cdfunc'
+    end
+    object qryUsutodasEmpresas: TStringField
+      FieldName = 'todasEmpresas'
+      Size = 1
     end
   end
   object qryFun: TZReadOnlyQuery
@@ -1044,6 +1044,129 @@ object RDM: TRDM
       FieldName = 'descri'
       Required = True
       Size = 30
+    end
+  end
+  object dspProd: TDataSetProvider
+    DataSet = qryProd
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
+    Left = 441
+    Top = 278
+  end
+  object qryProd: TZReadOnlyQuery
+    Connection = con
+    SQL.Strings = (
+      'select * from produ')
+    Params = <>
+    Left = 360
+    Top = 279
+    object qryProdcdprod: TIntegerField
+      FieldName = 'cdprod'
+      Required = True
+    end
+    object qryProdcdempr: TIntegerField
+      FieldName = 'cdempr'
+      Required = True
+    end
+    object qryProdtipopr: TStringField
+      FieldName = 'tipopr'
+      Size = 1
+    end
+    object qryProddtcada: TDateField
+      FieldName = 'dtcada'
+    end
+    object qryProdativo: TStringField
+      FieldName = 'ativo'
+      Size = 1
+    end
+    object qryProddescri: TStringField
+      FieldName = 'descri'
+      Required = True
+      Size = 50
+    end
+    object qryProdcdmarc: TIntegerField
+      FieldName = 'cdmarc'
+      Required = True
+    end
+    object qryProdcdgrup: TIntegerField
+      FieldName = 'cdgrup'
+      Required = True
+    end
+    object qryProdtipcon: TStringField
+      FieldName = 'tipcon'
+      Size = 1
+    end
+    object qryProdunidad: TStringField
+      FieldName = 'unidad'
+      Size = 15
+    end
+    object qryProdestatu: TFloatField
+      FieldName = 'estatu'
+    end
+    object qryProdcodfab: TStringField
+      FieldName = 'codfab'
+      Size = 50
+    end
+    object qryProdrefere: TStringField
+      FieldName = 'refere'
+      Size = 30
+    end
+    object qryProdpreven: TFloatField
+      FieldName = 'preven'
+      Required = True
+    end
+    object qryProdestmin: TFloatField
+      FieldName = 'estmin'
+    end
+    object qryProdcusrea: TFloatField
+      FieldName = 'cusrea'
+    end
+    object qryProdpesliq: TFloatField
+      FieldName = 'pesliq'
+    end
+    object qryProdpesbru: TFloatField
+      FieldName = 'pesbru'
+    end
+    object qryProdcodncm: TStringField
+      FieldName = 'codncm'
+      Size = 10
+    end
+    object qryProdprzgar: TStringField
+      FieldName = 'przgar'
+      Size = 30
+    end
+    object qryProdmarluc: TFloatField
+      FieldName = 'marluc'
+    end
+    object qryProdcusmed: TFloatField
+      FieldName = 'cusmed'
+    end
+    object qryProdultcom: TDateField
+      FieldName = 'ultcom'
+    end
+    object qryProdultven: TDateField
+      FieldName = 'ultven'
+    end
+    object qryProdclaori: TStringField
+      FieldName = 'claori'
+      Size = 1
+    end
+    object qryProdsittri: TStringField
+      FieldName = 'sittri'
+      Size = 2
+    end
+    object qryProdicms: TFloatField
+      FieldName = 'icms'
+    end
+    object qryProdipi: TFloatField
+      FieldName = 'ipi'
+    end
+    object qryProdclfisc: TStringField
+      FieldName = 'clfisc'
+      Size = 30
+    end
+    object qryProdobserv: TStringField
+      FieldName = 'observ'
+      Size = 200
     end
   end
 end
