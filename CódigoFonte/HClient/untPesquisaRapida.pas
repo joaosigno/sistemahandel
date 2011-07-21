@@ -38,7 +38,7 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure visible(rb1V:Boolean;rb1Nome:String;rb2V:boolean;
-        rb2Nome:String;rb3V:boolean;rb3Nome:String;campos:String;tabela:string;sqlComplementar:String);
+        rb2Nome:String;rb3V:boolean;rb3Nome:String;rb4V:Boolean;rb4Nome:String;campos:String;tabela:string;sqlComplementar:String);
     procedure gridPesquisaDrawColumnCell(Sender: TObject;
       const Rect: TRect; DataCol: Integer; Column: TColumn;
       State: TGridDrawState);
@@ -76,6 +76,7 @@ uses untDM, untPrincipal;
 //10.vendedores
 //11.Marca de Produtos
 //12.Define Empresa Usuario
+//13.Produtos
 
 procedure TfrmPesquisaRapida.pesquisar;
 var
@@ -240,6 +241,26 @@ begin
                   ' or cdempr is null and uctyperec=''U'' and uclogin like '+
                           QuotedStr('%'+edtPesquisa.Text+'%')+' order by uclogin ');
   end;
+  13:
+   begin
+        if (rb1.Checked) and (edtpesquisa.text <> '') then
+          SQL.executaSQlPorEmp(cdsProcuraRapida,'cdprod,codfab,refere,descri',' produ ',
+                '  and cdprod='+ QuotedStr(edtPesquisa.Text)+' order by cdprod ');
+
+       if (rb2.Checked) and (edtpesquisa.text <> '') then
+          SQL.executaSQlPorEmp(cdsProcuraRapida,'cdprod,codfab,refere,descri',' produ ',
+               '  and codfab='+ QuotedStr(edtPesquisa.Text)+' order by codfab ');
+
+       if (rb3.Checked) and (edtpesquisa.text <> '') then
+          SQL.executaSQlPorEmp(cdsProcuraRapida,'cdprod,codfab,refere,descri',' produ ',
+                '  and refere like '+ QuotedStr('%'+edtPesquisa.Text+'%')+' order by refere ');
+
+        if (rb4.Checked) and (edtpesquisa.text <> '') then
+          SQL.executaSQlPorEmp(cdsProcuraRapida,'cdprod,codfab,refere,descri',' produ ',
+                '  and descri like '+ QuotedStr('%'+edtPesquisa.Text+'%')+' order by descri ');
+
+
+  end;
 
   end;
   atualizaGrid;
@@ -284,7 +305,7 @@ procedure TfrmPesquisaRapida.FormShow(Sender: TObject);
 begin
     CodPesquisa;
     case c of
-      0: visible(true,'Código',True,'Nome Fantaisa',true,'Razão Social',
+      0: visible(true,'Código',True,'Nome Fantaisa',true,'Razão Social',false,'',
         'cdforn,nmfant,rzsoci','forne',' order by cdforn');
       1:
       begin
@@ -296,11 +317,11 @@ begin
           rb3.Caption := 'Razão Social';
           SQL.executaSql(cdsProcuraRapida,'select cdempr,nmfant,rzsoci from empre order by cdempr');
       end;
-      2: visible(true,'Código',true,'Descrição',false,'','cdgrup,descri','grPro','order by cdgrup');
-      3: visible(true,'Código',true,'Descrição',false,'','cdprof,descri','profi','order by cdprof');
-      4: visible(true,'Código',true,'Nome',false,'','cdfunc,nome','funci','order by cdfunc');
-      5: visible(true,'Código',true,'Descrição',false,'','cddepa,descri','depar','order by cddepa');
-      6: visible(true,'Código',true,'Nome',false,'','cdclie,nome','clien','order by cdclie');
+      2: visible(true,'Código',true,'Descrição',false,'',false,'','cdgrup,descri','grPro','order by cdgrup');
+      3: visible(true,'Código',true,'Descrição',false,'',false,'','cdprof,descri','profi','order by cdprof');
+      4: visible(true,'Código',true,'Nome',false,'',false,'','cdfunc,nome','funci','order by cdfunc');
+      5: visible(true,'Código',true,'Descrição',false,'',false,'','cddepa,descri','depar','order by cddepa');
+      6: visible(true,'Código',true,'Nome',false,'',false,'','cdclie,nome','clien','order by cdclie');
       7:
       begin
           rb1.Visible := true;
@@ -309,11 +330,15 @@ begin
           rb2.Caption := 'Descrição';
           SQL.executaSql(cdsProcuraRapida,'select cdban,descri from banco order by cdban');
       end;
-      8: visible(true,'Nr.Cartão',true,'Nome',false,'','nrcart,nmcart','crfid','order by nrcart');
-      9:  visible(true,'Número Cheque',true,'CMC7',false,'','numchq,dtcada,valor,status,cmc7','cheqs','order by dtcada');
-      10: visible(true,'Código',true,'Nome',false,'','cdvend,nome','vende','order by cdvend');
-      11: visible(true,'Código',true,'Descrição',false,'','cdmarc,descri','mcpro','order by cdmarc');
-      12: visible(true,'Código',true,'Login',false,'','uciduser,uclogin','uctabusers',' or cdempr is null and uctyperec=''U'' order by uciduser');
+      8: visible(true,'Nr.Cartão',true,'Nome',false,'',false,'','nrcart,nmcart','crfid','order by nrcart');
+      9:  visible(true,'Número Cheque',true,'CMC7',false,'',false,'','numchq,dtcada,valor,status,cmc7',
+                                                                              'cheqs','order by dtcada');
+      10: visible(true,'Código',true,'Nome',false,'',false,'','cdvend,nome','vende','order by cdvend');
+      11: visible(true,'Código',true,'Descrição',false,'',false,'','cdmarc,descri','mcpro','order by cdmarc');
+      12: visible(true,'Código',true,'Login',false,'',false,'','uciduser,uclogin',
+                      'uctabusers',' or cdempr is null and uctyperec=''U'' order by uciduser');
+      13: visible(true,'Código',true,'Cód.Fab.',true,'Referência',true,'Descrição',
+                               'cdprod,codfab,refere,descri','produ',' order by cdprod');
 
     end;
     atualizaGrid;  
@@ -407,6 +432,10 @@ begin
       12:
       begin
           dm.cdsUsu.Locate('UCIDUSER', VarArrayOf([IntToStr(cdsProcuraRapida.Fields[0].AsInteger)]), [loPartialKey]);
+      end;
+      13:
+      begin
+          dm.cdsProd.Locate('CDPROD', VarArrayOf([IntToStr(cdsProcuraRapida.Fields[0].AsInteger)]), [loPartialKey]);
       end;
     end;
     sql.Destroy;
@@ -524,6 +553,17 @@ begin
           gridPesquisa.Columns.Items[1].Title.Caption := 'Login';
           gridPesquisa.Columns.Items[1].Width := 300;
       end;
+      13:
+      begin
+          gridPesquisa.Columns.Items[0].Title.Caption := 'Código';
+          gridPesquisa.Columns.Items[0].Width := 70;
+          gridPesquisa.Columns.Items[1].Title.Caption := 'Cod.Fab.';
+          gridPesquisa.Columns.Items[1].Width := 110;
+          gridPesquisa.Columns.Items[2].Title.Caption := 'Refrência';
+          gridPesquisa.Columns.Items[2].Width := 110;
+          gridPesquisa.Columns.Items[3].Title.Caption := 'Descrição';
+          gridPesquisa.Columns.Items[3].Width := 300;
+      end;
     end;  
 end;
 
@@ -537,7 +577,7 @@ begin
 end;
 
 procedure TfrmPesquisaRapida.visible(rb1V:Boolean;rb1Nome:String;rb2V:boolean;
-        rb2Nome:String;rb3V:boolean;rb3Nome:String;campos:String;tabela:string;sqlComplementar:String);
+        rb2Nome:String;rb3V:boolean;rb3Nome:String;rb4V:Boolean;rb4Nome:String;campos:String;tabela:string;sqlComplementar:String);
 begin
      rb1.Visible := rb1V;
      rb1.Caption := rb1Nome;
@@ -545,6 +585,8 @@ begin
      rb2.Caption := rb2Nome;
      rb3.Visible := rb3V;
      rb3.Caption := rb3Nome;
+     rb4.Visible := rb4V;
+     rb4.Caption := rb4Nome;
      SQL.executaSQlPorEmp(cdsProcuraRapida,campos,tabela,sqlComplementar);
      atualizaGrid;
 end;
@@ -594,6 +636,8 @@ begin
     c:=11;
   if pesq = 'defineempresausuario' then
     c:=12;
+  if pesq = 'produ' then
+    c:=13;
 
 end;
 

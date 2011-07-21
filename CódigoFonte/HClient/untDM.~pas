@@ -272,8 +272,46 @@ type
     cdsCliprocuraCartaoFidelidade: TStringField;
     cdsUsucdempr: TIntegerField;
     cdsUsucdfunc: TIntegerField;
+    cdsUsuprocuraEmpresa: TStringField;
+    cdsUsuprocuraFuncioanrio: TStringField;
+    cdsProd: TClientDataSet;
+    cdsProdcdprod: TIntegerField;
+    cdsProdcdempr: TIntegerField;
+    cdsProdtipopr: TStringField;
+    cdsProddtcada: TDateField;
+    cdsProdativo: TStringField;
+    cdsProddescri: TStringField;
+    cdsProdcdmarc: TIntegerField;
+    cdsProdcdgrup: TIntegerField;
+    cdsProdtipcon: TStringField;
+    cdsProdunidad: TStringField;
+    cdsProdestatu: TFloatField;
+    cdsProdcodfab: TStringField;
+    cdsProdrefere: TStringField;
+    cdsProdpreven: TFloatField;
+    cdsProdestmin: TFloatField;
+    cdsProdcusrea: TFloatField;
+    cdsProdpesliq: TFloatField;
+    cdsProdpesbru: TFloatField;
+    cdsProdcodncm: TStringField;
+    cdsProdprzgar: TStringField;
+    cdsProdmarluc: TFloatField;
+    cdsProdcusmed: TFloatField;
+    cdsProdultcom: TDateField;
+    cdsProdultven: TDateField;
+    cdsProdclaori: TStringField;
+    cdsProdsittri: TStringField;
+    cdsProdicms: TFloatField;
+    cdsProdipi: TFloatField;
+    cdsProdclfisc: TStringField;
+    cdsProdobserv: TStringField;
+    cdsProdprocuraMarca: TStringField;
+    cdsProdprocuraGrupo: TStringField;
+    cdsProdprecus: TFloatField;
     function verificaBD():Boolean;
     function Autenticacao(cdemp:integer;login:String;senha:string): boolean;
+    procedure cdsProdclaoriGetText(Sender: TField; var Text: String;
+      DisplayText: Boolean);
   private
     F: TFuncoes;
     { Private declarations }
@@ -381,6 +419,15 @@ begin
   begin
        result:=false;
   end;
+end;
+
+procedure Tdm.cdsProdclaoriGetText(Sender: TField; var Text: String;
+  DisplayText: Boolean);
+begin
+  If Sender.Value ='0' then Text:='0 - Nacional' else
+  If Sender.Value ='1' then Text:='1 - Importado' else
+  If Sender.Value ='2' then Text:='2 - Importado adquirido mercado interno' else
+    Text := '';
 end;
 
 end.
