@@ -8,6 +8,7 @@ uses
   DBCtrls, ToolEdit, RXDBCtrl, untDeclaracoes;
 
 type
+  
   TfrmManuBanco = class(TfrmManutencao)
     pgBanco: TPageControl;
     TabSheet1: TTabSheet;
@@ -48,9 +49,9 @@ uses untDM, untPrincipal;
 
 procedure TfrmManuBanco.FormCreate(Sender: TObject);
 begin
-  ManuDao := TManutencaoDAO.Create(dm.cdsBanc);
+  ManuDAO := TManutencaoDAO.Create(dm.cdsBanc);
   inherited;
-  DataSource.DataSet := DM.cdsBanc;  
+  DataSource.DataSet := DM.cdsBanc;
 end;
 
 procedure TfrmManuBanco.tbGravarClick(Sender: TObject);
@@ -66,7 +67,7 @@ begin
   begin
       if dbeDescri.Text <> '' then
       begin
-      ManuDAO.SQL.executaSql(dm.cdsAux,'select * from banco where descri='+
+        ManuDAO.SQL.executaSql(dm.cdsAux,'select * from banco where descri='+
         QuotedStr(dbeDescri.Text));
         if dm.cdsAux.RecordCount <> 0 then
         begin

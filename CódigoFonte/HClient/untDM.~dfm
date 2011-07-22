@@ -1,7 +1,7 @@
 object dm: Tdm
   OldCreateOrder = False
-  Left = 919
-  Top = 113
+  Left = 874
+  Top = 130
   Height = 445
   Width = 448
   object cdsUsu: TClientDataSet
@@ -11,84 +11,120 @@ object dm: Tdm
     RemoteServer = scHC
     Left = 104
     Top = 64
+    object cdsUsuuclogin: TStringField
+      DisplayLabel = 'Login.'
+      DisplayWidth = 30
+      FieldName = 'uclogin'
+      Size = 30
+    end
     object cdsUsuuciduser: TIntegerField
+      DisplayLabel = 'C'#243'd.'
+      DisplayWidth = 10
       FieldName = 'uciduser'
       Required = True
     end
     object cdsUsuucusername: TStringField
+      DisplayWidth = 30
       FieldName = 'ucusername'
-      Size = 30
-    end
-    object cdsUsuuclogin: TStringField
-      FieldName = 'uclogin'
+      Visible = False
       Size = 30
     end
     object cdsUsuucpassword: TStringField
+      DisplayWidth = 250
       FieldName = 'ucpassword'
+      Visible = False
       Size = 250
     end
     object cdsUsuucpassexpired: TStringField
+      DisplayWidth = 10
       FieldName = 'ucpassexpired'
+      Visible = False
       Size = 10
     end
     object cdsUsuucuserexpired: TIntegerField
+      DisplayWidth = 10
       FieldName = 'ucuserexpired'
+      Visible = False
     end
     object cdsUsuucuserdayssun: TIntegerField
+      DisplayWidth = 10
       FieldName = 'ucuserdayssun'
+      Visible = False
     end
     object cdsUsuucemail: TStringField
+      DisplayWidth = 150
       FieldName = 'ucemail'
+      Visible = False
       Size = 150
     end
     object cdsUsuucprivileged: TIntegerField
+      DisplayWidth = 10
       FieldName = 'ucprivileged'
+      Visible = False
     end
     object cdsUsuuctyperec: TStringField
+      DisplayWidth = 1
       FieldName = 'uctyperec'
+      Visible = False
       Size = 1
     end
     object cdsUsuucprofile: TIntegerField
+      DisplayWidth = 10
       FieldName = 'ucprofile'
+      Visible = False
     end
     object cdsUsuuckey: TStringField
+      DisplayWidth = 250
       FieldName = 'uckey'
+      Visible = False
       Size = 250
     end
     object cdsUsuucinative: TIntegerField
+      DisplayWidth = 10
       FieldName = 'ucinative'
+      Visible = False
     end
     object cdsUsucdempr: TIntegerField
       DisplayLabel = 'C'#243'd.Empresa'
+      DisplayWidth = 10
       FieldName = 'cdempr'
+      Visible = False
     end
     object cdsUsucdfunc: TIntegerField
       DisplayLabel = 'C'#243'd.Funcion'#225'rio'
+      DisplayWidth = 10
       FieldName = 'cdfunc'
+      Visible = False
     end
     object cdsUsutodasEmpresas: TStringField
+      DisplayWidth = 1
       FieldName = 'todasEmpresas'
+      Visible = False
       Size = 1
     end
     object cdsUsuprocuraEmpresa: TStringField
       DisplayLabel = 'Empresa'
+      DisplayWidth = 30
       FieldKind = fkLookup
       FieldName = 'procuraEmpresa'
       LookupDataSet = cdsEmp
       LookupKeyFields = 'cdempr'
       LookupResultField = 'nmfant'
       KeyFields = 'cdempr'
+      Visible = False
       Size = 30
       Lookup = True
     end
     object cdsUsuprocuraFuncioanrio: TStringField
       DisplayLabel = 'Funcion'#225'rio'
+      DisplayWidth = 30
       FieldKind = fkLookup
       FieldName = 'procuraFuncioanrio'
       LookupDataSet = cdsFunc
       LookupKeyFields = 'cdfunc'
       LookupResultField = 'nome'
       KeyFields = 'cdfunc'
+      Visible = False
       Size = 30
       Lookup = True
     end
@@ -535,6 +571,7 @@ object dm: Tdm
     object cdsFuncsexo: TStringField
       DisplayLabel = 'Sexo'
       FieldName = 'sexo'
+      OnGetText = cdsFuncsexoGetText
       Size = 1
     end
     object cdsFuncdtcada: TDateField
@@ -768,6 +805,7 @@ object dm: Tdm
     object cdsClisexo: TStringField
       DisplayLabel = 'Sexo'
       FieldName = 'sexo'
+      OnGetText = cdsClisexoGetText
       Size = 1
     end
     object cdsClidtnasc: TDateField
@@ -1383,7 +1421,6 @@ object dm: Tdm
     end
   end
   object cdsMcPro: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspMcPro'
@@ -1411,7 +1448,6 @@ object dm: Tdm
     end
   end
   object cdsProd: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspProd'
@@ -1420,178 +1456,277 @@ object dm: Tdm
     Top = 232
     object cdsProdcdprod: TIntegerField
       DisplayLabel = 'C'#243'd.'
+      DisplayWidth = 10
       FieldName = 'cdprod'
       Required = True
     end
-    object cdsProdcdempr: TIntegerField
-      DisplayLabel = 'C'#243'd.Empresa'
-      FieldName = 'cdempr'
-      Required = True
+    object cdsProdcodfab: TStringField
+      DisplayLabel = 'C'#243'd.Fabrica'
+      DisplayWidth = 30
+      FieldName = 'codfab'
+      Size = 50
+    end
+    object cdsProdrefere: TStringField
+      DisplayLabel = 'Refer'#234'ncia'
+      DisplayWidth = 30
+      FieldName = 'refere'
+      Size = 30
     end
     object cdsProdtipopr: TStringField
       DisplayLabel = 'Tipo'
+      DisplayWidth = 10
       FieldName = 'tipopr'
-      Size = 1
-    end
-    object cdsProddtcada: TDateField
-      DisplayLabel = 'Dt.Cadastro'
-      FieldName = 'dtcada'
-    end
-    object cdsProdativo: TStringField
-      DisplayLabel = 'Ativo'
-      FieldName = 'ativo'
+      OnGetText = cdsProdtipoprGetText
       Size = 1
     end
     object cdsProddescri: TStringField
       DisplayLabel = 'Descri'#231#227'o'
+      DisplayWidth = 50
       FieldName = 'descri'
       Required = True
       Size = 50
     end
+    object cdsProdestatu: TFloatField
+      DisplayLabel = 'Est.Atual'
+      DisplayWidth = 10
+      FieldName = 'estatu'
+      DisplayFormat = '#.00'
+    end
+    object cdsProdpreven: TFloatField
+      DisplayLabel = 'Pr.Venda'
+      DisplayWidth = 10
+      FieldName = 'preven'
+      Required = True
+      DisplayFormat = '#.00'
+    end
+    object cdsProdcdempr: TIntegerField
+      DisplayLabel = 'C'#243'd.Empresa'
+      DisplayWidth = 10
+      FieldName = 'cdempr'
+      Required = True
+      Visible = False
+    end
+    object cdsProddtcada: TDateField
+      DisplayLabel = 'Dt.Cadastro'
+      DisplayWidth = 10
+      FieldName = 'dtcada'
+      Visible = False
+    end
+    object cdsProdativo: TStringField
+      DisplayLabel = 'Ativo'
+      DisplayWidth = 1
+      FieldName = 'ativo'
+      Visible = False
+      Size = 1
+    end
     object cdsProdcdmarc: TIntegerField
       DisplayLabel = 'C'#243'd.Marca'
+      DisplayWidth = 10
       FieldName = 'cdmarc'
       Required = True
+      Visible = False
     end
     object cdsProdprocuraMarca: TStringField
       DisplayLabel = 'Marca'
+      DisplayWidth = 30
       FieldKind = fkLookup
       FieldName = 'procuraMarca'
       LookupDataSet = cdsMcPro
       LookupKeyFields = 'cdmarc'
       LookupResultField = 'descri'
       KeyFields = 'cdmarc'
+      Visible = False
       Size = 30
       Lookup = True
     end
     object cdsProdcdgrup: TIntegerField
       DisplayLabel = 'C'#243'd.Grupo'
+      DisplayWidth = 10
       FieldName = 'cdgrup'
       Required = True
+      Visible = False
     end
     object cdsProdprocuraGrupo: TStringField
       DisplayLabel = 'Grupo'
+      DisplayWidth = 30
       FieldKind = fkLookup
       FieldName = 'procuraGrupo'
       LookupDataSet = cdsGRPro
       LookupKeyFields = 'cdgrup'
       LookupResultField = 'descri'
       KeyFields = 'cdgrup'
+      Visible = False
       Size = 30
       Lookup = True
     end
     object cdsProdtipcon: TStringField
       DisplayLabel = 'Tipo Controle'
+      DisplayWidth = 1
       FieldName = 'tipcon'
+      Visible = False
       Size = 1
     end
     object cdsProdunidad: TStringField
       DisplayLabel = 'Unidade'
+      DisplayWidth = 15
       FieldName = 'unidad'
+      Visible = False
       Size = 15
-    end
-    object cdsProdestatu: TFloatField
-      DisplayLabel = 'Est.Atual'
-      FieldName = 'estatu'
-      DisplayFormat = '#.00'
-    end
-    object cdsProdcodfab: TStringField
-      DisplayLabel = 'C'#243'd.Fabrica'
-      FieldName = 'codfab'
-      Size = 50
-    end
-    object cdsProdrefere: TStringField
-      DisplayLabel = 'Refer'#234'ncia'
-      FieldName = 'refere'
-      Size = 30
-    end
-    object cdsProdpreven: TFloatField
-      DisplayLabel = 'Pr.Venda'
-      FieldName = 'preven'
-      Required = True
-      DisplayFormat = '#.00'
     end
     object cdsProdprecus: TFloatField
       DisplayLabel = 'Pr.Custo'
+      DisplayWidth = 10
       FieldName = 'precus'
+      Visible = False
       DisplayFormat = '#.00'
     end
     object cdsProdestmin: TFloatField
       DisplayLabel = 'Est.Minimo'
+      DisplayWidth = 10
       FieldName = 'estmin'
+      Visible = False
       DisplayFormat = '#.00'
     end
     object cdsProdcusrea: TFloatField
       DisplayLabel = 'Custo Real'
+      DisplayWidth = 10
       FieldName = 'cusrea'
+      Visible = False
       DisplayFormat = '#.00'
     end
     object cdsProdpesliq: TFloatField
       DisplayLabel = 'Peso Liquido'
+      DisplayWidth = 10
       FieldName = 'pesliq'
+      Visible = False
       DisplayFormat = '#.00'
     end
     object cdsProdpesbru: TFloatField
       DisplayLabel = 'Peso Bruto'
+      DisplayWidth = 10
       FieldName = 'pesbru'
+      Visible = False
       DisplayFormat = '#.00'
     end
     object cdsProdcodncm: TStringField
       DisplayLabel = 'C'#243'd.NCM'
+      DisplayWidth = 10
       FieldName = 'codncm'
+      Visible = False
       Size = 10
     end
     object cdsProdprzgar: TStringField
       DisplayLabel = 'Prazo Garantia'
+      DisplayWidth = 30
       FieldName = 'przgar'
+      Visible = False
       Size = 30
     end
     object cdsProdmarluc: TFloatField
       DisplayLabel = 'Margem de Lucro'
+      DisplayWidth = 10
       FieldName = 'marluc'
+      Visible = False
       DisplayFormat = '#.00'
     end
     object cdsProdcusmed: TFloatField
       DisplayLabel = 'Custo M'#233'dio'
+      DisplayWidth = 10
       FieldName = 'cusmed'
+      Visible = False
       DisplayFormat = '#.00'
     end
     object cdsProdultcom: TDateField
       DisplayLabel = #218'lt.Compra'
+      DisplayWidth = 10
       FieldName = 'ultcom'
+      Visible = False
     end
     object cdsProdultven: TDateField
       DisplayLabel = #218'lt.Venda'
+      DisplayWidth = 10
       FieldName = 'ultven'
+      Visible = False
     end
     object cdsProdclaori: TStringField
       DisplayLabel = 'Class. qto '#224#160' Origem'
+      DisplayWidth = 1
       FieldName = 'claori'
+      Visible = False
       OnGetText = cdsProdclaoriGetText
       Size = 1
     end
     object cdsProdsittri: TStringField
       DisplayLabel = 'Situa'#231#227'o Tribut'#225'ria'
+      DisplayWidth = 2
       FieldName = 'sittri'
+      Visible = False
+      OnGetText = cdsProdsittriGetText
       Size = 2
     end
     object cdsProdicms: TFloatField
       DisplayLabel = 'ICMS(%)'
+      DisplayWidth = 10
       FieldName = 'icms'
+      Visible = False
     end
     object cdsProdipi: TFloatField
       DisplayLabel = 'IPI(%)'
+      DisplayWidth = 10
       FieldName = 'ipi'
+      Visible = False
     end
     object cdsProdclfisc: TStringField
       DisplayLabel = 'Classifica'#231#227'o Fiscal'
+      DisplayWidth = 30
       FieldName = 'clfisc'
+      Visible = False
       Size = 30
     end
     object cdsProdobserv: TStringField
       DisplayLabel = 'Obs.'
+      DisplayWidth = 200
       FieldName = 'observ'
+      Visible = False
       Size = 200
+    end
+  end
+  object cdsHMPro: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspHMPro'
+    RemoteServer = scHC
+    Left = 48
+    Top = 296
+    object cdsHMProcdhist: TIntegerField
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'cdhist'
+      Required = True
+    end
+    object cdsHMProcdempr: TIntegerField
+      DisplayLabel = 'C'#243'd.Empresa'
+      FieldName = 'cdempr'
+    end
+    object cdsHMProCDPROD: TIntegerField
+      DisplayLabel = 'C'#243'd.Produto'
+      FieldName = 'CDPROD'
+      Required = True
+    end
+    object cdsHMProhistor: TStringField
+      DisplayLabel = 'Hist'#243'rico'
+      FieldName = 'histor'
+      Required = True
+      Size = 200
+    end
+    object cdsHMProquaalt: TFloatField
+      DisplayLabel = 'Quant.Alterada'
+      FieldName = 'quaalt'
+      Required = True
+    end
+    object cdsHMProestatu: TFloatField
+      DisplayLabel = 'Est.Atual'
+      FieldName = 'estatu'
+      Required = True
     end
   end
 end

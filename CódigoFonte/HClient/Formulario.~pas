@@ -177,7 +177,7 @@ begin
 
         grid.Columns.Add;
         grid.Columns[3].FieldName := 'sexo';
-        grid.Columns[3].Width := 60;
+        grid.Columns[3].Width := 100;
 
         grid.Columns.Add;
         grid.Columns[4].FieldName := 'endere';
@@ -219,7 +219,7 @@ begin
 
         grid.Columns.Add;
         grid.Columns[4].FieldName := 'sexo';
-        grid.Columns[4].Width := 60;
+        grid.Columns[4].Width := 100;
 
         grid.Columns.Add;
         grid.Columns[5].FieldName := 'endere';
@@ -401,32 +401,37 @@ begin
         grid.Columns[2].Width := 130;
 
         grid.Columns.Add;
-        grid.Columns[3].FieldName := 'descri';
-        grid.Columns[3].Width := 285;
+        grid.Columns[3].FieldName := 'tipopr';
+        grid.Columns[3].Width := 100;
+
 
         grid.Columns.Add;
-        grid.Columns[4].FieldName := 'procuraMarca';
-        grid.Columns[4].Width := 150;
+        grid.Columns[4].FieldName := 'descri';
+        grid.Columns[4].Width := 215;
 
         grid.Columns.Add;
-        grid.Columns[5].FieldName := 'procuraGrupo';
-        grid.Columns[5].Width := 150;
+        grid.Columns[5].FieldName := 'procuraMarca';
+        grid.Columns[5].Width := 140;
 
         grid.Columns.Add;
-        grid.Columns[6].FieldName := 'unidad';
-        grid.Columns[6].Width := 100;
+        grid.Columns[6].FieldName := 'procuraGrupo';
+        grid.Columns[6].Width := 140;
 
         grid.Columns.Add;
-        grid.Columns[7].FieldName := 'estatu';
+        grid.Columns[7].FieldName := 'unidad';
         grid.Columns[7].Width := 90;
 
         grid.Columns.Add;
-        grid.Columns[8].FieldName := 'estmin';
+        grid.Columns[8].FieldName := 'estatu';
         grid.Columns[8].Width := 90;
 
         grid.Columns.Add;
-        grid.Columns[9].FieldName := 'preven';
-        grid.Columns[9].Width := 100;
+        grid.Columns[9].FieldName := 'estmin';
+        grid.Columns[9].Width := 90;
+
+        grid.Columns.Add;
+        grid.Columns[10].FieldName := 'preven';
+        grid.Columns[10].Width := 90;
       end;
     end;
 

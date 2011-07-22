@@ -29,7 +29,8 @@ uses
   untManuVendedores in 'untManuVendedores.pas' {frmManuVendedores},
   untManuMarcaProdutos in 'untManuMarcaProdutos.pas' {frmManuMarcaProdutos},
   untDefineEmpresaUsuario in 'untDefineEmpresaUsuario.pas' {frmManuDefineEmpresaUsuario},
-  untManuProdutos in 'untManuProdutos.pas' {frmManuProdutos};
+  untManuProdutos in 'untManuProdutos.pas' {frmManuProdutos},
+  untManuAcertoEstoque in 'untManuAcertoEstoque.pas' {frmManuAcertosEstoque};
 
 {$R *.res}
 

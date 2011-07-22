@@ -308,12 +308,26 @@ type
     cdsProdprocuraMarca: TStringField;
     cdsProdprocuraGrupo: TStringField;
     cdsProdprecus: TFloatField;
+    cdsHMPro: TClientDataSet;
+    cdsHMProcdhist: TIntegerField;
+    cdsHMProcdempr: TIntegerField;
+    cdsHMProhistor: TStringField;
+    cdsHMProquaalt: TFloatField;
+    cdsHMProestatu: TFloatField;
+    cdsHMProCDPROD: TIntegerField;
     function verificaBD():Boolean;
     function Autenticacao(cdemp:integer;login:String;senha:string): boolean;
     procedure cdsProdclaoriGetText(Sender: TField; var Text: String;
       DisplayText: Boolean);
     procedure cdsProdsittriGetText(Sender: TField; var Text: String;
       DisplayText: Boolean);
+    procedure cdsClisexoGetText(Sender: TField; var Text: String;
+      DisplayText: Boolean);
+    procedure cdsFuncsexoGetText(Sender: TField; var Text: String;
+      DisplayText: Boolean);
+    procedure cdsProdtipoprGetText(Sender: TField; var Text: String;
+      DisplayText: Boolean);
+    procedure HistPro(cdempr:integer;cdprod:integer;historico:string;quaalt:real;estatu:real);
   private
     F: TFuncoes;
     { Private declarations }
@@ -447,6 +461,46 @@ begin
   If Sender.Value ='70' then Text:='70 - Não Incidente' else
   If Sender.Value ='90' then Text:='90 - Outras' else
     Text := '';
+end;
+
+procedure Tdm.cdsClisexoGetText(Sender: TField; var Text: String;
+  DisplayText: Boolean);
+begin
+  If Sender.Value ='M' then Text:='Masculino' else
+  If Sender.Value ='F' then Text:='Feminino' else
+end;
+
+procedure Tdm.cdsFuncsexoGetText(Sender: TField; var Text: String;
+  DisplayText: Boolean);
+begin
+  If Sender.Value ='M' then Text:='Masculino' else
+  If Sender.Value ='F' then Text:='Feminino' else
+end;
+
+procedure Tdm.cdsProdtipoprGetText(Sender: TField; var Text: String;
+  DisplayText: Boolean);
+begin
+  If Sender.Value ='P' then Text:='Produto' else
+  If Sender.Value ='S' then Text:='Serviço' else
+end;
+
+procedure Tdm.HistPro(cdempr:integer;cdprod:integer;historico:string;quaalt:real;estatu:real);
+begin
+  cdsHMPro.Open;
+  cdsHMPro.Append;
+  cdsHMProcdempr.AsInteger := cdempr;
+  cdsHMProCDPROD.AsInteger := cdprod;
+  cdsHMProquaalt.AsFloat := quaalt;
+  cdsHMProestatu.AsFloat := estatu;
+  cdsHMProhistor.AsString := historico;
+
+  executaSql(cdsAux,'select max(cdhist) as cod from hmpro where cdempr='+
+        IntToStr(frmPrincipal.Configuracao.EmpresaCodigo));
+  cdsHMProcdhist.AsInteger := cdsAux.FieldByName('cod').AsInteger + 1;
+
+  cdsHMPro.ApplyUpdates(0);
+  cdsHMPro.Refresh;
+  cdsHMPro.Close;
 end;
 
 end.

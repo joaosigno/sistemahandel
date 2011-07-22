@@ -55,7 +55,7 @@ inherited frmManuFornecedores: TfrmManuFornecedores
     Top = 0
     Width = 506
     Height = 369
-    ActivePage = tsoutrosdados
+    ActivePage = tsFornecedor
     Align = alClient
     TabOrder = 1
     object tsFornecedor: TTabSheet

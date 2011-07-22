@@ -1,6 +1,6 @@
 inherited frmManuClientes: TfrmManuClientes
-  Left = 835
-  Top = 212
+  Left = 299
+  Top = 51
   Caption = 'Manuten'#231#227'o de Clientes'
   ClientHeight = 369
   ClientWidth = 553
@@ -254,8 +254,8 @@ inherited frmManuClientes: TfrmManuClientes
         DataSource = DataSource
         ItemHeight = 14
         Items.Strings = (
-          'M'
-          'F')
+          'MASCULINO'
+          'FEMININO')
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True

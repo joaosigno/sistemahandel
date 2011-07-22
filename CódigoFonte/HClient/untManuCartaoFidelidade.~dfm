@@ -63,6 +63,7 @@ inherited frmManuCartaoFidelidade: TfrmManuCartaoFidelidade
         ParentCtl3D = False
         TabOrder = 1
         OnExit = dbeNrcartaoExit
+        OnKeyPress = dbeNrcartaoKeyPress
       end
       object dbeNome: TDBEdit
         Left = 80

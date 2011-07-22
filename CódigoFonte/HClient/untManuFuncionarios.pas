@@ -57,7 +57,7 @@ type
     Label17: TLabel;
     Label24: TLabel;
     dbeCartProf: TDBEdit;
-    DBComboBox1: TDBComboBox;
+    dbcbSexo: TDBComboBox;
     dblcdDepartamento: TDBLookupComboBox;
     dbeCodDepartamento: TDBEdit;
     Label25: TLabel;

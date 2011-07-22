@@ -287,6 +287,14 @@ type
     qryProdipi: TFloatField;
     qryProdclfisc: TStringField;
     qryProdobserv: TStringField;
+    qryProdprecus: TFloatField;
+    dspHMPro: TDataSetProvider;
+    qryHMPro: TZReadOnlyQuery;
+    qryHMProcdhist: TIntegerField;
+    qryHMProcdempr: TIntegerField;
+    qryHMProhistor: TStringField;
+    qryHMProquaalt: TFloatField;
+    qryHMProestatu: TFloatField;
     procedure RemoteDataModuleCreate(Sender: TObject);
     procedure RemoteDataModuleDestroy(Sender: TObject);
   private

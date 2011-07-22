@@ -29,7 +29,8 @@ uses
   untManuVendedores in 'untManuVendedores.pas' {frmManuVendedores},
   untManuMarcaProdutos in 'untManuMarcaProdutos.pas' {frmManuMarcaProdutos},
   untDefineEmpresaUsuario in 'untDefineEmpresaUsuario.pas' {frmManuDefineEmpresaUsuario},
-  untManuProdutos in 'untManuProdutos.pas' {frmManuProdutos};
+  untManuProdutos in 'untManuProdutos.pas' {frmManuProdutos},
+  untManuAcertoEstoque in 'untManuAcertoEstoque.pas' {frmManuAcertosEstoque};
 
 {$R *.res}
 
@@ -38,8 +39,6 @@ begin
   Application.Title := 'HClient';
   Application.CreateForm(Tdm, dm);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmManuMarcaProdutos, frmManuMarcaProdutos);
-  Application.CreateForm(TfrmManuDefineEmpresaUsuario, frmManuDefineEmpresaUsuario);
-  Application.CreateForm(TfrmManuProdutos, frmManuProdutos);
+  Application.CreateForm(TfrmManuAcertosEstoque, frmManuAcertosEstoque);
   Application.Run;
 end.

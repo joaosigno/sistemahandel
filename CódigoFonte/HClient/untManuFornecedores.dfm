@@ -1,6 +1,6 @@
 inherited frmManuFornecedores: TfrmManuFornecedores
-  Left = 623
-  Top = 154
+  Left = 416
+  Top = 87
   Caption = 'Manuten'#231#227'o de Fornecedores'
   ClientHeight = 429
   ClientWidth = 506

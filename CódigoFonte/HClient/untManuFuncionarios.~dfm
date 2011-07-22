@@ -48,7 +48,7 @@ inherited frmManuFuncionario: TfrmManuFuncionario
     Top = 0
     Width = 503
     Height = 284
-    ActivePage = tbOutros
+    ActivePage = tbDadosPrincipais
     Align = alClient
     TabOrder = 1
     object tbDadosPrincipais: TTabSheet

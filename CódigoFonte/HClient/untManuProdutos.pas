@@ -18,7 +18,6 @@ type
     dbeCod: TDBEdit;
     dbdateedtdatacadastro: TDBDateEdit;
     dbcbAtivo: TDBCheckBox;
-    dbcbTipoProduto: TDBCheckBox;
     Label2: TLabel;
     DBEcODmARCA: TDBEdit;
     dblcbMarca: TDBLookupComboBox;
@@ -35,7 +34,6 @@ type
     Label9: TLabel;
     Label10: TLabel;
     Label11: TLabel;
-    rxcbceEstAtual: TRxDBCalcEdit;
     rxcbcePrVenda: TRxDBCalcEdit;
     rxcbcePrCusto: TRxDBCalcEdit;
     rxcbceMargemLucro: TRxDBCalcEdit;
@@ -69,6 +67,9 @@ type
     dbeClasFiscal: TDBEdit;
     rsObs: TTabSheet;
     mmObs: TDBMemo;
+    rxcbceEstAtual: TRxDBCalcEdit;
+    Label26: TLabel;
+    dbcbbxTipoProduto: TDBComboBox;
     procedure FormShow(Sender: TObject);
     procedure tbAdicionarClick(Sender: TObject);
     procedure tbGravarClick(Sender: TObject);
@@ -80,6 +81,14 @@ type
     procedure DBEDESCRIExit(Sender: TObject);
     procedure rxcbceMargemLucroExit(Sender: TObject);
     procedure rxcbcePrVendaExit(Sender: TObject);
+    procedure DataSourceStateChange(Sender: TObject);
+    procedure dbcbTipoProdutoExit(Sender: TObject);
+    procedure verificaTipoProduto;
+    procedure tbPrimeiroClick(Sender: TObject);
+    procedure tbAnteriorClick(Sender: TObject);
+    procedure tbProximoClick(Sender: TObject);
+    procedure tbUltimoClick(Sender: TObject);
+    procedure dbcbbxTipoProdutoExit(Sender: TObject);
   private
    F: TFuncoes;
   function verificaDadosAntesGravar():Boolean;
@@ -132,11 +141,6 @@ begin
       f.Mensagem(false,'Preencha Preço de Venda!');
       result:= false;
    end else result:=true;
-   if dm.cdsProdestatu.IsNull then
-   begin
-      f.Mensagem(false,'Preencha Quantidade!');
-      result:= false;
-   end else result:=true;
 end;
 
 procedure TfrmManuProdutos.verificaInsercao;
@@ -152,6 +156,7 @@ procedure TfrmManuProdutos.FormShow(Sender: TObject);
 begin
   inherited;
   verificaInsercao;
+  verificaTipoProduto;
 end;
 
 procedure TfrmManuProdutos.tbAdicionarClick(Sender: TObject);
@@ -262,6 +267,81 @@ procedure TfrmManuProdutos.rxcbcePrVendaExit(Sender: TObject);
 begin
   rxcbceMargemLucro.Value := ((rxcbcePrVenda.Value*100)/rxcbcePrCusto.Value)-100;
 
+end;
+
+procedure TfrmManuProdutos.DataSourceStateChange(Sender: TObject);
+begin
+  inherited;
+  if DataSource.State in [dsInsert] then
+  begin
+      rxcbceEstAtual.Enabled := true;
+      dbcbbxTipoProduto.Enabled := true;
+  end else
+  begin
+      rxcbceEstAtual.Enabled := false;
+      dbcbbxTipoProduto.Enabled := false;
+  end;
+end;
+
+procedure TfrmManuProdutos.dbcbTipoProdutoExit(Sender: TObject);
+begin
+  verificaTipoProduto;
+end;
+
+procedure TfrmManuProdutos.verificaTipoProduto;
+begin
+  if dbcbbxTipoProduto.Text = 'SERVIÇO' then
+  begin
+     dbcbControleGrade.Checked := false;
+     dbcbControleGrade.Enabled := false;
+     rxcbceEstAtual.Enabled := false;
+     dbeCodFab.Enabled := false;
+     dbeRefe.Enabled := false;
+     rxdbceEstMin.Enabled := false;
+     dbcbbx_classqtoaorigem.Enabled := false;
+     dbcbbx_situacaotributaria.Enabled := false;
+  end else
+  begin
+     dbcbControleGrade.Enabled := true;
+     if DataSource.State in [dsInsert] then
+     begin
+       rxcbceEstAtual.Enabled := true;
+     end;  
+     dbeCodFab.Enabled := true;
+     dbeRefe.Enabled := true;
+     rxdbceEstMin.Enabled := true;
+     dbcbbx_classqtoaorigem.Enabled := true;
+     dbcbbx_situacaotributaria.Enabled := true;
+  end;
+end;
+
+procedure TfrmManuProdutos.tbPrimeiroClick(Sender: TObject);
+begin
+  inherited;
+  verificaTipoProduto;
+end;
+
+procedure TfrmManuProdutos.tbAnteriorClick(Sender: TObject);
+begin
+  inherited;
+  verificaTipoProduto;
+end;
+
+procedure TfrmManuProdutos.tbProximoClick(Sender: TObject);
+begin
+  inherited;
+  verificaTipoProduto;
+end;
+
+procedure TfrmManuProdutos.tbUltimoClick(Sender: TObject);
+begin
+  inherited;
+  verificaTipoProduto;
+end;
+
+procedure TfrmManuProdutos.dbcbbxTipoProdutoExit(Sender: TObject);
+begin
+  verificaTipoProduto;
 end;
 
 end.
