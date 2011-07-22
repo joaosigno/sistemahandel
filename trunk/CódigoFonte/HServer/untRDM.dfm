@@ -1172,4 +1172,42 @@ object RDM: TRDM
       FieldName = 'precus'
     end
   end
+  object dspHMPro: TDataSetProvider
+    DataSet = qryHMPro
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
+    Left = 441
+    Top = 326
+  end
+  object qryHMPro: TZReadOnlyQuery
+    Connection = con
+    SQL.Strings = (
+      'select * from hmpro')
+    Params = <>
+    Left = 360
+    Top = 327
+    object qryHMProcdhist: TIntegerField
+      FieldName = 'cdhist'
+      Required = True
+    end
+    object qryHMProcdempr: TIntegerField
+      FieldName = 'cdempr'
+    end
+    object qryHMProhistor: TStringField
+      FieldName = 'histor'
+      Required = True
+      Size = 200
+    end
+    object qryHMProquaalt: TFloatField
+      FieldName = 'quaalt'
+      Required = True
+    end
+    object qryHMProestatu: TFloatField
+      FieldName = 'estatu'
+      Required = True
+    end
+    object qryHMProCDPROD: TIntegerField
+      FieldName = 'CDPROD'
+      Required = True
+    end
+  end
 end

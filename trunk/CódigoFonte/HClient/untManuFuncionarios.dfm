@@ -1,6 +1,6 @@
 inherited frmManuFuncionario: TfrmManuFuncionario
-  Left = 417
-  Top = 163
+  Left = 693
+  Top = 141
   Caption = 'Manuten'#231#227'o de Funcion'#225'rios'
   ClientHeight = 344
   ClientWidth = 503
@@ -176,7 +176,7 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         DataField = 'nome'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 2
+        TabOrder = 3
         OnExit = dbeNomeExit
       end
       object dbeRG: TDBEdit
@@ -189,7 +189,7 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         DataField = 'rg'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 3
+        TabOrder = 4
       end
       object dbeCEP: TDBEdit
         Left = 72
@@ -201,7 +201,7 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         DataField = 'cep'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 5
+        TabOrder = 6
         OnKeyPress = dbeCEPKeyPress
       end
       object dbeendereco: TDBEdit
@@ -214,7 +214,7 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         DataField = 'endere'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 6
+        TabOrder = 7
       end
       object dbebairro: TDBEdit
         Left = 72
@@ -226,7 +226,7 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         DataField = 'bairro'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 7
+        TabOrder = 8
       end
       object dbenumero: TDBEdit
         Left = 392
@@ -238,7 +238,7 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         DataField = 'numero'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 8
+        TabOrder = 9
       end
       object dbecidade: TDBEdit
         Left = 72
@@ -250,7 +250,7 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         DataField = 'cidade'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 9
+        TabOrder = 10
       end
       object dbetelefone: TDBEdit
         Left = 72
@@ -262,7 +262,7 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         DataField = 'telefo'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 11
+        TabOrder = 12
         OnKeyPress = dbetelefoneKeyPress
       end
       object dbeCod: TDBEdit
@@ -390,7 +390,7 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 10
+        TabOrder = 11
       end
       object dbeCNPJ: TRxDBComboEdit
         Left = 328
@@ -440,7 +440,7 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         ParentFont = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 4
+        TabOrder = 5
         OnButtonClick = dbeCNPJButtonClick
         OnExit = dbeCNPJExit
         OnKeyPress = dbeCNPJKeyPress
@@ -510,7 +510,7 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 12
+        TabOrder = 13
       end
       object dbcdedtemai: TRxDBComboEdit
         Left = 72
@@ -557,9 +557,9 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         NumGlyphs = 1
         ParentCtl3D = False
         ParentFont = False
-        TabOrder = 13
+        TabOrder = 14
       end
-      object DBComboBox1: TDBComboBox
+      object dbcbSexo: TDBComboBox
         Left = 71
         Top = 31
         Width = 90
@@ -572,12 +572,12 @@ inherited frmManuFuncionario: TfrmManuFuncionario
         DataSource = DataSource
         ItemHeight = 14
         Items.Strings = (
-          'M'
-          'F')
+          'MASCULINO'
+          'FEMININO')
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 14
+        TabOrder = 2
       end
       object dbcbxPessoafisica: TDBCheckBox
         Left = 413

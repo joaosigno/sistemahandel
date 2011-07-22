@@ -75,6 +75,8 @@ type
     acMarca: TAction;
     acDefineEmpresaUsuario: TAction;
     acProduto: TAction;
+    aePrincipal: TApplicationEvents;
+    acAcertoEstoque: TAction;
     procedure AcFornecedoresExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -106,6 +108,8 @@ type
     procedure acMarcaExecute(Sender: TObject);
     procedure acDefineEmpresaUsuarioExecute(Sender: TObject);
     procedure acProdutoExecute(Sender: TObject);
+    procedure aePrincipalException(Sender: TObject; E: Exception);
+    procedure acAcertoEstoqueExecute(Sender: TObject);
   private
     F : TFuncoes;
     { Private declarations }
@@ -127,7 +131,7 @@ uses untDM, untMensagem, untConfBD,
   untManuProfissoes, untManuDepartamento, untManuFuncionarios,
   untManuClientes, untManuBanco, untManuCartaoFidelidade, untManuCheques,
   untManuVendedores, untManuMarcaProdutos, untDefineEmpresaUsuario,
-  untManuProdutos;
+  untManuProdutos, untManuAcertoEstoque;
 
 {$R *.dfm}
 
@@ -440,6 +444,19 @@ begin
    RegisterClass(TfrmManuProdutos);
  VD.showForm('Produtos',dm.cdsProd,'TfrmManuProdutos',
                          '*','produ',' order by cdprod');
+end;
+
+procedure TfrmPrincipal.aePrincipalException(Sender: TObject;
+  E: Exception);
+begin
+  f.Mensagem(true,E.Message);
+end;
+
+procedure TfrmPrincipal.acAcertoEstoqueExecute(Sender: TObject);
+begin
+    frmManuAcertosEstoque := TfrmManuAcertosEstoque.Create(Application);
+    frmManuAcertosEstoque.ShowModal;
+    frmManuAcertosEstoque.Free;
 end;
 
 end.

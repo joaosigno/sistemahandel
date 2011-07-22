@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, untManutencao, DB, ImgList, ComCtrls, ToolWin, DBCtrls,
-  StdCtrls, Mask, untDeclaracoes, ExtCtrls, RxDBComb;
+  StdCtrls, Mask, untDeclaracoes, ExtCtrls, RxDBComb, RzEdit, RzDBEdit,
+  RzDBBnEd, wwdblook, Wwdbdlg, wwdbedit, Wwdotdot;
 
 type
   TfrmManuDefineEmpresaUsuario = class(TfrmManutencao)
@@ -20,8 +21,8 @@ type
     Label3: TLabel;
     dbcbLogin: TDBComboBox;
     dbcbxPessoaJuridica: TDBCheckBox;
-    imgPesquisar: TImage;
-    Label4: TLabel;
+    pesquisa: TwwDBLookupComboDlg;
+    Image1: TImage;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -31,8 +32,6 @@ type
     procedure dbeCodFuncKeyPress(Sender: TObject; var Key: Char);
     procedure dbeCodFuncExit(Sender: TObject);
     procedure imgPesquisarClick(Sender: TObject);
-    procedure FormKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
   private
     F : TFuncoes;
     procedure verificaInsercao;
@@ -54,8 +53,11 @@ uses  untDM, untPrincipal, untPesquisaRapida;
 procedure TfrmManuDefineEmpresaUsuario.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
-  inherited;
-  ManuDAO.Free;
+  if dm.cdsUsuuciduser.AsInteger <> 1 then
+  begin
+     inherited;
+     ManuDAO.Free;
+  end else ManuDAO.Free;
 end;
 
 procedure TfrmManuDefineEmpresaUsuario.FormCreate(Sender: TObject);
@@ -155,16 +157,6 @@ begin
   frmPesquisaRapida := TfrmPesquisaRapida.Create(Application);
   frmPesquisaRapida.pesq := 'defineempresausuario';
   frmPesquisaRapida.ShowModal;
-end;
-
-procedure TfrmManuDefineEmpresaUsuario.FormKeyDown(Sender: TObject;
-  var Key: Word; Shift: TShiftState);
-begin
-    case Key of
-      VK_F7:
-        imgPesquisar.OnClick(Sender);
-    end;
-
 end;
 
 end.

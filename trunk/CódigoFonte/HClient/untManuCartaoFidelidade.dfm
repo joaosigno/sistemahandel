@@ -1,6 +1,6 @@
 inherited frmManuCartaoFidelidade: TfrmManuCartaoFidelidade
-  Left = 209
-  Top = 335
+  Left = 219
+  Top = 136
   Caption = 'Manuten'#231#227'o de Cart'#227'o Fidelidade'
   ClientHeight = 195
   OldCreateOrder = True
@@ -216,7 +216,6 @@ inherited frmManuCartaoFidelidade: TfrmManuCartaoFidelidade
     Top = 0
   end
   inherited DataSource: TDataSource
-    DataSet = dm.cdsCartFid
     Left = 200
     Top = 16
   end

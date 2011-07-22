@@ -276,6 +276,7 @@ begin
         begin
             dm.cdsChequecmc7.AsString:= '';
             f.Mensagem(false,'CMC7 já foi gravado!');
+            dbeCMC7.SetFocus;
         end
         else
           if Valida_CMC7(dbeCMC7.Text) = false then
