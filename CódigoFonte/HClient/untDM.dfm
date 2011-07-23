@@ -1,7 +1,7 @@
 object dm: Tdm
   OldCreateOrder = False
-  Left = 848
-  Top = 94
+  Left = 196
+  Top = 180
   Height = 445
   Width = 448
   object cdsUsu: TClientDataSet
@@ -484,7 +484,6 @@ object dm: Tdm
     end
   end
   object cdsGRPro: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspGRPro'
@@ -1770,6 +1769,36 @@ object dm: Tdm
       FieldName = 'incipi'
       Visible = False
       Size = 1
+    end
+  end
+  object cdsPlanContas: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspPlanContas'
+    RemoteServer = scHC
+    Left = 176
+    Top = 296
+    object cdsPlanContascdcont: TStringField
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'cdcont'
+      Required = True
+      Size = 13
+    end
+    object cdsPlanContascdcoma: TStringField
+      DisplayLabel = 'C'#243'd.Conta M'#227'e'
+      FieldName = 'cdcoma'
+      Size = 13
+    end
+    object cdsPlanContasdescri: TStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'descri'
+      Required = True
+      Size = 50
+    end
+    object cdsPlanContastipo: TStringField
+      DisplayLabel = 'Tipo'
+      FieldName = 'tipo'
+      Size = 2
     end
   end
 end
