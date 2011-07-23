@@ -1330,14 +1330,6 @@ object RDM: TRDM
     Params = <>
     Left = 520
     Top = 176
-    object qryPlanContascdcont: TIntegerField
-      FieldName = 'cdcont'
-      Required = True
-    end
-    object qryPlanContascdcoma: TIntegerField
-      FieldName = 'cdcoma'
-      Required = True
-    end
     object qryPlanContasdescri: TStringField
       FieldName = 'descri'
       Required = True
@@ -1347,11 +1339,33 @@ object RDM: TRDM
       FieldName = 'tipo'
       Size = 2
     end
+    object qryPlanContascdcont: TStringField
+      FieldName = 'cdcont'
+      Required = True
+      Size = 13
+    end
+    object qryPlanContascdcoma: TStringField
+      FieldName = 'cdcoma'
+      Size = 13
+    end
   end
   object dspPlanContas: TDataSetProvider
     DataSet = qryPlanContas
     Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
     Left = 608
     Top = 176
+  end
+  object qryCtPag: TZReadOnlyQuery
+    Connection = con
+    SQL.Strings = (
+      'select * from conta')
+    Params = <>
+    Left = 360
+    Top = 376
+  end
+  object dspCtPag: TDataSetProvider
+    DataSet = qryCtPag
+    Left = 440
+    Top = 376
   end
 end

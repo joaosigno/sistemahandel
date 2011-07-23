@@ -1216,8 +1216,8 @@ object RDM: TRDM
       'select * from gdpro'
       'order by descri')
     Params = <>
-    Left = 512
-    Top = 8
+    Left = 520
+    Top = 10
     object qryGDProdcdgrad: TIntegerField
       FieldName = 'cdgrad'
       Required = True
@@ -1354,5 +1354,18 @@ object RDM: TRDM
     Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
     Left = 608
     Top = 176
+  end
+  object qryCtPag: TZReadOnlyQuery
+    Connection = con
+    SQL.Strings = (
+      'select * from conta')
+    Params = <>
+    Left = 360
+    Top = 376
+  end
+  object dspCtPag: TDataSetProvider
+    DataSet = qryCtPag
+    Left = 440
+    Top = 376
   end
 end

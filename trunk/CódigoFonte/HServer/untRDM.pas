@@ -325,6 +325,8 @@ type
     qryPlanContastipo: TStringField;
     qryPlanContascdcont: TStringField;
     qryPlanContascdcoma: TStringField;
+    qryCtPag: TZReadOnlyQuery;
+    dspCtPag: TDataSetProvider;
     procedure RemoteDataModuleCreate(Sender: TObject);
     procedure RemoteDataModuleDestroy(Sender: TObject);
   private

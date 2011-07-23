@@ -321,10 +321,12 @@ type
     qryNtOpecdntop: TStringField;
     qryPlanContas: TZReadOnlyQuery;
     dspPlanContas: TDataSetProvider;
-    qryPlanContascdcont: TIntegerField;
-    qryPlanContascdcoma: TIntegerField;
     qryPlanContasdescri: TStringField;
     qryPlanContastipo: TStringField;
+    qryPlanContascdcont: TStringField;
+    qryPlanContascdcoma: TStringField;
+    qryCtPag: TZReadOnlyQuery;
+    dspCtPag: TDataSetProvider;
     procedure RemoteDataModuleCreate(Sender: TObject);
     procedure RemoteDataModuleDestroy(Sender: TObject);
   private

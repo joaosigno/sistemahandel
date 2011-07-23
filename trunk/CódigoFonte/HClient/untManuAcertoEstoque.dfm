@@ -1,6 +1,6 @@
 inherited frmManuAcertosEstoque: TfrmManuAcertosEstoque
-  Left = 370
-  Top = 155
+  Left = 380
+  Top = 297
   Caption = 'Acertos no Estoque'
   ClientHeight = 269
   ClientWidth = 556

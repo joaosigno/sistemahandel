@@ -32,7 +32,6 @@ type
     rxceprcustocorreto: TRxDBCalcEdit;
     rxceprvendacorreto: TRxDBCalcEdit;
     rxdbceprcustoatual: TRxDBCalcEdit;
-    Image1: TImage;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
