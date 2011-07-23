@@ -20,7 +20,7 @@ inherited frmManuCartaoFidelidade: TfrmManuCartaoFidelidade
     Align = alClient
     TabOrder = 1
     object tsCartaoFidelidade: TTabSheet
-      Caption = 'Dados Principais'
+      Caption = 'In'#237'cio'
       object Label1: TLabel
         Left = 0
         Top = 28

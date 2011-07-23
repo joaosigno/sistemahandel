@@ -1,6 +1,6 @@
 inherited frmManuCheques: TfrmManuCheques
-  Left = 454
-  Top = 135
+  Left = 298
+  Top = 67
   Caption = 'Manuten'#231#227'o de Chques'
   ClientHeight = 401
   OldCreateOrder = True

@@ -5,7 +5,7 @@ object RDM: TRDM
   Left = 287
   Top = 134
   Height = 489
-  Width = 651
+  Width = 769
   object con: TZConnection
     Protocol = 'postgresql-8'
     HostName = 'localhost'
@@ -1209,5 +1209,118 @@ object RDM: TRDM
       FieldName = 'CDPROD'
       Required = True
     end
+  end
+  object qryGDProd: TZReadOnlyQuery
+    Connection = con
+    SQL.Strings = (
+      'select * from gdpro'
+      'order by descri')
+    Params = <>
+    Left = 512
+    Top = 8
+    object qryGDProdcdgrad: TIntegerField
+      FieldName = 'cdgrad'
+      Required = True
+    end
+    object qryGDProddtcada: TDateField
+      FieldName = 'dtcada'
+    end
+    object qryGDProdcdempr: TIntegerField
+      FieldName = 'cdempr'
+    end
+    object qryGDProddescri: TStringField
+      FieldName = 'descri'
+      Required = True
+      Size = 30
+    end
+    object qryGDProddeslin: TStringField
+      FieldName = 'deslin'
+      Required = True
+      Size = 30
+    end
+    object qryGDProddescol: TStringField
+      FieldName = 'descol'
+      Required = True
+      Size = 30
+    end
+  end
+  object dspGDPro: TDataSetProvider
+    DataSet = qryGDProd
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
+    Left = 600
+    Top = 8
+  end
+  object qryLCGrade: TZReadOnlyQuery
+    Connection = con
+    SQL.Strings = (
+      'select * from lcgra order by descri')
+    Params = <>
+    Left = 520
+    Top = 72
+    object qryLCGradecdlcgr: TIntegerField
+      FieldName = 'cdlcgr'
+      Required = True
+    end
+    object qryLCGradedtcada: TDateField
+      FieldName = 'dtcada'
+    end
+    object qryLCGradecdempr: TIntegerField
+      FieldName = 'cdempr'
+    end
+    object qryLCGradecdgrad: TIntegerField
+      FieldName = 'cdgrad'
+    end
+    object qryLCGradedescri: TStringField
+      FieldName = 'descri'
+      Required = True
+      Size = 30
+    end
+    object qryLCGradelincol: TStringField
+      FieldName = 'lincol'
+      Required = True
+      Size = 1
+    end
+  end
+  object dspLCGrade: TDataSetProvider
+    DataSet = qryLCGrade
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
+    Left = 608
+    Top = 72
+  end
+  object qryNtOpe: TZReadOnlyQuery
+    Connection = con
+    SQL.Strings = (
+      'select * from ntope order by cdntop')
+    Params = <>
+    Left = 520
+    Top = 128
+    object qryNtOpecdntop: TStringField
+      FieldName = 'cdntop'
+      Required = True
+      Size = 10
+    end
+    object qryNtOpedescri: TStringField
+      FieldName = 'descri'
+      Required = True
+      Size = 100
+    end
+    object qryNtOpebxesto: TStringField
+      FieldName = 'bxesto'
+      Size = 1
+    end
+    object qryNtOpeefelan: TStringField
+      FieldName = 'efelan'
+      Size = 1
+    end
+    object qryNtOpeincipi: TStringField
+      FieldName = 'incipi'
+      Size = 1
+    end
+  end
+  object dspNtOpe: TDataSetProvider
+    DataSet = qryNtOpe
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
+    Left = 608
+    Top = 128
   end
 end

@@ -22,7 +22,6 @@ type
     dbcbLogin: TDBComboBox;
     dbcbxPessoaJuridica: TDBCheckBox;
     pesquisa: TwwDBLookupComboDlg;
-    Image1: TImage;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);

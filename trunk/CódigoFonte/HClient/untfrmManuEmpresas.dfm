@@ -19,7 +19,7 @@ inherited frmManuEmpresas: TfrmManuEmpresas
     Align = alClient
     TabOrder = 1
     object TabSheet1: TTabSheet
-      Caption = 'Dados Principais'
+      Caption = 'In'#237'cio'
       object Label1: TLabel
         Left = 5
         Top = 12

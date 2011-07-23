@@ -41,7 +41,7 @@ inherited frmManuBanco: TfrmManuBanco
     Align = alClient
     TabOrder = 1
     object TabSheet1: TTabSheet
-      Caption = 'Dados Principais'
+      Caption = 'In'#237'cio'
       object Label4: TLabel
         Left = 0
         Top = 10

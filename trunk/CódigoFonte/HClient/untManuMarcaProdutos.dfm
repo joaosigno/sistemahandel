@@ -3,6 +3,7 @@ inherited frmManuMarcaProdutos: TfrmManuMarcaProdutos
   Top = 230
   Caption = 'Manuten'#231#227'o de Marcas'
   ClientHeight = 159
+  OldCreateOrder = True
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -19,7 +20,7 @@ inherited frmManuMarcaProdutos: TfrmManuMarcaProdutos
     Align = alClient
     TabOrder = 1
     object tsMcPro: TTabSheet
-      Caption = 'Dados Principais'
+      Caption = 'In'#237'cio'
       object Label1: TLabel
         Left = 0
         Top = 10
@@ -144,7 +145,6 @@ inherited frmManuMarcaProdutos: TfrmManuMarcaProdutos
     Top = 80
   end
   inherited DataSource: TDataSource
-    DataSet = dm.cdsMcPro
     Left = 200
     Top = 96
   end

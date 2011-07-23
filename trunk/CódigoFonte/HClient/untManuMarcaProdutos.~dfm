@@ -47,6 +47,7 @@ inherited frmManuMarcaProdutos: TfrmManuMarcaProdutos
         Top = 32
         Width = 424
         Height = 20
+        CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'descri'
         DataSource = DataSource
@@ -127,6 +128,7 @@ inherited frmManuMarcaProdutos: TfrmManuMarcaProdutos
         Top = 8
         Width = 89
         Height = 20
+        CharCase = ecUpperCase
         Color = 13425885
         Ctl3D = False
         DataField = 'cdmarc'

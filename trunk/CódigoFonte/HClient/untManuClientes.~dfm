@@ -22,7 +22,7 @@ inherited frmManuClientes: TfrmManuClientes
     Align = alClient
     TabOrder = 1
     object tsBasicos: TTabSheet
-      Caption = 'B'#225'sicos'
+      Caption = 'In'#237'cio'
       object Label1: TLabel
         Left = 0
         Top = 9
@@ -255,7 +255,7 @@ inherited frmManuClientes: TfrmManuClientes
         ItemHeight = 14
         Items.Strings = (
           'MASCULINO'
-          'FEMINO')
+          'FEMININO')
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True

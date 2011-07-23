@@ -1,6 +1,6 @@
 inherited frmManuBanco: TfrmManuBanco
-  Left = 549
-  Top = 224
+  Left = 348
+  Top = 106
   Caption = 'Manuten'#231#227'o de Bancos'
   ClientHeight = 166
   OldCreateOrder = True
@@ -41,7 +41,7 @@ inherited frmManuBanco: TfrmManuBanco
     Align = alClient
     TabOrder = 1
     object TabSheet1: TTabSheet
-      Caption = 'Dados Principais'
+      Caption = 'In'#237'cio'
       object Label4: TLabel
         Left = 0
         Top = 10

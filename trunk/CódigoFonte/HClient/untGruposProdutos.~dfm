@@ -111,7 +111,6 @@ inherited frmManuGrupoProdutos: TfrmManuGrupoProdutos
         Top = 8
         Width = 112
         Height = 21
-        Hint = 'Digite ou escolha a data de cadastro do fornecedor'
         DataField = 'dtcada'
         DataSource = DataSource
         ButtonHint = 'Clique para abrir o calend'#225'rio'

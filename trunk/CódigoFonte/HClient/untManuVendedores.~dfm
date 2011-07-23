@@ -4,6 +4,7 @@ inherited frmManuVendedores: TfrmManuVendedores
   Caption = 'Manuten'#231#227'o de Vendedores'
   ClientHeight = 315
   ClientWidth = 519
+  OldCreateOrder = True
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -144,7 +145,7 @@ inherited frmManuVendedores: TfrmManuVendedores
           DataSource = DataSource
           ButtonHint = 'Clique para abrir a calculadora'
           Ctl3D = False
-          DisplayFormat = 'R$ ,0.00;-R$ ,0.00'
+          DisplayFormat = '#.00'
           GlyphKind = gkCustom
           Glyph.Data = {
             36060000424D3606000000000000360000002800000020000000100000000100
@@ -343,7 +344,6 @@ inherited frmManuVendedores: TfrmManuVendedores
     Top = 136
   end
   inherited DataSource: TDataSource
-    DataSet = dm.cdsVende
     Left = 16
     Top = 176
   end
