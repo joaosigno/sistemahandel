@@ -295,6 +295,23 @@ type
     qryHMProhistor: TStringField;
     qryHMProquaalt: TFloatField;
     qryHMProestatu: TFloatField;
+    qryHMProCDPROD: TIntegerField;
+    qryGDProd: TZReadOnlyQuery;
+    dspGDPro: TDataSetProvider;
+    qryLCGrade: TZReadOnlyQuery;
+    dspLCGrade: TDataSetProvider;
+    qryGDProdcdgrad: TIntegerField;
+    qryGDProddtcada: TDateField;
+    qryGDProdcdempr: TIntegerField;
+    qryGDProddescri: TStringField;
+    qryGDProddeslin: TStringField;
+    qryGDProddescol: TStringField;
+    qryLCGradecdlcgr: TIntegerField;
+    qryLCGradedtcada: TDateField;
+    qryLCGradecdempr: TIntegerField;
+    qryLCGradecdgrad: TIntegerField;
+    qryLCGradedescri: TStringField;
+    qryLCGradelincol: TStringField;
     procedure RemoteDataModuleCreate(Sender: TObject);
     procedure RemoteDataModuleDestroy(Sender: TObject);
   private

@@ -9,13 +9,6 @@ inherited frmManuFornecedores: TfrmManuFornecedores
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 14
-  object Label4: TLabel [0]
-    Left = 224
-    Top = 8
-    Width = 42
-    Height = 14
-    Caption = 'Label4'
-  end
   inherited tbManutencao: TToolBar
     Top = 369
     Width = 506
@@ -50,7 +43,7 @@ inherited frmManuFornecedores: TfrmManuFornecedores
       Left = 432
     end
   end
-  object pgFornecedor: TPageControl [2]
+  object pgFornecedor: TPageControl [1]
     Left = 0
     Top = 0
     Width = 506
@@ -59,7 +52,7 @@ inherited frmManuFornecedores: TfrmManuFornecedores
     Align = alClient
     TabOrder = 1
     object tsFornecedor: TTabSheet
-      Caption = 'Fornecedor'
+      Caption = 'In'#237'cio'
       object Label1: TLabel
         Left = 0
         Top = 56

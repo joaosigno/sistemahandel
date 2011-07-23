@@ -70,6 +70,7 @@ type
     rxcbceEstAtual: TRxDBCalcEdit;
     Label26: TLabel;
     dbcbbxTipoProduto: TDBComboBox;
+    tsGrade: TTabSheet;
     procedure FormShow(Sender: TObject);
     procedure tbAdicionarClick(Sender: TObject);
     procedure tbGravarClick(Sender: TObject);
@@ -89,6 +90,7 @@ type
     procedure tbProximoClick(Sender: TObject);
     procedure tbUltimoClick(Sender: TObject);
     procedure dbcbbxTipoProdutoExit(Sender: TObject);
+    procedure dbcbControleGradeExit(Sender: TObject);
   private
    F: TFuncoes;
   function verificaDadosAntesGravar():Boolean;
@@ -313,6 +315,17 @@ begin
      dbcbbx_classqtoaorigem.Enabled := true;
      dbcbbx_situacaotributaria.Enabled := true;
   end;
+  if dbcbControleGrade.Checked then
+  begin
+      pgProdutos.Pages[2].TabVisible := true;
+      dbcbbxTipoProduto.Enabled := false;
+      rxcbceEstAtual.Enabled := false;
+  end else
+  begin
+    pgProdutos.Pages[2].TabVisible := false;
+    dbcbbxTipoProduto.Enabled := true;
+    rxcbceEstAtual.Enabled := true;
+  end;
 end;
 
 procedure TfrmManuProdutos.tbPrimeiroClick(Sender: TObject);
@@ -342,6 +355,21 @@ end;
 procedure TfrmManuProdutos.dbcbbxTipoProdutoExit(Sender: TObject);
 begin
   verificaTipoProduto;
+end;
+
+procedure TfrmManuProdutos.dbcbControleGradeExit(Sender: TObject);
+begin
+  if dbcbControleGrade.Checked then
+  begin
+      pgProdutos.Pages[2].TabVisible := true;
+      dbcbbxTipoProduto.Enabled := false;
+      rxcbceEstAtual.Enabled := false;
+  end else
+  begin
+    pgProdutos.Pages[2].TabVisible := false;
+    dbcbbxTipoProduto.Enabled := true;
+    rxcbceEstAtual.Enabled := true;
+  end;
 end;
 
 end.

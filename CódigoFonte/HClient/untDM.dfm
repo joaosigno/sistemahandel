@@ -1,7 +1,7 @@
 object dm: Tdm
   OldCreateOrder = False
-  Left = 874
-  Top = 130
+  Left = 848
+  Top = 94
   Height = 445
   Width = 448
   object cdsUsu: TClientDataSet
@@ -1727,6 +1727,49 @@ object dm: Tdm
       DisplayLabel = 'Est.Atual'
       FieldName = 'estatu'
       Required = True
+    end
+  end
+  object cdsNtOpe: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspNtOpe'
+    RemoteServer = scHC
+    Left = 112
+    Top = 296
+    object cdsNtOpecdntop: TStringField
+      DisplayLabel = 'C'#243'd.'
+      DisplayWidth = 10
+      FieldName = 'cdntop'
+      Required = True
+      Size = 10
+    end
+    object cdsNtOpedescri: TStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      DisplayWidth = 100
+      FieldName = 'descri'
+      Required = True
+      Size = 100
+    end
+    object cdsNtOpebxesto: TStringField
+      DisplayLabel = 'Altera Est.'
+      DisplayWidth = 1
+      FieldName = 'bxesto'
+      Visible = False
+      Size = 1
+    end
+    object cdsNtOpeefelan: TStringField
+      DisplayLabel = 'Gera Lan'#231'.'
+      DisplayWidth = 1
+      FieldName = 'efelan'
+      Visible = False
+      Size = 1
+    end
+    object cdsNtOpeincipi: TStringField
+      DisplayLabel = 'Inclui IPI'
+      DisplayWidth = 1
+      FieldName = 'incipi'
+      Visible = False
+      Size = 1
     end
   end
 end

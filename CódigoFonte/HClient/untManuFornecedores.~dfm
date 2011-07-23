@@ -1,6 +1,6 @@
 inherited frmManuFornecedores: TfrmManuFornecedores
-  Left = 623
-  Top = 154
+  Left = 416
+  Top = 87
   Caption = 'Manuten'#231#227'o de Fornecedores'
   ClientHeight = 429
   ClientWidth = 506
@@ -59,7 +59,7 @@ inherited frmManuFornecedores: TfrmManuFornecedores
     Align = alClient
     TabOrder = 1
     object tsFornecedor: TTabSheet
-      Caption = 'Fornecedor'
+      Caption = 'In'#237'cio'
       object Label1: TLabel
         Left = 0
         Top = 56

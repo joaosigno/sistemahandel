@@ -18,7 +18,7 @@ inherited frmManuProdutos: TfrmManuProdutos
     Align = alClient
     TabOrder = 1
     object tsProdutos: TTabSheet
-      Caption = 'Produtos'
+      Caption = 'In'#237'cio'
       object Label1: TLabel
         Left = 0
         Top = 8
@@ -346,6 +346,7 @@ inherited frmManuProdutos: TfrmManuProdutos
         TabOrder = 2
         ValueChecked = 'G'
         ValueUnchecked = 'P'
+        OnExit = dbcbControleGradeExit
       end
       object dbeCodFab: TDBEdit
         Left = 72
@@ -1150,6 +1151,7 @@ inherited frmManuProdutos: TfrmManuProdutos
         ParentShowHint = False
         ShowHint = True
         TabOrder = 10
+        OnExit = dbcbbxTipoProdutoExit
       end
     end
     object tsImpostos: TTabSheet
@@ -1392,6 +1394,10 @@ inherited frmManuProdutos: TfrmManuProdutos
         TabOrder = 4
       end
     end
+    object tsGrade: TTabSheet
+      Caption = 'Grade'
+      ImageIndex = 3
+    end
     object rsObs: TTabSheet
       Caption = 'Obs'
       ImageIndex = 2
@@ -1414,7 +1420,6 @@ inherited frmManuProdutos: TfrmManuProdutos
     Top = 272
   end
   inherited DataSource: TDataSource
-    DataSet = dm.cdsProd
     Left = 224
     Top = 216
   end

@@ -15,7 +15,6 @@ type
     dbeCod: TDBEdit;
     dbeDescriPro: TDBEdit;
     pesquisa: TwwDBLookupComboDlg;
-    Image1: TImage;
     Bevel2: TBevel;
     rxcbceEstAtual: TRxDBCalcEdit;
     rxcbceEstMinimo: TRxDBCalcEdit;
@@ -32,7 +31,6 @@ type
     exceEstcorreto: TRxDBCalcEdit;
     rxceprcustocorreto: TRxDBCalcEdit;
     rxceprvendacorreto: TRxDBCalcEdit;
-    RxDBCalcEdit1: TRxDBCalcEdit;
     rxdbceprcustoatual: TRxDBCalcEdit;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);

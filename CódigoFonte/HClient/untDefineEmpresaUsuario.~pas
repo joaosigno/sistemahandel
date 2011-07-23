@@ -22,7 +22,6 @@ type
     dbcbLogin: TDBComboBox;
     dbcbxPessoaJuridica: TDBCheckBox;
     pesquisa: TwwDBLookupComboDlg;
-    Image1: TImage;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -64,7 +63,8 @@ procedure TfrmManuDefineEmpresaUsuario.FormCreate(Sender: TObject);
 begin
   ManuDAO := TManutencaoDAO.Create(dm.cdsUsu);
   inherited;
-  DataSource.DataSet := dm.cdsUsu;  
+  DataSource.DataSet := dm.cdsUsu;
+  pesquisa.LookupTable := dm.cdsUsu;  
 end;
 
 function TfrmManuDefineEmpresaUsuario.verificaDadosAntesGravar: Boolean;

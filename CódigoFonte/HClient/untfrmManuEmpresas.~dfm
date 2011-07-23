@@ -1,6 +1,5 @@
 inherited frmManuEmpresas: TfrmManuEmpresas
-  Left = 337
-  Top = 132
+  Top = 124
   Caption = 'Manuten'#231#227'o de Empresas'
   ClientHeight = 435
   OldCreateOrder = True

@@ -28,14 +28,12 @@ type
 
   TfrmPrincipal = class(TForm)
     amPrincipal: TActionManager;
-    imgPrincipal: TImage;
     sbPrincipal: TStatusBar;
     lblData: TLabel;
     imgtoolbar: TImageList;
-    AcFornecedores: TAction;
+    AcVizualizarFornecedores: TAction;
     tmSbPrincipal: TTimer;
     imgsbPrincipal: TImageList;
-    UserControl: TUserControl;
     acSair: TAction;
     acCadastroUsuario: TAction;
     acPerfilUsuario: TAction;
@@ -57,27 +55,31 @@ type
     tbSair: TToolButton;
     ToolButton1: TToolButton;
     Label1: TLabel;
-    acEmpresa: TAction;
+    acVizualizarEmpresa: TAction;
     acGrupos: TAction;
     acmmbPrincipal: TActionMainMenuBar;
     acHChat: TAction;
     tmOcioso: TTimer;
-    acProfissoes: TAction;
+    acVizualizarProfissoes: TAction;
     acTrocaUsuario: TAction;
     acModoEspera: TAction;
     acDepartamentos: TAction;
-    acFuncionarios: TAction;
-    acClientes: TAction;
-    acBanco: TAction;
+    acVizualizarFuncionarios: TAction;
+    acVizualizarClientes: TAction;
+    acVizualizarBanco: TAction;
     acCadCartoaFidelidade: TAction;
-    acCheques: TAction;
+    acVizualizarCheques: TAction;
     acVendedores: TAction;
     acMarca: TAction;
     acDefineEmpresaUsuario: TAction;
-    acProduto: TAction;
+    acVizualizarProduto: TAction;
     aePrincipal: TApplicationEvents;
     acAcertoEstoque: TAction;
-    procedure AcFornecedoresExecute(Sender: TObject);
+    imgPrincipal: TImage;
+    UserControl: TUserControl;
+    acGrades: TAction;
+    acNaturezaOperacao: TAction;
+    procedure AcVizualizarFornecedoresExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
@@ -89,27 +91,29 @@ type
     procedure mSairClick(Sender: TObject);
     procedure sbPrincipalClick(Sender: TObject);
     procedure acCalendarioExecute(Sender: TObject);
-    procedure acEmpresaExecute(Sender: TObject);
+    procedure acVizualizarEmpresaExecute(Sender: TObject);
     procedure acGruposExecute(Sender: TObject);
     procedure acSairExecute(Sender: TObject);
     procedure acHChatExecute(Sender: TObject);
     procedure tmOciosoTimer(Sender: TObject);
-    procedure acProfissoesExecute(Sender: TObject);
+    procedure acVizualizarProfissoesExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure acModoEsperaExecute(Sender: TObject);
     procedure acTrocaUsuarioExecute(Sender: TObject);
     procedure acDepartamentosExecute(Sender: TObject);
-    procedure acFuncionariosExecute(Sender: TObject);
-    procedure acClientesExecute(Sender: TObject);
-    procedure acBancoExecute(Sender: TObject);
+    procedure acVizualizarFuncionariosExecute(Sender: TObject);
+    procedure acVizualizarClientesExecute(Sender: TObject);
+    procedure acVizualizarBancoExecute(Sender: TObject);
     procedure acCadCartoaFidelidadeExecute(Sender: TObject);
     procedure acVendedoresExecute(Sender: TObject);
-    procedure acChequesExecute(Sender: TObject);
+    procedure acVizualizarChequesExecute(Sender: TObject);
     procedure acMarcaExecute(Sender: TObject);
     procedure acDefineEmpresaUsuarioExecute(Sender: TObject);
-    procedure acProdutoExecute(Sender: TObject);
+    procedure acVizualizarProdutoExecute(Sender: TObject);
     procedure aePrincipalException(Sender: TObject; E: Exception);
     procedure acAcertoEstoqueExecute(Sender: TObject);
+    procedure acGradesExecute(Sender: TObject);
+    procedure acNaturezaOperacaoExecute(Sender: TObject);
   private
     F : TFuncoes;
     { Private declarations }
@@ -131,11 +135,12 @@ uses untDM, untMensagem, untConfBD,
   untManuProfissoes, untManuDepartamento, untManuFuncionarios,
   untManuClientes, untManuBanco, untManuCartaoFidelidade, untManuCheques,
   untManuVendedores, untManuMarcaProdutos, untDefineEmpresaUsuario,
-  untManuProdutos, untManuAcertoEstoque;
+  untManuProdutos, untManuAcertoEstoque, untManuGrades,
+  untManuNaturezaOperacao;
 
 {$R *.dfm}
 
-procedure TfrmPrincipal.AcFornecedoresExecute(Sender: TObject);
+procedure TfrmPrincipal.AcVizualizarFornecedoresExecute(Sender: TObject);
 {
   abre Frmfornecedores
 }
@@ -163,7 +168,7 @@ begin
   SetHintParams(Configuracao.NomeSoftware,'Versão '+Configuracao.Versao,True, htNone);
 
    Application.OnMessage := AppMessage;
-   Application.OnIdle := AppIdle;
+   Application.OnIdle := AppIdle;   
 end;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
@@ -280,7 +285,7 @@ begin
   frmCalendario.Show;
 end;
 
-procedure TfrmPrincipal.acEmpresaExecute(Sender: TObject);
+procedure TfrmPrincipal.acVizualizarEmpresaExecute(Sender: TObject);
 begin
   RegisterClass (TfrmManuEmpresas);
   VD.showForm('Empresas',dm.cdsEmp,'TfrmManuEmpresas',
@@ -320,7 +325,7 @@ begin
   acModoEspera.Execute;
 end;
 
-procedure TfrmPrincipal.acProfissoesExecute(Sender: TObject);
+procedure TfrmPrincipal.acVizualizarProfissoesExecute(Sender: TObject);
 begin
   RegisterClass (TfrmManuProfissoes);
   VD.showForm('Profissões',dm.cdsProfi,'TfrmManuProfissoes',
@@ -378,21 +383,21 @@ begin
                          '*','depar',' order by cddepa');
 end;
 
-procedure TfrmPrincipal.acFuncionariosExecute(Sender: TObject);
+procedure TfrmPrincipal.acVizualizarFuncionariosExecute(Sender: TObject);
 begin
   RegisterClass (TfrmManuFuncionario);
   VD.showForm('Funcionários',dm.cdsFunc,'TfrmManuFuncionario',
                          '*','funci',' order by cdfunc');
 end;
 
-procedure TfrmPrincipal.acClientesExecute(Sender: TObject);
+procedure TfrmPrincipal.acVizualizarClientesExecute(Sender: TObject);
 begin
   RegisterClass (TfrmManuClientes);
   VD.showForm('Clientes',dm.cdsCli,'TfrmManuClientes',
                          '*','clien',' order by cdclie');
 end;
 
-procedure TfrmPrincipal.acBancoExecute(Sender: TObject);
+procedure TfrmPrincipal.acVizualizarBancoExecute(Sender: TObject);
 begin
   RegisterClass (TfrmManuBanco);
   VD.showForm('Bancos',dm.cdsBanc,'TfrmManuBanco',
@@ -414,7 +419,7 @@ begin
                          '*','vende',' order by cdvend');
 end;
 
-procedure TfrmPrincipal.acChequesExecute(Sender: TObject);
+procedure TfrmPrincipal.acVizualizarChequesExecute(Sender: TObject);
 begin
   RegisterClass(TfrmManuCheques);
  VD.showForm('Cheques',dm.cdsCheque,'TfrmManuCheques',
@@ -439,7 +444,7 @@ begin
    //uciduser<>1 and cdempr=1 
 end;
 
-procedure TfrmPrincipal.acProdutoExecute(Sender: TObject);
+procedure TfrmPrincipal.acVizualizarProdutoExecute(Sender: TObject);
 begin
    RegisterClass(TfrmManuProdutos);
  VD.showForm('Produtos',dm.cdsProd,'TfrmManuProdutos',
@@ -457,6 +462,20 @@ begin
     frmManuAcertosEstoque := TfrmManuAcertosEstoque.Create(Application);
     frmManuAcertosEstoque.ShowModal;
     frmManuAcertosEstoque.Free;
+end;
+
+procedure TfrmPrincipal.acGradesExecute(Sender: TObject);
+begin
+  frmManuGrades := TfrmManuGrades.Create(Application);
+  frmManuGrades.ShowModal;
+  frmManuGrades.Free;
+end;
+
+procedure TfrmPrincipal.acNaturezaOperacaoExecute(Sender: TObject);
+begin
+  frmManuNaturezaOperacao := TfrmManuNaturezaOperacao.Create(Application);
+  frmManuNaturezaOperacao.ShowModal;
+  frmManuNaturezaOperacao.Free;
 end;
 
 end.

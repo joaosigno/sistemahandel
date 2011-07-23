@@ -52,7 +52,7 @@ inherited frmManuDepartamento: TfrmManuDepartamento
     Align = alClient
     TabOrder = 1
     object tbPrincipal: TTabSheet
-      Caption = 'Dados Principais'
+      Caption = 'In'#237'cio'
       object Label1: TLabel
         Left = 0
         Top = 11

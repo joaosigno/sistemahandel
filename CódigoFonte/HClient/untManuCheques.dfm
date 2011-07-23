@@ -19,7 +19,7 @@ inherited frmManuCheques: TfrmManuCheques
     Align = alClient
     TabOrder = 1
     object tsCheques: TTabSheet
-      Caption = 'Cad. Cheques'
+      Caption = 'In'#237'cio'
       object Label1: TLabel
         Left = 4
         Top = 19

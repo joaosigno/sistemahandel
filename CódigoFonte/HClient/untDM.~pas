@@ -315,6 +315,12 @@ type
     cdsHMProquaalt: TFloatField;
     cdsHMProestatu: TFloatField;
     cdsHMProCDPROD: TIntegerField;
+    cdsNtOpe: TClientDataSet;
+    cdsNtOpecdntop: TStringField;
+    cdsNtOpedescri: TStringField;
+    cdsNtOpebxesto: TStringField;
+    cdsNtOpeefelan: TStringField;
+    cdsNtOpeincipi: TStringField;
     function verificaBD():Boolean;
     function Autenticacao(cdemp:integer;login:String;senha:string): boolean;
     procedure cdsProdclaoriGetText(Sender: TField; var Text: String;

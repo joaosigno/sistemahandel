@@ -92,7 +92,6 @@ type
     dbeCont3: TDBEdit;
     dbeRep3: TDBEdit;
     dbeCodBanco: TDBEdit;
-    Label4: TLabel;
     procedure dbcbxPessoafisicaExit(Sender: TObject);
     procedure dbeCNPJExit(Sender: TObject);
     procedure dbcdedthomepagefornecedorButtonClick(Sender: TObject);
