@@ -32,7 +32,8 @@ uses
   untManuProdutos in 'untManuProdutos.pas' {frmManuProdutos},
   untManuAcertoEstoque in 'untManuAcertoEstoque.pas' {frmManuAcertosEstoque},
   untManuGrades in 'untManuGrades.pas' {frmManuGrades},
-  untManuNaturezaOperacao in 'untManuNaturezaOperacao.pas' {frmManuNaturezaOperacao};
+  untManuNaturezaOperacao in 'untManuNaturezaOperacao.pas' {frmManuNaturezaOperacao},
+  untManuContasPagar in 'untManuContasPagar.pas' {frmManuContasPagar};
 
 {$R *.res}
 

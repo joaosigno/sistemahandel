@@ -1,7 +1,7 @@
 object dm: Tdm
   OldCreateOrder = False
-  Left = 848
-  Top = 94
+  Left = 375
+  Top = 79
   Height = 445
   Width = 448
   object cdsUsu: TClientDataSet
@@ -153,208 +153,286 @@ object dm: Tdm
     RemoteServer = scHC
     Left = 216
     Top = 64
-    object cdsForcdforn: TIntegerField
-      DisplayLabel = 'C'#243'd.'
-      FieldName = 'cdforn'
-      Required = True
-    end
-    object cdsForcdempr: TIntegerField
-      DisplayLabel = 'C'#243'd.Empr.'
-      FieldName = 'cdempr'
-      Required = True
-    end
-    object cdsForcdbanco: TIntegerField
-      DisplayLabel = 'C'#243'd.Banco'
-      FieldName = 'cdbanco'
-    end
-    object cdsForprocurabanco: TStringField
-      DisplayLabel = 'Banco'
-      FieldKind = fkLookup
-      FieldName = 'procurabanco'
-      LookupDataSet = cdsBanc
-      LookupKeyFields = 'cdban'
-      LookupResultField = 'descri'
-      KeyFields = 'cdbanco'
-      Size = 30
-      Lookup = True
-    end
-    object cdsFordtcada: TDateField
-      DisplayLabel = 'Dt.Cadastro'
-      FieldName = 'dtcada'
-    end
-    object cdsForpesfis: TStringField
-      DisplayLabel = 'Pes.Fis'
-      FieldName = 'pesfis'
-      Size = 1
-    end
     object cdsFornmfant: TStringField
       DisplayLabel = 'Nome Fantasia'
+      DisplayWidth = 50
       FieldName = 'nmfant'
       Required = True
       Size = 50
     end
     object cdsForrzsoci: TStringField
       DisplayLabel = 'Raz'#227'o Social'
+      DisplayWidth = 50
       FieldName = 'rzsoci'
       Size = 50
     end
+    object cdsForcdforn: TIntegerField
+      DisplayLabel = 'C'#243'd.'
+      DisplayWidth = 10
+      FieldName = 'cdforn'
+      Required = True
+      Visible = False
+    end
+    object cdsForcdempr: TIntegerField
+      DisplayLabel = 'C'#243'd.Empr.'
+      DisplayWidth = 10
+      FieldName = 'cdempr'
+      Required = True
+      Visible = False
+    end
+    object cdsForcdbanco: TIntegerField
+      DisplayLabel = 'C'#243'd.Banco'
+      DisplayWidth = 10
+      FieldName = 'cdbanco'
+      Visible = False
+    end
+    object cdsForprocurabanco: TStringField
+      DisplayLabel = 'Banco'
+      DisplayWidth = 30
+      FieldKind = fkLookup
+      FieldName = 'procurabanco'
+      LookupDataSet = cdsBanc
+      LookupKeyFields = 'cdban'
+      LookupResultField = 'descri'
+      KeyFields = 'cdbanco'
+      Visible = False
+      Size = 30
+      Lookup = True
+    end
+    object cdsFordtcada: TDateField
+      DisplayLabel = 'Dt.Cadastro'
+      DisplayWidth = 10
+      FieldName = 'dtcada'
+      Visible = False
+    end
+    object cdsForpesfis: TStringField
+      DisplayLabel = 'Pes.Fis'
+      DisplayWidth = 1
+      FieldName = 'pesfis'
+      Visible = False
+      Size = 1
+    end
     object cdsForinsest: TStringField
       DisplayLabel = 'IE'
+      DisplayWidth = 20
       FieldName = 'insest'
+      Visible = False
     end
     object cdsForcgc: TStringField
       DisplayLabel = 'CGC'
+      DisplayWidth = 14
       FieldName = 'cgc'
+      Visible = False
       Size = 14
     end
     object cdsForcep: TStringField
       DisplayLabel = 'Cep'
+      DisplayWidth = 10
       FieldName = 'cep'
+      Visible = False
       EditMask = '00000-000;1'
       Size = 10
     end
     object cdsForendere: TStringField
       DisplayLabel = 'Endere'#231'o'
+      DisplayWidth = 50
       FieldName = 'endere'
+      Visible = False
       Size = 50
     end
     object cdsForbairro: TStringField
       DisplayLabel = 'Bairro'
+      DisplayWidth = 30
       FieldName = 'bairro'
+      Visible = False
       Size = 30
     end
     object cdsForcidade: TStringField
       DisplayLabel = 'Cidade'
+      DisplayWidth = 30
       FieldName = 'cidade'
+      Visible = False
       Size = 30
     end
     object cdsFornumero: TStringField
       DisplayLabel = 'N'#250'm.'
+      DisplayWidth = 6
       FieldName = 'numero'
+      Visible = False
       Size = 6
     end
     object cdsForuf: TStringField
       DisplayLabel = 'UF'
+      DisplayWidth = 2
       FieldName = 'uf'
+      Visible = False
       Size = 2
     end
     object cdsFortelefo: TStringField
       DisplayLabel = 'Telefone'
+      DisplayWidth = 20
       FieldName = 'telefo'
+      Visible = False
       EditMask = '(00)0000-0000;0'
     end
     object cdsForfax: TStringField
       DisplayLabel = 'FAX'
+      DisplayWidth = 20
       FieldName = 'fax'
+      Visible = False
       EditMask = '(00)0000-0000;0'
     end
     object cdsFordtfund: TDateField
       DisplayLabel = 'DT.Funda'#231#227'o'
+      DisplayWidth = 10
       FieldName = 'dtfund'
+      Visible = False
     end
     object cdsForrmativ: TStringField
       DisplayLabel = 'Ramo Atividade'
+      DisplayWidth = 50
       FieldName = 'rmativ'
+      Visible = False
       Size = 50
     end
     object cdsForagenci: TStringField
       DisplayLabel = 'Agencia'
+      DisplayWidth = 15
       FieldName = 'agenci'
+      Visible = False
       Size = 15
     end
     object cdsForconta: TStringField
       DisplayLabel = 'Conta'
+      DisplayWidth = 15
       FieldName = 'conta'
+      Visible = False
       Size = 15
     end
     object cdsForemail: TStringField
       DisplayLabel = 'E-mail'
+      DisplayWidth = 50
       FieldName = 'email'
+      Visible = False
       Size = 50
     end
     object cdsForhomepa: TStringField
       DisplayLabel = 'Home Page'
+      DisplayWidth = 50
       FieldName = 'homepa'
+      Visible = False
       Size = 50
     end
     object cdsForobserv: TStringField
       DisplayLabel = 'Obs.'
+      DisplayWidth = 200
       FieldName = 'observ'
+      Visible = False
       Size = 200
     end
     object cdsForrepre1: TStringField
       DisplayLabel = 'Representante 1'
+      DisplayWidth = 50
       FieldName = 'repre1'
+      Visible = False
       Size = 50
     end
     object cdsForrpcon1: TStringField
       DisplayLabel = 'Contato Rep.1'
+      DisplayWidth = 50
       FieldName = 'rpcon1'
+      Visible = False
       Size = 50
     end
     object cdsForrptel1: TStringField
       DisplayLabel = 'Telefone Rep.1'
+      DisplayWidth = 20
       FieldName = 'rptel1'
+      Visible = False
       EditMask = '(00)0000-0000;0'
     end
     object cdsForrpfax1: TStringField
       DisplayLabel = 'Fax Rep.1'
+      DisplayWidth = 20
       FieldName = 'rpfax1'
+      Visible = False
       EditMask = '(00)0000-0000;0'
     end
     object cdsForrpema1: TStringField
       DisplayLabel = 'E-mail Rep.1'
+      DisplayWidth = 50
       FieldName = 'rpema1'
+      Visible = False
       Size = 50
     end
     object cdsForrepre2: TStringField
       DisplayLabel = 'Representante 2'
+      DisplayWidth = 50
       FieldName = 'repre2'
+      Visible = False
       Size = 50
     end
     object cdsForrpcon2: TStringField
       DisplayLabel = 'Contato Rep.2'
+      DisplayWidth = 50
       FieldName = 'rpcon2'
+      Visible = False
       Size = 50
     end
     object cdsForrptel2: TStringField
       DisplayLabel = 'Telefone Rep.2'
+      DisplayWidth = 20
       FieldName = 'rptel2'
+      Visible = False
       EditMask = '(00)0000-0000;0'
     end
     object cdsForrpfax2: TStringField
       DisplayLabel = 'Fax Rep.2'
+      DisplayWidth = 20
       FieldName = 'rpfax2'
+      Visible = False
       EditMask = '(00)0000-0000;0'
     end
     object cdsForrpema2: TStringField
       DisplayLabel = 'E-mail Rep.2'
+      DisplayWidth = 50
       FieldName = 'rpema2'
+      Visible = False
       Size = 50
     end
     object cdsForrepre3: TStringField
       DisplayLabel = 'Representante 3'
+      DisplayWidth = 50
       FieldName = 'repre3'
+      Visible = False
       Size = 50
     end
     object cdsForrpcon3: TStringField
       DisplayLabel = 'Contato Rep.3'
+      DisplayWidth = 50
       FieldName = 'rpcon3'
+      Visible = False
       Size = 50
     end
     object cdsForrptel3: TStringField
       DisplayLabel = 'Telefone Rep.3'
+      DisplayWidth = 20
       FieldName = 'rptel3'
+      Visible = False
       EditMask = '(00)0000-0000;0'
     end
     object cdsForrpfax3: TStringField
       DisplayLabel = 'Fax Rep.3'
+      DisplayWidth = 20
       FieldName = 'rpfax3'
+      Visible = False
       EditMask = '(00)0000-0000;0'
     end
     object cdsForrpema3: TStringField
       DisplayLabel = 'E-mail Rep.3'
+      DisplayWidth = 50
       FieldName = 'rpema3'
+      Visible = False
       Size = 50
     end
   end
@@ -1799,6 +1877,96 @@ object dm: Tdm
       DisplayLabel = 'Tipo'
       FieldName = 'tipo'
       Size = 2
+    end
+  end
+  object cdsCtPag: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspCtPag'
+    RemoteServer = scHC
+    Left = 272
+    Top = 288
+    object cdsCtPagcodcon: TIntegerField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'codcon'
+      Required = True
+    end
+    object cdsCtPagcdempr: TIntegerField
+      DisplayLabel = 'C'#243'd. Empresa'
+      FieldName = 'cdempr'
+      Required = True
+    end
+    object cdsCtPagtipcon: TStringField
+      DisplayLabel = 'Tipo Conta'
+      FieldName = 'tipcon'
+      Required = True
+      Size = 1
+    end
+    object cdsCtPagcdclfo: TIntegerField
+      DisplayLabel = 'Fornecedor'
+      FieldName = 'cdclfo'
+      Required = True
+    end
+    object cdsCtPagtitulo: TStringField
+      DisplayLabel = 'T'#237'tulo'
+      FieldName = 'titulo'
+      Required = True
+      Size = 15
+    end
+    object cdsCtPagnotcon: TIntegerField
+      DisplayLabel = 'C'#243'd. Nota'
+      FieldName = 'notcon'
+    end
+    object cdsCtPagdtemit: TDateField
+      DisplayLabel = 'Data Cadastro'
+      FieldName = 'dtemit'
+      Required = True
+    end
+    object cdsCtPagvlcont: TFloatField
+      DisplayLabel = 'Valor'
+      FieldName = 'vlcont'
+    end
+    object cdsCtPagdtvenc: TDateField
+      DisplayLabel = 'Data Vencimento'
+      FieldName = 'dtvenc'
+      Required = True
+    end
+    object cdsCtPagdtpaga: TDateField
+      DisplayLabel = 'Data Pagamento'
+      FieldName = 'dtpaga'
+    end
+    object cdsCtPagvalpag: TFloatField
+      DisplayLabel = 'Valor Pago'
+      FieldName = 'valpag'
+    end
+    object cdsCtPagjurpag: TFloatField
+      DisplayLabel = 'Juros Pago'
+      FieldName = 'jurpag'
+    end
+    object cdsCtPagobscon: TStringField
+      DisplayLabel = 'Observa'#231#227'o'
+      FieldName = 'obscon'
+      Size = 200
+    end
+    object cdsCtPagvendco: TIntegerField
+      DisplayLabel = 'C'#243'd. Vendedor'
+      FieldName = 'vendco'
+    end
+    object cdsCtPagstacon: TStringField
+      DisplayLabel = 'Status'
+      FieldName = 'stacon'
+      Required = True
+      Size = 1
+    end
+    object cdsCtPaghistor: TStringField
+      DisplayLabel = 'Hist'#243'rico'
+      FieldName = 'histor'
+      Required = True
+      Size = 255
+    end
+    object cdsCtPagcodusu: TIntegerField
+      DisplayLabel = 'C'#243'd. Usu'#225'rio'
+      FieldName = 'codusu'
     end
   end
 end
