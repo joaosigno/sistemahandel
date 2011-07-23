@@ -1323,4 +1323,36 @@ object RDM: TRDM
     Left = 608
     Top = 128
   end
+  object qryPlanContas: TZReadOnlyQuery
+    Connection = con
+    SQL.Strings = (
+      'select * from plcon order by cdcont')
+    Params = <>
+    Left = 520
+    Top = 176
+    object qryPlanContasdescri: TStringField
+      FieldName = 'descri'
+      Required = True
+      Size = 50
+    end
+    object qryPlanContastipo: TStringField
+      FieldName = 'tipo'
+      Size = 2
+    end
+    object qryPlanContascdcont: TStringField
+      FieldName = 'cdcont'
+      Required = True
+      Size = 13
+    end
+    object qryPlanContascdcoma: TStringField
+      FieldName = 'cdcoma'
+      Size = 13
+    end
+  end
+  object dspPlanContas: TDataSetProvider
+    DataSet = qryPlanContas
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
+    Left = 608
+    Top = 176
+  end
 end

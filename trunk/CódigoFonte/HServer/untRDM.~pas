@@ -312,6 +312,19 @@ type
     qryLCGradecdgrad: TIntegerField;
     qryLCGradedescri: TStringField;
     qryLCGradelincol: TStringField;
+    qryNtOpe: TZReadOnlyQuery;
+    dspNtOpe: TDataSetProvider;
+    qryNtOpedescri: TStringField;
+    qryNtOpebxesto: TStringField;
+    qryNtOpeefelan: TStringField;
+    qryNtOpeincipi: TStringField;
+    qryNtOpecdntop: TStringField;
+    qryPlanContas: TZReadOnlyQuery;
+    dspPlanContas: TDataSetProvider;
+    qryPlanContascdcont: TIntegerField;
+    qryPlanContascdcoma: TIntegerField;
+    qryPlanContasdescri: TStringField;
+    qryPlanContastipo: TStringField;
     procedure RemoteDataModuleCreate(Sender: TObject);
     procedure RemoteDataModuleDestroy(Sender: TObject);
   private

@@ -321,6 +321,11 @@ type
     cdsNtOpebxesto: TStringField;
     cdsNtOpeefelan: TStringField;
     cdsNtOpeincipi: TStringField;
+    cdsPlanContas: TClientDataSet;
+    cdsPlanContasdescri: TStringField;
+    cdsPlanContastipo: TStringField;
+    cdsPlanContascdcont: TStringField;
+    cdsPlanContascdcoma: TStringField;
     function verificaBD():Boolean;
     function Autenticacao(cdemp:integer;login:String;senha:string): boolean;
     procedure cdsProdclaoriGetText(Sender: TField; var Text: String;
