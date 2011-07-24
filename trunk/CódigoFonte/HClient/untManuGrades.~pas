@@ -6,7 +6,8 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, untManutencao, DB, ImgList, ComCtrls, ToolWin, Grids, ExtCtrls,
   Menus, DBGrids, StdCtrls, Mask, DBCtrls, wwdblook, Wwdbdlg, untDeclaracoes,
-  DBClient, ToolEdit, RXDBCtrl;
+  DBClient, ToolEdit, RXDBCtrl,DBXpress, SqlExpr, FMTBcd, Provider,
+  MConnect, SConnect, UCDataConnector, UCMidasConn, UCBase, inifiles;
 
 type
   TfrmManuGrades = class(TfrmManutencao)
@@ -60,6 +61,7 @@ type
     cdsGDProddescol: TStringField;
     cdsGDProddtcada: TDateField;
     cdsGDProdcdempr: TIntegerField;
+    tmr_verificagrade: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure tbAdicionarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -86,10 +88,6 @@ type
     procedure tbPrimeiroClick(Sender: TObject);
     procedure pesquisaCloseUp(Sender: TObject; LookupTable,
       FillTable: TDataSet; modified: Boolean);
-    procedure cdsLinhGradeBeforePost(DataSet: TDataSet);
-    procedure cdsColGradeBeforePost(DataSet: TDataSet);
-    procedure cdsLinhGradeAfterPost(DataSet: TDataSet);
-    procedure cdsColGradeAfterPost(DataSet: TDataSet);
     procedure cdsLinhGradeAfterInsert(DataSet: TDataSet);
     procedure cdsLinhGradeAfterDelete(DataSet: TDataSet);
     procedure cdsColGradeAfterDelete(DataSet: TDataSet);
@@ -102,6 +100,16 @@ type
     procedure cdsGDProdAfterPost(DataSet: TDataSet);
     procedure cdsGDProdBeforeDelete(DataSet: TDataSet);
     procedure cdsGDProdBeforePost(DataSet: TDataSet);
+    procedure tmr_verificagradeTimer(Sender: TObject);
+    procedure pesquisaKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure cdsColGradeAfterPost(DataSet: TDataSet);
+    procedure cdsColGradeBeforePost(DataSet: TDataSet);
+    procedure cdsLinhGradeBeforePost(DataSet: TDataSet);
+    procedure cdsLinhGradeAfterPost(DataSet: TDataSet);
+    procedure cdsColGradeReconcileError(DataSet: TCustomClientDataSet;
+      E: EReconcileError; UpdateKind: TUpdateKind;
+      var Action: TReconcileAction);
   private
   DAOLinha   : TManutencaoDAO;
   DAOColunas : TManutencaoDAO;
@@ -116,6 +124,7 @@ type
 
 var
   frmManuGrades: TfrmManuGrades;
+  codigograde: integer;
 
 implementation
 
@@ -172,15 +181,22 @@ begin
   DataSource.DataSet := cdsGDProd;
   DAOLinha  := TManutencaoDAO.Create(cdsLinhGradE);
   dsGradeLinha.DataSet := cdsLinhGrade;
+  dbgrd_Linha.DataSource := dsGradeLinha;
   DAOColunas := TManutencaoDAO.Create(cdsColGrade);
   dsGradeColuna.DataSet := cdsColGrade;
+  dbgrd_Coluna.DataSource := dsGradeColuna;
 
   pesquisa.LookupTable := cdsGDProd;
 
+  ManuDAO.SQL.executaSQlPorEmp(cdsGDProd,'*','gdpro','');
 
-   ManuDAO.SQL.executaSQlPorEmp(cdsGDProd,'*','gdpro','');
-
-  selecionaLinhasColunas;
+//  cdsGDProd.Params.ParamByName('empresa').Value := frmprincipal.Configuracao.EmpresaCodigo;
+{  cdsGDProd.Open;
+  cdsLinhGrade.open;
+  cdsColGrade.Open;}
+  codigograde := cdsGDProdcdgrad.Value;
+  
+  selecionaLinhasColunas;  
 end;
 
 procedure TfrmManuGrades.tbAdicionarClick(Sender: TObject);
@@ -208,7 +224,7 @@ procedure TfrmManuGrades.FormClose(Sender: TObject;
 begin
   DAOLinha.cancelar;
   DAOColunas.cancelar;
-  
+
   inherited;
 
   ManuDAO.Free;
@@ -235,19 +251,17 @@ begin
   i:= 1;
   while not cdsLinhGrade.Eof do
   begin
-    strgrd_grade.Cols[i].Text := dbgrd_linha.Fields[0].Text;
+    strgrd_grade.Rows[i].Text := cdsLinhGrade.Fields[1].Text;
     I := i + 1;
     cdsLinhGrade.Next;
   end;
-
   i:= 1;
   while not cdsColGrade.Eof do
   begin
-    strgrd_grade.Cols[i].Text := dbgrd_coluna.Fields[0].Text;
+    strgrd_grade.Cols[i].Text := cdsColGrade.Fields[1].Text;
     I := i + 1;
     cdsColGrade.Next;
   end;
-
 end;
 
 procedure TfrmManuGrades.carregaOpcoes;
@@ -273,20 +287,17 @@ end;
 
 procedure TfrmManuGrades.tbCancelarClick(Sender: TObject);
 begin
+  inherited;
+  selecionaLinhasColunas;
   carregaopcoes;
   vergrade;
-  inherited;
-
 end;
 
 procedure TfrmManuGrades.tbExcluirClick(Sender: TObject);
 begin
-  carregaopcoes;
-  vergrade;
-
   inherited;
 
-    carregaopcoes;
+  carregaopcoes;
   vergrade;
 end;
 
@@ -403,72 +414,26 @@ end;
 
 procedure TfrmManuGrades.selecionaLinhasColunas;
 begin
-   DAOLinha.SQL.executaSQlPorEmp(cdsLinhGrade,'*','lcgra',' and lincol=''L'' and cdgrad='+
+  DAOLinha.SQL.executaSql(cdsLinhGrade,'select * from lcgra where lincol=''L'' and cdgrad='+
                      IntToStr(cdsGDProdcdgrad.AsInteger));
-  DAOColunas.SQL.executaSQlPorEmp(cdsColGrade,'*','lcgra',' and lincol=''C'' and cdgrad='+
+  DAOColunas.SQL.executaSql(cdsColGrade,'select * from lcgra where lincol=''C'' and cdgrad='+
                     IntToStr(cdsGDProdcdgrad.AsInteger));
 end;
 
 procedure TfrmManuGrades.pesquisaCloseUp(Sender: TObject; LookupTable,
   FillTable: TDataSet; modified: Boolean);
 begin
-//  selecionaLinhasColunas;
+  selecionaLinhasColunas;
   carregaOpcoes;
   verGrade;
 end;
 
-procedure TfrmManuGrades.cdsColGradeBeforePost(DataSet: TDataSet);
-begin
-     cdsColGradecdlcgr.AsInteger := StrToInt(DAOColunas.SQL.proxCod(dm.cdsAux,'cdlcgr','lcgra'));
-     cdsColGradecdempr.AsInteger := frmPrincipal.Configuracao.EmpresaCodigo;
-     cdsColGradecdgrad.AsInteger := cdsGDProdcdgrad.AsInteger;
-     cdsColGradelincol.AsString := 'C';
-
-   if cdsColGradedescri.AsString = '' then
-   begin
-      DAOColunas.cancelar;
-   end else
-
-end;
-
-procedure TfrmManuGrades.cdsLinhGradeAfterPost(DataSet: TDataSet);
-begin
-//   carregaOpcoes;
-   DAOLinha.gravar;
-   verGrade;
-//   selecionaLinhasColunas;
-end;
-
-procedure TfrmManuGrades.cdsColGradeAfterPost(DataSet: TDataSet);
-begin
-
-//   carregaOpcoes;
-   DAOColunas.gravar;
-   verGrade;
-//   selecionaLinhasColunas;
-end;
-
-procedure TfrmManuGrades.cdsLinhGradeBeforePost(DataSet: TDataSet);
-begin
-     cdsLinhGradecdlcgr.AsInteger := StrToInt(DAOColunas.SQL.proxCod(dm.cdsAux,'cdlcgr','lcgra'));
-     cdsLinhGradecdgrad.AsInteger := StrToInt(dbeCod.Text);
-     cdsLinhGradecdempr.AsInteger := frmPrincipal.Configuracao.EmpresaCodigo;
-     cdsLinhGradelincol.AsString := 'L';
-
-   if cdsLinhGradedescri.AsString = '' then
-   begin
-      DAOLinha.cancelar;
-   end else
-     
-end;
-
 procedure TfrmManuGrades.cdsLinhGradeAfterInsert(DataSet: TDataSet);
 begin
-  cdsLinhGradecdlcgr.Value := StrToInt(DAOLinha.SQL.proxCod(dm.cdsAux,'cdlcgr','lcgra'));
-  cdsLinhGradecdempr.Value := frmprincipal.Configuracao.EmpresaCodigo;
-  cdsLinhGradecdgrad.Value := cdsGDProdcdgrad.Value;
-  cdsLinhGradelincol.Value := 'L';
-  cdsGDProd.Edit;
+   cdsLinhGradecdlcgr.AsInteger := StrToInt(DAOLinha.SQL.proxCod(dm.cdsAux,'cdlcgr','lcgra'));
+   cdsLinhGradecdgrad.AsInteger := codigograde;
+   cdsLinhGradecdempr.AsInteger := frmPrincipal.Configuracao.EmpresaCodigo;
+   cdsLinhGradelincol.AsString := 'L';
 end;
 
 procedure TfrmManuGrades.cdsLinhGradeAfterDelete(DataSet: TDataSet);
@@ -495,7 +460,7 @@ procedure TfrmManuGrades.cdsColGradeAfterInsert(DataSet: TDataSet);
 begin
   cdsColGradecdlcgr.Value := StrToInt(DAOLinha.SQL.proxCod(dm.cdsAux,'cdlcgr','lcgra'));
   cdsColGradecdempr.Value := frmprincipal.Configuracao.EmpresaCodigo;
-  cdsColGradecdgrad.Value := cdsGDProdcdgrad.Value;
+  cdsColGradecdgrad.Value := cdsGDProdcdgrad.AsInteger;
   cdsColGradelincol.Value := 'C';
   cdsGDProd.Edit;
 end;
@@ -544,15 +509,78 @@ end;
 
 procedure TfrmManuGrades.cdsGDProdBeforeDelete(DataSet: TDataSet);
 begin
+//  ManuDAO.SQL.executaSql(cdsLinhGrade,'delete from lcgra where cdgrad='+IntToStr(cdsColGradecdgrad.asInteger));
+//  ManuDAO.SQL.executaSql(cdsColGrade,'delete from lcgra where cdgrad='+IntToStr(cdsColGradecdgrad.asInteger));
+
   carregaopcoes;
   vergrade;
 end;
 
 procedure TfrmManuGrades.cdsGDProdBeforePost(DataSet: TDataSet);
 begin
-  DAOLinha.gravar;
-  DAOColunas.gravar;
+  cdsLinhGrade.Post;
+  cdsColGrade.Post;
+end;
 
+procedure TfrmManuGrades.tmr_verificagradeTimer(Sender: TObject);
+begin
+  if codigograde <> cdsGDProdcdgrad.value then
+  begin
+    codigograde := cdsGDProdcdgrad.value;
+    vergrade;
+    carregaopcoes;
+  end;
+end;
+
+procedure TfrmManuGrades.pesquisaKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  codigograde := cdsGDProdcdgrad.value;
+  vergrade;
+  carregaopcoes;
+  selecionaLinhasColunas;
+end;
+
+procedure TfrmManuGrades.cdsColGradeAfterPost(DataSet: TDataSet);
+begin
+   DAOColunas.gravar;
+ {  cdsColGrade.CommandText := 'select * from lcgra where lincol=''C'' and cdgrad='+
+                     IntToStr(cdsGDProdcdgrad.AsInteger);}
+   verGrade;
+end;
+
+procedure TfrmManuGrades.cdsColGradeBeforePost(DataSet: TDataSet);
+begin
+  if cdsColGradedescri.Text ='' then
+  begin
+      DAOColunas.cancelar;
+  end else
+end;
+
+procedure TfrmManuGrades.cdsLinhGradeBeforePost(DataSet: TDataSet);
+begin
+  if cdsLinhGradedescri.Text ='' then
+  begin
+      DAOLinha.cancelar;
+  end else    
+end;
+
+procedure TfrmManuGrades.cdsLinhGradeAfterPost(DataSet: TDataSet);
+begin
+  DAOLinha.gravar;
+ {  cdsLinhGrade.CommandText := 'select * from lcgra where lincol=''L'' and cdgrad='+
+                     IntToStr(cdsGDProdcdgrad.AsInteger);}
+   verGrade;
+   carregaOpcoes;
+//   selecionaLinhasColunas;
+
+end;
+
+procedure TfrmManuGrades.cdsColGradeReconcileError(
+  DataSet: TCustomClientDataSet; E: EReconcileError;
+  UpdateKind: TUpdateKind; var Action: TReconcileAction);
+begin
+  /action := HandleReconcileError(DataSet,UpdateKind,E);
 end;
 
 end.

@@ -1,6 +1,6 @@
 inherited frmManuBanco: TfrmManuBanco
-  Left = 348
-  Top = 106
+  Left = 865
+  Top = 110
   Caption = 'Manuten'#231#227'o de Bancos'
   ClientHeight = 166
   OldCreateOrder = True

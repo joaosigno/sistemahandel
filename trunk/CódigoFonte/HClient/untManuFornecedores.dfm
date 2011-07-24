@@ -1,6 +1,6 @@
 inherited frmManuFornecedores: TfrmManuFornecedores
-  Left = 416
-  Top = 87
+  Left = 847
+  Top = 86
   Caption = 'Manuten'#231#227'o de Fornecedores'
   ClientHeight = 429
   ClientWidth = 506
@@ -496,7 +496,7 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 6
         OnButtonClick = dbeCNPJButtonClick
         OnExit = dbeCNPJExit
-        OnKeyPress = dbeCodKeyPress
+        OnKeyPress = dbeCNPJKeyPress
       end
     end
     object tsoutrosdados: TTabSheet

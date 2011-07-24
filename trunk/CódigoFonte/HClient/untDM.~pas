@@ -178,8 +178,6 @@ type
     cdsCliprocuraGrupo: TStringField;
     cdsCliprocuraBanco: TStringField;
     cdsBanc: TClientDataSet;
-    cdsBanccdban: TIntegerField;
-    cdsBancdescri: TStringField;
     cdsBancdtcada: TDateField;
     cdsEmpcdbanc: TIntegerField;
     cdsEmpconta: TStringField;
@@ -344,6 +342,29 @@ type
     cdsCtPagstacon: TStringField;
     cdsCtPaghistor: TStringField;
     cdsCtPagcodusu: TIntegerField;
+    cdsBanccdban: TIntegerField;
+    cdsBancdescri: TStringField;
+    cdsCtPagprocuraFornecedor: TStringField;
+    cdsCtPagprocuraCliente: TStringField;
+    cdsTrans: TClientDataSet;
+    cdsTranscdtran: TIntegerField;
+    cdsTranscdempr: TIntegerField;
+    cdsTransnmfant: TStringField;
+    cdsTransdtcada: TDateField;
+    cdsTransrzsoci: TStringField;
+    cdsTransendere: TStringField;
+    cdsTranstelefo: TStringField;
+    cdsTransfax: TStringField;
+    cdsTransbairro: TStringField;
+    cdsTranscidade: TStringField;
+    cdsTransnumero: TStringField;
+    cdsTransuf: TStringField;
+    cdsTranscep: TStringField;
+    cdsTranscgc: TStringField;
+    cdsTransinsest: TStringField;
+    cdsTransrespon: TStringField;
+    cdsTransemail: TStringField;
+    cdsTranshomepa: TStringField;
     function verificaBD():Boolean;
     function Autenticacao(cdemp:integer;login:String;senha:string): boolean;
     procedure cdsProdclaoriGetText(Sender: TField; var Text: String;
@@ -357,6 +378,9 @@ type
     procedure cdsProdtipoprGetText(Sender: TField; var Text: String;
       DisplayText: Boolean);
     procedure HistPro(cdempr:integer;cdprod:integer;historico:string;quaalt:real;estatu:real);
+    procedure cdsChequeReconcileError(DataSet: TCustomClientDataSet;
+      E: EReconcileError; UpdateKind: TUpdateKind;
+      var Action: TReconcileAction);
   private
     F: TFuncoes;
     { Private declarations }
@@ -371,7 +395,7 @@ var
   
 implementation
 
-uses untPrincipal, untInicial, untConfBD;
+uses untPrincipal, untInicial, untConfBD, untReconciliacaoErros;
 
 {$R *.dfm}
 
@@ -530,6 +554,13 @@ begin
   cdsHMPro.ApplyUpdates(0);
   cdsHMPro.Refresh;
   cdsHMPro.Close;
+end;
+
+procedure Tdm.cdsChequeReconcileError(DataSet: TCustomClientDataSet;
+  E: EReconcileError; UpdateKind: TUpdateKind;
+  var Action: TReconcileAction);
+begin
+  action := HandleReconcileError(DataSet,UpdateKind,E);
 end;
 
 end.

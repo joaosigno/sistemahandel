@@ -1,6 +1,6 @@
 object frmVizualizaDados: TfrmVizualizaDados
-  Left = 241
-  Top = 184
+  Left = 301
+  Top = 209
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Visualizar Dados'

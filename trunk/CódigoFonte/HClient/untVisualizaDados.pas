@@ -160,6 +160,10 @@ begin
     begin
       vd.SQL.executaSql(vd.BancoNavegacao,'select * from empre order by '+campo);
     end else
+    if vd.FTabela = 'banco' then
+    begin
+      vd.SQL.executaSql(vd.BancoNavegacao,'select * from banco order by '+campo);
+    end else
     begin
       vd.SQL.executaSQlPorEmp(vd.BancoNavegacao,'*',vd.FTabela,' order by '+ campo);
     end;
