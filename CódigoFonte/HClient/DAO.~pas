@@ -86,13 +86,8 @@ end;
 
 procedure TDao.excluir;
 begin
-  try
-    FBancoNavegacao.Delete;
-    FBancoNavegacao.ApplyUpdates(-1);
-  except
-    on e:Exception do
-          f.Mensagem(true,'Erro: '+e.Message);
-  end;
+  FBancoNavegacao.Delete;
+  FBancoNavegacao.ApplyUpdates(0);
 end;
 
 procedure TDao.fecharBancoNavegacao;
@@ -111,7 +106,8 @@ begin
     FBancoNavegacao.ApplyUpdates(0);
     FBancoNavegacao.refresh;
   except
-    
+    on e:Exception do
+          f.Mensagem(true,'Erro: '+e.Message);
   end;        
 end;
 

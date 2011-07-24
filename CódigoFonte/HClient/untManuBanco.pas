@@ -123,7 +123,7 @@ procedure TfrmManuBanco.dbeCodExit(Sender: TObject);
 begin
  if DataSource.State IN [dsInsert] then
   begin
-      ManuDAO.SQL.executaSQlPorEmp(dm.cdsAux,'*','banco',' and cdban='+
+      ManuDAO.SQL.executaSql(dm.cdsAux,'select * from banco where cdban='+
         QuotedStr(dbeCod.Text));
         if dm.cdsAux.RecordCount <> 0 then
         begin

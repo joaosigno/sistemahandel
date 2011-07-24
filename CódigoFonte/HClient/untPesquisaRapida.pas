@@ -75,7 +75,7 @@ uses untDM, untPrincipal;
 //9.Cheque
 //10.vendedores
 //11.Marca de Produtos
-//12.Define Empresa Usuario
+//12.Transportadoras
 //13.Produtos
 
 procedure TfrmPesquisaRapida.pesquisar;
@@ -233,13 +233,18 @@ begin
   12:
    begin
         if (rb1.Checked) and (edtpesquisa.text <> '') then
-          SQL.executaSQlPorEmp(cdsProcuraRapida,'uciduser,uclogin',' uctabusers ',
-                ' or cdempr is null and uctyperec=''U'' and uciduser='+ QuotedStr(edtPesquisa.Text)+' order by uciduser ');
+          SQL.executaSQlPorEmp(cdsProcuraRapida,'cdtran,nmfant,rzsoci',' trans ',
+                ' and cdtran='+ QuotedStr(edtPesquisa.Text)+' order by cdtran ');
 
         if (rb2.Checked) and (edtpesquisa.text <> '') then
-          SQL.executaSQlPorEmp(cdsProcuraRapida,'uciduser,uclogin',' uctabusers',
-                  ' or cdempr is null and uctyperec=''U'' and uclogin like '+
-                          QuotedStr('%'+edtPesquisa.Text+'%')+' order by uclogin ');
+          SQL.executaSQlPorEmp(cdsProcuraRapida,'cdtran,nmfant,rzsoci',' trans',
+                  '  and nmfant like '+
+                          QuotedStr('%'+edtPesquisa.Text+'%')+' order by nmfant ');
+
+        if (rb3.Checked) and (edtpesquisa.text <> '') then
+          SQL.executaSQlPorEmp(cdsProcuraRapida,'cdtran,nmfant,rzsoci',' trans',
+                  '  and rzsoci like '+
+                          QuotedStr('%'+edtPesquisa.Text+'%')+' order by rzsoci ');
   end;
   13:
    begin
@@ -335,8 +340,8 @@ begin
                                                                               'cheqs','order by dtcada');
       10: visible(true,'Código',true,'Nome',false,'',false,'','cdvend,nome','vende','order by cdvend');
       11: visible(true,'Código',true,'Descrição',false,'',false,'','cdmarc,descri','mcpro','order by cdmarc');
-      12: visible(true,'Código',true,'Login',false,'',false,'','uciduser,uclogin',
-                      'uctabusers',' or cdempr is null and uctyperec=''U'' order by uciduser');
+      12: visible(true,'Código',true,'Nome Fantasia',true,'Razão Social',false,'','cdtran,nmfant,rzsoci',
+                      'trans',' order by cdtran');
       13: visible(true,'Código',true,'Cód.Fab.',true,'Referência',true,'Descrição',
                                'cdprod,codfab,refere,descri','produ',' order by cdprod');
 
@@ -431,7 +436,7 @@ begin
       end;
       12:
       begin
-          dm.cdsUsu.Locate('UCIDUSER', VarArrayOf([IntToStr(cdsProcuraRapida.Fields[0].AsInteger)]), [loPartialKey]);
+          dm.cdsTrans.Locate('CDTRAN', VarArrayOf([IntToStr(cdsProcuraRapida.Fields[0].AsInteger)]), [loPartialKey]);
       end;
       13:
       begin
@@ -549,9 +554,10 @@ begin
       begin
           gridPesquisa.Columns.Items[0].Title.Caption := 'Código';
           gridPesquisa.Columns.Items[0].Width := 70;
-          gridPesquisa.Columns.Items[0].Alignment := taCenter;
-          gridPesquisa.Columns.Items[1].Title.Caption := 'Login';
+          gridPesquisa.Columns.Items[1].Title.Caption := 'Nome Fantasia';
           gridPesquisa.Columns.Items[1].Width := 300;
+          gridPesquisa.Columns.Items[2].Title.Caption := 'Razão Social';
+          gridPesquisa.Columns.Items[2].Width := 300;
       end;
       13:
       begin
@@ -634,7 +640,7 @@ begin
     c:=10;
   if pesq = 'mcpro' then
     c:=11;
-  if pesq = 'defineempresausuario' then
+  if pesq = 'trans' then
     c:=12;
   if pesq = 'produ' then
     c:=13;

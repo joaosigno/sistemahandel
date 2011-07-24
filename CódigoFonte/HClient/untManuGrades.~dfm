@@ -1,4 +1,6 @@
 inherited frmManuGrades: TfrmManuGrades
+  Left = 642
+  Top = 135
   Caption = 'Manuten'#231#227'o de Grades'
   ClientHeight = 459
   ClientWidth = 495
@@ -262,7 +264,7 @@ inherited frmManuGrades: TfrmManuGrades
       end
       object pesquisa: TwwDBLookupComboDlg
         Left = 452
-        Top = 32
+        Top = 31
         Width = 22
         Height = 22
         Ctl3D = True
@@ -284,6 +286,7 @@ inherited frmManuGrades: TfrmManuGrades
         ShowButton = True
         AllowClearKey = False
         OnCloseUp = pesquisaCloseUp
+        OnKeyUp = pesquisaKeyUp
       end
       object dbeDescLinha: TDBEdit
         Left = 8
@@ -419,19 +422,26 @@ inherited frmManuGrades: TfrmManuGrades
   object cdsColGrade: TClientDataSet
     Aggregates = <>
     Params = <>
-    ProviderName = 'dspLCGrade'
+    ProviderName = 'dspColunaGrade'
     RemoteServer = dm.scHC
     AfterInsert = cdsColGradeAfterInsert
     AfterEdit = cdsColGradeAfterEdit
     BeforePost = cdsColGradeBeforePost
     AfterPost = cdsColGradeAfterPost
     AfterDelete = cdsColGradeAfterDelete
+    OnReconcileError = cdsColGradeReconcileError
     Left = 224
     Top = 88
     object cdsColGradecdlcgr: TIntegerField
       DisplayLabel = 'C'#243'd.'
       FieldName = 'cdlcgr'
       Required = True
+    end
+    object cdsColGradedescri: TStringField
+      DisplayLabel = 'Descri'#231#227'o Coluna'
+      FieldName = 'descri'
+      Required = True
+      Size = 30
     end
     object cdsColGradedtcada: TDateField
       DisplayLabel = 'Dt.Cadastro'
@@ -445,12 +455,6 @@ inherited frmManuGrades: TfrmManuGrades
       DisplayLabel = 'C'#243'd.Grade'
       FieldName = 'cdgrad'
     end
-    object cdsColGradedescri: TStringField
-      DisplayLabel = 'Descri'#231#227'o Coluna'
-      FieldName = 'descri'
-      Required = True
-      Size = 30
-    end
     object cdsColGradelincol: TStringField
       FieldName = 'lincol'
       Required = True
@@ -460,19 +464,26 @@ inherited frmManuGrades: TfrmManuGrades
   object cdsLinhGrade: TClientDataSet
     Aggregates = <>
     Params = <>
-    ProviderName = 'dspLCGrade'
+    ProviderName = 'dspLinhaGrade'
     RemoteServer = dm.scHC
     AfterInsert = cdsLinhGradeAfterInsert
     AfterEdit = cdsLinhGradeAfterEdit
     BeforePost = cdsLinhGradeBeforePost
     AfterPost = cdsLinhGradeAfterPost
     AfterDelete = cdsLinhGradeAfterDelete
+    OnReconcileError = cdsColGradeReconcileError
     Left = 216
     Top = 120
     object cdsLinhGradecdlcgr: TIntegerField
       DisplayLabel = 'C'#243'd.'
       FieldName = 'cdlcgr'
       Required = True
+    end
+    object cdsLinhGradedescri: TStringField
+      DisplayLabel = 'Descri'#231#227'o Linha'
+      FieldName = 'descri'
+      Required = True
+      Size = 30
     end
     object cdsLinhGradedtcada: TDateField
       DisplayLabel = 'Dt.Cadastro'
@@ -485,12 +496,6 @@ inherited frmManuGrades: TfrmManuGrades
     object cdsLinhGradecdgrad: TIntegerField
       DisplayLabel = 'C'#243'd.Grade'
       FieldName = 'cdgrad'
-    end
-    object cdsLinhGradedescri: TStringField
-      DisplayLabel = 'Descri'#231#227'o Linha'
-      FieldName = 'descri'
-      Required = True
-      Size = 30
     end
     object cdsLinhGradelincol: TStringField
       FieldName = 'lincol'
@@ -509,6 +514,7 @@ inherited frmManuGrades: TfrmManuGrades
     AfterCancel = cdsGDProdAfterCancel
     BeforeDelete = cdsGDProdBeforeDelete
     AfterDelete = cdsGDProdAfterDelete
+    OnReconcileError = cdsColGradeReconcileError
     Left = 224
     Top = 184
     object cdsGDProdcdgrad: TIntegerField
@@ -550,5 +556,11 @@ inherited frmManuGrades: TfrmManuGrades
       FieldName = 'cdempr'
       Visible = False
     end
+  end
+  object tmr_verificagrade: TTimer
+    Interval = 100
+    OnTimer = tmr_verificagradeTimer
+    Left = 24
+    Top = 320
   end
 end

@@ -42,22 +42,12 @@ implementation
 
 procedure TDao.AbrirBancoNavegacao;
 begin
-  try
      FBancoNavegacao.Open;
-  except
-     on e:Exception do
-          f.Mensagem(true,'Erro: '+e.Message);
-  end;
 end;
 
 procedure TDao.cancelar;
 begin
-  try
      FBancoNavegacao.Cancel;
-  except
-     on e:Exception do
-          f.Mensagem(true,'Erro: '+e.Message);
-  end;
 end;
 
 constructor TDao.Create(BancoNavegacao: TClientDataSet);
@@ -76,94 +66,50 @@ end;
 
 procedure TDao.editar;
 begin
-  try
      FBancoNavegacao.Edit;
-  except
-    on e:Exception do
-          f.Mensagem(true,'Erro: '+e.Message);
-  end;
+
 end;
 
 procedure TDao.excluir;
 begin
-  try
-    FBancoNavegacao.Delete;
-    FBancoNavegacao.ApplyUpdates(-1);
-  except
-    on e:Exception do
-          f.Mensagem(true,'Erro: '+e.Message);
-  end;
+  FBancoNavegacao.Delete;
+  FBancoNavegacao.ApplyUpdates(0);
 end;
 
 procedure TDao.fecharBancoNavegacao;
 begin
-  try
      FBancoNavegacao.Close;
-  except
-    on e:Exception do
-          f.Mensagem(true,'Erro: '+e.Message);
-  end;
 end;
 
 procedure TDao.gravar;
 begin
-  try
     FBancoNavegacao.ApplyUpdates(0);
     FBancoNavegacao.refresh;
-  except
-    on e:Exception do
-          f.Mensagem(true,'Erro: '+e.Message);
-  end;        
 end;
 
 procedure TDao.inserir;
 begin
-  try
     FBancoNavegacao.Append;
-  except
-    on e:Exception do
-          f.Mensagem(true,'Erro: '+e.Message);
-  end;
 end;
 
 procedure TDao.NAnterior;
 begin
-  try
     FBancoNavegacao.Prior;
-  except
-    on e:Exception do
-          f.Mensagem(true,'Erro: '+e.Message);
-  end;
 end;
 
 procedure TDao.NPrimeiro;
 begin
-  try
     FBancoNavegacao.First;
-  except
-    on e:Exception do
-          f.Mensagem(true,'Erro: '+e.Message);
-  end;
 end;
 
 procedure TDao.NProximo;
 begin
-  try
     FBancoNavegacao.Next;
-  except
-    on e:Exception do
-          f.Mensagem(true,'Erro: '+e.Message);
-  end;
 end;
 
 procedure TDao.NUltimo;
 begin
-  try
     FBancoNavegacao.Last;
-  except
-    on e:Exception do
-          f.Mensagem(true,'Erro: '+e.Message);
-  end;
 end;
 
 end.

@@ -1,6 +1,6 @@
 inherited frmManuCheques: TfrmManuCheques
-  Left = 298
-  Top = 67
+  Left = 805
+  Top = 118
   Caption = 'Manuten'#231#227'o de Chques'
   ClientHeight = 401
   OldCreateOrder = True
@@ -249,6 +249,7 @@ inherited frmManuCheques: TfrmManuCheques
         DataSource = DataSource
         ButtonHint = 'Clique para abrir o calend'#225'rio'
         Ctl3D = True
+        Enabled = False
         GlyphKind = gkCustom
         Glyph.Data = {
           36060000424D3606000000000000360000002800000020000000100000000100

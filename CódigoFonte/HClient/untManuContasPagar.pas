@@ -11,7 +11,6 @@ type
   TfrmManuContasPagar = class(TfrmManutencao)
     pgContasPagar: TPageControl;
     tbPrincipal: TTabSheet;
-    dbePesquisaFornecedor: TwwDBLookupComboDlg;
     Label1: TLabel;
     dbeCod: TDBEdit;
     Label2: TLabel;
@@ -24,14 +23,15 @@ type
     Label6: TLabel;
     Label7: TLabel;
     Label9: TLabel;
-    dbdtedtDataAtual: TDBDateEdit;
     tbObservacao: TTabSheet;
     dbmmObs: TDBMemo;
     dbePesquisaTitulo: TwwDBLookupComboDlg;
-    dbedtDataVenc: TDBDateEdit;
     dbmmHistorico: TDBMemo;
-    dbeValor: TRxDBCalcEdit;
     Bevel1: TBevel;
+    dbdateedtdatacadastro: TDBDateEdit;
+    dbdeDtVenc: TDBDateEdit;
+    dbeValor: TRxDBCalcEdit;
+    DBLookupComboBox1: TDBLookupComboBox;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure tbGravarClick(Sender: TObject);
@@ -86,17 +86,15 @@ end;
 
 procedure TfrmManuContasPagar.dbePesquisaTituloExit(Sender: TObject);
 begin
-  //inherited;
   dbeTitulo.Text := dm.cdsPlanContascdcont.Value;
   dbeCodNota.SetFocus;
 end;
 
 procedure TfrmManuContasPagar.FormShow(Sender: TObject);
 begin
+  inherited;
   dm.cdsFor.Active := true;
   dm.cdsPlanContas.Active := true;
-//inherited;
-
 end;
 
 end.

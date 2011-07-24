@@ -1,7 +1,7 @@
 object dm: Tdm
   OldCreateOrder = False
-  Left = 375
-  Top = 79
+  Left = 934
+  Top = 98
   Height = 445
   Width = 448
   object cdsUsu: TClientDataSet
@@ -9,6 +9,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspUsu'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 104
     Top = 64
     object cdsUsuuclogin: TStringField
@@ -143,6 +144,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspAux'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 48
     Top = 64
   end
@@ -151,6 +153,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspForn'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 216
     Top = 64
     object cdsFornmfant: TStringField
@@ -441,6 +444,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspEmp'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 48
     Top = 120
     object cdsEmpcdempr: TIntegerField
@@ -566,6 +570,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspGRPro'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 217
     Top = 8
     object cdsGRProcdgrup: TIntegerField
@@ -605,6 +610,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspProf'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 104
     Top = 120
     object cdsProficdprof: TIntegerField
@@ -633,6 +639,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspFun'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 160
     Top = 120
     object cdsFunccdfunc: TIntegerField
@@ -819,6 +826,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspDepar'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 216
     Top = 120
     object cdsDepacddepa: TIntegerField
@@ -847,6 +855,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspCli'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 48
     Top = 176
     object cdsClicdclie: TIntegerField
@@ -1144,6 +1153,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspGRCli'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 104
     Top = 176
     object cdsGRClicdgrup: TIntegerField
@@ -1172,14 +1182,13 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspBanco'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 160
     Top = 64
     object cdsBanccdban: TIntegerField
-      DisplayLabel = 'Cod.'
+      DisplayLabel = 'C'#243'd.'
       FieldName = 'cdban'
       Required = True
-      DisplayFormat = '000'
-      EditFormat = '000'
     end
     object cdsBancdtcada: TDateField
       DisplayLabel = 'Dt. Cadastro'
@@ -1189,7 +1198,7 @@ object dm: Tdm
       DisplayLabel = 'Descri'#231#227'o'
       FieldName = 'descri'
       Required = True
-      Size = 30
+      Size = 50
     end
   end
   object cdsAutori: TClientDataSet
@@ -1197,6 +1206,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspDepAut'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 164
     Top = 177
     object cdsAutorinome: TStringField
@@ -1242,6 +1252,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspDepAut'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 218
     Top = 177
     object cdsDepennome: TStringField
@@ -1287,6 +1298,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspCartFid'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 48
     Top = 232
     object cdsCartFidnrcart: TStringField
@@ -1323,6 +1335,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspChq'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 161
     Top = 8
     object cdsChequecdchq: TIntegerField
@@ -1429,6 +1442,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspVende'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 112
     Top = 232
     object cdsVendecdvend: TIntegerField
@@ -1502,6 +1516,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspMcPro'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 176
     Top = 232
     object cdsMcProcdmarc: TIntegerField
@@ -1529,6 +1544,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspProd'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 232
     Top = 232
     object cdsProdcdprod: TIntegerField
@@ -1773,6 +1789,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspHMPro'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 48
     Top = 296
     object cdsHMProcdhist: TIntegerField
@@ -1811,6 +1828,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspNtOpe'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 112
     Top = 296
     object cdsNtOpecdntop: TStringField
@@ -1854,6 +1872,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspPlanContas'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 176
     Top = 296
     object cdsPlanContascdcont: TStringField
@@ -1884,7 +1903,8 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspCtPag'
     RemoteServer = scHC
-    Left = 232
+    OnReconcileError = cdsChequeReconcileError
+    Left = 240
     Top = 296
     object cdsCtPagcodcon: TIntegerField
       DisplayLabel = 'C'#243'digo'
@@ -1907,6 +1927,28 @@ object dm: Tdm
       FieldName = 'cdclfo'
       Required = True
     end
+    object cdsCtPagprocuraFornecedor: TStringField
+      DisplayLabel = 'Fornecedor'
+      FieldKind = fkLookup
+      FieldName = 'procuraFornecedor'
+      LookupDataSet = cdsFor
+      LookupKeyFields = 'cdforn'
+      LookupResultField = 'nmfant'
+      KeyFields = 'cdclfo'
+      Size = 30
+      Lookup = True
+    end
+    object cdsCtPagprocuraCliente: TStringField
+      DisplayLabel = 'Cliente'
+      FieldKind = fkLookup
+      FieldName = 'procuraCliente'
+      LookupDataSet = cdsCli
+      LookupKeyFields = 'cdclie'
+      LookupResultField = 'nome'
+      KeyFields = 'cdclfo'
+      Size = 30
+      Lookup = True
+    end
     object cdsCtPagtitulo: TStringField
       DisplayLabel = 'T'#237'tulo'
       FieldName = 'titulo'
@@ -1918,7 +1960,7 @@ object dm: Tdm
       FieldName = 'notcon'
     end
     object cdsCtPagdtemit: TDateField
-      DisplayLabel = 'Data Cadastro'
+      DisplayLabel = 'Dt.Emiss'#227'o'
       FieldName = 'dtemit'
       Required = True
     end
@@ -1927,12 +1969,12 @@ object dm: Tdm
       FieldName = 'vlcont'
     end
     object cdsCtPagdtvenc: TDateField
-      DisplayLabel = 'Data Vencimento'
+      DisplayLabel = 'Dt.Venc.'
       FieldName = 'dtvenc'
       Required = True
     end
     object cdsCtPagdtpaga: TDateField
-      DisplayLabel = 'Data Pagamento'
+      DisplayLabel = 'Dt.Pagam.'
       FieldName = 'dtpaga'
     end
     object cdsCtPagvalpag: TFloatField
@@ -1967,6 +2009,103 @@ object dm: Tdm
     object cdsCtPagcodusu: TIntegerField
       DisplayLabel = 'C'#243'd. Usu'#225'rio'
       FieldName = 'codusu'
+    end
+  end
+  object cdsTrans: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspTrans'
+    RemoteServer = scHC
+    Left = 56
+    Top = 344
+    object cdsTranscdtran: TIntegerField
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'cdtran'
+      Required = True
+    end
+    object cdsTranscdempr: TIntegerField
+      DisplayLabel = 'C'#243'd. da Empresa'
+      FieldName = 'cdempr'
+    end
+    object cdsTransnmfant: TStringField
+      DisplayLabel = 'Nome Fantasia'
+      FieldName = 'nmfant'
+      Required = True
+      Size = 50
+    end
+    object cdsTransdtcada: TDateField
+      DisplayLabel = 'Dt.Cadastro'
+      FieldName = 'dtcada'
+    end
+    object cdsTransrzsoci: TStringField
+      DisplayLabel = 'Raz'#227'o Social'
+      FieldName = 'rzsoci'
+      Size = 50
+    end
+    object cdsTransendere: TStringField
+      DisplayLabel = 'Endere'#231'o'
+      FieldName = 'endere'
+      Size = 50
+    end
+    object cdsTranstelefo: TStringField
+      DisplayLabel = 'Telefone'
+      FieldName = 'telefo'
+      EditMask = '(00)0000-0000;0'
+    end
+    object cdsTransfax: TStringField
+      DisplayLabel = 'Fax'
+      FieldName = 'fax'
+      EditMask = '(00)0000-0000;0'
+    end
+    object cdsTransbairro: TStringField
+      DisplayLabel = 'Bairro'
+      FieldName = 'bairro'
+      Size = 30
+    end
+    object cdsTranscidade: TStringField
+      DisplayLabel = 'Cidade'
+      FieldName = 'cidade'
+      Size = 30
+    end
+    object cdsTransnumero: TStringField
+      DisplayLabel = 'Num.'
+      FieldName = 'numero'
+      Size = 6
+    end
+    object cdsTransuf: TStringField
+      DisplayLabel = 'UF'
+      FieldName = 'uf'
+      Size = 2
+    end
+    object cdsTranscep: TStringField
+      DisplayLabel = 'CEP'
+      FieldName = 'cep'
+      Size = 10
+    end
+    object cdsTranscgc: TStringField
+      DisplayLabel = 'CNPJ.'
+      FieldName = 'cgc'
+      EditMask = '99.999.999/9999-99;1;'
+      Size = 14
+    end
+    object cdsTransinsest: TStringField
+      DisplayLabel = 'Insc.Estadual'
+      FieldName = 'insest'
+    end
+    object cdsTransrespon: TStringField
+      DisplayLabel = 'Respons'#225'vel'
+      FieldName = 'respon'
+      Size = 50
+    end
+    object cdsTransemail: TStringField
+      DisplayLabel = 'E-mail'
+      FieldName = 'email'
+      Size = 50
+    end
+    object cdsTranshomepa: TStringField
+      DisplayLabel = 'Home Page'
+      FieldName = 'homepa'
+      Size = 50
     end
   end
 end

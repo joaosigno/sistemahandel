@@ -1,6 +1,6 @@
 inherited frmManuDepartamento: TfrmManuDepartamento
-  Left = 395
-  Top = 183
+  Left = 818
+  Top = 97
   Caption = 'Manuten'#231#227'o de Departamentos'
   ClientHeight = 160
   ClientWidth = 489
@@ -52,7 +52,7 @@ inherited frmManuDepartamento: TfrmManuDepartamento
     Align = alClient
     TabOrder = 1
     object tbPrincipal: TTabSheet
-      Caption = 'Dados Principais'
+      Caption = 'In'#237'cio'
       object Label1: TLabel
         Left = 0
         Top = 11

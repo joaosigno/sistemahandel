@@ -347,7 +347,6 @@ object RDM: TRDM
   end
   object qryBanco: TZReadOnlyQuery
     Connection = con
-    Active = True
     SQL.Strings = (
       'select * from banco'
       'order by descri')
@@ -361,7 +360,7 @@ object RDM: TRDM
     object qryBancodescri: TStringField
       FieldName = 'descri'
       Required = True
-      Size = 30
+      Size = 50
     end
     object qryBancodtcada: TDateField
       FieldName = 'dtcada'
@@ -955,7 +954,6 @@ object RDM: TRDM
   end
   object qryChq: TZReadOnlyQuery
     Connection = con
-    Active = True
     SQL.Strings = (
       'select * from cheqs order by cdchq')
     Params = <>
@@ -1216,8 +1214,8 @@ object RDM: TRDM
       'select * from gdpro'
       'order by descri')
     Params = <>
-    Left = 512
-    Top = 8
+    Left = 520
+    Top = 10
     object qryGDProdcdgrad: TIntegerField
       FieldName = 'cdgrad'
       Required = True
@@ -1250,39 +1248,39 @@ object RDM: TRDM
     Left = 600
     Top = 8
   end
-  object qryLCGrade: TZReadOnlyQuery
+  object qryLinhaGrade: TZReadOnlyQuery
     Connection = con
     SQL.Strings = (
       'select * from lcgra order by descri')
     Params = <>
     Left = 520
     Top = 72
-    object qryLCGradecdlcgr: TIntegerField
+    object qryLinhaGradecdlcgr: TIntegerField
       FieldName = 'cdlcgr'
       Required = True
     end
-    object qryLCGradedtcada: TDateField
+    object qryLinhaGradedtcada: TDateField
       FieldName = 'dtcada'
     end
-    object qryLCGradecdempr: TIntegerField
+    object qryLinhaGradecdempr: TIntegerField
       FieldName = 'cdempr'
     end
-    object qryLCGradecdgrad: TIntegerField
+    object qryLinhaGradecdgrad: TIntegerField
       FieldName = 'cdgrad'
     end
-    object qryLCGradedescri: TStringField
+    object qryLinhaGradedescri: TStringField
       FieldName = 'descri'
       Required = True
       Size = 30
     end
-    object qryLCGradelincol: TStringField
+    object qryLinhaGradelincol: TStringField
       FieldName = 'lincol'
       Required = True
       Size = 1
     end
   end
-  object dspLCGrade: TDataSetProvider
-    DataSet = qryLCGrade
+  object dspLinhaGrade: TDataSetProvider
+    DataSet = qryLinhaGrade
     Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
     Left = 608
     Top = 72
@@ -1293,7 +1291,7 @@ object RDM: TRDM
       'select * from ntope order by cdntop')
     Params = <>
     Left = 520
-    Top = 128
+    Top = 192
     object qryNtOpecdntop: TStringField
       FieldName = 'cdntop'
       Required = True
@@ -1321,7 +1319,7 @@ object RDM: TRDM
     DataSet = qryNtOpe
     Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
     Left = 608
-    Top = 128
+    Top = 192
   end
   object qryPlanContas: TZReadOnlyQuery
     Connection = con
@@ -1329,7 +1327,7 @@ object RDM: TRDM
       'select * from plcon order by cdcont')
     Params = <>
     Left = 520
-    Top = 176
+    Top = 240
     object qryPlanContasdescri: TStringField
       FieldName = 'descri'
       Required = True
@@ -1353,7 +1351,7 @@ object RDM: TRDM
     DataSet = qryPlanContas
     Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
     Left = 608
-    Top = 176
+    Top = 240
   end
   object qryCtPag: TZReadOnlyQuery
     Connection = con
@@ -1362,10 +1360,113 @@ object RDM: TRDM
     Params = <>
     Left = 360
     Top = 376
+    object qryCtPagcodcon: TIntegerField
+      FieldName = 'codcon'
+      Required = True
+    end
+    object qryCtPagcdempr: TIntegerField
+      FieldName = 'cdempr'
+      Required = True
+    end
+    object qryCtPagtipcon: TStringField
+      FieldName = 'tipcon'
+      Required = True
+      Size = 1
+    end
+    object qryCtPagcdclfo: TIntegerField
+      FieldName = 'cdclfo'
+      Required = True
+    end
+    object qryCtPagtitulo: TStringField
+      FieldName = 'titulo'
+      Required = True
+      Size = 15
+    end
+    object qryCtPagnotcon: TIntegerField
+      FieldName = 'notcon'
+    end
+    object qryCtPagdtemit: TDateField
+      FieldName = 'dtemit'
+      Required = True
+    end
+    object qryCtPagvlcont: TFloatField
+      FieldName = 'vlcont'
+    end
+    object qryCtPagdtvenc: TDateField
+      FieldName = 'dtvenc'
+      Required = True
+    end
+    object qryCtPagdtpaga: TDateField
+      FieldName = 'dtpaga'
+    end
+    object qryCtPagvalpag: TFloatField
+      FieldName = 'valpag'
+    end
+    object qryCtPagjurpag: TFloatField
+      FieldName = 'jurpag'
+    end
+    object qryCtPagobscon: TStringField
+      FieldName = 'obscon'
+      Size = 200
+    end
+    object qryCtPagvendco: TIntegerField
+      FieldName = 'vendco'
+    end
+    object qryCtPagstacon: TStringField
+      FieldName = 'stacon'
+      Required = True
+      Size = 1
+    end
+    object qryCtPaghistor: TStringField
+      FieldName = 'histor'
+      Required = True
+      Size = 255
+    end
+    object qryCtPagcodusu: TIntegerField
+      FieldName = 'codusu'
+    end
   end
   object dspCtPag: TDataSetProvider
     DataSet = qryCtPag
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
     Left = 440
     Top = 376
+  end
+  object dspColunaGrade: TDataSetProvider
+    DataSet = qryColunaGrade
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
+    Left = 608
+    Top = 120
+  end
+  object qryColunaGrade: TZReadOnlyQuery
+    Connection = con
+    SQL.Strings = (
+      'select * from lcgra order by descri')
+    Params = <>
+    Left = 520
+    Top = 120
+    object IntegerField1: TIntegerField
+      FieldName = 'cdlcgr'
+      Required = True
+    end
+    object DateField1: TDateField
+      FieldName = 'dtcada'
+    end
+    object IntegerField2: TIntegerField
+      FieldName = 'cdempr'
+    end
+    object IntegerField3: TIntegerField
+      FieldName = 'cdgrad'
+    end
+    object StringField1: TStringField
+      FieldName = 'descri'
+      Required = True
+      Size = 30
+    end
+    object StringField2: TStringField
+      FieldName = 'lincol'
+      Required = True
+      Size = 1
+    end
   end
 end

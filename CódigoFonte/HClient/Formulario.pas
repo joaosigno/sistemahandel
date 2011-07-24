@@ -433,6 +433,95 @@ begin
         grid.Columns[10].FieldName := 'preven';
         grid.Columns[10].Width := 90;
       end;
+    end
+
+    else if FTabela = 'conta' then
+   begin
+    with frmVizualizaDados do
+      begin
+        grid.Columns.Add;
+        grid.Columns[0].FieldName := 'codcon';
+        grid.Columns[0].Width := 80;
+
+        grid.Columns.Add;
+        grid.Columns[1].FieldName := 'cdclfo';
+        grid.Columns[1].Width := 230;
+
+        grid.Columns.Add;
+        grid.Columns[2].FieldName := 'titulo';
+        grid.Columns[2].Width := 100;
+
+        grid.Columns.Add;
+        grid.Columns[3].FieldName := 'notcon';
+        grid.Columns[3].Width := 100;
+
+
+        grid.Columns.Add;
+        grid.Columns[4].FieldName := 'dtemit';
+        grid.Columns[4].Width := 100;
+
+        grid.Columns.Add;
+        grid.Columns[5].FieldName := 'vlcont';
+        grid.Columns[5].Width := 100;
+
+        grid.Columns.Add;
+        grid.Columns[6].FieldName := 'dtvenc';
+        grid.Columns[6].Width := 100;
+
+        grid.Columns.Add;
+        grid.Columns[7].FieldName := 'dtpaga';
+        grid.Columns[7].Width := 100;
+
+        grid.Columns.Add;
+        grid.Columns[8].FieldName := 'valpag';
+        grid.Columns[8].Width := 100;
+
+        grid.Columns.Add;
+        grid.Columns[9].FieldName := 'jurpag';
+        grid.Columns[9].Width := 100;
+
+        grid.Columns.Add;
+        grid.Columns[10].FieldName := 'vendco';
+        grid.Columns[10].Width := 100;
+      end;
+    end
+
+    else if FTabela = 'trans' then
+   begin
+    with frmVizualizaDados do
+      begin
+        grid.Columns.Add;
+        grid.Columns[0].FieldName := 'cdtran';
+        grid.Columns[0].Width := 80;
+
+        grid.Columns.Add;
+        grid.Columns[1].FieldName := 'nmfant';
+        grid.Columns[1].Width := 230;
+
+        grid.Columns.Add;
+        grid.Columns[2].FieldName := 'rzsoci';
+        grid.Columns[2].Width := 230;
+
+        grid.Columns.Add;
+        grid.Columns[3].FieldName := 'cidade';
+        grid.Columns[3].Width := 200;
+
+        grid.Columns.Add;
+        grid.Columns[4].FieldName := 'uf';
+        grid.Columns[4].Width := 60;
+
+        grid.Columns.Add;
+        grid.Columns[5].FieldName := 'telefo';
+        grid.Columns[5].Width := 140;
+
+        grid.Columns.Add;
+        grid.Columns[6].FieldName := 'fax';
+        grid.Columns[6].Width := 140;
+
+        grid.Columns.Add;
+        grid.Columns[7].FieldName := 'respon';
+        grid.Columns[7].Width := 230;
+      end;
     end;
 
 

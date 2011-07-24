@@ -1,6 +1,6 @@
 inherited frmManuDepartamento: TfrmManuDepartamento
-  Left = 395
-  Top = 183
+  Left = 889
+  Top = 96
   Caption = 'Manuten'#231#227'o de Departamentos'
   ClientHeight = 160
   ClientWidth = 489

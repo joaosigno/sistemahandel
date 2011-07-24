@@ -80,6 +80,7 @@ type
     acGrades: TAction;
     acNaturezaOperacao: TAction;
     acContasPagar: TAction;
+    acTransportadora: TAction;
     procedure AcVizualizarFornecedoresExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -115,7 +116,8 @@ type
     procedure acAcertoEstoqueExecute(Sender: TObject);
     procedure acGradesExecute(Sender: TObject);
     procedure acNaturezaOperacaoExecute(Sender: TObject);
-    procedure tbContasaPagarClick(Sender: TObject);
+    procedure acContasPagarExecute(Sender: TObject);
+    procedure acTransportadoraExecute(Sender: TObject);
   private
     F : TFuncoes;
     { Private declarations }
@@ -138,7 +140,7 @@ uses untDM, untMensagem, untConfBD,
   untManuClientes, untManuBanco, untManuCartaoFidelidade, untManuCheques,
   untManuVendedores, untManuMarcaProdutos, untDefineEmpresaUsuario,
   untManuProdutos, untManuAcertoEstoque, untManuGrades,
-  untManuNaturezaOperacao, untManuContasPagar, SQL;
+  untManuNaturezaOperacao, untManuContasPagar, SQL, untManuTransportadoras;
 
 {$R *.dfm}
 
@@ -480,14 +482,18 @@ begin
   frmManuNaturezaOperacao.Free;
 end;
 
-procedure TfrmPrincipal.tbContasaPagarClick(Sender: TObject);
+procedure TfrmPrincipal.acContasPagarExecute(Sender: TObject);
 begin
-  frmManuContasPagar := TfrmManuContasPagar.Create(Application);
-  frmManuContasPagar.ShowModal;
-  frmManuContasPagar.Free;
-    { RegisterClass(TfrmManuContasPagar);
+ RegisterClass(TfrmManuContasPagar);
  VD.showForm('Contas à Pagar',dm.cdsCtPag,'TfrmManuContasPagar',
-                         '*','conta',' order by codcon');}
+                         '*','conta',' order by codcon');
+end;
+
+procedure TfrmPrincipal.acTransportadoraExecute(Sender: TObject);
+begin
+ RegisterClass(TfrmManuTransportadoras);
+ VD.showForm('Transportadoras',dm.cdsTrans,'TfrmManuTransportadoras',
+                         '*','trans',' order by cdtran');
 end;
 
 end.
