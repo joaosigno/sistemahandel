@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, untManutencao, DB, ImgList, ComCtrls, ToolWin,untDeclaracoes,
-  StdCtrls, Mask, DBCtrls, ToolEdit, RXDBCtrl, CurrEdit;
+  StdCtrls, Mask, DBCtrls, ToolEdit, RXDBCtrl, CurrEdit, wwdblook, Wwdbdlg;
 
 type
   TfrmManuProdutos = class(TfrmManutencao)
@@ -70,7 +70,13 @@ type
     rxcbceEstAtual: TRxDBCalcEdit;
     Label26: TLabel;
     dbcbbxTipoProduto: TDBComboBox;
-    tsGrade: TTabSheet;
+    dbdeVemnc: TDBDateEdit;
+    Label27: TLabel;
+    Label28: TLabel;
+    dbeCodForn: TDBEdit;
+    dblcbFornecedor: TDBLookupComboBox;
+    Label29: TLabel;
+    pesquisagrade: TwwDBLookupComboDlg;
     procedure FormShow(Sender: TObject);
     procedure tbAdicionarClick(Sender: TObject);
     procedure tbGravarClick(Sender: TObject);
@@ -84,13 +90,18 @@ type
     procedure rxcbcePrVendaExit(Sender: TObject);
     procedure DataSourceStateChange(Sender: TObject);
     procedure dbcbTipoProdutoExit(Sender: TObject);
-    procedure verificaTipoProduto;
+    procedure carregaOpcaoes;
     procedure tbPrimeiroClick(Sender: TObject);
     procedure tbAnteriorClick(Sender: TObject);
     procedure tbProximoClick(Sender: TObject);
     procedure tbUltimoClick(Sender: TObject);
     procedure dbcbbxTipoProdutoExit(Sender: TObject);
     procedure dbcbControleGradeExit(Sender: TObject);
+    procedure dbeCodFornExit(Sender: TObject);
+    procedure dbcbControleGradeClick(Sender: TObject);
+    procedure pesquisagradeExit(Sender: TObject);
+    procedure tbCancelarClick(Sender: TObject);
+    procedure dbcbbxTipoProdutoChange(Sender: TObject);
   private
    F: TFuncoes;
   function verificaDadosAntesGravar():Boolean;
@@ -143,6 +154,11 @@ begin
       f.Mensagem(false,'Preencha Preço de Venda!');
       result:= false;
    end else result:=true;
+   if (dbcbControleGrade.Checked) and (pesquisagrade.Text='') then
+   begin
+      f.Mensagem(false,'Preencha Código da Grade!');
+      result:= false;
+   end else result:=true;
 end;
 
 procedure TfrmManuProdutos.verificaInsercao;
@@ -158,7 +174,7 @@ procedure TfrmManuProdutos.FormShow(Sender: TObject);
 begin
   inherited;
   verificaInsercao;
-  verificaTipoProduto;
+//  carregaOpcaoes;
 end;
 
 procedure TfrmManuProdutos.tbAdicionarClick(Sender: TObject);
@@ -183,6 +199,7 @@ procedure TfrmManuProdutos.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;
+  dm.cdsGradePro.Close;
   ManuDAO.Free;
 end;
 
@@ -191,6 +208,8 @@ begin
   ManuDAO := TManutencaoDAO.Create(dm.cdsProd);
   inherited;
   DataSource.DataSet := dm.cdsProd;
+  dm.cdsGradePro.Open;
+  pesquisagrade.LookupTable := dm.cdsGradePro;
 end;
 
 procedure TfrmManuProdutos.DBEcODmARCAExit(Sender: TObject);
@@ -211,7 +230,7 @@ end;
 
 procedure TfrmManuProdutos.dbecodgrupoExit(Sender: TObject);
 begin
-    if dbecodgrupo.Text <> '' then
+     if dbecodgrupo.Text <> '' then
     begin
       ManuDAO.SQL.executaSQlPorEmp(dm.cdsAux,'*','grpro','and cdgrup='+
       QuotedStr(dbecodgrupo.Text));
@@ -268,13 +287,12 @@ end;
 procedure TfrmManuProdutos.rxcbcePrVendaExit(Sender: TObject);
 begin
   rxcbceMargemLucro.Value := ((rxcbcePrVenda.Value*100)/rxcbcePrCusto.Value)-100;
-
 end;
 
 procedure TfrmManuProdutos.DataSourceStateChange(Sender: TObject);
 begin
   inherited;
-  if DataSource.State in [dsInsert] then
+{  if DataSource.State in [dsInsert] then
   begin
       rxcbceEstAtual.Enabled := true;
       dbcbbxTipoProduto.Enabled := true;
@@ -282,86 +300,80 @@ begin
   begin
       rxcbceEstAtual.Enabled := false;
       dbcbbxTipoProduto.Enabled := false;
-  end;
+  end;}
+  carregaOpcaoes;
 end;
 
 procedure TfrmManuProdutos.dbcbTipoProdutoExit(Sender: TObject);
 begin
-  verificaTipoProduto;
+  carregaOpcaoes;
 end;
 
-procedure TfrmManuProdutos.verificaTipoProduto;
+procedure TfrmManuProdutos.carregaOpcaoes;
 begin
-  if dbcbbxTipoProduto.Text = 'SERVIÇO' then
-  begin
-     dbcbControleGrade.Checked := false;
-     dbcbControleGrade.Enabled := false;
-     rxcbceEstAtual.Enabled := false;
-     dbeCodFab.Enabled := false;
-     dbeRefe.Enabled := false;
-     rxdbceEstMin.Enabled := false;
-     dbcbbx_classqtoaorigem.Enabled := false;
-     dbcbbx_situacaotributaria.Enabled := false;
-  end else
+  if dbcbbxTipoProduto.Text = 'PRODUTO' then
   begin
      dbcbControleGrade.Enabled := true;
      if DataSource.State in [dsInsert] then
      begin
-       rxcbceEstAtual.Enabled := true;
-     end;  
+     rxcbceEstAtual.Enabled := true;
+     end else rxcbceEstAtual.Enabled := false;
      dbeCodFab.Enabled := true;
-     dbeRefe.Enabled := true;
      rxdbceEstMin.Enabled := true;
      dbcbbx_classqtoaorigem.Enabled := true;
      dbcbbx_situacaotributaria.Enabled := true;
-  end;
-  if dbcbControleGrade.Checked then
-  begin
-      pgProdutos.Pages[2].TabVisible := true;
-      dbcbbxTipoProduto.Enabled := false;
-      rxcbceEstAtual.Enabled := false;
-  end else
-  begin
-    pgProdutos.Pages[2].TabVisible := false;
-    dbcbbxTipoProduto.Enabled := true;
-    rxcbceEstAtual.Enabled := true;
-  end;
+     if dbcbControleGrade.Checked then
+      begin
+        pesquisagrade.Enabled := true;
+      end else
+      begin
+        pesquisagrade.Enabled := false;
+      end;
+   end else
+   begin
+     dbcbControleGrade.Enabled := false;
+     pesquisagrade.Enabled := false;
+     rxcbceEstAtual.Enabled := false;
+     dbeCodFab.Enabled := false;
+     rxdbceEstMin.Enabled := false;
+     dbcbbx_classqtoaorigem.Enabled := false;
+     dbcbbx_situacaotributaria.Enabled := false;
+   end;
 end;
 
 procedure TfrmManuProdutos.tbPrimeiroClick(Sender: TObject);
 begin
   inherited;
-  verificaTipoProduto;
+  carregaOpcaoes;
 end;
 
 procedure TfrmManuProdutos.tbAnteriorClick(Sender: TObject);
 begin
   inherited;
-  verificaTipoProduto;
+  carregaOpcaoes;
 end;
 
 procedure TfrmManuProdutos.tbProximoClick(Sender: TObject);
 begin
   inherited;
-  verificaTipoProduto;
+  carregaOpcaoes;
 end;
 
 procedure TfrmManuProdutos.tbUltimoClick(Sender: TObject);
 begin
   inherited;
-  verificaTipoProduto;
+  carregaOpcaoes;
 end;
 
 procedure TfrmManuProdutos.dbcbbxTipoProdutoExit(Sender: TObject);
 begin
-  verificaTipoProduto;
+//  carregaOpcaoes;
 end;
 
 procedure TfrmManuProdutos.dbcbControleGradeExit(Sender: TObject);
 begin
-  if dbcbControleGrade.Checked then
+{  if dbcbControleGrade.Checked then
   begin
-      pgProdutos.Pages[2].TabVisible := true;
       dbcbbxTipoProduto.Enabled := false;
       rxcbceEstAtual.Enabled := false;
   end else
@@ -369,7 +381,56 @@ begin
     pgProdutos.Pages[2].TabVisible := false;
     dbcbbxTipoProduto.Enabled := true;
     rxcbceEstAtual.Enabled := true;
-  end;
+  end;}
+end;
+
+procedure TfrmManuProdutos.dbeCodFornExit(Sender: TObject);
+begin
+  if dbeCodForn.Text <> '' then
+    begin
+      ManuDAO.SQL.executaSQlPorEmp(dm.cdsAux,'*','forne','and cdforn='+
+      QuotedStr(dbeCodForn.Text));
+      if dm.cdsAux.RecordCount = 0 then
+      begin
+          dm.cdsProdcdforn.AsString:= '';
+          f.Mensagem(false,'Fornecedor Não Existe!');
+      end;
+    end;
+
+end;
+
+procedure TfrmManuProdutos.dbcbControleGradeClick(Sender: TObject);
+begin
+{  if dbcbControleGrade.Checked then
+     pesquisagrade.Enabled := true
+     else pesquisagrade.Enabled := false;}
+     carregaOpcaoes;
+end;
+
+procedure TfrmManuProdutos.pesquisagradeExit(Sender: TObject);
+begin
+  if pesquisagrade.Text <> '' then
+    begin
+      ManuDAO.SQL.executaSQlPorEmp(dm.cdsAux,'*','gdpro','and cdgrad='+
+      QuotedStr(pesquisagrade.Text));
+      if dm.cdsAux.RecordCount = 0 then
+      begin
+          dm.cdsProdcdgrad.AsString:= '';
+          f.Mensagem(false,'Grade Não Existe!');
+      end;
+    end;
+
+end;
+
+procedure TfrmManuProdutos.tbCancelarClick(Sender: TObject);
+begin
+  inherited;
+  carregaOpcaoes;
+end;
+
+procedure TfrmManuProdutos.dbcbbxTipoProdutoChange(Sender: TObject);
+begin
+  carregaOpcaoes;
 end;
 
 end.

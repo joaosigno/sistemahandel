@@ -372,6 +372,15 @@ type
     qryTransrespon: TStringField;
     qryTransemail: TStringField;
     qryTranshomepa: TStringField;
+    qryProdvencim: TDateField;
+    qryProdcdforn: TIntegerField;
+    qryProdcdgrad: TIntegerField;
+    qryGRProdespro: TFloatField;
+    qryGRProdtvali: TDateField;
+    qryGRProvlddia: TIntegerField;
+    qryGRProgrupro: TStringField;
+    qryGRProtpprom: TStringField;
+    qryGRProvldsem: TStringField;
     procedure RemoteDataModuleCreate(Sender: TObject);
     procedure RemoteDataModuleDestroy(Sender: TObject);
   private

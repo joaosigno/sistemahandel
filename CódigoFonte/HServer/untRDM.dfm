@@ -521,7 +521,7 @@ object RDM: TRDM
   end
   object dspCUsu: TDataSetProvider
     DataSet = qryCUsu
-    Options = [poCascadeDeletes, poCascadeUpdates, poReadOnly, poAutoRefresh, poAllowCommandText]
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poReadOnly, poAutoRefresh, poAllowCommandText]
     Left = 296
     Top = 8
   end
@@ -562,6 +562,27 @@ object RDM: TRDM
     end
     object qryGRProdtcada: TDateField
       FieldName = 'dtcada'
+    end
+    object qryGRProdespro: TFloatField
+      FieldName = 'despro'
+    end
+    object qryGRProdtvali: TDateField
+      FieldName = 'dtvali'
+    end
+    object qryGRProvlddia: TIntegerField
+      FieldName = 'vlddia'
+    end
+    object qryGRProgrupro: TStringField
+      FieldName = 'grupro'
+      Size = 1
+    end
+    object qryGRProtpprom: TStringField
+      FieldName = 'tpprom'
+      Size = 2
+    end
+    object qryGRProvldsem: TStringField
+      FieldName = 'vldsem'
+      Size = 1
     end
   end
   object dspGRPro: TDataSetProvider
@@ -1168,6 +1189,15 @@ object RDM: TRDM
     end
     object qryProdprecus: TFloatField
       FieldName = 'precus'
+    end
+    object qryProdvencim: TDateField
+      FieldName = 'vencim'
+    end
+    object qryProdcdforn: TIntegerField
+      FieldName = 'cdforn'
+    end
+    object qryProdcdgrad: TIntegerField
+      FieldName = 'cdgrad'
     end
   end
   object dspHMPro: TDataSetProvider

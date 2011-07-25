@@ -110,6 +110,10 @@ type
     procedure cdsColGradeReconcileError(DataSet: TCustomClientDataSet;
       E: EReconcileError; UpdateKind: TUpdateKind;
       var Action: TReconcileAction);
+    procedure cdsColGradeAfterCancel(DataSet: TDataSet);
+    procedure cdsLinhGradeAfterCancel(DataSet: TDataSet);
+    procedure cdsGDProdAfterEdit(DataSet: TDataSet);
+    procedure cdsGDProdBeforeCancel(DataSet: TDataSet);
   private
   DAOLinha   : TManutencaoDAO;
   DAOColunas : TManutencaoDAO;
@@ -190,21 +194,12 @@ begin
 
   ManuDAO.SQL.executaSQlPorEmp(cdsGDProd,'*','gdpro','');
 
-//  cdsGDProd.Params.ParamByName('empresa').Value := frmprincipal.Configuracao.EmpresaCodigo;
-{  cdsGDProd.Open;
-  cdsLinhGrade.open;
-  cdsColGrade.Open;}
-  codigograde := cdsGDProdcdgrad.Value;
-  
-  selecionaLinhasColunas;  
+  selecionaLinhasColunas;
 end;
 
 procedure TfrmManuGrades.tbAdicionarClick(Sender: TObject);
 begin
   inherited;
-  cdsGDProdcdgrad.AsInteger := StrToInt(ManuDAO.SQL.proxCod(dm.cdsAux,'cdgrad','gdpro'));
-  cdsGDProdcdempr.AsInteger := frmPrincipal.Configuracao.EmpresaCodigo;
-
   verificaInsercao;
   carregaOpcoes;
   verGrade;
@@ -222,14 +217,17 @@ end;
 procedure TfrmManuGrades.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
-  DAOLinha.cancelar;
-  DAOColunas.cancelar;
-
-  inherited;
-
-  ManuDAO.Free;
-  DAOLinha.Free;
-  DAOColunas.Free;
+  if (tag=5) OR (tag = 3) then //verifica se a tabela está em modo de edição e se tiver pergunta se o cliente quer salvar, nao salvar ou cancelar
+  begin
+    case MessageDlg('ATENÇÃO: Tem dados não salvos na tabela!' + #13 + 'Deseja salvá-los?', mtConfirmation, mbYesNoCancel, 0) of
+      mryes:cdsGDProd.Post;
+      mrno:cdsGDProd.Cancel;
+      mrcancel:abort;
+    end;
+  end;
+  cdsGDProd.close; //fecha a tabela
+  cdsGDProd.close;
+  cdsGDProd.close;
 end;
 
 procedure TfrmManuGrades.verGrade;
@@ -295,10 +293,29 @@ end;
 
 procedure TfrmManuGrades.tbExcluirClick(Sender: TObject);
 begin
-  inherited;
+//  inherited;
+
+
+  if MessageDlg('Deseja Exluir essa Grade?', mtConfirmation ,[mbYes,mbNo], 0) = mryes then
+  begin
+     cdsLinhGrade.First;
+     while not cdsLinhGrade.Eof do
+     begin
+        cdsLinhGrade.Delete;
+        cdsLinhGrade.ApplyUpdates(0);
+     end;
+     cdsColGrade.First;
+     while not cdsColGrade.Eof do
+     begin
+        cdsColGrade.Delete;
+        cdsColGrade.ApplyUpdates(0);
+     end;
+     ManuDAO.excluir;
+  end;
 
   carregaopcoes;
   vergrade;
+  selecionaLinhasColunas;
 end;
 
 procedure TfrmManuGrades.tbGravarClick(Sender: TObject);
@@ -434,6 +451,8 @@ begin
    cdsLinhGradecdgrad.AsInteger := codigograde;
    cdsLinhGradecdempr.AsInteger := frmPrincipal.Configuracao.EmpresaCodigo;
    cdsLinhGradelincol.AsString := 'L';
+   cdsLinhGrade.Tag := 3;
+   cdsGDProd.Edit;
 end;
 
 procedure TfrmManuGrades.cdsLinhGradeAfterDelete(DataSet: TDataSet);
@@ -448,11 +467,13 @@ end;
 
 procedure TfrmManuGrades.cdsColGradeAfterEdit(DataSet: TDataSet);
 begin
+   cdsColGrade.Tag := 5;
    cdsGDProd.Edit;
 end;
 
 procedure TfrmManuGrades.cdsLinhGradeAfterEdit(DataSet: TDataSet);
 begin
+   cdsLinhGrade.Tag := 5;
    cdsGDProd.Edit;
 end;
 
@@ -462,12 +483,14 @@ begin
   cdsColGradecdempr.Value := frmprincipal.Configuracao.EmpresaCodigo;
   cdsColGradecdgrad.Value := cdsGDProdcdgrad.AsInteger;
   cdsColGradelincol.Value := 'C';
+  cdsColGrade.Tag := 3;
   cdsGDProd.Edit;
 end;
 
 procedure TfrmManuGrades.cdsGDProdAfterCancel(DataSet: TDataSet);
 begin
   carregaopcoes;
+  tag:=0;
   vergrade;
 end;
 
@@ -492,7 +515,8 @@ begin
   cdsGDProdcdempr.Value := frmprincipal.Configuracao.EmpresaCodigo;
   carregaopcoes;
   vergrade;
-  dbeDescri.SetFocus; 
+  tag := 3;
+  dbeDescri.SetFocus;
 end;
 
 procedure TfrmManuGrades.cdsGDProdAfterPost(DataSet: TDataSet);
@@ -504,22 +528,40 @@ begin
   except
 
   end;
+  tag:=0;
   carregaopcoes;
 end;
 
 procedure TfrmManuGrades.cdsGDProdBeforeDelete(DataSet: TDataSet);
 begin
-//  ManuDAO.SQL.executaSql(cdsLinhGrade,'delete from lcgra where cdgrad='+IntToStr(cdsColGradecdgrad.asInteger));
-//  ManuDAO.SQL.executaSql(cdsColGrade,'delete from lcgra where cdgrad='+IntToStr(cdsColGradecdgrad.asInteger));
-
   carregaopcoes;
   vergrade;
 end;
 
 procedure TfrmManuGrades.cdsGDProdBeforePost(DataSet: TDataSet);
 begin
-  cdsLinhGrade.Post;
-  cdsColGrade.Post;
+  if (cdsLinhGrade.Tag = 3) or (cdsLinhGrade.Tag = 5) then
+  begin
+      cdsLinhGrade.First;
+      while not cdsLinhGrade.Eof do
+      begin
+        cdsColGrade.Edit;
+        cdsLinhGrade.Post;
+        cdsLinhGrade.Next;
+       end;
+      cdsLinhGrade.ApplyUpdates(0);
+  end;
+  if (cdsColGrade.Tag = 3) or (cdsColGrade.Tag = 5) then
+  begin
+      cdsColGrade.First;
+      while not cdsColGrade.Eof do
+      begin
+        cdsColGrade.Edit;
+        cdsColGrade.Post;
+        cdsColGrade.Next;
+       end;
+      cdsColGrade.ApplyUpdates(0);
+  end;
 end;
 
 procedure TfrmManuGrades.tmr_verificagradeTimer(Sender: TObject);
@@ -543,9 +585,7 @@ end;
 
 procedure TfrmManuGrades.cdsColGradeAfterPost(DataSet: TDataSet);
 begin
-   DAOColunas.gravar;
- {  cdsColGrade.CommandText := 'select * from lcgra where lincol=''C'' and cdgrad='+
-                     IntToStr(cdsGDProdcdgrad.AsInteger);}
+  cdsColGrade.Tag := 0;
    verGrade;
 end;
 
@@ -567,11 +607,9 @@ end;
 
 procedure TfrmManuGrades.cdsLinhGradeAfterPost(DataSet: TDataSet);
 begin
-  DAOLinha.gravar;
- {  cdsLinhGrade.CommandText := 'select * from lcgra where lincol=''L'' and cdgrad='+
-                     IntToStr(cdsGDProdcdgrad.AsInteger);}
+  cdsLinhGrade.Tag := 0;
    verGrade;
-   carregaOpcoes;
+//   carregaOpcoes;
 //   selecionaLinhasColunas;
 
 end;
@@ -580,7 +618,27 @@ procedure TfrmManuGrades.cdsColGradeReconcileError(
   DataSet: TCustomClientDataSet; E: EReconcileError;
   UpdateKind: TUpdateKind; var Action: TReconcileAction);
 begin
-  /action := HandleReconcileError(DataSet,UpdateKind,E);
+//  Action := HandleReconcileError(DataSet,UpdateKind, E);
+end;
+
+procedure TfrmManuGrades.cdsColGradeAfterCancel(DataSet: TDataSet);
+begin
+  cdsColGrade.Tag := 0;
+end;
+
+procedure TfrmManuGrades.cdsLinhGradeAfterCancel(DataSet: TDataSet);
+begin
+   cdsLinhGrade.Tag := 0;
+end;
+
+procedure TfrmManuGrades.cdsGDProdAfterEdit(DataSet: TDataSet);
+begin
+    tag:=5;
+end;
+
+procedure TfrmManuGrades.cdsGDProdBeforeCancel(DataSet: TDataSet);
+begin
+    if MessageDlg('Tem certeza que deseja cancelar as alterações?', mtConfirmation, [mbyes,mbno], 0) = mrno then abort;
 end;
 
 end.

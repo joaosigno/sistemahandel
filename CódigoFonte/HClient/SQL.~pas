@@ -9,6 +9,7 @@ type
       function proxCod(cds:TClientDataSet;field:String;Tabela:String):String;
       procedure executaSql(cds:TClientDataSet;sql:String);
       procedure executaSQlPorEmp(cds:TClientDataSet;Fields:String;Tabela:String;SQl:String);
+      procedure adicionaSQL(cds: TClientDataSet;sql : String);
       private
         f:TFuncoes;
   end;
@@ -25,7 +26,7 @@ var cod: integer;
 begin
     numero:='';
     cod:=0;
-    executaSql(cds,'select max('+field+') as cod from '+tabela+' where cdemp='+
+    executaSql(cds,'select max('+field+') as cod from '+tabela+' where cdempr='+
         IntToStr(frmPrincipal.Configuracao.EmpresaCodigo)); 
     if cds.FieldByName('Cod').AsInteger < 900000 then
     begin
@@ -63,13 +64,23 @@ procedure TSQL.executaSQlPorEmp(cds: TClientDataSet; Fields, Tabela, SQl: String
 begin
     try
       cds.Close;
-      cds.CommandText := 'select '+fields+' from '+tabela+' where cdemp='+
+      cds.CommandText := 'select '+fields+' from '+tabela+' where cdempr='+
             IntToStr(frmPrincipal.Configuracao.EmpresaCodigo)+' '+sql;
       cds.Open;
     except
       on e:Exception do
           f.Mensagem(true,'Erro: '+e.Message);
     end;
+end;
+
+procedure TSQL.adicionaSQL(cds: TClientDataSet;sql: String);
+begin
+  try
+     cds.CommandText := cds.CommandText + sql;
+  except
+     on e:Exception do
+          f.Mensagem(true,'Erro: '+e.Message);
+  end;
 end;
 
 end.

@@ -1,19 +1,21 @@
 inherited frmManuProdutos: TfrmManuProdutos
+  Left = 409
+  Top = 141
   Caption = 'Manuten'#231#227'o de Produtos'
-  ClientHeight = 418
+  ClientHeight = 447
   OldCreateOrder = True
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 14
   inherited tbManutencao: TToolBar
-    Top = 358
+    Top = 387
   end
   object pgProdutos: TPageControl [1]
     Left = 0
     Top = 0
     Width = 534
-    Height = 358
+    Height = 387
     ActivePage = tsProdutos
     Align = alClient
     TabOrder = 1
@@ -35,7 +37,7 @@ inherited frmManuProdutos: TfrmManuProdutos
       end
       object Label5: TLabel
         Left = 0
-        Top = 70
+        Top = 58
         Width = 70
         Height = 14
         Caption = 'Descri'#231#227'o:'
@@ -43,7 +45,7 @@ inherited frmManuProdutos: TfrmManuProdutos
       end
       object Label2: TLabel
         Left = -1
-        Top = 93
+        Top = 81
         Width = 70
         Height = 14
         Caption = 'C'#243'd.Marca:'
@@ -51,7 +53,7 @@ inherited frmManuProdutos: TfrmManuProdutos
       end
       object Label6: TLabel
         Left = 0
-        Top = 114
+        Top = 102
         Width = 70
         Height = 14
         Caption = 'C'#243'd.Grupo:'
@@ -59,7 +61,7 @@ inherited frmManuProdutos: TfrmManuProdutos
       end
       object Label4: TLabel
         Left = 0
-        Top = 45
+        Top = 33
         Width = 70
         Height = 14
         Caption = 'C'#243'd.Fab..:'
@@ -67,122 +69,144 @@ inherited frmManuProdutos: TfrmManuProdutos
       end
       object Label7: TLabel
         Left = 250
-        Top = 46
+        Top = 34
         Width = 84
         Height = 14
         Caption = 'Refer'#234'ncia.:'
         FocusControl = dbeRefe
       end
       object Label8: TLabel
-        Left = 0
-        Top = 164
+        Left = -1
+        Top = 175
         Width = 70
         Height = 14
         Caption = 'Unidade..:'
       end
       object Label9: TLabel
-        Left = 0
-        Top = 190
+        Left = -1
+        Top = 201
         Width = 70
         Height = 14
         Caption = 'Est.Atual:'
       end
       object Label10: TLabel
-        Left = 0
-        Top = 214
+        Left = -1
+        Top = 225
         Width = 70
         Height = 14
         Caption = 'Pr.Custo.:'
       end
       object Label11: TLabel
-        Left = -1
-        Top = 262
+        Left = -2
+        Top = 273
         Width = 70
         Height = 14
         Caption = 'Pr.Venda.:'
       end
       object Label12: TLabel
-        Left = 0
-        Top = 238
+        Left = -1
+        Top = 249
         Width = 70
         Height = 14
         Caption = 'MargLc(%):'
       end
       object Label13: TLabel
-        Left = 0
-        Top = 286
+        Left = -1
+        Top = 297
         Width = 70
         Height = 14
         Caption = 'Est.Min..:'
       end
       object Label14: TLabel
         Left = 288
-        Top = 190
+        Top = 201
         Width = 105
         Height = 14
         Caption = 'Custo Real....:'
       end
       object Label15: TLabel
         Left = 288
-        Top = 236
+        Top = 247
         Width = 105
         Height = 14
         Caption = 'Peso Liquido..:'
       end
       object Label16: TLabel
         Left = 288
-        Top = 214
+        Top = 225
         Width = 105
         Height = 14
         Caption = 'Peso Bruto....:'
       end
       object Label17: TLabel
         Left = 290
-        Top = 284
+        Top = 295
         Width = 105
         Height = 14
         Caption = #218'lt.Venda.....:'
       end
       object Label18: TLabel
         Left = 288
-        Top = 260
+        Top = 271
         Width = 105
         Height = 14
         Caption = #218'lt.Compra....:'
       end
       object Label19: TLabel
         Left = 288
-        Top = 310
+        Top = 321
         Width = 105
         Height = 14
         Caption = 'Prazo Garantia:'
         FocusControl = dbePrzGrt
       end
       object Label20: TLabel
-        Left = 288
-        Top = 165
+        Left = 287
+        Top = 176
         Width = 105
         Height = 14
         Caption = 'C'#243'digo NCM....:'
       end
       object Label26: TLabel
-        Left = 0
-        Top = 140
+        Left = -1
+        Top = 151
         Width = 70
         Height = 14
         Caption = 'Tipo.....:'
       end
+      object Label27: TLabel
+        Left = 287
+        Top = 150
+        Width = 105
+        Height = 14
+        Caption = 'Vencimento....:'
+      end
+      object Label28: TLabel
+        Left = 480
+        Top = 318
+        Width = 28
+        Height = 14
+        Caption = 'Dias'
+        FocusControl = dbePrzGrt
+      end
+      object Label29: TLabel
+        Left = 0
+        Top = 128
+        Width = 70
+        Height = 14
+        Caption = 'C'#243'd.Forn.:'
+      end
       object DBEDESCRI: TDBEdit
         Left = 72
-        Top = 66
-        Width = 433
+        Top = 54
+        Width = 435
         Height = 20
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'descri'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 6
+        TabOrder = 5
         OnExit = DBEDESCRIExit
       end
       object dbeCod: TDBEdit
@@ -202,7 +226,7 @@ inherited frmManuProdutos: TfrmManuProdutos
       object dbdateedtdatacadastro: TDBDateEdit
         Left = 392
         Top = 8
-        Width = 112
+        Width = 114
         Height = 21
         DataField = 'dtcada'
         DataSource = DataSource
@@ -265,10 +289,10 @@ inherited frmManuProdutos: TfrmManuProdutos
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 3
+        TabOrder = 2
       end
       object dbcbAtivo: TDBCheckBox
-        Left = 165
+        Left = 173
         Top = 8
         Width = 108
         Height = 17
@@ -285,7 +309,7 @@ inherited frmManuProdutos: TfrmManuProdutos
       end
       object DBEcODmARCA: TDBEdit
         Left = 72
-        Top = 90
+        Top = 78
         Width = 126
         Height = 20
         CharCase = ecUpperCase
@@ -293,23 +317,23 @@ inherited frmManuProdutos: TfrmManuProdutos
         DataField = 'cdmarc'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 7
+        TabOrder = 6
         OnExit = DBEcODmARCAExit
       end
       object dblcbMarca: TDBLookupComboBox
         Left = 200
-        Top = 91
-        Width = 305
+        Top = 79
+        Width = 308
         Height = 20
         Ctl3D = False
         DataField = 'procuraMarca'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 8
+        TabOrder = 7
       end
       object dbecodgrupo: TDBEdit
         Left = 72
-        Top = 114
+        Top = 102
         Width = 127
         Height = 20
         CharCase = ecUpperCase
@@ -317,23 +341,23 @@ inherited frmManuProdutos: TfrmManuProdutos
         DataField = 'cdgrup'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 9
+        TabOrder = 8
         OnExit = dbecodgrupoExit
       end
       object dblcbgrupo: TDBLookupComboBox
         Left = 200
-        Top = 114
-        Width = 305
+        Top = 102
+        Width = 309
         Height = 20
         Ctl3D = False
         DataField = 'procuraGrupo'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 11
+        TabOrder = 9
       end
       object dbcbControleGrade: TDBCheckBox
-        Left = 164
-        Top = 24
+        Left = 73
+        Top = 316
         Width = 160
         Height = 17
         Caption = 'Controle Por Grade?'
@@ -343,14 +367,15 @@ inherited frmManuProdutos: TfrmManuProdutos
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 2
+        TabOrder = 27
         ValueChecked = 'G'
         ValueUnchecked = 'P'
+        OnClick = dbcbControleGradeClick
         OnExit = dbcbControleGradeExit
       end
       object dbeCodFab: TDBEdit
         Left = 72
-        Top = 43
+        Top = 31
         Width = 173
         Height = 20
         CharCase = ecUpperCase
@@ -358,24 +383,24 @@ inherited frmManuProdutos: TfrmManuProdutos
         DataField = 'codfab'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 4
+        TabOrder = 3
         OnExit = dbeCodFabExit
       end
       object dbeRefe: TDBEdit
         Left = 333
-        Top = 42
-        Width = 170
+        Top = 31
+        Width = 173
         Height = 20
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'refere'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 5
+        TabOrder = 4
       end
       object dbcbbxunidade: TDBComboBox
-        Left = 73
-        Top = 161
+        Left = 72
+        Top = 172
         Width = 118
         Height = 22
         Style = csDropDownList
@@ -421,11 +446,11 @@ inherited frmManuProdutos: TfrmManuProdutos
           'CENTO')
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 12
+        TabOrder = 14
       end
       object rxcbcePrVenda: TRxDBCalcEdit
-        Left = 73
-        Top = 258
+        Left = 72
+        Top = 269
         Width = 115
         Height = 21
         DataField = 'preven'
@@ -489,12 +514,12 @@ inherited frmManuProdutos: TfrmManuProdutos
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 17
+        TabOrder = 22
         OnExit = rxcbcePrVendaExit
       end
       object rxcbcePrCusto: TRxDBCalcEdit
-        Left = 73
-        Top = 209
+        Left = 72
+        Top = 220
         Width = 115
         Height = 21
         DataField = 'precus'
@@ -558,11 +583,11 @@ inherited frmManuProdutos: TfrmManuProdutos
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 15
+        TabOrder = 18
       end
       object rxcbceMargemLucro: TRxDBCalcEdit
-        Left = 73
-        Top = 234
+        Left = 72
+        Top = 245
         Width = 115
         Height = 21
         DataField = 'marluc'
@@ -626,12 +651,12 @@ inherited frmManuProdutos: TfrmManuProdutos
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 16
+        TabOrder = 20
         OnExit = rxcbceMargemLucroExit
       end
       object rxdbcePesoLiquido: TRxDBCalcEdit
         Left = 393
-        Top = 234
+        Top = 245
         Width = 115
         Height = 21
         DataField = 'pesliq'
@@ -700,7 +725,7 @@ inherited frmManuProdutos: TfrmManuProdutos
       end
       object rxdbcePesoBruto: TRxDBCalcEdit
         Left = 393
-        Top = 210
+        Top = 221
         Width = 115
         Height = 21
         DataField = 'pesbru'
@@ -765,11 +790,11 @@ inherited frmManuProdutos: TfrmManuProdutos
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 20
+        TabOrder = 19
       end
       object rxdbceCustoReal: TRxDBCalcEdit
         Left = 393
-        Top = 185
+        Top = 196
         Width = 115
         Height = 21
         DataField = 'cusrea'
@@ -833,12 +858,12 @@ inherited frmManuProdutos: TfrmManuProdutos
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 19
+        TabOrder = 17
       end
       object rxdbceEstMin: TRxDBCalcEdit
-        Left = 73
-        Top = 282
-        Width = 114
+        Left = 72
+        Top = 293
+        Width = 116
         Height = 21
         DataField = 'estmin'
         DataSource = DataSource
@@ -901,11 +926,11 @@ inherited frmManuProdutos: TfrmManuProdutos
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 18
+        TabOrder = 24
       end
       object dbdeUltCompra: TDBDateEdit
         Left = 394
-        Top = 257
+        Top = 268
         Width = 115
         Height = 21
         DataField = 'ultcom'
@@ -969,11 +994,11 @@ inherited frmManuProdutos: TfrmManuProdutos
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 22
+        TabOrder = 23
       end
       object dbdeUltVenda: TDBDateEdit
         Left = 394
-        Top = 281
+        Top = 292
         Width = 115
         Height = 21
         DataField = 'ultven'
@@ -1037,23 +1062,23 @@ inherited frmManuProdutos: TfrmManuProdutos
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 23
+        TabOrder = 25
       end
       object dbePrzGrt: TDBEdit
         Left = 394
-        Top = 306
-        Width = 116
+        Top = 317
+        Width = 81
         Height = 20
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'przgar'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 24
+        TabOrder = 26
       end
       object dbedt_codigoNCM: TDBEdit
-        Left = 393
-        Top = 162
+        Left = 392
+        Top = 173
         Width = 116
         Height = 20
         Hint = 'Digite o c'#243'digo NCM de classifica'#231#227'o fiscal'
@@ -1064,11 +1089,11 @@ inherited frmManuProdutos: TfrmManuProdutos
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 13
+        TabOrder = 15
       end
       object rxcbceEstAtual: TRxDBCalcEdit
-        Left = 73
-        Top = 185
+        Left = 72
+        Top = 196
         Width = 115
         Height = 21
         DataField = 'estatu'
@@ -1077,6 +1102,7 @@ inherited frmManuProdutos: TfrmManuProdutos
         Ctl3D = False
         DecimalPlaces = 15
         DisplayFormat = '#.00'
+        Enabled = False
         GlyphKind = gkCustom
         Glyph.Data = {
           36060000424D3606000000000000360000002800000020000000100000000100
@@ -1133,11 +1159,11 @@ inherited frmManuProdutos: TfrmManuProdutos
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 14
+        TabOrder = 16
       end
       object dbcbbxTipoProduto: TDBComboBox
-        Left = 73
-        Top = 137
+        Left = 72
+        Top = 148
         Width = 118
         Height = 22
         Style = csDropDownList
@@ -1150,8 +1176,129 @@ inherited frmManuProdutos: TfrmManuProdutos
           'SERVI'#199'O')
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 10
+        TabOrder = 12
+        OnChange = dbcbbxTipoProdutoChange
         OnExit = dbcbbxTipoProdutoExit
+      end
+      object dbdeVemnc: TDBDateEdit
+        Left = 392
+        Top = 147
+        Width = 116
+        Height = 21
+        DataField = 'vencim'
+        DataSource = DataSource
+        ButtonHint = 'Clique para abrir o calend'#225'rio'
+        Ctl3D = False
+        GlyphKind = gkCustom
+        Glyph.Data = {
+          36060000424D3606000000000000360000002800000020000000100000000100
+          1800000000000006000000000000000000000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF808080
+          8080808080808080808080808080808080808080808080808080808080808080
+          80808080808080FFFFFFFFFFFFC0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0
+          C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0FFFFFFFFFFFF808080
+          E9A4A1EEBEB8EEBEB8BCBC8CF2CDC5E7C2BABCBC8CE8C9C0D9C5BABCBC8CEDBF
+          B8F5B0AD808080FFFFFFFFFFFFC0C0C0FFFFFFFFFFFFFFFFFFC0C0C0FFFFFFFF
+          FFFFC0C0C0FFFFFFFFFFFFC0C0C0FFFFFFFFFFFFC0C0C0FFFFFFFFFFFF808080
+          FEBEBAFFF3ECFFF3ECBCBC8CFFF6ECFFF4EABCBC8CFFF6EBFFFAEDBCBC8CFFFE
+          F5FFF4F0808080FFFFFFFFFFFFC0C0C0FFFFFFFFF3ECFFF3ECC0C0C0FFF6ECFF
+          F4EAC0C0C0FFF6EBFFFAEDC0C0C0FFFEF5FFF4F0C0C0C0FFFFFFFFFFFF808080
+          FEBEBAFFF3ECFFF3ECBCBC8CFFF6ECFFF4EABCBC8CFFF6EBFFFAEDBCBC8CFFFE
+          F5FFF4F0808080FFFFFFFFFFFFC0C0C0FFFFFFFFF3ECFFF3ECC0C0C0FFF6ECFF
+          F4EAC0C0C0FFF6EBFFFAEDC0C0C0FFFEF5FFF4F0C0C0C0FFFFFFFFFFFF808080
+          BCBC8CBCBC8CBCBC8CBCBC8CBCBC8CBCBC8CBCBC8CBCBC8CBCBC8CBCBC8CBCBC
+          8CBCBC8C808080FFFFFFFFFFFFC0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0
+          C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0FFFFFFFFFFFF808080
+          F4BDB8FFF4EBFFF4EBBCBC8CFFFFF4FFFFF5BCBC8CFCFCEEFAFFF5BCBC8CFFFF
+          F5FFF3EC808080FFFFFFFFFFFFC0C0C0FFFFFFFFF4EBFFF4EBC0C0C0FFFFF4FF
+          FFF5C0C0C0FCFCEEFAFFF5C0C0C0FFFFF5FFF3ECC0C0C0FFFFFFFFFFFF808080
+          FAC8C2FFF9EFFFF9EFBCBC8CFFFBEEFFFEF1BCBC8CFFFFF5F8FFF5BCBC8CFFFF
+          F5FFF8F1808080FFFFFFFFFFFFC0C0C0FFFFFFFFF9EFFFF9EFC0C0C0FFFBEEFF
+          FEF1C0C0C0FFFFF5F8FFF5C0C0C0FFFFF5FFF8F1C0C0C0FFFFFFFFFFFF808080
+          BCBC8CBCBC8CBCBC8CBCBC8CBCBC8CBCBC8CBCBC8CBCBC8CBCBC8CBCBC8CBCBC
+          8CBCBC8C808080FFFFFFFFFFFFC0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0
+          C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0FFFFFFFFFFFF808080
+          FFD1CBFFF3EAFFF3EABCBC8CFFF9EDFFFFF5BCBC8CFFF6E9EFEFE1BCBC8CFFF8
+          EEFFF4EE808080FFFFFFFFFFFFC0C0C0FFFFFFFFF3EAFFF3EAC0C0C0FFF9EDFF
+          FFF5C0C0C0FFF6E9EFEFE1C0C0C0FFF8EEFFF4EEC0C0C0FFFFFFFFFFFF808080
+          EDB5B0FFF8F0FFF8F0BCBC8CFCE1D7FFFFF5BCBC8CFFFFF5FFFFF3BCBC8CFFF2
+          EAFFEDE8808080FFFFFFFFFFFFC0C0C0FFFFFFFFF8F0FFF8F0C0C0C0FCE1D7FF
+          FFF5C0C0C0FFFFF5FFFFF3C0C0C0FFF2EAFFEDE8C0C0C0FFFFFFFFFFFF808080
+          8080808080808080808080808080808080808080808080808080808080808080
+          80808080808080FFFFFFFFFFFFC0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0
+          C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0FFFFFFFFFFFF808080
+          E8C9C0E8C9C0E8C9C0E8C9C0E8C9C0E8C9C0E8C9C0E8C9C0808080E8C9C0E8C9
+          C0E8C9C0808080FFFFFFFFFFFFC0C0C0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFC0C0C0FFFFFFFFFFFFFFFFFFC0C0C0FFFFFFFFFFFF808080
+          8080808080808080808080808080808080808080808080808080808080808080
+          80808080808080FFFFFFFFFFFFC0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0
+          C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0FFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+        NumGlyphs = 2
+        ParentCtl3D = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 13
+      end
+      object dbeCodForn: TDBEdit
+        Left = 72
+        Top = 125
+        Width = 127
+        Height = 20
+        CharCase = ecUpperCase
+        Ctl3D = False
+        DataField = 'cdforn'
+        DataSource = DataSource
+        ParentCtl3D = False
+        TabOrder = 10
+        OnExit = dbeCodFornExit
+      end
+      object dblcbFornecedor: TDBLookupComboBox
+        Left = 200
+        Top = 125
+        Width = 309
+        Height = 20
+        Ctl3D = False
+        DataField = 'procuraFornecedor'
+        DataSource = DataSource
+        ParentCtl3D = False
+        TabOrder = 11
+      end
+      object pesquisagrade: TwwDBLookupComboDlg
+        Left = 73
+        Top = 335
+        Width = 116
+        Height = 20
+        Ctl3D = False
+        DisableThemes = False
+        GridOptions = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgPerfectRowFit]
+        GridColor = clWhite
+        GridTitleAlignment = taLeftJustify
+        Caption = 'Lookup'
+        MaxWidth = 0
+        MaxHeight = 209
+        Selected.Strings = (
+          'cdgrad'#9'10'#9'C'#243'd.'#9'F'
+          'descri'#9'30'#9'Descri'#231#227'o'#9'F'
+          'deslin'#9'30'#9'Descri'#231#227'o Linhas'#9'F'
+          'descol'#9'30'#9'Descri'#231#227'o Colunas'#9'F')
+        DataField = 'cdgrad'
+        DataSource = DataSource
+        LookupField = 'cdgrad'
+        Enabled = False
+        ParentCtl3D = False
+        TabOrder = 28
+        AutoDropDown = False
+        ShowButton = True
+        AllowClearKey = False
+        OnExit = pesquisagradeExit
       end
     end
     object tsImpostos: TTabSheet
@@ -1394,10 +1541,6 @@ inherited frmManuProdutos: TfrmManuProdutos
         TabOrder = 4
       end
     end
-    object tsGrade: TTabSheet
-      Caption = 'Grade'
-      ImageIndex = 3
-    end
     object rsObs: TTabSheet
       Caption = 'Obs'
       ImageIndex = 2
@@ -1405,7 +1548,7 @@ inherited frmManuProdutos: TfrmManuProdutos
         Left = 0
         Top = 0
         Width = 526
-        Height = 329
+        Height = 358
         Align = alClient
         Ctl3D = False
         DataField = 'observ'

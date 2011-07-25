@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, untManutencao, StdCtrls, DBCtrls, Mask, ComCtrls, DB, ImgList,
-  ToolWin, untDeclaracoes, ToolEdit, RXDBCtrl;
+  ToolWin, untDeclaracoes, ToolEdit, RXDBCtrl, CurrEdit, ExtCtrls;
 
 type
   TfrmManuGrupoProdutos = class(TfrmManutencao)
@@ -20,6 +20,19 @@ type
     dbcbControlarDesconto: TDBCheckBox;
     Label18: TLabel;
     dbdateedtdatacadastro: TDBDateEdit;
+    tsPromocao: TTabSheet;
+    dbcbxGrupoPromocao: TDBCheckBox;
+    gbPromocional: TGroupBox;
+    dbValidoAteData: TDBCheckBox;
+    dbValidoAteDiaSemana: TDBCheckBox;
+    ValidoTodosOsdia: TDBCheckBox;
+    dbdeClienteDesd: TDBDateEdit;
+    dbeDia: TDBEdit;
+    dbcbDiasSemanas: TDBComboBox;
+    dbeValor: TRxDBCalcEdit;
+    Label2: TLabel;
+    Bevel3: TBevel;
+    Bevel1: TBevel;
     procedure dbeDescricaoExit(Sender: TObject);
     procedure dbcbControlarDescontoClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -28,6 +41,10 @@ type
     procedure dbeValorDescontoKeyPress(Sender: TObject; var Key: Char);
     procedure tbAdicionarClick(Sender: TObject);
     procedure tbGravarClick(Sender: TObject);
+    procedure dbcbxGrupoPromocaoClick(Sender: TObject);
+    procedure dbValidoAteDataClick(Sender: TObject);
+    procedure dbValidoAteDiaSemanaClick(Sender: TObject);
+    procedure ValidoTodosOsdiaClick(Sender: TObject);
   private
     F : TFuncoes;
     procedure verificaInsercao;
@@ -134,6 +151,31 @@ begin
       f.Mensagem(false,'Preencha Descrição!');
       result:= false;
    end else result:=true;
+end;
+
+procedure TfrmManuGrupoProdutos.dbcbxGrupoPromocaoClick(Sender: TObject);
+begin
+  if dbcbxGrupoPromocao.Checked then
+    gbPromocional.Enabled := true
+  else gbPromocional.Enabled := false;  
+end;
+
+procedure TfrmManuGrupoProdutos.dbValidoAteDataClick(Sender: TObject);
+begin
+  dbValidoAteDiaSemana.Checked := false;
+  ValidoTodosOsdia.Checked := false;
+end;
+
+procedure TfrmManuGrupoProdutos.dbValidoAteDiaSemanaClick(Sender: TObject);
+begin
+  dbValidoAteData.Checked := false;
+  ValidoTodosOsdia.Checked := false;
+end;
+
+procedure TfrmManuGrupoProdutos.ValidoTodosOsdiaClick(Sender: TObject);
+begin
+  dbValidoAteData.Checked := false;
+  dbValidoAteDiaSemana.Checked := false;
 end;
 
 end.
