@@ -1,7 +1,7 @@
 object dm: Tdm
   OldCreateOrder = False
-  Left = 934
-  Top = 98
+  Left = 565
+  Top = 59
   Height = 445
   Width = 448
   object cdsUsu: TClientDataSet
@@ -156,6 +156,12 @@ object dm: Tdm
     OnReconcileError = cdsChequeReconcileError
     Left = 216
     Top = 64
+    object cdsForcdforn: TIntegerField
+      DisplayLabel = 'C'#243'd.'
+      DisplayWidth = 10
+      FieldName = 'cdforn'
+      Required = True
+    end
     object cdsFornmfant: TStringField
       DisplayLabel = 'Nome Fantasia'
       DisplayWidth = 50
@@ -164,17 +170,9 @@ object dm: Tdm
       Size = 50
     end
     object cdsForrzsoci: TStringField
-      DisplayLabel = 'Raz'#227'o Social'
       DisplayWidth = 50
       FieldName = 'rzsoci'
       Size = 50
-    end
-    object cdsForcdforn: TIntegerField
-      DisplayLabel = 'C'#243'd.'
-      DisplayWidth = 10
-      FieldName = 'cdforn'
-      Required = True
-      Visible = False
     end
     object cdsForcdempr: TIntegerField
       DisplayLabel = 'C'#243'd.Empr.'
@@ -575,34 +573,72 @@ object dm: Tdm
     Top = 8
     object cdsGRProcdgrup: TIntegerField
       DisplayLabel = 'C'#243'd.'
+      DisplayWidth = 10
       FieldName = 'cdgrup'
-      Required = True
-    end
-    object cdsGRProdtcada: TDateField
-      DisplayLabel = 'Dt.Cadastro'
-      FieldName = 'dtcada'
-    end
-    object cdsGRProcdempr: TIntegerField
-      DisplayLabel = 'Cod.Empr.'
-      FieldName = 'cdempr'
       Required = True
     end
     object cdsGRProdescri: TStringField
       DisplayLabel = 'Descri'#231#227'o'
+      DisplayWidth = 30
       FieldName = 'descri'
       Required = True
       Size = 30
     end
+    object cdsGRProdtcada: TDateField
+      DisplayLabel = 'Dt.Cadastro'
+      DisplayWidth = 10
+      FieldName = 'dtcada'
+      Visible = False
+    end
+    object cdsGRProcdempr: TIntegerField
+      DisplayLabel = 'Cod.Empr.'
+      DisplayWidth = 10
+      FieldName = 'cdempr'
+      Required = True
+      Visible = False
+    end
     object cdsGRProacdesc: TStringField
       DisplayLabel = 'Ac.Desc.'
+      DisplayWidth = 1
       FieldName = 'acdesc'
+      Visible = False
       Size = 1
     end
     object cdsGRProvldesc: TFloatField
       DisplayLabel = 'Desc. M'#225'ximo(%)'
+      DisplayWidth = 10
       FieldName = 'vldesc'
+      Visible = False
       DisplayFormat = '#.00'
       EditFormat = '#.00'
+    end
+    object cdsGRProgrupro: TStringField
+      DisplayLabel = 'Grupo Em Promo'#231#227'o?'
+      FieldName = 'grupro'
+      Size = 1
+    end
+    object cdsGRProtpprom: TStringField
+      DisplayLabel = 'Tipo Promo'#231#227'o'
+      FieldName = 'tpprom'
+      Size = 2
+    end
+    object cdsGRProdespro: TFloatField
+      DisplayLabel = 'Desconto Promocional'
+      FieldName = 'despro'
+    end
+    object cdsGRProdtvali: TDateField
+      DisplayLabel = 'V'#225'lido At'#233
+      FieldName = 'dtvali'
+    end
+    object cdsGRProvlddia: TIntegerField
+      DisplayLabel = 'V'#225'lido Todo Dia'
+      FieldName = 'vlddia'
+    end
+    object cdsGRProvldsem: TStringField
+      DisplayLabel = 'V'#225'lido Todo Dia  da Semana'
+      FieldName = 'vldsem'
+      OnGetText = cdsGRProvldsemGetText
+      Size = 1
     end
   end
   object cdsProfi: TClientDataSet
@@ -1544,6 +1580,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspProd'
     RemoteServer = scHC
+    AfterInsert = cdsProdAfterInsert
     OnReconcileError = cdsChequeReconcileError
     Left = 232
     Top = 232
@@ -1572,6 +1609,10 @@ object dm: Tdm
       OnGetText = cdsProdtipoprGetText
       Size = 1
     end
+    object cdsProdcdgrad: TIntegerField
+      DisplayLabel = 'C'#243'd.Grade'
+      FieldName = 'cdgrad'
+    end
     object cdsProddescri: TStringField
       DisplayLabel = 'Descri'#231#227'o'
       DisplayWidth = 50
@@ -1590,7 +1631,7 @@ object dm: Tdm
       DisplayWidth = 10
       FieldName = 'preven'
       Required = True
-      DisplayFormat = '#.00'
+      DisplayFormat = '#,##0.00'
     end
     object cdsProdcdempr: TIntegerField
       DisplayLabel = 'C'#243'd.Empresa'
@@ -1604,6 +1645,10 @@ object dm: Tdm
       DisplayWidth = 10
       FieldName = 'dtcada'
       Visible = False
+    end
+    object cdsProdvencim: TDateField
+      DisplayLabel = 'Vencimento'
+      FieldName = 'vencim'
     end
     object cdsProdativo: TStringField
       DisplayLabel = 'Ativo'
@@ -1652,6 +1697,21 @@ object dm: Tdm
       Size = 30
       Lookup = True
     end
+    object cdsProdcdforn: TIntegerField
+      DisplayLabel = 'C'#243'd.Fornecedor'
+      FieldName = 'cdforn'
+    end
+    object cdsProdprocuraFornecedor: TStringField
+      DisplayLabel = 'Fornecedor'
+      FieldKind = fkLookup
+      FieldName = 'procuraFornecedor'
+      LookupDataSet = cdsFor
+      LookupKeyFields = 'cdforn'
+      LookupResultField = 'nmfant'
+      KeyFields = 'cdforn'
+      Size = 30
+      Lookup = True
+    end
     object cdsProdtipcon: TStringField
       DisplayLabel = 'Tipo Controle'
       DisplayWidth = 1
@@ -1671,7 +1731,7 @@ object dm: Tdm
       DisplayWidth = 10
       FieldName = 'precus'
       Visible = False
-      DisplayFormat = '#.00'
+      DisplayFormat = '#,##0.00'
     end
     object cdsProdestmin: TFloatField
       DisplayLabel = 'Est.Minimo'
@@ -1685,7 +1745,7 @@ object dm: Tdm
       DisplayWidth = 10
       FieldName = 'cusrea'
       Visible = False
-      DisplayFormat = '#.00'
+      DisplayFormat = '#,##0.00'
     end
     object cdsProdpesliq: TFloatField
       DisplayLabel = 'Peso Liquido'
@@ -2016,6 +2076,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspTrans'
     RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
     Left = 56
     Top = 344
     object cdsTranscdtran: TIntegerField
@@ -2106,6 +2167,52 @@ object dm: Tdm
       DisplayLabel = 'Home Page'
       FieldName = 'homepa'
       Size = 50
+    end
+  end
+  object cdsGradePro: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspGDPro'
+    RemoteServer = scHC
+    OnReconcileError = cdsChequeReconcileError
+    Left = 128
+    Top = 344
+    object cdsGradeProcdgrad: TIntegerField
+      DisplayLabel = 'C'#243'd.'
+      DisplayWidth = 10
+      FieldName = 'cdgrad'
+      Required = True
+    end
+    object cdsGradeProdescri: TStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      DisplayWidth = 30
+      FieldName = 'descri'
+      Required = True
+      Size = 30
+    end
+    object cdsGradeProdeslin: TStringField
+      DisplayLabel = 'Descri'#231#227'o Linhas'
+      DisplayWidth = 30
+      FieldName = 'deslin'
+      Required = True
+      Size = 30
+    end
+    object cdsGradeProdescol: TStringField
+      DisplayLabel = 'Descri'#231#227'o Colunas'
+      DisplayWidth = 30
+      FieldName = 'descol'
+      Required = True
+      Size = 30
+    end
+    object cdsGradeProdtcada: TDateField
+      DisplayWidth = 10
+      FieldName = 'dtcada'
+      Visible = False
+    end
+    object cdsGradeProcdempr: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'cdempr'
+      Visible = False
     end
   end
 end

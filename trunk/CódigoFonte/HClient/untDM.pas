@@ -365,6 +365,23 @@ type
     cdsTransrespon: TStringField;
     cdsTransemail: TStringField;
     cdsTranshomepa: TStringField;
+    cdsProdvencim: TDateField;
+    cdsProdcdforn: TIntegerField;
+    cdsProdprocuraFornecedor: TStringField;
+    cdsProdcdgrad: TIntegerField;
+    cdsGradePro: TClientDataSet;
+    cdsGradeProcdgrad: TIntegerField;
+    cdsGradeProdtcada: TDateField;
+    cdsGradeProcdempr: TIntegerField;
+    cdsGradeProdescri: TStringField;
+    cdsGradeProdeslin: TStringField;
+    cdsGradeProdescol: TStringField;
+    cdsGRProdespro: TFloatField;
+    cdsGRProdtvali: TDateField;
+    cdsGRProvlddia: TIntegerField;
+    cdsGRProgrupro: TStringField;
+    cdsGRProtpprom: TStringField;
+    cdsGRProvldsem: TStringField;
     function verificaBD():Boolean;
     function Autenticacao(cdemp:integer;login:String;senha:string): boolean;
     procedure cdsProdclaoriGetText(Sender: TField; var Text: String;
@@ -381,6 +398,9 @@ type
     procedure cdsChequeReconcileError(DataSet: TCustomClientDataSet;
       E: EReconcileError; UpdateKind: TUpdateKind;
       var Action: TReconcileAction);
+    procedure cdsProdAfterInsert(DataSet: TDataSet);
+    procedure cdsGRProvldsemGetText(Sender: TField; var Text: String;
+      DisplayText: Boolean);
   private
     F: TFuncoes;
     { Private declarations }
@@ -395,7 +415,8 @@ var
   
 implementation
 
-uses untPrincipal, untInicial, untConfBD, untReconciliacaoErros;
+uses untPrincipal, untInicial, untConfBD, untReconciliacaoErros,
+  untManuProdutos;
 
 {$R *.dfm}
 
@@ -561,6 +582,27 @@ procedure Tdm.cdsChequeReconcileError(DataSet: TCustomClientDataSet;
   var Action: TReconcileAction);
 begin
   action := HandleReconcileError(DataSet,UpdateKind,E);
+end;
+
+procedure Tdm.cdsProdAfterInsert(DataSet: TDataSet);
+begin
+  cdsProdtipopr.Value := 'Produto';
+  cdsProdtipcon.Value := 'N';
+  cdsProdunidad.Value := 'Unidade';
+  cdsProdclaori.Value := '0';
+  cdsProdsittri.Value := '00';
+end;
+
+procedure Tdm.cdsGRProvldsemGetText(Sender: TField; var Text: String;
+  DisplayText: Boolean);
+begin
+  If Sender.Value ='0' then Text:='SEGUNDA-FEIRA' else
+  If Sender.Value ='1' then Text:='TERÇA-FEIRA' else
+  If Sender.Value ='2' then Text:='QUARTA-FEIRA' else
+  If Sender.Value ='3' then Text:='QUINTA-FEIRA' else
+  If Sender.Value ='4' then Text:='SEXTA-FEIRA' else
+  If Sender.Value ='5' then Text:='SABADO' else
+  If Sender.Value ='6' then Text:='DOMINGO' else
 end;
 
 end.

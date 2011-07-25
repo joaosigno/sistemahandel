@@ -521,7 +521,7 @@ object RDM: TRDM
   end
   object dspCUsu: TDataSetProvider
     DataSet = qryCUsu
-    Options = [poCascadeDeletes, poCascadeUpdates, poReadOnly, poAutoRefresh, poAllowCommandText]
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poReadOnly, poAutoRefresh, poAllowCommandText]
     Left = 296
     Top = 8
   end
@@ -562,6 +562,26 @@ object RDM: TRDM
     end
     object qryGRProdtcada: TDateField
       FieldName = 'dtcada'
+    end
+    object qryGRProdespro: TFloatField
+      FieldName = 'despro'
+    end
+    object qryGRProdtvali: TDateField
+      FieldName = 'dtvali'
+    end
+    object qryGRProvlddia: TIntegerField
+      FieldName = 'vlddia'
+    end
+    object qryGRProgrupro: TStringField
+      FieldName = 'grupro'
+      Size = 1
+    end
+    object qryGRProtpprom: TStringField
+      FieldName = 'tpprom'
+      Size = 2
+    end
+    object qryGRProvldsem: TIntegerField
+      FieldName = 'vldsem'
     end
   end
   object dspGRPro: TDataSetProvider
@@ -1169,6 +1189,15 @@ object RDM: TRDM
     object qryProdprecus: TFloatField
       FieldName = 'precus'
     end
+    object qryProdvencim: TDateField
+      FieldName = 'vencim'
+    end
+    object qryProdcdforn: TIntegerField
+      FieldName = 'cdforn'
+    end
+    object qryProdcdgrad: TIntegerField
+      FieldName = 'cdgrad'
+    end
   end
   object dspHMPro: TDataSetProvider
     DataSet = qryHMPro
@@ -1468,5 +1497,87 @@ object RDM: TRDM
       Required = True
       Size = 1
     end
+  end
+  object qryTrans: TZReadOnlyQuery
+    Connection = con
+    SQL.Strings = (
+      'select * from trans')
+    Params = <>
+    Left = 520
+    Top = 296
+    object qryTranscdtran: TIntegerField
+      FieldName = 'cdtran'
+      Required = True
+    end
+    object qryTranscdempr: TIntegerField
+      FieldName = 'cdempr'
+    end
+    object qryTransnmfant: TStringField
+      FieldName = 'nmfant'
+      Required = True
+      Size = 50
+    end
+    object qryTransdtcada: TDateField
+      FieldName = 'dtcada'
+    end
+    object qryTransrzsoci: TStringField
+      FieldName = 'rzsoci'
+      Size = 50
+    end
+    object qryTransendere: TStringField
+      FieldName = 'endere'
+      Size = 50
+    end
+    object qryTranstelefo: TStringField
+      FieldName = 'telefo'
+    end
+    object qryTransfax: TStringField
+      FieldName = 'fax'
+    end
+    object qryTransbairro: TStringField
+      FieldName = 'bairro'
+      Size = 30
+    end
+    object qryTranscidade: TStringField
+      FieldName = 'cidade'
+      Size = 30
+    end
+    object qryTransnumero: TStringField
+      FieldName = 'numero'
+      Size = 6
+    end
+    object qryTransuf: TStringField
+      FieldName = 'uf'
+      Size = 2
+    end
+    object qryTranscep: TStringField
+      FieldName = 'cep'
+      Size = 10
+    end
+    object qryTranscgc: TStringField
+      FieldName = 'cgc'
+      Size = 14
+    end
+    object qryTransinsest: TStringField
+      FieldName = 'insest'
+    end
+    object qryTransrespon: TStringField
+      FieldName = 'respon'
+      Size = 50
+    end
+    object qryTransemail: TStringField
+      FieldName = 'email'
+      Size = 50
+    end
+    object qryTranshomepa: TStringField
+      FieldName = 'homepa'
+      Size = 50
+    end
+  end
+  object dspTrans: TDataSetProvider
+    DataSet = qryTrans
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
+    Left = 608
+    Top = 296
   end
 end

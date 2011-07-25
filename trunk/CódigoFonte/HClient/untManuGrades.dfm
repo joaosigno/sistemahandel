@@ -1,6 +1,6 @@
 inherited frmManuGrades: TfrmManuGrades
-  Left = 642
-  Top = 135
+  Left = 411
+  Top = 117
   Caption = 'Manuten'#231#227'o de Grades'
   ClientHeight = 459
   ClientWidth = 495
@@ -421,13 +421,19 @@ inherited frmManuGrades: TfrmManuGrades
   end
   object cdsColGrade: TClientDataSet
     Aggregates = <>
-    Params = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'codgrade'
+        ParamType = ptInput
+      end>
     ProviderName = 'dspColunaGrade'
     RemoteServer = dm.scHC
     AfterInsert = cdsColGradeAfterInsert
     AfterEdit = cdsColGradeAfterEdit
     BeforePost = cdsColGradeBeforePost
     AfterPost = cdsColGradeAfterPost
+    AfterCancel = cdsColGradeAfterCancel
     AfterDelete = cdsColGradeAfterDelete
     OnReconcileError = cdsColGradeReconcileError
     Left = 224
@@ -463,13 +469,19 @@ inherited frmManuGrades: TfrmManuGrades
   end
   object cdsLinhGrade: TClientDataSet
     Aggregates = <>
-    Params = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'codgrade'
+        ParamType = ptInput
+      end>
     ProviderName = 'dspLinhaGrade'
     RemoteServer = dm.scHC
     AfterInsert = cdsLinhGradeAfterInsert
     AfterEdit = cdsLinhGradeAfterEdit
     BeforePost = cdsLinhGradeBeforePost
     AfterPost = cdsLinhGradeAfterPost
+    AfterCancel = cdsLinhGradeAfterCancel
     AfterDelete = cdsLinhGradeAfterDelete
     OnReconcileError = cdsColGradeReconcileError
     Left = 216
@@ -505,12 +517,19 @@ inherited frmManuGrades: TfrmManuGrades
   end
   object cdsGDProd: TClientDataSet
     Aggregates = <>
-    Params = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'empresa'
+        ParamType = ptInput
+      end>
     ProviderName = 'dspGDPro'
     RemoteServer = dm.scHC
     AfterInsert = cdsGDProdAfterInsert
+    AfterEdit = cdsGDProdAfterEdit
     BeforePost = cdsGDProdBeforePost
     AfterPost = cdsGDProdAfterPost
+    BeforeCancel = cdsGDProdBeforeCancel
     AfterCancel = cdsGDProdAfterCancel
     BeforeDelete = cdsGDProdBeforeDelete
     AfterDelete = cdsGDProdAfterDelete

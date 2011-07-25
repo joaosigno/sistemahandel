@@ -35,7 +35,10 @@ uses
   untManuNaturezaOperacao in 'untManuNaturezaOperacao.pas' {frmManuNaturezaOperacao},
   untManuContasPagar in 'untManuContasPagar.pas' {frmManuContasPagar},
   untReconciliacaoErros in 'untReconciliacaoErros.pas' {ReconcileErrorForm},
-  untManuTransportadoras in 'untManuTransportadoras.pas' {frmManuTransportadoras};
+  untManuTransportadoras in 'untManuTransportadoras.pas' {frmManuTransportadoras},
+  untConsultaProdutosVencimento in 'untConsultaProdutosVencimento.pas' {frmConsultaProdutosVencimento},
+  untReajustePreco in 'untReajustePreco.pas' {frmReajustePreco},
+  untConferenciaEstoque in 'untConferenciaEstoque.pas' {frmConferenciaEstoque};
 
 {$R *.res}
 

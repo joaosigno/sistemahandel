@@ -1,6 +1,6 @@
 inherited frmManuClientes: TfrmManuClientes
-  Left = 299
-  Top = 51
+  Left = 773
+  Top = 131
   Caption = 'Manuten'#231#227'o de Clientes'
   ClientHeight = 369
   ClientWidth = 553

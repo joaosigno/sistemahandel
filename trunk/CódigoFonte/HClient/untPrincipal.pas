@@ -81,6 +81,9 @@ type
     acNaturezaOperacao: TAction;
     acContasPagar: TAction;
     acTransportadora: TAction;
+    acConsultaVEncimento: TAction;
+    acReajustePreco: TAction;
+    acConferenciaEstoque: TAction;
     procedure AcVizualizarFornecedoresExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -118,6 +121,9 @@ type
     procedure acNaturezaOperacaoExecute(Sender: TObject);
     procedure acContasPagarExecute(Sender: TObject);
     procedure acTransportadoraExecute(Sender: TObject);
+    procedure acConsultaVEncimentoExecute(Sender: TObject);
+    procedure acReajustePrecoExecute(Sender: TObject);
+    procedure acConferenciaEstoqueExecute(Sender: TObject);
   private
     F : TFuncoes;
     { Private declarations }
@@ -140,7 +146,8 @@ uses untDM, untMensagem, untConfBD,
   untManuClientes, untManuBanco, untManuCartaoFidelidade, untManuCheques,
   untManuVendedores, untManuMarcaProdutos, untDefineEmpresaUsuario,
   untManuProdutos, untManuAcertoEstoque, untManuGrades,
-  untManuNaturezaOperacao, untManuContasPagar, SQL, untManuTransportadoras;
+  untManuNaturezaOperacao, untManuContasPagar, SQL, untManuTransportadoras,
+  untConsultaProdutosVencimento, untReajustePreco, untConferenciaEstoque;
 
 {$R *.dfm}
 
@@ -494,6 +501,27 @@ begin
  RegisterClass(TfrmManuTransportadoras);
  VD.showForm('Transportadoras',dm.cdsTrans,'TfrmManuTransportadoras',
                          '*','trans',' order by cdtran');
+end;
+
+procedure TfrmPrincipal.acConsultaVEncimentoExecute(Sender: TObject);
+begin
+    frmConsultaProdutosVencimento := TfrmConsultaProdutosVencimento.Create(Application);
+    frmConsultaProdutosVencimento.ShowModal;
+    frmConsultaProdutosVencimento.Free;
+end;
+
+procedure TfrmPrincipal.acReajustePrecoExecute(Sender: TObject);
+begin
+   frmReajustePreco := TfrmReajustePreco.Create(Application);
+   frmReajustePreco.ShowModal;
+   frmReajustePreco.Free;
+end;
+
+procedure TfrmPrincipal.acConferenciaEstoqueExecute(Sender: TObject);
+begin
+  frmConferenciaEstoque := TfrmConferenciaEstoque.Create(Application);
+  frmConferenciaEstoque.ShowModal;
+  frmConferenciaEstoque.Free;
 end;
 
 end.
