@@ -132,8 +132,8 @@ procedure TfrmSequenciaisProdutos.cdsSequenciaisAfterPost(
 begin
   if (tipoform = 1) then
   begin
-    lbl_qtdatual.caption := FormatFloat('#,##0.00',cdsSequenciaissomaauxiliar.value);
-    lbl_qtdrestante.caption := FormatFloat('#,##0.00',strtofloat(lbl_qtdinicial.caption) - cdsSequenciaissomaauxiliar.value);
+//    lbl_qtdatual.caption := FormatFloat('#,##0.00',cdsSequenciaissomaauxiliar.value);
+//    lbl_qtdrestante.caption := FormatFloat('#,##0.00',strtofloat(lbl_qtdinicial.caption) - cdsSequenciaissomaauxiliar.value);
   end;
 end;
 

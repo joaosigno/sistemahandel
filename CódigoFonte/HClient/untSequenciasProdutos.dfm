@@ -5,7 +5,7 @@ object frmSequenciaisProdutos: TfrmSequenciaisProdutos
   BorderStyle = bsSingle
   Caption = 'Sequencias do Produto'
   ClientHeight = 337
-  ClientWidth = 685
+  ClientWidth = 589
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -325,18 +325,18 @@ object frmSequenciaisProdutos: TfrmSequenciaisProdutos
   object AdvancedPanel2: TPanel
     Left = 4
     Top = 5
-    Width = 677
+    Width = 579
     Height = 52
     ParentBackground = False
     TabOrder = 0
     object Bevel3: TBevel
-      Left = 524
+      Left = 425
       Top = 25
       Width = 150
       Height = 23
     end
     object Bevel2: TBevel
-      Left = 258
+      Left = 225
       Top = 25
       Width = 149
       Height = 23
@@ -356,7 +356,7 @@ object frmSequenciaisProdutos: TfrmSequenciaisProdutos
       Transparent = True
     end
     object DR2: TLabel
-      Left = 265
+      Left = 232
       Top = 29
       Width = 56
       Height = 14
@@ -364,7 +364,7 @@ object frmSequenciaisProdutos: TfrmSequenciaisProdutos
       Transparent = True
     end
     object DR3: TLabel
-      Left = 530
+      Left = 431
       Top = 29
       Width = 56
       Height = 14
@@ -381,7 +381,7 @@ object frmSequenciaisProdutos: TfrmSequenciaisProdutos
       Transparent = True
     end
     object lbl_qtdatual: TLabel
-      Left = 365
+      Left = 332
       Top = 29
       Width = 28
       Height = 14
@@ -390,7 +390,7 @@ object frmSequenciaisProdutos: TfrmSequenciaisProdutos
       Transparent = True
     end
     object lbl_qtdrestante: TLabel
-      Left = 631
+      Left = 532
       Top = 29
       Width = 28
       Height = 14
@@ -401,7 +401,7 @@ object frmSequenciaisProdutos: TfrmSequenciaisProdutos
     object AdvancedPanel3: TPanel
       Left = 1
       Top = 1
-      Width = 675
+      Width = 577
       Height = 21
       Align = alTop
       BevelOuter = bvNone
@@ -427,7 +427,7 @@ object frmSequenciaisProdutos: TfrmSequenciaisProdutos
   object gridDependentes: TDBGrid
     Left = 6
     Top = 64
-    Width = 675
+    Width = 579
     Height = 233
     Align = alCustom
     Ctl3D = False
@@ -448,12 +448,6 @@ object frmSequenciaisProdutos: TfrmSequenciaisProdutos
     TitleFont.Style = [fsBold]
     OnDrawColumnCell = gridDependentesDrawColumnCell
     Columns = <
-      item
-        Expanded = False
-        FieldName = 'cdsequ'
-        Width = 80
-        Visible = True
-      end
       item
         Expanded = False
         FieldName = 'descri'
@@ -490,7 +484,7 @@ object frmSequenciaisProdutos: TfrmSequenciaisProdutos
       end>
   end
   object btn_ok: TButton
-    Left = 517
+    Left = 421
     Top = 303
     Width = 80
     Height = 26
@@ -510,7 +504,7 @@ object frmSequenciaisProdutos: TfrmSequenciaisProdutos
     OnClick = btn_okClick
   end
   object btn_cancelar: TButton
-    Left = 601
+    Left = 505
     Top = 303
     Width = 80
     Height = 26
