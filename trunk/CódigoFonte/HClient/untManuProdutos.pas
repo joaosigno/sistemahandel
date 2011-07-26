@@ -116,6 +116,8 @@ type
     procedure tbCancelarClick(Sender: TObject);
     procedure dbcbbxTipoProdutoChange(Sender: TObject);
     procedure pesquisagradeKeyPress(Sender: TObject; var Key: Char);
+    procedure pesquisagradeEnter(Sender: TObject);
+    procedure pesquisagradeChange(Sender: TObject);
   private
    F: TFuncoes;
    SQL : TSQL;
@@ -124,6 +126,7 @@ type
     { Private declarations }
   public
   MudouTipodeControle: String;
+  codigograde : string;
     { Public declarations }
   end;
 
@@ -452,6 +455,7 @@ begin
 end;
 
 procedure TfrmManuProdutos.pesquisagradeExit(Sender: TObject);
+var codigograde2:string;
 begin
   if pesquisagrade.Text <> '' then
     begin
@@ -463,7 +467,9 @@ begin
           f.Mensagem(false,'Grade Não Existe!');
       end;
     end;
-
+    codigograde2 := pesquisagrade.Text;
+    if codigograde2 <> codigograde then
+      MudouTipodeControle := 'S';
 end;
 
 procedure TfrmManuProdutos.tbCancelarClick(Sender: TObject);
@@ -480,7 +486,21 @@ end;
 procedure TfrmManuProdutos.pesquisagradeKeyPress(Sender: TObject;
   var Key: Char);
 begin
-  MudouTipodeControle := 'S';
+//   MudouTipodeControle := 'S';
+end;
+
+procedure TfrmManuProdutos.pesquisagradeEnter(Sender: TObject);
+begin
+    codigograde := pesquisagrade.Text;
+end;
+
+procedure TfrmManuProdutos.pesquisagradeChange(Sender: TObject);
+var codigograde2:string;
+begin
+  codigograde2 := pesquisagrade.Text;
+    if codigograde2 <> codigograde then
+      MudouTipodeControle := 'S';
+
 end;
 
 end.

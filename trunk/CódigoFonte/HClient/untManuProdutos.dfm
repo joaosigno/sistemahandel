@@ -1298,6 +1298,8 @@ inherited frmManuProdutos: TfrmManuProdutos
         AutoDropDown = False
         ShowButton = True
         AllowClearKey = False
+        OnChange = pesquisagradeChange
+        OnEnter = pesquisagradeEnter
         OnExit = pesquisagradeExit
         OnKeyPress = pesquisagradeKeyPress
       end
