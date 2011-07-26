@@ -1581,4 +1581,61 @@ object RDM: TRDM
     Left = 608
     Top = 296
   end
+  object qrySequenciais: TZReadOnlyQuery
+    Connection = con
+    SQL.Strings = (
+      'select * from sqpro')
+    Params = <>
+    Left = 520
+    Top = 344
+    object qrySequenciaiscdsequ: TIntegerField
+      FieldName = 'cdsequ'
+      Required = True
+    end
+    object qrySequenciaiscdempr: TIntegerField
+      FieldName = 'cdempr'
+      Required = True
+    end
+    object qrySequenciaisdtcada: TDateField
+      FieldName = 'dtcada'
+    end
+    object qrySequenciaisultcom: TDateField
+      FieldName = 'ultcom'
+    end
+    object qrySequenciaisultven: TDateField
+      FieldName = 'ultven'
+    end
+    object qrySequenciaiscdprod: TIntegerField
+      FieldName = 'cdprod'
+      Required = True
+    end
+    object qrySequenciaisdescri: TStringField
+      FieldName = 'descri'
+      Required = True
+      Size = 30
+    end
+    object qrySequenciaisprecus: TFloatField
+      FieldName = 'precus'
+      Required = True
+    end
+    object qrySequenciaisestatu: TFloatField
+      FieldName = 'estatu'
+    end
+    object qrySequenciaispreven: TFloatField
+      FieldName = 'preven'
+      Required = True
+    end
+    object qrySequenciaisvencim: TDateField
+      FieldName = 'vencim'
+    end
+    object qrySequenciaisauxili: TFloatField
+      FieldName = 'auxili'
+    end
+  end
+  object dspSequenciais: TDataSetProvider
+    DataSet = qrySequenciais
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
+    Left = 608
+    Top = 344
+  end
 end

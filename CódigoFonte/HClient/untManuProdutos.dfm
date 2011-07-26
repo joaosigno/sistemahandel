@@ -1299,6 +1299,7 @@ inherited frmManuProdutos: TfrmManuProdutos
         ShowButton = True
         AllowClearKey = False
         OnExit = pesquisagradeExit
+        OnKeyPress = pesquisagradeKeyPress
       end
     end
     object tsImpostos: TTabSheet
@@ -1565,5 +1566,54 @@ inherited frmManuProdutos: TfrmManuProdutos
   inherited DataSource: TDataSource
     Left = 224
     Top = 216
+  end
+  object cdssequencial: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspSequenciais'
+    RemoteServer = dm.scHC
+    Left = 260
+    Top = 17
+    object cdssequencialcdsequ: TIntegerField
+      FieldName = 'cdsequ'
+      Required = True
+    end
+    object cdssequencialcdempr: TIntegerField
+      FieldName = 'cdempr'
+      Required = True
+    end
+    object cdssequencialdtcada: TDateField
+      FieldName = 'dtcada'
+    end
+    object cdssequencialultcom: TDateField
+      FieldName = 'ultcom'
+    end
+    object cdssequencialultven: TDateField
+      FieldName = 'ultven'
+    end
+    object cdssequencialcdprod: TIntegerField
+      FieldName = 'cdprod'
+      Required = True
+    end
+    object cdssequencialdescri: TStringField
+      FieldName = 'descri'
+      Required = True
+      Size = 30
+    end
+    object cdssequencialestatu: TFloatField
+      FieldName = 'estatu'
+      Required = True
+    end
+    object cdssequencialprecus: TFloatField
+      FieldName = 'precus'
+      Required = True
+    end
+    object cdssequencialpreven: TFloatField
+      FieldName = 'preven'
+      Required = True
+    end
+    object cdssequencialvencim: TDateField
+      FieldName = 'vencim'
+    end
   end
 end

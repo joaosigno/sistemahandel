@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, untManutencao, DB, ImgList, ComCtrls, ToolWin,untDeclaracoes,
-  StdCtrls, Mask, DBCtrls, ToolEdit, RXDBCtrl, CurrEdit, wwdblook, Wwdbdlg;
+  StdCtrls, Mask, DBCtrls, ToolEdit, RXDBCtrl, CurrEdit, wwdblook, Wwdbdlg,
+  DBClient, SQL;
 
 type
   TfrmManuProdutos = class(TfrmManutencao)
@@ -77,6 +78,18 @@ type
     dblcbFornecedor: TDBLookupComboBox;
     Label29: TLabel;
     pesquisagrade: TwwDBLookupComboDlg;
+    cdssequencial: TClientDataSet;
+    cdssequencialcdsequ: TIntegerField;
+    cdssequencialcdempr: TIntegerField;
+    cdssequencialdtcada: TDateField;
+    cdssequencialultcom: TDateField;
+    cdssequencialultven: TDateField;
+    cdssequencialcdprod: TIntegerField;
+    cdssequencialdescri: TStringField;
+    cdssequencialestatu: TFloatField;
+    cdssequencialprecus: TFloatField;
+    cdssequencialpreven: TFloatField;
+    cdssequencialvencim: TDateField;
     procedure FormShow(Sender: TObject);
     procedure tbAdicionarClick(Sender: TObject);
     procedure tbGravarClick(Sender: TObject);
@@ -102,12 +115,15 @@ type
     procedure pesquisagradeExit(Sender: TObject);
     procedure tbCancelarClick(Sender: TObject);
     procedure dbcbbxTipoProdutoChange(Sender: TObject);
+    procedure pesquisagradeKeyPress(Sender: TObject; var Key: Char);
   private
    F: TFuncoes;
+   SQL : TSQL;
   function verificaDadosAntesGravar():Boolean;
   procedure verificaInsercao();
     { Private declarations }
   public
+  MudouTipodeControle: String;
     { Public declarations }
   end;
 
@@ -116,7 +132,7 @@ var
 
 implementation
 
-uses untDM, untPrincipal;
+uses untDM, untPrincipal, untSequenciasProdutos;
 
 {$R *.dfm}
 
@@ -192,6 +208,29 @@ begin
      dm.cdsProdcdempr.AsInteger := frmPrincipal.Configuracao.EmpresaCodigo;
      dbeCod.Text := ManuDAO.SQL.proxCod(dm.cdsAux,'cdprod','produ');
   end;
+  if (MudouTipodeControle = 'S') and (dbcbControleGrade.Checked) then
+  begin
+    case MessageDlg('Se o tipo de controle for alterado os dados da Grade/Sequencial existentes para este produto serão perdidos!' + #13 + 'Deseja continuar?', mtConfirmation, [mbyes,mbno], 0) of
+      mryes:
+      begin
+        cdssequencial.First;
+        while not cdssequencial.Eof do
+        begin
+          cdssequencial.Delete;
+        end;
+        cdssequencial.ApplyUpdates(0);
+        if (dm.cdsProdestatu.value > 0) and (dbcbControleGrade.Checked) then
+        begin
+          frmSequenciaisProdutos := TfrmSequenciaisProdutos.create(Application);
+          if dbcbControleGrade.Checked then
+          begin
+            frmSequenciaisProdutos.tipoform := 1;
+          end;
+          if frmSequenciaisProdutos.showmodal = mrcancel then abort;
+        end;
+        end;
+      end;  
+  end;
   inherited;  
 end;
 
@@ -200,6 +239,7 @@ procedure TfrmManuProdutos.FormClose(Sender: TObject;
 begin
   inherited;
   dm.cdsGradePro.Close;
+  cdssequencial.Close;
   ManuDAO.Free;
 end;
 
@@ -209,7 +249,10 @@ begin
   inherited;
   DataSource.DataSet := dm.cdsProd;
   dm.cdsGradePro.Open;
+  sql.executaSQlPorEmp(cdssequencial,'*','sqpro',' and cdprod='+IntToStr(dm.cdsProdcdprod.AsInteger));
+  cdssequencial.Open;
   pesquisagrade.LookupTable := dm.cdsGradePro;
+  MudouTipodeControle := 'N';
 end;
 
 procedure TfrmManuProdutos.DBEcODmARCAExit(Sender: TObject);
@@ -405,6 +448,7 @@ begin
      pesquisagrade.Enabled := true
      else pesquisagrade.Enabled := false;}
      carregaOpcaoes;
+     MudouTipodeControle := 'S';
 end;
 
 procedure TfrmManuProdutos.pesquisagradeExit(Sender: TObject);
@@ -431,6 +475,12 @@ end;
 procedure TfrmManuProdutos.dbcbbxTipoProdutoChange(Sender: TObject);
 begin
   carregaOpcaoes;
+end;
+
+procedure TfrmManuProdutos.pesquisagradeKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  MudouTipodeControle := 'S';
 end;
 
 end.

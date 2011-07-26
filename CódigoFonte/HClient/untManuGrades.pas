@@ -114,6 +114,7 @@ type
     procedure cdsLinhGradeAfterCancel(DataSet: TDataSet);
     procedure cdsGDProdAfterEdit(DataSet: TDataSet);
     procedure cdsGDProdBeforeCancel(DataSet: TDataSet);
+    procedure DataSourceStateChange(Sender: TObject);
   private
   DAOLinha   : TManutencaoDAO;
   DAOColunas : TManutencaoDAO;
@@ -225,6 +226,8 @@ begin
       mrcancel:abort;
     end;
   end;
+  DAOLinha.cancelar;
+  DAOColunas.cancelar;
   cdsGDProd.close; //fecha a tabela
   cdsGDProd.close;
   cdsGDProd.close;
@@ -329,10 +332,12 @@ procedure TfrmManuGrades.tbGravarClick(Sender: TObject);
 begin
   if verificaDadosAntesGravar = false then
     Abort else
-  inherited;
-  verGrade;
-  carregaOpcoes;
-  selecionaLinhasColunas;
+  begin
+   inherited;
+    verGrade;
+    carregaOpcoes;
+    selecionaLinhasColunas;
+  end;
 end;
 
 procedure TfrmManuGrades.dbeDescColKeyUp(Sender: TObject; var Key: Word;
@@ -507,7 +512,6 @@ begin
     cdsColGrade.ApplyUpdates(0);
     cdsLinhGrade.ApplyUpdates(0);
     cdsColGrade.ApplyUpdates(0);
-
   except
 
   end;
@@ -530,8 +534,8 @@ procedure TfrmManuGrades.cdsGDProdAfterPost(DataSet: TDataSet);
 begin
   try
     cdsGDProd.ApplyUpdates(0);
-    cdsLinhGrade.ApplyUpdates(0);
     cdsColGrade.ApplyUpdates(0);
+    cdsLinhGrade.ApplyUpdates(0);
   except
 
   end;
@@ -547,28 +551,12 @@ end;
 
 procedure TfrmManuGrades.cdsGDProdBeforePost(DataSet: TDataSet);
 begin
-  if (cdsLinhGrade.Tag = 3) or (cdsLinhGrade.Tag = 5) then
-  begin
-      cdsLinhGrade.First;
-      while not cdsLinhGrade.Eof do
-      begin
-        cdsColGrade.Edit;
-        cdsLinhGrade.Post;
-        cdsLinhGrade.Next;
-       end;
-      cdsLinhGrade.ApplyUpdates(0);
-  end;
-  if (cdsColGrade.Tag = 3) or (cdsColGrade.Tag = 5) then
-  begin
-      cdsColGrade.First;
-      while not cdsColGrade.Eof do
-      begin
-        cdsColGrade.Edit;
-        cdsColGrade.Post;
-        cdsColGrade.Next;
-       end;
-      cdsColGrade.ApplyUpdates(0);
-  end;
+  if (cdsLinhGrade.Tag = 3) or (cdsLinhGrade.Tag = 5) then cdsLinhGrade.Post;
+  if (cdsColGrade.Tag = 3) or (cdsColGrade.Tag = 5) then cdsColGrade.Post;
+  cdsLinhGrade.ApplyUpdates(0);
+  cdsColGrade.ApplyUpdates(0);
+  cdsLinhGrade.Refresh;
+  cdsColGrade.Refresh;
 end;
 
 procedure TfrmManuGrades.tmr_verificagradeTimer(Sender: TObject);
@@ -593,6 +581,11 @@ end;
 procedure TfrmManuGrades.cdsColGradeAfterPost(DataSet: TDataSet);
 begin
   cdsColGrade.Tag := 0;
+  if DataSource.State in [dsEdit] then
+  begin
+    cdsColGrade.ApplyUpdates(0);
+    cdsColGrade.Refresh;
+  end;
    verGrade;
 end;
 
@@ -609,12 +602,17 @@ begin
   if cdsLinhGradedescri.Text ='' then
   begin
       DAOLinha.cancelar;
-  end else    
+  end else
 end;
 
 procedure TfrmManuGrades.cdsLinhGradeAfterPost(DataSet: TDataSet);
 begin
   cdsLinhGrade.Tag := 0;
+  if DataSource.State in [dsEdit] then
+  begin
+    cdsLinhGrade.ApplyUpdates(0);
+    cdsLinhGrade.Refresh;
+  end;
    verGrade;
 //   carregaOpcoes;
 //   selecionaLinhasColunas;
@@ -645,7 +643,19 @@ end;
 
 procedure TfrmManuGrades.cdsGDProdBeforeCancel(DataSet: TDataSet);
 begin
-    if MessageDlg('Tem certeza que deseja cancelar as alterações?', mtConfirmation, [mbyes,mbno], 0) = mrno then abort;
+//    if MessageDlg('Tem certeza que deseja cancelar as alterações?', mtConfirmation, [mbyes,mbno], 0) = mrno then abort;
+end;
+
+procedure TfrmManuGrades.DataSourceStateChange(Sender: TObject);
+begin
+  inherited;
+  if DataSource.State in [dsEdit,dsInsert] then
+  begin
+      pesquisa.Enabled := false;
+  end else
+  begin
+      pesquisa.Enabled := true;;
+  end;
 end;
 
 end.

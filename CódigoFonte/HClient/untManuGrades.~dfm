@@ -109,7 +109,7 @@ inherited frmManuGrades: TfrmManuGrades
         ParentShowHint = False
         PopupMenu = pm_linha
         ShowHint = True
-        TabOrder = 0
+        TabOrder = 4
         TitleFont.Charset = ANSI_CHARSET
         TitleFont.Color = clBlack
         TitleFont.Height = -12
@@ -143,7 +143,7 @@ inherited frmManuGrades: TfrmManuGrades
         ParentShowHint = False
         PopupMenu = pm_coluna
         ShowHint = True
-        TabOrder = 1
+        TabOrder = 6
         TitleFont.Charset = ANSI_CHARSET
         TitleFont.Color = clBlack
         TitleFont.Height = -12
@@ -164,7 +164,7 @@ inherited frmManuGrades: TfrmManuGrades
         Width = 470
         Height = 153
         ParentBackground = False
-        TabOrder = 2
+        TabOrder = 7
         object Shape1: TShape
           Left = 70
           Top = 16
@@ -248,7 +248,7 @@ inherited frmManuGrades: TfrmManuGrades
         DataSource = DataSource
         Enabled = False
         ParentCtl3D = False
-        TabOrder = 3
+        TabOrder = 0
       end
       object dbeDescri: TDBEdit
         Left = 77
@@ -260,7 +260,7 @@ inherited frmManuGrades: TfrmManuGrades
         DataField = 'descri'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 4
+        TabOrder = 2
       end
       object pesquisa: TwwDBLookupComboDlg
         Left = 452
@@ -281,7 +281,7 @@ inherited frmManuGrades: TfrmManuGrades
           'deslin'#9'30'#9'Desc.Linha'#9'F'
           'descol'#9'30'#9'Descr.Coluna'#9'F')
         ParentCtl3D = False
-        TabOrder = 5
+        TabOrder = 8
         AutoDropDown = False
         ShowButton = True
         AllowClearKey = False
@@ -298,7 +298,7 @@ inherited frmManuGrades: TfrmManuGrades
         DataField = 'deslin'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 6
+        TabOrder = 3
         OnKeyUp = dbeDescLinhaKeyUp
       end
       object dbeDescCol: TDBEdit
@@ -311,7 +311,7 @@ inherited frmManuGrades: TfrmManuGrades
         DataField = 'descol'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 7
+        TabOrder = 5
         OnKeyUp = dbeDescColKeyUp
       end
       object dbdateedtdatacadastro: TDBDateEdit
@@ -380,18 +380,18 @@ inherited frmManuGrades: TfrmManuGrades
         ParentCtl3D = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 8
+        TabOrder = 1
       end
     end
   end
   inherited imManutencao: TImageList
-    Left = 464
-    Top = 392
+    Left = 152
+    Top = 408
   end
   inherited DataSource: TDataSource
     DataSet = cdsGDProd
-    Left = 408
-    Top = 320
+    Left = 224
+    Top = 192
   end
   object pm_coluna: TPopupMenu
     Left = 352
@@ -411,13 +411,13 @@ inherited frmManuGrades: TfrmManuGrades
   end
   object dsGradeLinha: TDataSource
     DataSet = cdsLinhGrade
-    Left = 108
-    Top = 193
+    Left = 228
+    Top = 153
   end
   object dsGradeColuna: TDataSource
     DataSet = cdsColGrade
-    Left = 388
-    Top = 201
+    Left = 228
+    Top = 113
   end
   object cdsColGrade: TClientDataSet
     Aggregates = <>
@@ -436,8 +436,8 @@ inherited frmManuGrades: TfrmManuGrades
     AfterCancel = cdsColGradeAfterCancel
     AfterDelete = cdsColGradeAfterDelete
     OnReconcileError = cdsColGradeReconcileError
-    Left = 224
-    Top = 88
+    Left = 264
+    Top = 112
     object cdsColGradecdlcgr: TIntegerField
       DisplayLabel = 'C'#243'd.'
       FieldName = 'cdlcgr'
@@ -484,8 +484,8 @@ inherited frmManuGrades: TfrmManuGrades
     AfterCancel = cdsLinhGradeAfterCancel
     AfterDelete = cdsLinhGradeAfterDelete
     OnReconcileError = cdsColGradeReconcileError
-    Left = 216
-    Top = 120
+    Left = 264
+    Top = 152
     object cdsLinhGradecdlcgr: TIntegerField
       DisplayLabel = 'C'#243'd.'
       FieldName = 'cdlcgr'
@@ -534,8 +534,8 @@ inherited frmManuGrades: TfrmManuGrades
     BeforeDelete = cdsGDProdBeforeDelete
     AfterDelete = cdsGDProdAfterDelete
     OnReconcileError = cdsColGradeReconcileError
-    Left = 224
-    Top = 184
+    Left = 262
+    Top = 192
     object cdsGDProdcdgrad: TIntegerField
       DisplayLabel = 'C'#243'd.'
       DisplayWidth = 10
