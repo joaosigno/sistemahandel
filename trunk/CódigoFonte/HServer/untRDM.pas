@@ -381,6 +381,20 @@ type
     qryGRProgrupro: TStringField;
     qryGRProtpprom: TStringField;
     qryGRProvldsem: TStringField;
+    qrySequenciais: TZReadOnlyQuery;
+    dspSequenciais: TDataSetProvider;
+    qrySequenciaiscdsequ: TIntegerField;
+    qrySequenciaiscdempr: TIntegerField;
+    qrySequenciaisdtcada: TDateField;
+    qrySequenciaisultcom: TDateField;
+    qrySequenciaisultven: TDateField;
+    qrySequenciaiscdprod: TIntegerField;
+    qrySequenciaisdescri: TStringField;
+    qrySequenciaisprecus: TFloatField;
+    qrySequenciaispreven: TFloatField;
+    qrySequenciaisvencim: TDateField;
+    qrySequenciaisestatu: TFloatField;
+    qrySequenciaisauxili: TFloatField;
     procedure RemoteDataModuleCreate(Sender: TObject);
     procedure RemoteDataModuleDestroy(Sender: TObject);
   private

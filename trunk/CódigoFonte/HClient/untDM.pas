@@ -382,6 +382,33 @@ type
     cdsGRProgrupro: TStringField;
     cdsGRProtpprom: TStringField;
     cdsGRProvldsem: TStringField;
+    cdsSequenciais: TClientDataSet;
+    cdsSequenciaiscdsequ: TIntegerField;
+    cdsSequenciaiscdempr: TIntegerField;
+    cdsSequenciaisdtcada: TDateField;
+    cdsSequenciaisultcom: TDateField;
+    cdsSequenciaisultven: TDateField;
+    cdsSequenciaiscdprod: TIntegerField;
+    cdsSequenciaisdescri: TStringField;
+    cdsSequenciaisprecus: TFloatField;
+    cdsSequenciaispreven: TFloatField;
+    cdsSequenciaisvencim: TDateField;
+    cdsLinhaGrade: TClientDataSet;
+    cdsColunaGrade: TClientDataSet;
+    cdsLinhaGradecdlcgr: TIntegerField;
+    cdsLinhaGradedtcada: TDateField;
+    cdsLinhaGradecdempr: TIntegerField;
+    cdsLinhaGradecdgrad: TIntegerField;
+    cdsLinhaGradedescri: TStringField;
+    cdsLinhaGradelincol: TStringField;
+    cdsColunaGradecdlcgr: TIntegerField;
+    cdsColunaGradedtcada: TDateField;
+    cdsColunaGradecdempr: TIntegerField;
+    cdsColunaGradecdgrad: TIntegerField;
+    cdsColunaGradedescri: TStringField;
+    cdsColunaGradelincol: TStringField;
+    cdsSequenciaisestatu: TFloatField;
+    cdsSequenciaisauxili: TFloatField;
     function verificaBD():Boolean;
     function Autenticacao(cdemp:integer;login:String;senha:string): boolean;
     procedure cdsProdclaoriGetText(Sender: TField; var Text: String;
@@ -596,13 +623,13 @@ end;
 procedure Tdm.cdsGRProvldsemGetText(Sender: TField; var Text: String;
   DisplayText: Boolean);
 begin
-  If Sender.Value ='0' then Text:='SEGUNDA-FEIRA' else
-  If Sender.Value ='1' then Text:='TERÇA-FEIRA' else
-  If Sender.Value ='2' then Text:='QUARTA-FEIRA' else
-  If Sender.Value ='3' then Text:='QUINTA-FEIRA' else
-  If Sender.Value ='4' then Text:='SEXTA-FEIRA' else
-  If Sender.Value ='5' then Text:='SABADO' else
-  If Sender.Value ='6' then Text:='DOMINGO' else
+  If Sender.Value ='0' then Text:='0 - SEGUNDA-FEIRA' else
+  If Sender.Value ='1' then Text:='1 - TERÇA-FEIRA' else
+  If Sender.Value ='2' then Text:='2 - QUARTA-FEIRA' else
+  If Sender.Value ='3' then Text:='3 - QUINTA-FEIRA' else
+  If Sender.Value ='4' then Text:='4 - SEXTA-FEIRA' else
+  If Sender.Value ='5' then Text:='5 - SÁBADO' else
+  If Sender.Value ='6' then Text:='6 - DOMINGO' else    
 end;
 
 end.

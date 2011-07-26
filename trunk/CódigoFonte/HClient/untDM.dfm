@@ -1,7 +1,7 @@
 object dm: Tdm
   OldCreateOrder = False
-  Left = 565
-  Top = 59
+  Left = 449
+  Top = 212
   Height = 445
   Width = 448
   object cdsUsu: TClientDataSet
@@ -2213,6 +2213,129 @@ object dm: Tdm
       DisplayWidth = 10
       FieldName = 'cdempr'
       Visible = False
+    end
+  end
+  object cdsSequenciais: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspSequenciais'
+    RemoteServer = scHC
+    Left = 272
+    Top = 8
+    object cdsSequenciaiscdsequ: TIntegerField
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'cdsequ'
+      Required = True
+    end
+    object cdsSequenciaiscdempr: TIntegerField
+      DisplayLabel = 'C'#243'd.Empresa'
+      FieldName = 'cdempr'
+      Required = True
+    end
+    object cdsSequenciaisdtcada: TDateField
+      DisplayLabel = 'Dt.Cadastro'
+      FieldName = 'dtcada'
+    end
+    object cdsSequenciaisultcom: TDateField
+      DisplayLabel = 'Ult.Compra'
+      FieldName = 'ultcom'
+    end
+    object cdsSequenciaisultven: TDateField
+      DisplayLabel = 'Ult.Venda'
+      FieldName = 'ultven'
+    end
+    object cdsSequenciaiscdprod: TIntegerField
+      DisplayLabel = 'C'#243'd.Produto'
+      FieldName = 'cdprod'
+      Required = True
+    end
+    object cdsSequenciaisdescri: TStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'descri'
+      Required = True
+      Size = 30
+    end
+    object cdsSequenciaisprecus: TFloatField
+      DisplayLabel = 'Pr.Custo'
+      FieldName = 'precus'
+      Required = True
+    end
+    object cdsSequenciaispreven: TFloatField
+      DisplayLabel = 'Pr.Venda'
+      FieldName = 'preven'
+      Required = True
+    end
+    object cdsSequenciaisvencim: TDateField
+      DisplayLabel = 'Vencimento'
+      FieldName = 'vencim'
+    end
+    object cdsSequenciaisestatu: TFloatField
+      FieldName = 'estatu'
+    end
+    object cdsSequenciaisauxili: TFloatField
+      FieldName = 'auxili'
+    end
+  end
+  object cdsLinhaGrade: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspLinhaGrade'
+    RemoteServer = scHC
+    Left = 200
+    Top = 344
+    object cdsLinhaGradecdlcgr: TIntegerField
+      FieldName = 'cdlcgr'
+      Required = True
+    end
+    object cdsLinhaGradedtcada: TDateField
+      FieldName = 'dtcada'
+    end
+    object cdsLinhaGradecdempr: TIntegerField
+      FieldName = 'cdempr'
+    end
+    object cdsLinhaGradecdgrad: TIntegerField
+      FieldName = 'cdgrad'
+    end
+    object cdsLinhaGradedescri: TStringField
+      FieldName = 'descri'
+      Required = True
+      Size = 30
+    end
+    object cdsLinhaGradelincol: TStringField
+      FieldName = 'lincol'
+      Required = True
+      Size = 1
+    end
+  end
+  object cdsColunaGrade: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspColunaGrade'
+    RemoteServer = scHC
+    Left = 272
+    Top = 352
+    object cdsColunaGradecdlcgr: TIntegerField
+      FieldName = 'cdlcgr'
+      Required = True
+    end
+    object cdsColunaGradedtcada: TDateField
+      FieldName = 'dtcada'
+    end
+    object cdsColunaGradecdempr: TIntegerField
+      FieldName = 'cdempr'
+    end
+    object cdsColunaGradecdgrad: TIntegerField
+      FieldName = 'cdgrad'
+    end
+    object cdsColunaGradedescri: TStringField
+      FieldName = 'descri'
+      Required = True
+      Size = 30
+    end
+    object cdsColunaGradelincol: TStringField
+      FieldName = 'lincol'
+      Required = True
+      Size = 1
     end
   end
 end

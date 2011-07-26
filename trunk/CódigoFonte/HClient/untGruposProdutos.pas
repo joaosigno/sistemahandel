@@ -22,17 +22,12 @@ type
     dbdateedtdatacadastro: TDBDateEdit;
     tsPromocao: TTabSheet;
     dbcbxGrupoPromocao: TDBCheckBox;
-    gbPromocional: TGroupBox;
-    dbValidoAteData: TDBCheckBox;
-    dbValidoAteDiaSemana: TDBCheckBox;
-    ValidoTodosOsdia: TDBCheckBox;
-    dbdeClienteDesd: TDBDateEdit;
+    RDpROMOCIONAL: TDBRadioGroup;
+    dbdeAte: TDBDateEdit;
     dbeDia: TDBEdit;
     dbcbDiasSemanas: TDBComboBox;
-    dbeValor: TRxDBCalcEdit;
     Label2: TLabel;
-    Bevel3: TBevel;
-    Bevel1: TBevel;
+    dbeValor: TRxDBCalcEdit;
     procedure dbeDescricaoExit(Sender: TObject);
     procedure dbcbControlarDescontoClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -42,9 +37,7 @@ type
     procedure tbAdicionarClick(Sender: TObject);
     procedure tbGravarClick(Sender: TObject);
     procedure dbcbxGrupoPromocaoClick(Sender: TObject);
-    procedure dbValidoAteDataClick(Sender: TObject);
-    procedure dbValidoAteDiaSemanaClick(Sender: TObject);
-    procedure ValidoTodosOsdiaClick(Sender: TObject);
+    procedure RDpROMOCIONALClick(Sender: TObject);
   private
     F : TFuncoes;
     procedure verificaInsercao;
@@ -156,26 +149,37 @@ end;
 procedure TfrmManuGrupoProdutos.dbcbxGrupoPromocaoClick(Sender: TObject);
 begin
   if dbcbxGrupoPromocao.Checked then
-    gbPromocional.Enabled := true
-  else gbPromocional.Enabled := false;  
+  begin
+    RDpROMOCIONAL.Enabled := true;
+    dbeValor.Enabled := true;
+  end
+  else
+  begin
+    RDpROMOCIONAL.Enabled := false;
+    dbeValor.Enabled := false;
+  end;  
 end;
 
-procedure TfrmManuGrupoProdutos.dbValidoAteDataClick(Sender: TObject);
+procedure TfrmManuGrupoProdutos.RDpROMOCIONALClick(Sender: TObject);
 begin
-  dbValidoAteDiaSemana.Checked := false;
-  ValidoTodosOsdia.Checked := false;
-end;
-
-procedure TfrmManuGrupoProdutos.dbValidoAteDiaSemanaClick(Sender: TObject);
-begin
-  dbValidoAteData.Checked := false;
-  ValidoTodosOsdia.Checked := false;
-end;
-
-procedure TfrmManuGrupoProdutos.ValidoTodosOsdiaClick(Sender: TObject);
-begin
-  dbValidoAteData.Checked := false;
-  dbValidoAteDiaSemana.Checked := false;
+  if RDpROMOCIONAL.ItemIndex = 0 then
+  begin
+    dbdeAte.Enabled := true;
+    dbeDia.Enabled := false;
+    dbcbDiasSemanas.Enabled:= false;
+  end else
+  if RDpROMOCIONAL.ItemIndex = 1  then
+  begin
+    dbdeAte.Enabled := false;
+    dbeDia.Enabled := true;
+    dbcbDiasSemanas.Enabled:= false;
+  end else
+  if RDpROMOCIONAL.ItemIndex = 2  then
+  begin
+    dbdeAte.Enabled := false;
+    dbeDia.Enabled := false;
+    dbcbDiasSemanas.Enabled:= true;
+  end;
 end;
 
 end.
