@@ -77,6 +77,7 @@ uses untDM, untPrincipal;
 //11.Marca de Produtos
 //12.Transportadoras
 //13.Produtos
+//14.GruposClientes
 
 procedure TfrmPesquisaRapida.pesquisar;
 var
@@ -266,6 +267,17 @@ begin
 
 
   end;
+  14:
+   begin
+        if (rb1.Checked) and (edtpesquisa.text <> '') then
+          SQL.executaSQlPorEmp(cdsProcuraRapida,'cdgrup,descri',' grcli ',
+                '  and cdgrup='+ QuotedStr(edtPesquisa.Text)+' order by grcli ');
+
+       if (rb2.Checked) and (edtpesquisa.text <> '') then
+          SQL.executaSQlPorEmp(cdsProcuraRapida,'cdgrup,descri',' grcli ',
+               '  and descri like'+ QuotedStr('%'+edtPesquisa.Text+'%')+' order by descri ');
+
+  end;
 
   end;
   atualizaGrid;
@@ -344,6 +356,7 @@ begin
                       'trans',' order by cdtran');
       13: visible(true,'Código',true,'Cód.Fab.',true,'Referência',true,'Descrição',
                                'cdprod,codfab,refere,descri','produ',' order by cdprod');
+      14: visible(true,'Código',true,'Descrição',false,'',false,'','cdgrup,descri','grcli','order by cdgrup');                               
 
     end;
     atualizaGrid;  
@@ -441,6 +454,10 @@ begin
       13:
       begin
           dm.cdsProd.Locate('CDPROD', VarArrayOf([IntToStr(cdsProcuraRapida.Fields[0].AsInteger)]), [loPartialKey]);
+      end;
+      14:
+      begin
+          dm.cdsGRCli.Locate('CDGRUP', VarArrayOf([IntToStr(cdsProcuraRapida.Fields[0].AsInteger)]), [loPartialKey]);
       end;
     end;
     sql.Destroy;
@@ -570,6 +587,13 @@ begin
           gridPesquisa.Columns.Items[3].Title.Caption := 'Descrição';
           gridPesquisa.Columns.Items[3].Width := 300;
       end;
+      14:
+      begin
+          gridPesquisa.Columns.Items[0].Title.Caption := 'Código';
+          gridPesquisa.Columns.Items[0].Width := 70;
+          gridPesquisa.Columns.Items[1].Title.Caption := 'Descrição';
+          gridPesquisa.Columns.Items[1].Width := 300;
+      end;
     end;  
 end;
 
@@ -644,6 +668,8 @@ begin
     c:=12;
   if pesq = 'produ' then
     c:=13;
+  if pesq = 'grcli' then
+    c:=14;
 
 end;
 

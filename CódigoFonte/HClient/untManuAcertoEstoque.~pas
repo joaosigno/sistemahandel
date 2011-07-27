@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, untManutencao, ComCtrls, DB, ImgList, ToolWin, StdCtrls, Mask,
-  DBCtrls, wwdblook, Wwdbdlg, ExtCtrls, ToolEdit, CurrEdit, RXDBCtrl, untDeclaracoes;
+  DBCtrls, wwdblook, Wwdbdlg, ExtCtrls, ToolEdit, CurrEdit, RXDBCtrl, untDeclaracoes,
+  Grids, DBGrids, SQL;
 
 type
   TfrmManuAcertosEstoque = class(TfrmManutencao)
@@ -32,14 +33,22 @@ type
     rxceprcustocorreto: TRxDBCalcEdit;
     rxceprvendacorreto: TRxDBCalcEdit;
     rxdbceprcustoatual: TRxDBCalcEdit;
+    gridAcertos: TDBGrid;
+    dsGrade: TDataSource;
+    lblGrade: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure tbGravarClick(Sender: TObject);
     procedure pesquisaExit(Sender: TObject);
     procedure dbeDescriProExit(Sender: TObject);
+    procedure pesquisaEnter(Sender: TObject);
+    procedure dbeDescriProChange(Sender: TObject);
   private
     F : TFuncoes;
+    SQL : TSQL;
     estAtu,PrVeAtu,PrCusAtu:real;
     procedure verificaInsercao;
     function verificaDadosAntesGravar:Boolean;
@@ -74,14 +83,21 @@ procedure TfrmManuAcertosEstoque.FormClose(Sender: TObject;
 begin
 //  inherited;
   ManuDAO.Free;
+  dm.cdsSequenciaisdescri.ReadOnly := false;
+  dm.cdsProd.Close;
+  dm.cdsSequenciais.Close;
 end;
 
 procedure TfrmManuAcertosEstoque.FormCreate(Sender: TObject);
 begin
   ManuDAO := TManutencaoDAO.Create(dm.cdsProd);
   inherited;
+  ManuDAO.SQL.executaSQlPorEmp(dm.cdsProd,'*','produ',' and tipopr<>''S''');
+  dm.cdsProd.Close;
   DataSource.DataSet := dm.cdsProd;
+  dsGrade.DataSet := dm.cdsSequenciais;
   pesquisa.LookupTable := dm.cdsProd;
+  dm.cdsSequenciaisdescri.ReadOnly := true;
 end;
 
 procedure TfrmManuAcertosEstoque.FormShow(Sender: TObject);
@@ -96,14 +112,35 @@ begin
   if verificaDadosAntesGravar = false then
     Abort else
     begin
-      dm.HistPro(frmPrincipal.Configuracao.EmpresaCodigo,dm.cdsProdcdprod.AsInteger,
-               'Alterado pelo Usuário '+IntToStr(frmPrincipal.Configuracao.UsuarioCodigo)+
-                '-'+frmPrincipal.Configuracao.UsuarioNome+'(Acertos no Estoque)',
-                exceEstcorreto.Value-estAtu,exceEstcorreto.Value);
-      dm.cdsProdestatu.AsFloat := exceEstcorreto.Value;
-      dm.cdsProdpreven.AsFloat := rxceprcustocorreto.Value;
-      dm.cdsProdprecus.AsFloat := rxceprcustocorreto.Value;
-  inherited;
+      if (dm.cdsProdtipcon.Value='G') and (dm.cdsSequenciaisSOMAQUANTIDADE.value <> dm.cdsProdestatu.Value) then
+      begin
+             MessageDlg('O estoque da grade tem que ser igual ao do produto!', mtError, [mbOK], 0);
+             abort;
+      end
+      else begin
+        dm.HistPro(frmPrincipal.Configuracao.EmpresaCodigo,dm.cdsProdcdprod.AsInteger,
+                 'Alterado pelo Usuário '+IntToStr(frmPrincipal.Configuracao.UsuarioCodigo)+
+                  '-'+frmPrincipal.Configuracao.UsuarioNome+'(Acertos do Estoque)',
+                  exceEstcorreto.Value-estAtu,exceEstcorreto.Value);
+        dm.cdsProdestatu.AsFloat := exceEstcorreto.Value;
+        dm.cdsProdpreven.AsFloat := rxceprcustocorreto.Value;
+        dm.cdsProdprecus.AsFloat := rxceprcustocorreto.Value;
+        if dm.cdsProdtipcon.Value = 'G' then
+        begin
+          dm.cdsSequenciais.First;
+          while not dm.cdsSequenciais.Eof do
+          begin
+             dm.cdsSequenciais.Edit;
+             dm.cdsSequenciais.Post;
+             dm.cdsSequenciais.Next;
+          end;
+          dm.cdsSequenciais.ApplyUpdates(0);
+        end;  
+        inherited;
+        MessageDlg('Produto Alterado Com Sucesso!', mtConfirmation, [mbOK], 0);
+        dm.cdsProd.Close;
+        gridAcertos.Visible:= false;
+      end;
   end;
 
 end;
@@ -125,12 +162,6 @@ begin
        f.Mensagem(false,'Preço de Venda Correto Não pode ser Menor que (0)');
        result:= false;
     end else result := true;
-    if (dm.cdsProdtipopr.AsString = 'S') and (exceEstcorreto.Value>0)  then
-    begin
-       f.Mensagem(false,'Esse produto é um Serviço, não pode ter Estoque!');
-       result:= false;
-    end else result := true;
-
 end;
 
 procedure TfrmManuAcertosEstoque.armazenaValores;
@@ -148,6 +179,28 @@ end;
 procedure TfrmManuAcertosEstoque.dbeDescriProExit(Sender: TObject);
 begin
   armazenaValores;
+end;
+
+procedure TfrmManuAcertosEstoque.pesquisaEnter(Sender: TObject);
+begin
+  dm.cdsProd.Open;
+  pesquisa.LookupTable := dm.cdsProd;
+
+end;
+
+procedure TfrmManuAcertosEstoque.dbeDescriProChange(Sender: TObject);
+begin
+  if dm.cdsProdtipcon.AsString = 'G' then
+  begin
+    sql.executaSQlPorEmp(dm.cdsSequenciais,'*','sqpro',' and cdprod='+IntToStr(dm.cdsProdcdprod.Value));
+    gridAcertos.Visible := true;
+    lblGrade.Visible := true;
+  end
+  else
+  begin
+    gridAcertos.Visible := false;
+    lblGrade.Visible := false;
+  end;  
 end;
 
 end.

@@ -1,6 +1,6 @@
 object frmSequenciaisProdutos: TfrmSequenciaisProdutos
-  Left = 278
-  Top = 135
+  Left = 578
+  Top = 127
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Sequencias do Produto'
@@ -322,6 +322,13 @@ object frmSequenciaisProdutos: TfrmSequenciaisProdutos
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 14
+  object Label4: TLabel
+    Left = 6
+    Top = 302
+    Width = 343
+    Height = 14
+    Caption = '* Servi'#231'os N'#227'o Aparecem Na Confer'#234'ncia de Estoque'
+  end
   object AdvancedPanel2: TPanel
     Left = 4
     Top = 5
@@ -524,6 +531,7 @@ object frmSequenciaisProdutos: TfrmSequenciaisProdutos
   end
   object cdsSequenciais: TClientDataSet
     Aggregates = <>
+    AggregatesActive = True
     Params = <>
     ProviderName = 'dspSequenciais'
     RemoteServer = dm.scHC
@@ -569,15 +577,18 @@ object frmSequenciaisProdutos: TfrmSequenciaisProdutos
       DisplayLabel = 'Pr.Custo'
       FieldName = 'precus'
       Required = True
+      DisplayFormat = '#,##0.00'
     end
     object cdsSequenciaisestatu: TFloatField
       DisplayLabel = 'Est.Atual'
       FieldName = 'estatu'
+      DisplayFormat = '#.00'
     end
     object cdsSequenciaispreven: TFloatField
       DisplayLabel = 'Pr.Venda'
       FieldName = 'preven'
       Required = True
+      DisplayFormat = '#,##0.00'
     end
     object cdsSequenciaisvencim: TDateField
       DisplayLabel = 'Vencimento'
@@ -587,17 +598,20 @@ object frmSequenciaisProdutos: TfrmSequenciaisProdutos
       DisplayLabel = 'Qt.Total'
       FieldKind = fkCalculated
       FieldName = 'quantTotal'
+      DisplayFormat = '#,##0.00'
       Calculated = True
     end
     object cdsSequenciaisauxili: TFloatField
       DisplayLabel = 'Entrada'
       FieldName = 'auxili'
+      DisplayFormat = '#,##0.00'
     end
-    object cdsSequenciaissomaauxiliar: TAggregateField
-      DefaultExpression = 'SUM(auxili)'
-      FieldName = 'somaauxiliar'
+    object cdsSequenciaisSOMAAUXILIAR: TAggregateField
+      DefaultExpression = 'SUM(AUXILI)'
+      FieldName = 'SOMAAUXILIAR'
       Active = True
-      Expression = 'SUM(auxili)'
+      DisplayFormat = '#,##0.00'
+      Expression = 'SUM(AUXILI)'
     end
   end
 end

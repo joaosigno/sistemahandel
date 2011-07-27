@@ -119,6 +119,7 @@ type
   DAOLinha   : TManutencaoDAO;
   DAOColunas : TManutencaoDAO;
   F : TFuncoes;
+  codigo: integer;
     { Private declarations }
   public
   procedure verificaInsercao();
@@ -194,6 +195,8 @@ begin
   pesquisa.LookupTable := cdsGDProd;
 
   ManuDAO.SQL.executaSQlPorEmp(cdsGDProd,'*','gdpro','');
+
+  codigo := StrToInt(DAOLinha.SQL.proxCod(dm.cdsAux,'cdlcgr','lcgra'));
 
   selecionaLinhasColunas;
 end;
@@ -459,7 +462,8 @@ end;
 
 procedure TfrmManuGrades.cdsLinhGradeAfterInsert(DataSet: TDataSet);
 begin
-   cdsLinhGradecdlcgr.AsInteger := StrToInt(DAOLinha.SQL.proxCod(dm.cdsAux,'cdlcgr','lcgra'));
+   codigo := codigo + 1;
+   cdsLinhGradecdlcgr.AsInteger := codigo;
    cdsLinhGradecdgrad.AsInteger := codigograde;
    cdsLinhGradecdempr.AsInteger := frmPrincipal.Configuracao.EmpresaCodigo;
    cdsLinhGradelincol.AsString := 'L';
@@ -491,7 +495,8 @@ end;
 
 procedure TfrmManuGrades.cdsColGradeAfterInsert(DataSet: TDataSet);
 begin
-  cdsColGradecdlcgr.Value := StrToInt(DAOLinha.SQL.proxCod(dm.cdsAux,'cdlcgr','lcgra'));
+  codigo := codigo + 1;
+  cdsColGradecdlcgr.Value := codigo;
   cdsColGradecdempr.Value := frmprincipal.Configuracao.EmpresaCodigo;
   cdsColGradecdgrad.Value := cdsGDProdcdgrad.AsInteger;
   cdsColGradelincol.Value := 'C';
@@ -551,12 +556,29 @@ end;
 
 procedure TfrmManuGrades.cdsGDProdBeforePost(DataSet: TDataSet);
 begin
+  cdsLinhGrade.First;
+  while not cdsLinhGrade.Eof do
+  begin
+      cdsLinhGrade.Edit;
+      cdsLinhGrade.Post;
+      cdsLinhGrade.Next;
+  end;
+  cdsLinhGrade.ApplyUpdates(0);
+
+  cdsColGrade.First;
+  while not cdsColGrade.Eof do
+  begin
+      cdsColGrade.Edit;
+      cdsColGrade.Post;
+      cdsColGrade.Next;
+  end;
+  cdsColGrade.ApplyUpdates(0);
+
+{
   if (cdsLinhGrade.Tag = 3) or (cdsLinhGrade.Tag = 5) then cdsLinhGrade.Post;
   if (cdsColGrade.Tag = 3) or (cdsColGrade.Tag = 5) then cdsColGrade.Post;
   cdsLinhGrade.ApplyUpdates(0);
-  cdsColGrade.ApplyUpdates(0);
-  cdsLinhGrade.Refresh;
-  cdsColGrade.Refresh;
+  cdsColGrade.ApplyUpdates(0);}
 end;
 
 procedure TfrmManuGrades.tmr_verificagradeTimer(Sender: TObject);
@@ -659,3 +681,4 @@ begin
 end;
 
 end.
+

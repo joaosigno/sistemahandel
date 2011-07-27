@@ -877,6 +877,26 @@ object RDM: TRDM
     object qryGRClidtcada: TDateField
       FieldName = 'dtcada'
     end
+    object qryGRClivenvis: TStringField
+      FieldName = 'venvis'
+      Size = 1
+    end
+    object qryGRClivenpra: TStringField
+      FieldName = 'venpra'
+      Size = 1
+    end
+    object qryGRClivenche: TStringField
+      FieldName = 'venche'
+      Size = 1
+    end
+    object qryGRClivencar: TStringField
+      FieldName = 'vencar'
+      Size = 1
+    end
+    object qryGRCligrbloq: TStringField
+      FieldName = 'grbloq'
+      Size = 1
+    end
   end
   object dspGRCli: TDataSetProvider
     DataSet = qryGRCli

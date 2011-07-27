@@ -84,6 +84,7 @@ type
     acConsultaVEncimento: TAction;
     acReajustePreco: TAction;
     acConferenciaEstoque: TAction;
+    acGrupoClientes: TAction;
     procedure AcVizualizarFornecedoresExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -124,6 +125,7 @@ type
     procedure acConsultaVEncimentoExecute(Sender: TObject);
     procedure acReajustePrecoExecute(Sender: TObject);
     procedure acConferenciaEstoqueExecute(Sender: TObject);
+    procedure acGrupoClientesExecute(Sender: TObject);
   private
     F : TFuncoes;
     { Private declarations }
@@ -147,7 +149,8 @@ uses untDM, untMensagem, untConfBD,
   untManuVendedores, untManuMarcaProdutos, untDefineEmpresaUsuario,
   untManuProdutos, untManuAcertoEstoque, untManuGrades,
   untManuNaturezaOperacao, untManuContasPagar, SQL, untManuTransportadoras,
-  untConsultaProdutosVencimento, untReajustePreco, untConferenciaEstoque;
+  untConsultaProdutosVencimento, untReajustePreco, untConferenciaEstoque,
+  untManuGruposCLientes;
 
 {$R *.dfm}
 
@@ -522,6 +525,13 @@ begin
   frmConferenciaEstoque := TfrmConferenciaEstoque.Create(Application);
   frmConferenciaEstoque.ShowModal;
   frmConferenciaEstoque.Free;
+end;
+
+procedure TfrmPrincipal.acGrupoClientesExecute(Sender: TObject);
+begin
+ RegisterClass(TfrmManuGruposClientes);
+ VD.showForm('Grupo de Clientes',dm.cdsGRCli,'TfrmManuGruposClientes',
+                         '*','grcli',' order by cdgrup');
 end;
 
 end.

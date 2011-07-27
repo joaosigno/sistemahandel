@@ -1493,6 +1493,7 @@ object frmConsultaProdutosVencimento: TfrmConsultaProdutosVencimento
     Top = 88
   end
   object dsGrade: TDataSource
+    DataSet = dm.cdsSequenciais
     Left = 136
     Top = 312
   end

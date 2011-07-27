@@ -522,8 +522,25 @@ begin
         grid.Columns[7].FieldName := 'respon';
         grid.Columns[7].Width := 230;
       end;
-    end;
+    end
 
+     else if FTabela = 'grcli' then
+   begin
+    with frmVizualizaDados do
+      begin
+        grid.Columns.Add;
+        grid.Columns[0].FieldName := 'cdgrup';
+        grid.Columns[0].Width := 80;
+
+        grid.Columns.Add;
+        grid.Columns[1].FieldName := 'descri';
+        grid.Columns[1].Width := 300;
+
+        grid.Columns.Add;
+        grid.Columns[2].FieldName := 'grbloq';
+        grid.Columns[2].Width := 150;
+      end;
+    end;
 
    with frmVizualizaDados do
    begin

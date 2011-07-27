@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, untManutencao, DB, ImgList, ComCtrls, ToolWin,untDeclaracoes,
   StdCtrls, Mask, DBCtrls, ToolEdit, RXDBCtrl, CurrEdit, wwdblook, Wwdbdlg,
-  DBClient, SQL;
+  DBClient, SQL, Grids, DBGrids;
 
 type
   TfrmManuProdutos = class(TfrmManutencao)
@@ -78,18 +78,9 @@ type
     dblcbFornecedor: TDBLookupComboBox;
     Label29: TLabel;
     pesquisagrade: TwwDBLookupComboDlg;
-    cdssequencial: TClientDataSet;
-    cdssequencialcdsequ: TIntegerField;
-    cdssequencialcdempr: TIntegerField;
-    cdssequencialdtcada: TDateField;
-    cdssequencialultcom: TDateField;
-    cdssequencialultven: TDateField;
-    cdssequencialcdprod: TIntegerField;
-    cdssequencialdescri: TStringField;
-    cdssequencialestatu: TFloatField;
-    cdssequencialprecus: TFloatField;
-    cdssequencialpreven: TFloatField;
-    cdssequencialvencim: TDateField;
+    tsGrade: TTabSheet;
+    gridDependentes: TDBGrid;
+    dsSequencial: TDataSource;
     procedure FormShow(Sender: TObject);
     procedure tbAdicionarClick(Sender: TObject);
     procedure tbGravarClick(Sender: TObject);
@@ -118,6 +109,11 @@ type
     procedure pesquisagradeKeyPress(Sender: TObject; var Key: Char);
     procedure pesquisagradeEnter(Sender: TObject);
     procedure pesquisagradeChange(Sender: TObject);
+    procedure gridDependentesDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
+    procedure atualizaGrade();
+    procedure tbExcluirClick(Sender: TObject);
   private
    F: TFuncoes;
    SQL : TSQL;
@@ -200,28 +196,30 @@ procedure TfrmManuProdutos.tbAdicionarClick(Sender: TObject);
 begin
   inherited;
   verificaInsercao;
+  atualizaGrade;
 end;
 
 procedure TfrmManuProdutos.tbGravarClick(Sender: TObject);
 begin
   if verificaDadosAntesGravar = false then
     Abort else
+  begin
   if DataSource.State in [dsInsert] then
   begin
      dm.cdsProdcdempr.AsInteger := frmPrincipal.Configuracao.EmpresaCodigo;
      dbeCod.Text := ManuDAO.SQL.proxCod(dm.cdsAux,'cdprod','produ');
   end;
-  if (MudouTipodeControle = 'S') and (dbcbControleGrade.Checked) then
+  if (MudouTipodeControle = 'S') then
   begin
-    case MessageDlg('Se o tipo de controle for alterado os dados da Grade/Sequencial existentes para este produto serão perdidos!' + #13 + 'Deseja continuar?', mtConfirmation, [mbyes,mbno], 0) of
+    case MessageDlg('Se o tipo de controle for alterado os dados da Grade existentes para este produto serão perdidos!' + #13 + 'Deseja continuar?', mtConfirmation, [mbyes,mbno], 0) of
       mryes:
       begin
-        cdssequencial.First;
-        while not cdssequencial.Eof do
+        dm.cdsSequenciais.First;
+        while not dm.cdsSequenciais.Eof do
         begin
-          cdssequencial.Delete;
+          dm.cdsSequenciais.Delete;
         end;
-        cdssequencial.ApplyUpdates(0);
+        dm.cdsSequenciais.ApplyUpdates(0);
         if (dm.cdsProdestatu.value > 0) and (dbcbControleGrade.Checked) then
         begin
           frmSequenciaisProdutos := TfrmSequenciaisProdutos.create(Application);
@@ -231,10 +229,12 @@ begin
           end;
           if frmSequenciaisProdutos.showmodal = mrcancel then abort;
         end;
-        end;
-      end;  
+      end;
+    end;
   end;
-  inherited;  
+  inherited;
+  atualizaGrade;
+  end;  
 end;
 
 procedure TfrmManuProdutos.FormClose(Sender: TObject;
@@ -242,7 +242,7 @@ procedure TfrmManuProdutos.FormClose(Sender: TObject;
 begin
   inherited;
   dm.cdsGradePro.Close;
-  cdssequencial.Close;
+  dm.cdsSequenciais.Close;
   ManuDAO.Free;
 end;
 
@@ -252,8 +252,8 @@ begin
   inherited;
   DataSource.DataSet := dm.cdsProd;
   dm.cdsGradePro.Open;
-  sql.executaSQlPorEmp(cdssequencial,'*','sqpro',' and cdprod='+IntToStr(dm.cdsProdcdprod.AsInteger));
-  cdssequencial.Open;
+  atualizaGrade;
+  dm.cdsSequenciais.Open;
   pesquisagrade.LookupTable := dm.cdsGradePro;
   MudouTipodeControle := 'N';
 end;
@@ -391,24 +391,28 @@ procedure TfrmManuProdutos.tbPrimeiroClick(Sender: TObject);
 begin
   inherited;
   carregaOpcaoes;
+  atualizaGrade;
 end;
 
 procedure TfrmManuProdutos.tbAnteriorClick(Sender: TObject);
 begin
   inherited;
   carregaOpcaoes;
+  atualizaGrade;
 end;
 
 procedure TfrmManuProdutos.tbProximoClick(Sender: TObject);
 begin
   inherited;
   carregaOpcaoes;
+  atualizaGrade;
 end;
 
 procedure TfrmManuProdutos.tbUltimoClick(Sender: TObject);
 begin
   inherited;
   carregaOpcaoes;
+  atualizaGrade;
 end;
 
 procedure TfrmManuProdutos.dbcbbxTipoProdutoExit(Sender: TObject);
@@ -476,6 +480,7 @@ procedure TfrmManuProdutos.tbCancelarClick(Sender: TObject);
 begin
   inherited;
   carregaOpcaoes;
+  atualizaGrade;
 end;
 
 procedure TfrmManuProdutos.dbcbbxTipoProdutoChange(Sender: TObject);
@@ -501,6 +506,34 @@ begin
     if codigograde2 <> codigograde then
       MudouTipodeControle := 'S';
 
+end;
+
+procedure TfrmManuProdutos.gridDependentesDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+begin
+   TDbGrid(Sender).Canvas.font.Color:= clblack; //aqui é definida a cor da fonte sem a selecao
+  if gdSelected in State then
+    with (Sender as TDBGrid).Canvas do
+    begin
+      Brush.Color:=$000080FF; //aqui é definida a cor de seleção
+      TDbGrid(Sender).Canvas.font.Color:= clwindow; //aqui é definida a cor da fonte com a selecao
+      TDbGrid(Sender).Canvas.Font.Style := (Sender as TDBGrid).Canvas.Font.Style + [FSBOLD]; //aqui é definida a a fonte negrito com a selecao
+      FillRect(Rect);
+    end;
+
+    TDbGrid(Sender).DefaultDrawDataCell(Rect, TDbGrid(Sender).columns[datacol].field, State);
+end;
+
+procedure TfrmManuProdutos.atualizaGrade;
+begin
+  sql.executaSQlPorEmp(dm.cdsSequenciais,'*','sqpro',' and cdprod='+IntToStr(dm.cdsProdcdprod.AsInteger));
+end;
+
+procedure TfrmManuProdutos.tbExcluirClick(Sender: TObject);
+begin
+  inherited;
+  atualizaGrade
 end;
 
 end.

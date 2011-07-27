@@ -1,6 +1,6 @@
 inherited frmManuGrupoProdutos: TfrmManuGrupoProdutos
-  Left = 352
-  Top = 171
+  Left = 787
+  Top = 118
   Caption = 'Manuten'#231#227'o de Grupos de Produtos'
   ClientHeight = 216
   OldCreateOrder = True
@@ -16,7 +16,7 @@ inherited frmManuGrupoProdutos: TfrmManuGrupoProdutos
     Top = 0
     Width = 534
     Height = 156
-    ActivePage = tbDadosPrincipais
+    ActivePage = tsPromocao
     Align = alClient
     TabOrder = 1
     object tbDadosPrincipais: TTabSheet

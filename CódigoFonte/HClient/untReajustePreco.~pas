@@ -90,6 +90,7 @@ end;
 
 procedure TfrmReajustePreco.FormCreate(Sender: TObject);
 begin
+  dm.cdsProd.Close;
   dsProd.DataSet := dm.cdsProd;
   dm.cdsGRPro.Open;
   dm.cdsMcPro.Open;
@@ -175,18 +176,31 @@ begin
                          StrToFloat(FormatFloat('0.00',(dm.cdsProdprecus.Value / 100) * (100 + edtReajuste.Value)))
         else if (rbCusto.checked) and (rbdesconto.Checked) then dm.cdsProdprecus.Value :=
                           StrToFloat(FormatFloat('0.00',(dm.cdsProdprecus.Value / 100) * (100 - edtReajuste.Value)));
-{       while not dm.cdssequencial.eof do
-         begin
-            //implementar para reajustar grade
-         end;
-        end;}
-
         dm.cdsProd.Post;
+        if cbGrade.Checked then
+        begin
+          SQL.executaSQlPorEmp(dm.cdsSequenciais,'*','sqpro',' and cdprod='+IntToStr(dm.cdsProdcdprod.Value));
+          dm.cdsSequenciais.first;
+          while not dm.cdsSequenciais.eof do
+          begin
+            dm.cdsSequenciais.edit;
+            if (rbVenda.checked) and (rbAcrescimo.Checked) then dm.cdsSequenciaispreven.Value := StrToFloat(FormatFloat('0.00',(dm.cdsSequenciaispreven.Value / 100) * (100 + edtReajuste.Value)))
+            else if (rbVenda.checked) and (rbDesconto.Checked) then dm.cdsSequenciaispreven.Value := StrToFloat(FormatFloat('0.00',(dm.cdsSequenciaispreven.Value / 100) * (100 - edtReajuste.Value)))
+            else if (rbCusto.checked) and (rbAcrescimo.Checked) then dm.cdsSequenciaisprecus.Value := StrToFloat(FormatFloat('0.00',(dm.cdsSequenciaisprecus.Value / 100) * (100 + edtReajuste.Value)))
+            else if (rbCusto.checked) and (rbDesconto.Checked) then dm.cdsSequenciaisprecus.Value := StrToFloat(FormatFloat('0.00',(dm.cdsSequenciaisprecus.Value / 100) * (100 - edtReajuste.Value)));
+            dm.cdssequenciais.post;
+            dm.cdssequenciais.next;
+          end;
+        end;
+        if cbGrade.Checked then
+        begin
+           dm.cdsSequenciais.ApplyUpdates(0);
+        end/   
         ProAlt := ProAlt+1;
         dm.cdsProd.Next;
       end;
       dm.cdsProd.ApplyUpdates(0);
-     MessageDlg('Reajuste de preços completo !' + #13 + #13 + 'Foram atualizados: ' + inttostr(ProdutosAlterados) + ' registro(s).', mtInformation, [mbOK], 0);
+     MessageDlg('Reajuste de preços completo !' + #13 + #13 + 'Foram atualizados: ' + inttostr(ProAlt) + ' registro(s).', mtInformation, [mbOK], 0);
     end;
   end;
 end;

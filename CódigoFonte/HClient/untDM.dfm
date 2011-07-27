@@ -1184,7 +1184,6 @@ object dm: Tdm
     end
   end
   object cdsGRCli: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspGRCli'
@@ -1210,6 +1209,31 @@ object dm: Tdm
       FieldName = 'descri'
       Required = True
       Size = 50
+    end
+    object cdsGRClivenvis: TStringField
+      DisplayLabel = 'Venda '#225' Vista'
+      FieldName = 'venvis'
+      Size = 1
+    end
+    object cdsGRClivenpra: TStringField
+      DisplayLabel = 'Venda '#225' Prazo'
+      FieldName = 'venpra'
+      Size = 1
+    end
+    object cdsGRClivenche: TStringField
+      DisplayLabel = 'Venda '#225' Cheque'
+      FieldName = 'venche'
+      Size = 1
+    end
+    object cdsGRClivencar: TStringField
+      DisplayLabel = 'Venda '#225' Cart'#227'o'
+      FieldName = 'vencar'
+      Size = 1
+    end
+    object cdsGRCligrbloq: TStringField
+      DisplayLabel = 'Grupo Bloqueado?'
+      FieldName = 'grbloq'
+      Size = 1
     end
   end
   object cdsBanc: TClientDataSet
@@ -2217,6 +2241,7 @@ object dm: Tdm
   end
   object cdsSequenciais: TClientDataSet
     Aggregates = <>
+    AggregatesActive = True
     Params = <>
     ProviderName = 'dspSequenciais'
     RemoteServer = scHC
@@ -2259,21 +2284,31 @@ object dm: Tdm
       DisplayLabel = 'Pr.Custo'
       FieldName = 'precus'
       Required = True
+      DisplayFormat = '#,##0.00'
     end
     object cdsSequenciaispreven: TFloatField
       DisplayLabel = 'Pr.Venda'
       FieldName = 'preven'
       Required = True
+      DisplayFormat = '#,##0.00'
     end
     object cdsSequenciaisvencim: TDateField
       DisplayLabel = 'Vencimento'
       FieldName = 'vencim'
     end
     object cdsSequenciaisestatu: TFloatField
+      DisplayLabel = 'Est.Atual'
       FieldName = 'estatu'
+      DisplayFormat = '#.00'
     end
     object cdsSequenciaisauxili: TFloatField
       FieldName = 'auxili'
+    end
+    object cdsSequenciaisSOMAQUANTIDADE: TAggregateField
+      DefaultExpression = 'SUM(QUANTIDADEATUAL)'
+      FieldName = 'SOMAQUANTIDADE'
+      Active = True
+      Expression = 'SUM(estatu)'
     end
   end
   object cdsLinhaGrade: TClientDataSet
@@ -2312,8 +2347,8 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspColunaGrade'
     RemoteServer = scHC
-    Left = 272
-    Top = 352
+    Left = 280
+    Top = 344
     object cdsColunaGradecdlcgr: TIntegerField
       FieldName = 'cdlcgr'
       Required = True
