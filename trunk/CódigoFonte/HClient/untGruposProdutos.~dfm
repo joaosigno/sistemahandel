@@ -1,6 +1,6 @@
 inherited frmManuGrupoProdutos: TfrmManuGrupoProdutos
-  Left = 352
-  Top = 171
+  Left = 787
+  Top = 118
   Caption = 'Manuten'#231#227'o de Grupos de Produtos'
   ClientHeight = 216
   OldCreateOrder = True

@@ -1628,6 +1628,9 @@ object RDM: TRDM
     object qrySequenciaisvencim: TDateField
       FieldName = 'vencim'
     end
+    object qrySequenciaisauxili: TFloatField
+      FieldName = 'auxili'
+    end
   end
   object dspSequenciais: TDataSetProvider
     DataSet = qrySequenciais

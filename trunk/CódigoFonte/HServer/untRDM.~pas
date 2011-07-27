@@ -394,6 +394,7 @@ type
     qrySequenciaispreven: TFloatField;
     qrySequenciaisvencim: TDateField;
     qrySequenciaisestatu: TFloatField;
+    qrySequenciaisauxili: TFloatField;
     procedure RemoteDataModuleCreate(Sender: TObject);
     procedure RemoteDataModuleDestroy(Sender: TObject);
   private

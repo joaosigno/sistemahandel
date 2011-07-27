@@ -36,9 +36,9 @@ type
     cdsSequenciaispreven: TFloatField;
     cdsSequenciaisvencim: TDateField;
     cdsSequenciaisquantTotal: TFloatField;
-    cdsSequenciaissomaauxiliar: TAggregateField;
     cdsSequenciaisestatu: TFloatField;
     cdsSequenciaisauxili: TFloatField;
+    cdsSequenciaisSOMAAUXILIAR: TAggregateField;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure cdsSequenciaisCalcFields(DataSet: TDataSet);
@@ -70,6 +70,7 @@ uses untDM, untPrincipal, untManuProdutos;
 {$R *.dfm}
 
 procedure TfrmSequenciaisProdutos.FormShow(Sender: TObject);
+var cod: integer;
 begin
     if tipoform = 1 then
     begin
@@ -81,12 +82,13 @@ begin
     dm.cdsLinhaGrade.Open;
     sql.executaSQlPorEmp(dm.cdsColunaGrade,'*','lcgra',' and lincol=''C'' and cdgrad='+IntToStr(dm.cdsProdcdgrad.Value));
     dm.cdsColunaGrade.Open;
+    cod := StrToInt(SQL.proxCod(dm.cdsAux,'cdsequ','sqpro'));
     while not dm.cdsLinhaGrade.Eof do
     begin
       while not dm.cdsColunaGrade.Eof do
       begin
         cdsSequenciais.Append;
-        cdsSequenciaiscdsequ.value := StrToInt(SQL.proxCod(dm.cdsAux,'cdsequ','sqpro'));
+        cdsSequenciaiscdsequ.value := cod;
         cdsSequenciaiscdempr.Value := frmprincipal.Configuracao.EmpresaCodigo;
         cdsSequenciaiscdprod.Value := dm.cdsProdcdprod.Value;
         cdsSequenciaisdescri.Value := dm.cdsLinhaGradedescri.Value + ' - ' + dm.cdsColunaGradedescri.Value;
@@ -96,6 +98,7 @@ begin
         cdsSequenciaisauxili.Value := 0;
         cdsSequenciais.Post;
         dm.cdsColunaGrade.Next;
+        cod:= cod + 1;
       end;
       dm.cdsColunaGrade.First;
       dm.cdsLinhaGrade.Next;
@@ -130,10 +133,11 @@ end;
 procedure TfrmSequenciaisProdutos.cdsSequenciaisAfterPost(
   DataSet: TDataSet);
 begin
+ // ShowMessage(FloatToStr(cdsSequenciaisprecus.AsFloat));
   if (tipoform = 1) then
   begin
-//    lbl_qtdatual.caption := FormatFloat('#,##0.00',cdsSequenciaissomaauxiliar.value);
-//    lbl_qtdrestante.caption := FormatFloat('#,##0.00',strtofloat(lbl_qtdinicial.caption) - cdsSequenciaissomaauxiliar.value);
+    lbl_qtdatual.caption := FormatFloat('#,##0.00',cdsSequenciaisSOMAAUXILIAR.value);
+    lbl_qtdrestante.caption := FormatFloat('#,##0.00',strtofloat(lbl_qtdinicial.caption) - cdsSequenciaisSOMAAUXILIAR.value);
   end;
 end;
 
@@ -148,6 +152,8 @@ begin
       abort;
     end else
     begin
+      dm.cdsSequenciais.Close;
+      cdsSequenciaisestatu.ReadOnly := false;
       cdsSequenciais.first;
       while not cdsSequenciais.eof do
       begin
@@ -156,8 +162,9 @@ begin
         cdsSequenciais.post;
         cdsSequenciais.next;
       end;
-      frmManuProdutos.cdssequencial.Close;
-      frmManuProdutos.cdssequencial.open;
+      cdsSequenciaisestatu.ReadOnly := true;
+      dm.cdsSequenciais.Close;
+      dm.cdsSequenciais.open;
       cdsSequenciais.ApplyUpdates(0);
       ModalResult := mrOK;
     end;

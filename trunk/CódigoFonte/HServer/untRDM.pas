@@ -395,6 +395,11 @@ type
     qrySequenciaisvencim: TDateField;
     qrySequenciaisestatu: TFloatField;
     qrySequenciaisauxili: TFloatField;
+    qryGRClivenvis: TStringField;
+    qryGRClivenpra: TStringField;
+    qryGRClivenche: TStringField;
+    qryGRClivencar: TStringField;
+    qryGRCligrbloq: TStringField;
     procedure RemoteDataModuleCreate(Sender: TObject);
     procedure RemoteDataModuleDestroy(Sender: TObject);
   private

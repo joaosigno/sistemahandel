@@ -1,9 +1,9 @@
 inherited frmManuAcertosEstoque: TfrmManuAcertosEstoque
-  Left = 380
-  Top = 297
+  Left = 292
+  Top = 200
   Caption = 'Acertos no Estoque'
-  ClientHeight = 269
-  ClientWidth = 556
+  ClientHeight = 339
+  ClientWidth = 584
   OldCreateOrder = True
   OnCreate = FormCreate
   OnShow = FormShow
@@ -17,8 +17,8 @@ inherited frmManuAcertosEstoque: TfrmManuAcertosEstoque
     Caption = 'Est.Autal...:'
   end
   inherited tbManutencao: TToolBar
-    Top = 209
-    Width = 556
+    Top = 279
+    Width = 584
     inherited ToolButton1: TToolButton
       Width = 33
     end
@@ -59,8 +59,8 @@ inherited frmManuAcertosEstoque: TfrmManuAcertosEstoque
   object pgAcertoEstoqu: TPageControl [2]
     Left = 0
     Top = 0
-    Width = 556
-    Height = 209
+    Width = 584
+    Height = 279
     ActivePage = tsInicio
     Align = alClient
     TabOrder = 1
@@ -87,7 +87,7 @@ inherited frmManuAcertosEstoque: TfrmManuAcertosEstoque
         Caption = 'Est.Autal...:'
       end
       object Label3: TLabel
-        Left = 337
+        Left = 368
         Top = 50
         Width = 84
         Height = 14
@@ -96,7 +96,7 @@ inherited frmManuAcertosEstoque: TfrmManuAcertosEstoque
       object Bevel1: TBevel
         Left = 5
         Top = 101
-        Width = 532
+        Width = 567
         Height = 4
       end
       object Label4: TLabel
@@ -107,7 +107,7 @@ inherited frmManuAcertosEstoque: TfrmManuAcertosEstoque
         Caption = 'Est.Correto..:'
       end
       object Label5: TLabel
-        Left = 306
+        Left = 337
         Top = 114
         Width = 119
         Height = 14
@@ -121,18 +121,40 @@ inherited frmManuAcertosEstoque: TfrmManuAcertosEstoque
         Caption = 'Pr.Vend.Atual:'
       end
       object Label8: TLabel
-        Left = 325
+        Left = 356
         Top = 74
         Width = 98
         Height = 14
         Caption = 'Pr.Custo.Atua:'
       end
       object Label9: TLabel
-        Left = 307
+        Left = 338
         Top = 138
         Width = 119
         Height = 14
         Caption = 'Pr.Custo Correto:'
+      end
+      object lblGrade: TLabel
+        Left = 2
+        Top = 136
+        Width = 112
+        Height = 14
+        Caption = 'Grade do Produto'
+        Visible = False
+      end
+      object Label10: TLabel
+        Left = 390
+        Top = 220
+        Width = 182
+        Height = 14
+        Caption = '* Servi'#231'os N'#227'o Aparecem No'
+      end
+      object Label11: TLabel
+        Left = 445
+        Top = 234
+        Width = 126
+        Height = 14
+        Caption = 'Acertos de Estoque'
       end
       object dbeCod: TDBEdit
         Left = 99
@@ -150,17 +172,18 @@ inherited frmManuAcertosEstoque: TfrmManuAcertosEstoque
       object dbeDescriPro: TDBEdit
         Left = 220
         Top = 4
-        Width = 322
+        Width = 350
         Height = 22
         Color = 13425885
         DataField = 'descri'
         DataSource = DataSource
         ReadOnly = True
         TabOrder = 1
+        OnChange = dbeDescriProChange
         OnExit = dbeDescriProExit
       end
       object pesquisa: TwwDBLookupComboDlg
-        Left = 521
+        Left = 547
         Top = 4
         Width = 21
         Height = 22
@@ -185,6 +208,7 @@ inherited frmManuAcertosEstoque: TfrmManuAcertosEstoque
         AutoDropDown = False
         ShowButton = True
         AllowClearKey = False
+        OnEnter = pesquisaEnter
         OnExit = pesquisaExit
       end
       object rxcbceEstAtual: TRxDBCalcEdit
@@ -259,7 +283,7 @@ inherited frmManuAcertosEstoque: TfrmManuAcertosEstoque
         TabOrder = 3
       end
       object rxcbceEstMinimo: TRxDBCalcEdit
-        Left = 425
+        Left = 457
         Top = 47
         Width = 115
         Height = 21
@@ -475,7 +499,7 @@ inherited frmManuAcertosEstoque: TfrmManuAcertosEstoque
         TabOrder = 7
       end
       object rxceprcustocorreto: TRxDBCalcEdit
-        Left = 428
+        Left = 459
         Top = 135
         Width = 115
         Height = 21
@@ -549,7 +573,7 @@ inherited frmManuAcertosEstoque: TfrmManuAcertosEstoque
         TabOrder = 9
       end
       object rxceprvendacorreto: TRxDBCalcEdit
-        Left = 428
+        Left = 459
         Top = 111
         Width = 115
         Height = 21
@@ -623,7 +647,7 @@ inherited frmManuAcertosEstoque: TfrmManuAcertosEstoque
         TabOrder = 8
       end
       object rxdbceprcustoatual: TRxDBCalcEdit
-        Left = 426
+        Left = 457
         Top = 71
         Width = 115
         Height = 21
@@ -693,14 +717,61 @@ inherited frmManuAcertosEstoque: TfrmManuAcertosEstoque
         ShowHint = True
         TabOrder = 6
       end
+      object gridAcertos: TDBGrid
+        Left = 1
+        Top = 151
+        Width = 334
+        Height = 96
+        Align = alCustom
+        Ctl3D = False
+        DataSource = dsGrade
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Courier New'
+        Font.Style = []
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
+        ParentCtl3D = False
+        ParentFont = False
+        TabOrder = 10
+        TitleFont.Charset = ANSI_CHARSET
+        TitleFont.Color = clBlack
+        TitleFont.Height = -11
+        TitleFont.Name = 'Courier New'
+        TitleFont.Style = [fsBold]
+        Visible = False
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'descri'
+            Width = 164
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'estatu'
+            Width = 68
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'preven'
+            Width = 65
+            Visible = True
+          end>
+      end
     end
   end
   inherited imManutencao: TImageList
-    Left = 456
-    Top = 224
+    Left = 536
   end
   inherited DataSource: TDataSource
-    Left = 512
-    Top = 224
+    Left = 504
+    Top = 288
+  end
+  object dsGrade: TDataSource
+    DataSet = dm.cdsSequenciais
+    Left = 180
+    Top = 217
   end
 end

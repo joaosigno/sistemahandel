@@ -1,6 +1,5 @@
 inherited frmManuProdutos: TfrmManuProdutos
-  Left = 409
-  Top = 141
+  Left = 829
   Caption = 'Manuten'#231#227'o de Produtos'
   ClientHeight = 447
   OldCreateOrder = True
@@ -863,7 +862,7 @@ inherited frmManuProdutos: TfrmManuProdutos
       object rxdbceEstMin: TRxDBCalcEdit
         Left = 72
         Top = 293
-        Width = 116
+        Width = 115
         Height = 21
         DataField = 'estmin'
         DataSource = DataSource
@@ -1274,7 +1273,7 @@ inherited frmManuProdutos: TfrmManuProdutos
       object pesquisagrade: TwwDBLookupComboDlg
         Left = 73
         Top = 335
-        Width = 116
+        Width = 115
         Height = 20
         Ctl3D = False
         DisableThemes = False
@@ -1544,6 +1543,65 @@ inherited frmManuProdutos: TfrmManuProdutos
         TabOrder = 4
       end
     end
+    object tsGrade: TTabSheet
+      Caption = 'Grade'
+      ImageIndex = 3
+      object gridDependentes: TDBGrid
+        Left = 0
+        Top = 4
+        Width = 524
+        Height = 353
+        Align = alCustom
+        Ctl3D = False
+        DataSource = dsSequencial
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Courier New'
+        Font.Style = []
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
+        ParentCtl3D = False
+        ParentFont = False
+        TabOrder = 0
+        TitleFont.Charset = ANSI_CHARSET
+        TitleFont.Color = clBlack
+        TitleFont.Height = -11
+        TitleFont.Name = 'Courier New'
+        TitleFont.Style = [fsBold]
+        OnDrawColumnCell = gridDependentesDrawColumnCell
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'descri'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'preven'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'estatu'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'vencim'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'ultcom'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'ultven'
+            Visible = True
+          end>
+      end
+    end
     object rsObs: TTabSheet
       Caption = 'Obs'
       ImageIndex = 2
@@ -1566,56 +1624,12 @@ inherited frmManuProdutos: TfrmManuProdutos
     Top = 272
   end
   inherited DataSource: TDataSource
-    Left = 224
-    Top = 216
+    Top = 64
   end
-  object cdssequencial: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'dspSequenciais'
-    RemoteServer = dm.scHC
-    Left = 260
-    Top = 17
-    object cdssequencialcdsequ: TIntegerField
-      FieldName = 'cdsequ'
-      Required = True
-    end
-    object cdssequencialcdempr: TIntegerField
-      FieldName = 'cdempr'
-      Required = True
-    end
-    object cdssequencialdtcada: TDateField
-      FieldName = 'dtcada'
-    end
-    object cdssequencialultcom: TDateField
-      FieldName = 'ultcom'
-    end
-    object cdssequencialultven: TDateField
-      FieldName = 'ultven'
-    end
-    object cdssequencialcdprod: TIntegerField
-      FieldName = 'cdprod'
-      Required = True
-    end
-    object cdssequencialdescri: TStringField
-      FieldName = 'descri'
-      Required = True
-      Size = 30
-    end
-    object cdssequencialestatu: TFloatField
-      FieldName = 'estatu'
-      Required = True
-    end
-    object cdssequencialprecus: TFloatField
-      FieldName = 'precus'
-      Required = True
-    end
-    object cdssequencialpreven: TFloatField
-      FieldName = 'preven'
-      Required = True
-    end
-    object cdssequencialvencim: TDateField
-      FieldName = 'vencim'
-    end
+  object dsSequencial: TDataSource
+    DataSet = dm.cdsSequenciais
+    OnStateChange = DataSourceStateChange
+    Left = 300
+    Top = 177
   end
 end

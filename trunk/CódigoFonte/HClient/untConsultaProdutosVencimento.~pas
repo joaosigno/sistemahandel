@@ -63,6 +63,8 @@ begin
     f.Mensagem(false,'Preencha Data Final!') else
      SQL.executaSQlPorEmp(dm.cdsProd,'*','produ',' and vencim>=to_date('+QuotedStr(edtDataInicial.Text)+
           ',''dd/mm/yyyy'') and vencim<=to_date('+QuotedStr(edtDataFinal.Text)+',''dd/mm/yyyy'') order by vencim');
+     SQL.executaSQlPorEmp(dm.cdsSequenciais,'*','sqpro',' and vencim>=to_date('+QuotedStr(edtDataInicial.Text)+
+          ',''dd/mm/yyyy'') and vencim<=to_date('+QuotedStr(edtDataFinal.Text)+',''dd/mm/yyyy'') order by vencim');
 end;
 
 procedure TfrmConsultaProdutosVencimento.gridDependentesDrawColumnCell(
@@ -118,7 +120,7 @@ procedure TfrmConsultaProdutosVencimento.FormCreate(Sender: TObject);
 begin
   dm.cdsProd.Close;
   dsPro.DataSet := dm.cdsProd;
-
+  dsGrade.DataSet := dm.cdsSequenciais;
 end;
 
 end.

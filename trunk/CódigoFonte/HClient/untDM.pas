@@ -409,6 +409,12 @@ type
     cdsColunaGradelincol: TStringField;
     cdsSequenciaisestatu: TFloatField;
     cdsSequenciaisauxili: TFloatField;
+    cdsSequenciaisSOMAQUANTIDADE: TAggregateField;
+    cdsGRClivenvis: TStringField;
+    cdsGRClivenpra: TStringField;
+    cdsGRClivenche: TStringField;
+    cdsGRClivencar: TStringField;
+    cdsGRCligrbloq: TStringField;
     function verificaBD():Boolean;
     function Autenticacao(cdemp:integer;login:String;senha:string): boolean;
     procedure cdsProdclaoriGetText(Sender: TField; var Text: String;
@@ -428,6 +434,7 @@ type
     procedure cdsProdAfterInsert(DataSet: TDataSet);
     procedure cdsGRProvldsemGetText(Sender: TField; var Text: String;
       DisplayText: Boolean);
+    procedure InsereLog(msg:String);
   private
     F: TFuncoes;
     { Private declarations }
@@ -630,6 +637,29 @@ begin
   If Sender.Value ='4' then Text:='4 - SEXTA-FEIRA' else
   If Sender.Value ='5' then Text:='5 - SÁBADO' else
   If Sender.Value ='6' then Text:='6 - DOMINGO' else    
+end;
+
+procedure Tdm.InsereLog( msg: String);
+var
+ log    : string;
+ Arquivo_Log : TextFile;
+begin
+  {GERANDO UM LOG}
+//  log := ''+scHC.Host+':'+'C:\Handel\Log'+frmPrincipal.Configuracao.EmpresaNome+'.txt';
+    log := 'C:\Handel\Log'+frmPrincipal.Configuracao.EmpresaNome+'.txt';
+    AssignFile(Arquivo_Log, log);
+     if FileExists(log) then
+       Append(Arquivo_Log) { se existir, apenas adiciona linhas }
+     else
+       ReWrite(Arquivo_Log); { cria um novo se não existir }
+     try
+       WriteLn(Arquivo_Log, 'Data Movimento:'+FormatDateTime('dd/mm/yyyy "" hh:mm:ss', Now)+' - Empresa: '+frmPrincipal.Configuracao.EmpresaNome+' - Usuário: '+frmPrincipal.configuracao.usuarionome+' [ '+msg+' ]');
+       WriteLn(Arquivo_Log, '-------------------------------------------------------------------------------------------------------------------------------------------------------------------------');
+//       Result := 'Tudo ok';
+     finally
+       CloseFile(Arquivo_Log)
+     end;
+  {FIM DO GERADOR DE LOG}
 end;
 
 end.

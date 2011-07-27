@@ -1463,6 +1463,27 @@ object frmConsultaProdutosVencimento: TfrmConsultaProdutosVencimento
     TitleFont.Name = 'Courier New'
     TitleFont.Style = [fsBold]
     OnDrawColumnCell = DBGrid1DrawColumnCell
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'cdprod'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'descri'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'vencim'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'estatu'
+        Visible = True
+      end>
   end
   object btn_Fechar: TButton
     Left = 440
@@ -1493,6 +1514,7 @@ object frmConsultaProdutosVencimento: TfrmConsultaProdutosVencimento
     Top = 88
   end
   object dsGrade: TDataSource
+    DataSet = dm.cdsSequenciais
     Left = 136
     Top = 312
   end

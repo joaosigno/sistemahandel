@@ -18,7 +18,7 @@ inherited frmManuClientes: TfrmManuClientes
     Top = 0
     Width = 553
     Height = 309
-    ActivePage = tsDepAut
+    ActivePage = tsOutros
     Align = alClient
     TabOrder = 1
     object tsBasicos: TTabSheet

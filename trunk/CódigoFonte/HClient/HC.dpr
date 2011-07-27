@@ -39,7 +39,8 @@ uses
   untConsultaProdutosVencimento in 'untConsultaProdutosVencimento.pas' {frmConsultaProdutosVencimento},
   untReajustePreco in 'untReajustePreco.pas' {frmReajustePreco},
   untConferenciaEstoque in 'untConferenciaEstoque.pas' {frmConferenciaEstoque},
-  untSequenciasProdutos in 'untSequenciasProdutos.pas' {frmSequenciaisProdutos};
+  untSequenciasProdutos in 'untSequenciasProdutos.pas' {frmSequenciaisProdutos},
+  untManuGruposCLientes in 'untManuGruposCLientes.pas' {frmManuGruposClientes};
 
 {$R *.res}
 
@@ -48,6 +49,5 @@ begin
   Application.Title := 'HClient';
   Application.CreateForm(Tdm, dm);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmSequenciaisProdutos, frmSequenciaisProdutos);
   Application.Run;
 end.
