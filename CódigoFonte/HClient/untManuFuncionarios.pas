@@ -191,6 +191,8 @@ begin
   ManuDAO := TManutencaoDAO.Create(dm.cdsFunc);
   inherited;
   DataSource.DataSet := dm.cdsFunc;
+  ManuDAO.SQL.executaSQlPorEmp(dm.cdsProfi,'*','profi','');
+  ManuDAO.SQL.executaSQlPorEmp(dm.cdsDepa,'*','depar','');
 end;
 
 procedure TfrmManuFuncionario.tbGravarClick(Sender: TObject);

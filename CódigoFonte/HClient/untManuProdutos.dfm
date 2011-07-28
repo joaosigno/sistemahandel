@@ -1627,7 +1627,6 @@ inherited frmManuProdutos: TfrmManuProdutos
     Top = 64
   end
   object dsSequencial: TDataSource
-    DataSet = dm.cdsSequenciais
     OnStateChange = DataSourceStateChange
     Left = 300
     Top = 177

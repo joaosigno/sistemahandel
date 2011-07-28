@@ -324,28 +324,9 @@ type
     cdsPlanContastipo: TStringField;
     cdsPlanContascdcont: TStringField;
     cdsPlanContascdcoma: TStringField;
-    cdsCtPag: TClientDataSet;
-    cdsCtPagcodcon: TIntegerField;
-    cdsCtPagcdempr: TIntegerField;
-    cdsCtPagtipcon: TStringField;
-    cdsCtPagcdclfo: TIntegerField;
-    cdsCtPagtitulo: TStringField;
-    cdsCtPagnotcon: TIntegerField;
-    cdsCtPagdtemit: TDateField;
-    cdsCtPagvlcont: TFloatField;
-    cdsCtPagdtvenc: TDateField;
-    cdsCtPagdtpaga: TDateField;
-    cdsCtPagvalpag: TFloatField;
-    cdsCtPagjurpag: TFloatField;
-    cdsCtPagobscon: TStringField;
-    cdsCtPagvendco: TIntegerField;
-    cdsCtPagstacon: TStringField;
-    cdsCtPaghistor: TStringField;
-    cdsCtPagcodusu: TIntegerField;
+    cdsContas: TClientDataSet;
     cdsBanccdban: TIntegerField;
     cdsBancdescri: TStringField;
-    cdsCtPagprocuraFornecedor: TStringField;
-    cdsCtPagprocuraCliente: TStringField;
     cdsTrans: TClientDataSet;
     cdsTranscdtran: TIntegerField;
     cdsTranscdempr: TIntegerField;
@@ -415,6 +396,32 @@ type
     cdsGRClivenche: TStringField;
     cdsGRClivencar: TStringField;
     cdsGRCligrbloq: TStringField;
+    cdsContascodcon: TIntegerField;
+    cdsContascdempr: TIntegerField;
+    cdsContastipcon: TStringField;
+    cdsContascdclfo: TIntegerField;
+    cdsContastitulo: TStringField;
+    cdsContasnotcon: TIntegerField;
+    cdsContasdtemit: TDateField;
+    cdsContasvlcont: TFloatField;
+    cdsContasdtvenc: TDateField;
+    cdsContasdtpaga: TDateField;
+    cdsContasvalpag: TFloatField;
+    cdsContasjurpag: TFloatField;
+    cdsContasobscon: TStringField;
+    cdsContasstacon: TStringField;
+    cdsContascodusu: TIntegerField;
+    cdsContascdvend: TIntegerField;
+    cdsContasconcax: TStringField;
+    cdsContasprocuraFornecedor: TStringField;
+    cdsContasprocuraCliente: TStringField;
+    cdsContasprocuraContaCaixa: TStringField;
+    cdsContasdescon: TFloatField;
+    cdsContasprocuraVendedor: TStringField;
+    cdsContashistor: TStringField;
+    cdsContasmulpag: TFloatField;
+    cdsContasSELECIONA: TStringField;
+    cdsContasSOMAVALOR: TAggregateField;
     function verificaBD():Boolean;
     function Autenticacao(cdemp:integer;login:String;senha:string): boolean;
     procedure cdsProdclaoriGetText(Sender: TField; var Text: String;
@@ -435,6 +442,8 @@ type
     procedure cdsGRProvldsemGetText(Sender: TField; var Text: String;
       DisplayText: Boolean);
     procedure InsereLog(msg:String);
+    procedure cdsContasstaconGetText(Sender: TField; var Text: String;
+      DisplayText: Boolean);
   private
     F: TFuncoes;
     { Private declarations }
@@ -660,6 +669,14 @@ begin
        CloseFile(Arquivo_Log)
      end;
   {FIM DO GERADOR DE LOG}
+end;
+
+procedure Tdm.cdsContasstaconGetText(Sender: TField; var Text: String;
+  DisplayText: Boolean);
+begin
+  If Sender.Value ='A' then Text:='Aberta' else
+  If Sender.Value ='Q' then Text:='Quitada' else
+    Text := '';
 end;
 
 end.

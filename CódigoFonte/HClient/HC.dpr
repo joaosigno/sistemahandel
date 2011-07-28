@@ -40,7 +40,9 @@ uses
   untReajustePreco in 'untReajustePreco.pas' {frmReajustePreco},
   untConferenciaEstoque in 'untConferenciaEstoque.pas' {frmConferenciaEstoque},
   untSequenciasProdutos in 'untSequenciasProdutos.pas' {frmSequenciaisProdutos},
-  untManuGruposCLientes in 'untManuGruposCLientes.pas' {frmManuGruposClientes};
+  untManuGruposCLientes in 'untManuGruposCLientes.pas' {frmManuGruposClientes},
+  untAlterarLoteContas in 'untAlterarLoteContas.pas' {frmAlterarLoteContas},
+  untSelecionarContas in 'untSelecionarContas.pas' {frmSelecionarContas};
 
 {$R *.res}
 

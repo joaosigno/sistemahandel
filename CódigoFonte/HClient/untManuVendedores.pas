@@ -70,6 +70,7 @@ begin
   ManuDao := TManutencaoDAO.Create(dm.cdsVende);
   inherited;
   DataSource.DataSet := DM.cdsVende;
+  ManuDAO.SQL.executaSQlPorEmp(dm.cdsFunc,'*','funci','');
 
 end;
 

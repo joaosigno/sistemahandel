@@ -40,6 +40,7 @@ type
   public
     function Codifica(Action, Src: String): String;
     function DataExtenso(Data: TDateTime; tipo: integer): String;
+    function DiasEntreDatas(dataini, datafin: string): integer;
     function VerificaCGC(num: string): boolean;
     function VerificaCPF(num: string): boolean;
     function AbreForm(FormClasse: TFormClass; FForm: TForm; wtipo : Word):boolean;
@@ -47,6 +48,7 @@ type
     function quantRegistro(lbl: TLabel; cds: TClientDataSet;campos:string;tabela:string;sqlComplementar:String):String;
     function checaForm(Form : TForm):Boolean;
     procedure Mensagem(lbl : Boolean; msg : String);
+    procedure OrdenaClientDataSet(CDS: TClientDataSet; Campo: TField);
   published
   protected
   private
@@ -313,6 +315,76 @@ begin
    frmMensagem.mmMensagem.Lines.Add(msg);
    frmMensagem.ShowModal;
    frmMensagem.Free;
+end;
+
+function TFuncoes.DiasEntreDatas(dataini, datafin: string): integer;
+var a,b,c:tdatetime;
+  ct,s:integer;
+begin
+  if StrToDate(DataFin) < StrtoDate(DataIni) then
+    begin
+      Result := 0;
+      exit;
+    end;
+  ct := 0;
+  s := 1;
+  a := strtodate(dataFin);
+  b := strtodate(dataIni);
+  if a > b then
+    begin
+      c := a;
+      a := b;
+      b := c;
+      s := 1;
+    end;
+  a := a + 1;
+  while (dayofweek(a)<>2) and (a <= b) do
+    begin
+      if dayofweek(a) in [1..7] then
+        begin
+          inc(ct);
+        end;
+      a := a + 1;
+    end;
+  ct := ct + round((7*System.int((b-a)/7)));
+  a := a + (7*System.int((b-a)/7));
+  while a <= b do
+    begin
+      if dayofweek(a) in [1..7] then
+        begin
+          inc(ct);
+        end;
+      a := a + 1;
+    end;
+  if ct < 0 then
+    begin
+      ct := 0;
+    end;
+  result := s*ct;
+end;
+
+procedure TFuncoes.OrdenaClientDataSet(CDS: TClientDataSet; Campo: TField);
+var
+  nomeindice: string;
+  opcoesindice: Tindexoptions;
+begin
+  if CDS.IndexName = copy('ixasc' + Campo.FieldName,1,30) then
+  begin
+    NomeIndice := copy('ixdesc' + Campo.FieldName,1,30);
+    opcoesindice := [ixDescending, ixCaseInsensitive];
+  end else
+  begin
+    NomeIndice := copy('ixasc' + Campo.FieldName,1,30);
+    opcoesindice := [ixCaseInsensitive];
+  end;
+  try
+    if CDS.IndexDefs.IndexOf(NomeIndice) = -1 then
+    CDS.IndexDefs.Add(NomeIndice, Campo.FieldName, Opcoesindice);
+    CDS.IndexName := NomeIndice;
+    CDS.IndexDefs.Update;
+    CDS.First;
+  except 
+  end;
 end;
 
 end.
