@@ -256,6 +256,9 @@ begin
   dm.cdsSequenciais.Open;
   pesquisagrade.LookupTable := dm.cdsGradePro;
   MudouTipodeControle := 'N';
+  ManuDAO.SQL.executaSQlPorEmp(dm.cdsMcPro,'*','mcpro','');
+  ManuDAO.SQL.executaSQlPorEmp(dm.cdsFor,'*','forne','');
+  ManuDAO.SQL.executaSQlPorEmp(dm.cdsGRPro,'*','grpro','');
 end;
 
 procedure TfrmManuProdutos.DBEcODmARCAExit(Sender: TObject);

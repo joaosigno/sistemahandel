@@ -496,7 +496,7 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 6
         OnButtonClick = dbeCNPJButtonClick
         OnExit = dbeCNPJExit
-        OnKeyPress = dbeCodKeyPress
+        OnKeyPress = dbeCNPJKeyPress
       end
     end
     object tsoutrosdados: TTabSheet

@@ -8,7 +8,7 @@ uses
   ActnMenus, ComCtrls, ExtCtrls, jpeg, StdCtrls, ImgList, RxGIF, UCBase,
   UCDataConnector, UCMidasConn, DB, DBClient, UCIdle, UCSettings, HkHints,
   XpMan, Menus, untDeclaracoes, DAO, Formulario, UCMail, RXShell, AppEvnts,
-  Buttons;
+  Buttons, SQL;
 
 type
    TConfiguracao = record  //Configurações do software
@@ -85,6 +85,7 @@ type
     acReajustePreco: TAction;
     acConferenciaEstoque: TAction;
     acGrupoClientes: TAction;
+    acAlteracaoEsclusaoLote: TAction;
     procedure AcVizualizarFornecedoresExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -126,8 +127,10 @@ type
     procedure acReajustePrecoExecute(Sender: TObject);
     procedure acConferenciaEstoqueExecute(Sender: TObject);
     procedure acGrupoClientesExecute(Sender: TObject);
+    procedure acAlteracaoEsclusaoLoteExecute(Sender: TObject);
   private
     F : TFuncoes;
+    SQL : TSQL;
     { Private declarations }
   public
     Configuracao: TConfiguracao;
@@ -148,9 +151,9 @@ uses untDM, untMensagem, untConfBD,
   untManuClientes, untManuBanco, untManuCartaoFidelidade, untManuCheques,
   untManuVendedores, untManuMarcaProdutos, untDefineEmpresaUsuario,
   untManuProdutos, untManuAcertoEstoque, untManuGrades,
-  untManuNaturezaOperacao, untManuContasPagar, SQL, untManuTransportadoras,
+  untManuNaturezaOperacao, untManuContasPagar, untManuTransportadoras,
   untConsultaProdutosVencimento, untReajustePreco, untConferenciaEstoque,
-  untManuGruposCLientes;
+  untManuGruposCLientes, untAlterarLoteContas;
 
 {$R *.dfm}
 
@@ -495,8 +498,8 @@ end;
 procedure TfrmPrincipal.acContasPagarExecute(Sender: TObject);
 begin
  RegisterClass(TfrmManuContasPagar);
- VD.showForm('Contas à Pagar',dm.cdsCtPag,'TfrmManuContasPagar',
-                         '*','conta',' order by codcon');
+ VD.showForm('Contas à Pagar',dm.cdsContas,'TfrmManuContasPagar',
+                         '*','conta',' and tipcon=''P'' order by codcon');
 end;
 
 procedure TfrmPrincipal.acTransportadoraExecute(Sender: TObject);
@@ -532,6 +535,15 @@ begin
  RegisterClass(TfrmManuGruposClientes);
  VD.showForm('Grupo de Clientes',dm.cdsGRCli,'TfrmManuGruposClientes',
                          '*','grcli',' order by cdgrup');
+end;
+
+procedure TfrmPrincipal.acAlteracaoEsclusaoLoteExecute(Sender: TObject);
+begin
+   SQL.executaSQlPorEmp(dm.cdsContas,'*','conta',' and tipcon=''R'' order by codcon');
+   frmAlterarLoteContas := TfrmAlterarLoteContas.Create(Application);
+   frmAlterarLoteContas.Tipo := 'P';
+   frmAlterarLoteContas.ShowModal;
+   frmAlterarLoteContas.Free;
 end;
 
 end.

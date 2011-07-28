@@ -1,7 +1,7 @@
 object dm: Tdm
   OldCreateOrder = False
-  Left = 449
-  Top = 212
+  Left = 713
+  Top = 124
   Height = 445
   Width = 448
   object cdsUsu: TClientDataSet
@@ -149,6 +149,7 @@ object dm: Tdm
     Top = 64
   end
   object cdsFor: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspForn'
@@ -642,6 +643,7 @@ object dm: Tdm
     end
   end
   object cdsProfi: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspProf'
@@ -671,6 +673,7 @@ object dm: Tdm
     end
   end
   object cdsFunc: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspFun'
@@ -858,6 +861,7 @@ object dm: Tdm
     Top = 8
   end
   object cdsDepa: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspDepar'
@@ -887,6 +891,7 @@ object dm: Tdm
     end
   end
   object cdsCli: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspCli'
@@ -1184,6 +1189,7 @@ object dm: Tdm
     end
   end
   object cdsGRCli: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspGRCli'
@@ -1354,6 +1360,7 @@ object dm: Tdm
     end
   end
   object cdsCartFid: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspCartFid'
@@ -1498,6 +1505,7 @@ object dm: Tdm
     end
   end
   object cdsVende: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspVende'
@@ -1952,6 +1960,7 @@ object dm: Tdm
     end
   end
   object cdsPlanContas: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspPlanContas'
@@ -1961,57 +1970,81 @@ object dm: Tdm
     Top = 296
     object cdsPlanContascdcont: TStringField
       DisplayLabel = 'C'#243'd.'
+      DisplayWidth = 13
       FieldName = 'cdcont'
       Required = True
       Size = 13
     end
-    object cdsPlanContascdcoma: TStringField
-      DisplayLabel = 'C'#243'd.Conta M'#227'e'
-      FieldName = 'cdcoma'
-      Size = 13
-    end
     object cdsPlanContasdescri: TStringField
       DisplayLabel = 'Descri'#231#227'o'
+      DisplayWidth = 50
       FieldName = 'descri'
       Required = True
       Size = 50
     end
+    object cdsPlanContascdcoma: TStringField
+      DisplayLabel = 'C'#243'd.Conta M'#227'e'
+      DisplayWidth = 13
+      FieldName = 'cdcoma'
+      Visible = False
+      Size = 13
+    end
     object cdsPlanContastipo: TStringField
       DisplayLabel = 'Tipo'
+      DisplayWidth = 2
       FieldName = 'tipo'
+      Visible = False
       Size = 2
     end
   end
-  object cdsCtPag: TClientDataSet
+  object cdsContas: TClientDataSet
     Aggregates = <>
+    AggregatesActive = True
     Params = <>
-    ProviderName = 'dspCtPag'
+    ProviderName = 'dspContas'
     RemoteServer = scHC
     OnReconcileError = cdsChequeReconcileError
     Left = 240
     Top = 296
-    object cdsCtPagcodcon: TIntegerField
-      DisplayLabel = 'C'#243'digo'
+    object cdsContascodcon: TIntegerField
+      DisplayLabel = 'C'#243'd.'
       FieldName = 'codcon'
       Required = True
     end
-    object cdsCtPagcdempr: TIntegerField
-      DisplayLabel = 'C'#243'd. Empresa'
+    object cdsContascdempr: TIntegerField
+      DisplayLabel = 'C'#243'd.Empresa'
       FieldName = 'cdempr'
       Required = True
     end
-    object cdsCtPagtipcon: TStringField
-      DisplayLabel = 'Tipo Conta'
+    object cdsContasconcax: TStringField
+      DisplayLabel = 'Conta do caixa'
+      FieldName = 'concax'
+      Required = True
+      Size = 13
+    end
+    object cdsContasprocuraContaCaixa: TStringField
+      DisplayLabel = 'Conta Caixa'
+      FieldKind = fkLookup
+      FieldName = 'procuraContaCaixa'
+      LookupDataSet = cdsPlanContas
+      LookupKeyFields = 'cdcont'
+      LookupResultField = 'descri'
+      KeyFields = 'concax'
+      Size = 30
+      Lookup = True
+    end
+    object cdsContastipcon: TStringField
+      DisplayLabel = 'Tp.Conta'
       FieldName = 'tipcon'
       Required = True
       Size = 1
     end
-    object cdsCtPagcdclfo: TIntegerField
-      DisplayLabel = 'Fornecedor'
+    object cdsContascdclfo: TIntegerField
+      DisplayLabel = 'C'#243'd.Cliente/Fornecedor'
       FieldName = 'cdclfo'
       Required = True
     end
-    object cdsCtPagprocuraFornecedor: TStringField
+    object cdsContasprocuraFornecedor: TStringField
       DisplayLabel = 'Fornecedor'
       FieldKind = fkLookup
       FieldName = 'procuraFornecedor'
@@ -2022,7 +2055,7 @@ object dm: Tdm
       Size = 30
       Lookup = True
     end
-    object cdsCtPagprocuraCliente: TStringField
+    object cdsContasprocuraCliente: TStringField
       DisplayLabel = 'Cliente'
       FieldKind = fkLookup
       FieldName = 'procuraCliente'
@@ -2033,66 +2066,101 @@ object dm: Tdm
       Size = 30
       Lookup = True
     end
-    object cdsCtPagtitulo: TStringField
-      DisplayLabel = 'T'#237'tulo'
+    object cdsContasnotcon: TIntegerField
+      DisplayLabel = 'C'#243'd.Nota'
+      FieldName = 'notcon'
+    end
+    object cdsContastitulo: TStringField
+      DisplayLabel = 'Titulo'
       FieldName = 'titulo'
       Required = True
       Size = 15
     end
-    object cdsCtPagnotcon: TIntegerField
-      DisplayLabel = 'C'#243'd. Nota'
-      FieldName = 'notcon'
-    end
-    object cdsCtPagdtemit: TDateField
+    object cdsContasdtemit: TDateField
       DisplayLabel = 'Dt.Emiss'#227'o'
       FieldName = 'dtemit'
       Required = True
     end
-    object cdsCtPagvlcont: TFloatField
-      DisplayLabel = 'Valor'
+    object cdsContasvlcont: TFloatField
+      DisplayLabel = 'Vr.Conta'
       FieldName = 'vlcont'
+      DisplayFormat = '#,##0.00'
     end
-    object cdsCtPagdtvenc: TDateField
+    object cdsContasdtvenc: TDateField
       DisplayLabel = 'Dt.Venc.'
       FieldName = 'dtvenc'
       Required = True
     end
-    object cdsCtPagdtpaga: TDateField
-      DisplayLabel = 'Dt.Pagam.'
+    object cdsContasdtpaga: TDateField
+      DisplayLabel = 'Dt.Pgto.'
       FieldName = 'dtpaga'
     end
-    object cdsCtPagvalpag: TFloatField
-      DisplayLabel = 'Valor Pago'
+    object cdsContasvalpag: TFloatField
+      DisplayLabel = 'Val.Pgto'
       FieldName = 'valpag'
+      DisplayFormat = '#,##0.00'
     end
-    object cdsCtPagjurpag: TFloatField
-      DisplayLabel = 'Juros Pago'
+    object cdsContasmulpag: TFloatField
+      DisplayLabel = 'Multa'
+      FieldName = 'mulpag'
+      DisplayFormat = '#,##0.00'
+    end
+    object cdsContasjurpag: TFloatField
+      DisplayLabel = 'Juros'
       FieldName = 'jurpag'
+      DisplayFormat = '#,##0.00'
     end
-    object cdsCtPagobscon: TStringField
-      DisplayLabel = 'Observa'#231#227'o'
+    object cdsContasdescon: TFloatField
+      DisplayLabel = 'Descontos'
+      FieldName = 'descon'
+      DisplayFormat = '#,##0.00'
+    end
+    object cdsContascdvend: TIntegerField
+      DisplayLabel = 'C'#243'd.Vendedor'
+      FieldName = 'cdvend'
+    end
+    object cdsContasprocuraVendedor: TStringField
+      DisplayLabel = 'Vendedor'
+      FieldKind = fkLookup
+      FieldName = 'procuraVendedor'
+      LookupDataSet = cdsVende
+      LookupKeyFields = 'cdvend'
+      LookupResultField = 'nome'
+      KeyFields = 'cdvend'
+      Size = 30
+      Lookup = True
+    end
+    object cdsContasstacon: TStringField
+      DisplayLabel = 'Status Conta'
+      FieldName = 'stacon'
+      Required = True
+      OnGetText = cdsContasstaconGetText
+      Size = 1
+    end
+    object cdsContashistor: TStringField
+      DisplayLabel = 'Hist'#243'rico'
+      FieldName = 'histor'
+      Size = 100
+    end
+    object cdsContasobscon: TStringField
+      DisplayLabel = 'Obs'
       FieldName = 'obscon'
       Size = 200
     end
-    object cdsCtPagvendco: TIntegerField
-      DisplayLabel = 'C'#243'd. Vendedor'
-      FieldName = 'vendco'
+    object cdsContascodusu: TIntegerField
+      DisplayLabel = 'C'#243'd.Usuario'
+      FieldName = 'codusu'
     end
-    object cdsCtPagstacon: TStringField
-      DisplayLabel = 'Status'
-      FieldName = 'stacon'
-      Required = True
+    object cdsContasSELECIONA: TStringField
+      FieldKind = fkInternalCalc
+      FieldName = 'SELECIONA'
       Size = 1
     end
-    object cdsCtPaghistor: TStringField
-      DisplayLabel = 'Hist'#243'rico'
-      FieldName = 'histor'
-      Required = True
-      Size = 255
-    end
-    object cdsCtPagcodusu: TIntegerField
-      DisplayLabel = 'C'#243'd. Usu'#225'rio'
-      FieldName = 'codusu'
+    object cdsContasSOMAVALOR: TAggregateField
+      DefaultExpression = 'SUM(VLCONT'
+      FieldName = 'SOMAVALOR'
+      Active = True
+      Expression = 'SUM(VLCONT)'
     end
   end
   object cdsTrans: TClientDataSet
@@ -2245,7 +2313,7 @@ object dm: Tdm
     Params = <>
     ProviderName = 'dspSequenciais'
     RemoteServer = scHC
-    Left = 272
+    Left = 288
     Top = 8
     object cdsSequenciaiscdsequ: TIntegerField
       DisplayLabel = 'C'#243'd.'

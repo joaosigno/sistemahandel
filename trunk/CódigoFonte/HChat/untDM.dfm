@@ -5,6 +5,7 @@ object dm: Tdm
   Height = 276
   Width = 320
   object scHC: TSocketConnection
+    Connected = True
     ServerGUID = '{29C1310A-D963-42DA-99C6-C0570B487612}'
     ServerName = 'HS.RDM'
     Host = 'localhost'

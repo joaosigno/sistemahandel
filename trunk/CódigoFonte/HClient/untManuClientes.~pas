@@ -226,6 +226,7 @@ begin
   DataSource.DataSet := dm.cdsCli;
   dsAutorizados.DataSet := dm.cdsAutori;
   dsDependentes.DataSet := dm.cdsDepen;
+  ManuDAO.SQL.executaSQlPorEmp(dm.cdsProfi,'*','profi','');
 end;
 
 procedure TfrmManuClientes.FormClose(Sender: TObject;

@@ -1,6 +1,7 @@
 inherited frmManuGruposClientes: TfrmManuGruposClientes
   Caption = 'Manuten'#231#227'o de Grupo de Clientes'
   ClientHeight = 216
+  OldCreateOrder = True
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -220,7 +221,6 @@ inherited frmManuGruposClientes: TfrmManuGruposClientes
     Top = 128
   end
   inherited DataSource: TDataSource
-    DataSet = dm.cdsGRCli
     Left = 240
     Top = 120
   end

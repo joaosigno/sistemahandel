@@ -443,18 +443,25 @@ begin
         grid.Columns[0].FieldName := 'codcon';
         grid.Columns[0].Width := 80;
 
-        grid.Columns.Add;
-        grid.Columns[1].FieldName := 'cdclfo';
-        grid.Columns[1].Width := 230;
+        if dm.cdsContastipcon.AsString = 'R' then
+        begin
+          grid.Columns.Add;
+          grid.Columns[1].FieldName := 'procuraCliente';
+          grid.Columns[1].Width := 300;
+        end else
+        begin
+          grid.Columns.Add;
+          grid.Columns[1].FieldName := 'procuraFornecedor';
+          grid.Columns[1].Width := 300;
+        end;
 
         grid.Columns.Add;
         grid.Columns[2].FieldName := 'titulo';
-        grid.Columns[2].Width := 100;
+        grid.Columns[2].Width := 80;
 
         grid.Columns.Add;
         grid.Columns[3].FieldName := 'notcon';
-        grid.Columns[3].Width := 100;
-
+        grid.Columns[3].Width := 80;
 
         grid.Columns.Add;
         grid.Columns[4].FieldName := 'dtemit';
@@ -473,16 +480,20 @@ begin
         grid.Columns[7].Width := 100;
 
         grid.Columns.Add;
-        grid.Columns[8].FieldName := 'valpag';
-        grid.Columns[8].Width := 100;
+        grid.Columns[8].FieldName := 'jurpag';
+        grid.Columns[8].Width := 80;
 
         grid.Columns.Add;
-        grid.Columns[9].FieldName := 'jurpag';
-        grid.Columns[9].Width := 100;
+        grid.Columns[9].FieldName := 'mulpag';
+        grid.Columns[9].Width := 80;
 
         grid.Columns.Add;
-        grid.Columns[10].FieldName := 'vendco';
-        grid.Columns[10].Width := 100;
+        grid.Columns[10].FieldName := 'descon';
+        grid.Columns[10].Width := 80;
+
+        grid.Columns.Add;
+        grid.Columns[11].FieldName := 'valpag';
+        grid.Columns[11].Width := 100;
       end;
     end
 

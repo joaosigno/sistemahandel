@@ -336,7 +336,7 @@ object frmVizualizaDados: TfrmVizualizaDados
     Font.Height = -13
     Font.Name = 'Courier New'
     Font.Style = []
-    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
     ParentCtl3D = False
     ParentFont = False
     TabOrder = 0

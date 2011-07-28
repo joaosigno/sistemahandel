@@ -40,6 +40,7 @@ type
   public
     function Codifica(Action, Src: String): String;
     function DataExtenso(Data: TDateTime; tipo: integer): String;
+    function DiasEntreDatas(dataini, datafin: string): integer;
     function VerificaCGC(num: string): boolean;
     function VerificaCPF(num: string): boolean;
     function AbreForm(FormClasse: TFormClass; FForm: TForm; wtipo : Word):boolean;
@@ -287,7 +288,6 @@ begin
 end;
 
 function TFuncoes.quantRegistro(lbl: TLabel; cds: TClientDataSet;campos:string;tabela:string;sqlComplementar:String):String;
-var SQL:TSQL;
 begin
   dm.executaSqlPorEmpresa(cds,campos,tabela,sqlComplementar);
   lbl.Caption := IntToStr(cds.RecordCount);
@@ -314,6 +314,52 @@ begin
    frmMensagem.mmMensagem.Lines.Add(msg);
    frmMensagem.ShowModal;
    frmMensagem.Free;
+end;
+
+function TFuncoes.DiasEntreDatas(dataini, datafin: string): integer;
+var a,b,c:tdatetime;
+  ct,s:integer;
+begin
+  if StrToDate(DataFin) < StrtoDate(DataIni) then
+    begin
+      Result := 0;
+      exit;
+    end;
+  ct := 0;
+  s := 1;
+  a := strtodate(dataFin);
+  b := strtodate(dataIni);
+  if a > b then
+    begin
+      c := a;
+      a := b;
+      b := c;
+      s := 1;
+    end;
+  a := a + 1;
+  while (dayofweek(a)<>2) and (a <= b) do
+    begin
+      if dayofweek(a) in [1..7] then
+        begin
+          inc(ct);
+        end;
+      a := a + 1;
+    end;
+  ct := ct + round((7*System.int((b-a)/7)));
+  a := a + (7*System.int((b-a)/7));
+  while a <= b do
+    begin
+      if dayofweek(a) in [1..7] then
+        begin
+          inc(ct);
+        end;
+      a := a + 1;
+    end;
+  if ct < 0 then
+    begin
+      ct := 0;
+    end;
+  result := s*ct;
 end;
 
 end.

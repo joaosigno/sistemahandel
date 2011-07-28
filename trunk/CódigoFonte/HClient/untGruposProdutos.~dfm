@@ -16,7 +16,7 @@ inherited frmManuGrupoProdutos: TfrmManuGrupoProdutos
     Top = 0
     Width = 534
     Height = 156
-    ActivePage = tbDadosPrincipais
+    ActivePage = tsPromocao
     Align = alClient
     TabOrder = 1
     object tbDadosPrincipais: TTabSheet

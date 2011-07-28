@@ -13,7 +13,7 @@ inherited frmManuGruposClientes: TfrmManuGruposClientes
     Top = 0
     Width = 534
     Height = 156
-    ActivePage = tsOpcoes
+    ActivePage = tsInicio
     Align = alClient
     TabOrder = 1
     object tsInicio: TTabSheet

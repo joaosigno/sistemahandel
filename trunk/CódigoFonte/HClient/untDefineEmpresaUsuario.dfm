@@ -1,6 +1,6 @@
 inherited frmManuDefineEmpresaUsuario: TfrmManuDefineEmpresaUsuario
-  Left = 240
-  Top = 204
+  Left = 661
+  Top = 153
   Caption = 'Definir Empresa Usu'#225'rio'
   ClientHeight = 207
   ClientWidth = 531
