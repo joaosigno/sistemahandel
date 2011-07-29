@@ -901,290 +901,396 @@ object dm: Tdm
     Top = 176
     object cdsClicdclie: TIntegerField
       DisplayLabel = 'C'#243'd.'
+      DisplayWidth = 10
       FieldName = 'cdclie'
       Required = True
     end
-    object cdsClicdempr: TIntegerField
-      DisplayLabel = 'C'#243'd.Empr.'
-      FieldName = 'cdempr'
-    end
-    object cdsClipesjur: TStringField
-      DisplayLabel = 'Pes.Jur.'
-      FieldName = 'pesjur'
-      Size = 1
-    end
-    object cdsCliativo: TStringField
-      DisplayLabel = 'Ativo'
-      FieldName = 'ativo'
-      Size = 1
-    end
-    object cdsCliestciv: TStringField
-      DisplayLabel = 'Estado Civil'
-      FieldName = 'estciv'
-      Size = 15
-    end
     object cdsClinome: TStringField
       DisplayLabel = 'Nome'
+      DisplayWidth = 50
       FieldName = 'nome'
       Required = True
       Size = 50
     end
+    object cdsClicdempr: TIntegerField
+      DisplayLabel = 'C'#243'd.Empr.'
+      DisplayWidth = 10
+      FieldName = 'cdempr'
+      Visible = False
+    end
+    object cdsClipesjur: TStringField
+      DisplayLabel = 'Pes.Jur.'
+      DisplayWidth = 1
+      FieldName = 'pesjur'
+      Visible = False
+      Size = 1
+    end
+    object cdsCliativo: TStringField
+      DisplayLabel = 'Ativo'
+      DisplayWidth = 1
+      FieldName = 'ativo'
+      Visible = False
+      Size = 1
+    end
+    object cdsCliestciv: TStringField
+      DisplayLabel = 'Estado Civil'
+      DisplayWidth = 15
+      FieldName = 'estciv'
+      Visible = False
+      Size = 15
+    end
     object cdsClisexo: TStringField
       DisplayLabel = 'Sexo'
+      DisplayWidth = 1
       FieldName = 'sexo'
+      Visible = False
       OnGetText = cdsClisexoGetText
       Size = 1
     end
     object cdsClidtnasc: TDateField
       DisplayLabel = 'Dt.Nascimento'
+      DisplayWidth = 10
       FieldName = 'dtnasc'
+      Visible = False
     end
     object cdsClicldesd: TDateField
       DisplayLabel = 'Cliente Desde'
+      DisplayWidth = 10
       FieldName = 'cldesd'
+      Visible = False
     end
     object cdsClidtcada: TDateField
       DisplayLabel = 'Dt.Cadastro'
+      DisplayWidth = 10
       FieldName = 'dtcada'
+      Visible = False
     end
     object cdsClinatura: TStringField
       DisplayLabel = 'Natural de'
+      DisplayWidth = 50
       FieldName = 'natura'
+      Visible = False
       Size = 50
     end
     object cdsClirg: TStringField
       DisplayLabel = 'RG'
+      DisplayWidth = 20
       FieldName = 'rg'
+      Visible = False
     end
     object cdsClicpf: TStringField
       DisplayLabel = 'CPF'
+      DisplayWidth = 14
       FieldName = 'cpf'
+      Visible = False
       Size = 14
     end
     object cdsClicep: TStringField
       DisplayLabel = 'Cep'
+      DisplayWidth = 10
       FieldName = 'cep'
+      Visible = False
       EditMask = '00000-000;1;'
       Size = 10
     end
     object cdsCliendere: TStringField
       DisplayLabel = 'Endere'#231'o'
+      DisplayWidth = 50
       FieldName = 'endere'
+      Visible = False
       Size = 50
     end
     object cdsClinumero: TStringField
       DisplayLabel = 'N'#250'm.'
+      DisplayWidth = 6
       FieldName = 'numero'
+      Visible = False
       Size = 6
     end
     object cdsClicidade: TStringField
       DisplayLabel = 'Cidade'
+      DisplayWidth = 30
       FieldName = 'cidade'
+      Visible = False
       Size = 30
     end
     object cdsClibairro: TStringField
       DisplayLabel = 'Bairro'
+      DisplayWidth = 30
       FieldName = 'bairro'
+      Visible = False
       Size = 30
     end
     object cdsCliuf: TStringField
       DisplayLabel = 'UF'
+      DisplayWidth = 2
       FieldName = 'uf'
+      Visible = False
       Size = 2
     end
     object cdsClitelefo: TStringField
       DisplayLabel = 'Telefone'
+      DisplayWidth = 20
       FieldName = 'telefo'
+      Visible = False
       EditMask = '(00)0000-0000;0'
     end
     object cdsClicelula: TStringField
       DisplayLabel = 'Celular'
+      DisplayWidth = 20
       FieldName = 'celula'
+      Visible = False
       EditMask = '(00)0000-0000;0'
     end
     object cdsClifax: TStringField
       DisplayLabel = 'FAX'
+      DisplayWidth = 20
       FieldName = 'fax'
+      Visible = False
       EditMask = '(00)0000-0000;0'
     end
     object cdsClicdbanc: TIntegerField
       DisplayLabel = 'C'#243'd.Banco'
+      DisplayWidth = 10
       FieldName = 'cdbanc'
+      Visible = False
     end
     object cdsCliprocuraBanco: TStringField
       DisplayLabel = 'Banco'
+      DisplayWidth = 30
       FieldKind = fkLookup
       FieldName = 'procuraBanco'
       LookupDataSet = cdsBanc
       LookupKeyFields = 'cdban'
       LookupResultField = 'descri'
       KeyFields = 'cdbanc'
+      Visible = False
       Size = 30
       Lookup = True
     end
     object cdsCliagenci: TStringField
       DisplayLabel = 'Ag'#234'ncia'
+      DisplayWidth = 15
       FieldName = 'agenci'
+      Visible = False
       Size = 15
     end
     object cdsCliconta: TStringField
       DisplayLabel = 'Conta'
+      DisplayWidth = 15
       FieldName = 'conta'
+      Visible = False
       Size = 15
     end
     object cdsClicdgrup: TIntegerField
       DisplayLabel = 'C'#243'd.Grupo'
+      DisplayWidth = 10
       FieldName = 'cdgrup'
+      Visible = False
     end
     object cdsCliprocuraGrupo: TStringField
       DisplayLabel = 'Grupo'
+      DisplayWidth = 30
       FieldKind = fkLookup
       FieldName = 'procuraGrupo'
       LookupDataSet = cdsGRCli
       LookupKeyFields = 'cdgrup'
       LookupResultField = 'descri'
       KeyFields = 'cdgrup'
+      Visible = False
       Size = 30
       Lookup = True
     end
     object cdsClicdcrfi: TStringField
       DisplayLabel = 'C'#243'd.Cart'#227'o Fidelidade'
+      DisplayWidth = 20
       FieldName = 'cdcrfi'
+      Visible = False
     end
     object cdsCliprocuraCartaoFidelidade: TStringField
       DisplayLabel = 'Cart'#227'o Fidelidade'
+      DisplayWidth = 30
       FieldKind = fkLookup
       FieldName = 'procuraCartaoFidelidade'
       LookupDataSet = cdsCartFid
       LookupKeyFields = 'nrcart'
       LookupResultField = 'nmcart'
       KeyFields = 'cdcrfi'
+      Visible = False
       Size = 30
       Lookup = True
     end
     object cdsClilimite: TFloatField
       DisplayLabel = 'Limite Cr'#233'dito'
+      DisplayWidth = 10
       FieldName = 'limite'
+      Visible = False
     end
     object cdsClinmpai: TStringField
       DisplayLabel = 'Nome Pai'
+      DisplayWidth = 50
       FieldName = 'nmpai'
+      Visible = False
       Size = 50
     end
     object cdsClinmmae: TStringField
       DisplayLabel = 'Nome M'#227'e'
+      DisplayWidth = 50
       FieldName = 'nmmae'
+      Visible = False
       Size = 50
     end
     object cdsCliconjug: TStringField
       DisplayLabel = 'Conjugue'
+      DisplayWidth = 50
       FieldName = 'conjug'
+      Visible = False
       Size = 50
     end
     object cdsClicjtele: TStringField
       DisplayLabel = 'Conjugue Telefone'
+      DisplayWidth = 20
       FieldName = 'cjtele'
+      Visible = False
       EditMask = '(00)0000-0000;0'
     end
     object cdsCliemptra: TStringField
       DisplayLabel = 'Empresa Trabalha'
+      DisplayWidth = 50
       FieldName = 'emptra'
+      Visible = False
       Size = 50
     end
     object cdsCliempcar: TStringField
       DisplayLabel = 'Empresa Cargo'
+      DisplayWidth = 50
       FieldName = 'empcar'
+      Visible = False
       Size = 50
     end
     object cdsClicdprof: TIntegerField
       DisplayLabel = 'C'#243'd.Profiss'#227'o'
+      DisplayWidth = 10
       FieldName = 'cdprof'
+      Visible = False
     end
     object cdsCliprocuraProfissao: TStringField
       DisplayLabel = 'Profissao'
+      DisplayWidth = 30
       FieldKind = fkLookup
       FieldName = 'procuraProfissao'
       LookupDataSet = cdsProfi
       LookupKeyFields = 'cdprof'
       LookupResultField = 'descri'
       KeyFields = 'cdprof'
+      Visible = False
       Size = 30
       Lookup = True
     end
     object cdsCliemptel: TStringField
       DisplayLabel = 'Empresa Telefone '
+      DisplayWidth = 20
       FieldName = 'emptel'
+      Visible = False
       EditMask = '(00)0000-0000;0'
     end
     object cdsCliempcep: TStringField
       DisplayLabel = 'Empresa Cep'
+      DisplayWidth = 10
       FieldName = 'empcep'
+      Visible = False
       EditMask = '00000-000;1;'
       Size = 10
     end
     object cdsCliempend: TStringField
       DisplayLabel = 'Empresa Endere'#231'o'
+      DisplayWidth = 50
       FieldName = 'empend'
+      Visible = False
       Size = 50
     end
     object cdsCliempbai: TStringField
       DisplayLabel = 'Empresa Bairro'
+      DisplayWidth = 30
       FieldName = 'empbai'
+      Visible = False
       Size = 30
     end
     object cdsCliempcid: TStringField
       DisplayLabel = 'Empresa Cidade'
+      DisplayWidth = 30
       FieldName = 'empcid'
+      Visible = False
       Size = 30
     end
     object cdsCliempuf: TStringField
       DisplayLabel = 'Empresa UF'
+      DisplayWidth = 2
       FieldName = 'empuf'
+      Visible = False
       Size = 2
     end
     object cdsClirfcom1: TStringField
       DisplayLabel = 'Referencia Comercial 1'
+      DisplayWidth = 50
       FieldName = 'rfcom1'
+      Visible = False
       Size = 50
     end
     object cdsClirfcom2: TStringField
       DisplayLabel = 'Referencia Comercial 2'
+      DisplayWidth = 50
       FieldName = 'rfcom2'
+      Visible = False
       Size = 50
     end
     object cdsClirfcom3: TStringField
       DisplayLabel = 'Referencia Comercial 3'
+      DisplayWidth = 50
       FieldName = 'rfcom3'
+      Visible = False
       Size = 50
     end
     object cdsClirfpes1: TStringField
       DisplayLabel = 'Referencia Pessoal 1'
+      DisplayWidth = 50
       FieldName = 'rfpes1'
+      Visible = False
       Size = 50
     end
     object cdsClirfpes2: TStringField
       DisplayLabel = 'Referencia Pessoal 2'
+      DisplayWidth = 50
       FieldName = 'rfpes2'
+      Visible = False
       Size = 50
     end
     object cdsClirfpes3: TStringField
       DisplayLabel = 'Referencia Pessoal 3'
+      DisplayWidth = 50
       FieldName = 'rfpes3'
+      Visible = False
       Size = 50
     end
     object cdsCliemail: TStringField
       DisplayLabel = 'E-mail'
+      DisplayWidth = 50
       FieldName = 'email'
+      Visible = False
       Size = 50
     end
     object cdsClihomepa: TStringField
       DisplayLabel = 'Home Page'
+      DisplayWidth = 50
       FieldName = 'homepa'
+      Visible = False
       Size = 50
     end
     object cdsCliobserv: TStringField
       DisplayLabel = 'Observa'#231#227'o'
+      DisplayWidth = 200
       FieldName = 'observ'
+      Visible = False
       Size = 200
     end
   end
@@ -2147,13 +2253,13 @@ object dm: Tdm
       FieldName = 'obscon'
       Size = 200
     end
-    object cdsContascodusu: TIntegerField
-      DisplayLabel = 'C'#243'd.Usuario'
-      FieldName = 'codusu'
-    end
     object cdsContasSELECIONA: TStringField
       FieldKind = fkInternalCalc
       FieldName = 'SELECIONA'
+      Size = 1
+    end
+    object cdsContassemdup: TStringField
+      FieldName = 'semdup'
       Size = 1
     end
     object cdsContasSOMAVALOR: TAggregateField

@@ -1,6 +1,6 @@
 inherited frmManuContasPagar: TfrmManuContasPagar
-  Left = 283
-  Top = 192
+  Left = 627
+  Top = 136
   Caption = 'Contas '#224' Pagar'
   ClientHeight = 375
   OldCreateOrder = True
@@ -20,7 +20,7 @@ inherited frmManuContasPagar: TfrmManuContasPagar
     Align = alClient
     TabOrder = 1
     object tbPrincipal: TTabSheet
-      Caption = 'Principal'
+      Caption = 'In'#237'cio'
       object Label1: TLabel
         Left = 1
         Top = 8
@@ -166,7 +166,7 @@ inherited frmManuContasPagar: TfrmManuContasPagar
         DataField = 'histor'
         DataSource = DataSource
         ParentCtl3D = False
-        TabOrder = 10
+        TabOrder = 11
       end
       object dbdeDtEmissao: TDBDateEdit
         Left = 404
@@ -456,7 +456,7 @@ inherited frmManuContasPagar: TfrmManuContasPagar
         Height = 25
         Caption = 'Dados Pgto'
         Enabled = False
-        TabOrder = 12
+        TabOrder = 13
         OnClick = btnDadosPgtoClick
       end
       object pnl_DadosPagamento: TPanel
@@ -465,7 +465,7 @@ inherited frmManuContasPagar: TfrmManuContasPagar
         Width = 523
         Height = 110
         BevelOuter = bvNone
-        TabOrder = 11
+        TabOrder = 12
         Visible = False
         object Label14: TLabel
           Left = 1
@@ -865,6 +865,22 @@ inherited frmManuContasPagar: TfrmManuContasPagar
           TabOrder = 4
         end
       end
+      object dbcbxSemPromissoria: TDBCheckBox
+        Left = 381
+        Top = 113
+        Width = 132
+        Height = 17
+        Caption = 'Sem Duplicata'
+        Ctl3D = False
+        DataField = 'semdup'
+        DataSource = DataSource
+        ParentCtl3D = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 10
+        ValueChecked = 'S'
+        ValueUnchecked = 'N'
+      end
     end
   end
   inherited imManutencao: TImageList
@@ -872,7 +888,6 @@ inherited frmManuContasPagar: TfrmManuContasPagar
     Top = 112
   end
   inherited DataSource: TDataSource
-    DataSet = dm.cdsContas
     Left = 280
     Top = 96
   end

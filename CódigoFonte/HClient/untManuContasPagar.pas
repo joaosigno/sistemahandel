@@ -47,10 +47,13 @@ type
     dbcalcedt_valorpago: TRxDBCalcEdit;
     dbdateedt_datapgto: TDBDateEdit;
     MMoBS: TDBMemo;
+    dbcbxSemPromissoria: TDBCheckBox;
+    rxdbceMulta: TRxDBCalcEdit;
+    Label10: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure tbGravarClick(Sender: TObject);
-    procedure dbePesquisaTituloExit(Sender: TObject);
+ //   procedure dbePesquisaTituloExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure dbeTituloExit(Sender: TObject);
     procedure tbAdicionarClick(Sender: TObject);
@@ -109,12 +112,6 @@ begin
   inherited;
 end;
 
-procedure TfrmManuContasPagar.dbePesquisaTituloExit(Sender: TObject);
-begin
-  dbeTitulo.Text := dm.cdsPlanContascdcont.Value;
-  dbeCodNota.SetFocus;
-end;
-
 procedure TfrmManuContasPagar.FormShow(Sender: TObject);
 begin
   inherited;
@@ -157,7 +154,7 @@ begin
    begin
       f.Mensagem(false,'Preencha Valor!');
       result:= false;
-   end else result:=true; 
+   end else result:=true;
 end;
 
 procedure TfrmManuContasPagar.verificaInsercao;
@@ -228,11 +225,11 @@ procedure TfrmManuContasPagar.dbeCodCaixExit(Sender: TObject);
 begin
     if dbeCodCaix.Text <> '' then
     begin
-      ManuDAO.SQL.executaSQlPorEmp(dm.cdsAux,'*','plcon','and cdcont='+
+      ManuDAO.SQL.executaSql(dm.cdsAux,'select * from plcon where cdcont='+
       QuotedStr(dbeCodCaix.Text));
       if dm.cdsAux.RecordCount = 0 then
       begin
-          dm.cdsClicdprof.AsString:= '';
+          dm.cdsContasconcax.AsString:= '';
           f.Mensagem(false,'Codigo de Caixa Não Existe!');
       end;
     end; 
@@ -247,7 +244,7 @@ begin
       QuotedStr(dbeCodFor.Text));
       if dm.cdsAux.RecordCount = 0 then
       begin
-          dm.cdsClicdprof.AsString:= '';
+          dm.cdsContascdclfo.AsString:= '';
           f.Mensagem(false,'Fornecedor Não Existe!');
       end;
     end; 

@@ -410,7 +410,6 @@ type
     cdsContasjurpag: TFloatField;
     cdsContasobscon: TStringField;
     cdsContasstacon: TStringField;
-    cdsContascodusu: TIntegerField;
     cdsContascdvend: TIntegerField;
     cdsContasconcax: TStringField;
     cdsContasprocuraFornecedor: TStringField;
@@ -422,6 +421,7 @@ type
     cdsContasmulpag: TFloatField;
     cdsContasSELECIONA: TStringField;
     cdsContasSOMAVALOR: TAggregateField;
+    cdsContassemdup: TStringField;
     function verificaBD():Boolean;
     function Autenticacao(cdemp:integer;login:String;senha:string): boolean;
     procedure cdsProdclaoriGetText(Sender: TField; var Text: String;

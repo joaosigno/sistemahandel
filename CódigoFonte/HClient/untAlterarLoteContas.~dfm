@@ -5,7 +5,7 @@ object frmAlterarLoteContas: TfrmAlterarLoteContas
   BorderStyle = bsSingle
   Caption = 'Altera'#231#227'o/Exclus'#227'o em Lote'
   ClientHeight = 336
-  ClientWidth = 761
+  ClientWidth = 825
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -1196,7 +1196,7 @@ object frmAlterarLoteContas: TfrmAlterarLoteContas
   object gridContas: TDBGrid
     Left = 5
     Top = 6
-    Width = 748
+    Width = 812
     Height = 290
     Hint = 'Para remover uma conta, selecione-a e tecle ctrl+del'
     DataSource = dsContas
@@ -1224,7 +1224,7 @@ object frmAlterarLoteContas: TfrmAlterarLoteContas
         Expanded = False
         FieldName = 'cdclfo'
         Title.Caption = 'Cliente/Fornecedor'
-        Width = 289
+        Width = 348
         Visible = True
       end
       item
@@ -1263,7 +1263,7 @@ object frmAlterarLoteContas: TfrmAlterarLoteContas
       end>
   end
   object btnSalvar: TButton
-    Left = 393
+    Left = 458
     Top = 304
     Width = 140
     Height = 26
@@ -1275,7 +1275,7 @@ object frmAlterarLoteContas: TfrmAlterarLoteContas
     OnClick = btnSalvarClick
   end
   object btnSelecionaContas: TButton
-    Left = 539
+    Left = 604
     Top = 304
     Width = 128
     Height = 26
@@ -1287,7 +1287,7 @@ object frmAlterarLoteContas: TfrmAlterarLoteContas
     OnClick = btnSelecionaContasClick
   end
   object btnFechar: TButton
-    Left = 672
+    Left = 737
     Top = 304
     Width = 80
     Height = 26
@@ -1299,17 +1299,29 @@ object frmAlterarLoteContas: TfrmAlterarLoteContas
     OnClick = btnFecharClick
   end
   object dbckbx_baixa: TDBCheckBox
-    Left = 775
-    Top = 60
+    Left = 742
+    Top = 28
     Width = 17
     Height = 17
     DataField = 'SELECIONA'
+    DataSource = dsContas
     TabOrder = 4
     ValueChecked = 'S'
     ValueUnchecked = 'N'
+    Visible = False
+  end
+  object btnAutalizar: TButton
+    Left = 314
+    Top = 304
+    Width = 140
+    Height = 26
+    Caption = '&Atualizar Contas'
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 5
+    OnClick = btnAutalizarClick
   end
   object dsContas: TDataSource
-    DataSet = dm.cdsContas
     Left = 200
     Top = 144
   end

@@ -401,9 +401,8 @@ type
     qryContasconcax: TStringField;
     qryContasdescon: TFloatField;
     qryContashistor: TStringField;
-    qryContascodusu: TIntegerField;
     qryContasmulpag: TFloatField;
-    qryContasAUXSELECAO: TStringField;
+    qryContassemdup: TStringField;
     procedure RemoteDataModuleCreate(Sender: TObject);
     procedure RemoteDataModuleDestroy(Sender: TObject);
   private

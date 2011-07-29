@@ -11,6 +11,8 @@ type
       procedure montaGrid();
       private
         FTabela:String;
+      public
+        Identificador : String;  
   end;
 
 var
@@ -443,12 +445,12 @@ begin
         grid.Columns[0].FieldName := 'codcon';
         grid.Columns[0].Width := 80;
 
-        if dm.cdsContastipcon.AsString = 'R' then
+        if Identificador = 'R' then
         begin
           grid.Columns.Add;
           grid.Columns[1].FieldName := 'procuraCliente';
           grid.Columns[1].Width := 300;
-        end else
+        end else if Identificador = 'P' then
         begin
           grid.Columns.Add;
           grid.Columns[1].FieldName := 'procuraFornecedor';

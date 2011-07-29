@@ -3,6 +3,7 @@ inherited frmManuNaturezaOperacao: TfrmManuNaturezaOperacao
   Caption = 'Manuten'#231#227'o de Natureza de Opera'#231#227'o'
   ClientHeight = 421
   ClientWidth = 666
+  OldCreateOrder = True
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -206,7 +207,6 @@ inherited frmManuNaturezaOperacao: TfrmManuNaturezaOperacao
     Top = 352
   end
   inherited DataSource: TDataSource
-    DataSet = dm.cdsNtOpe
     Left = 296
     Top = 368
   end

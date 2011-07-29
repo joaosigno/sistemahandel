@@ -13,7 +13,7 @@ type
           FFormularioManutencao : String;
           FTabela : String;
           procedure showForm(lblVizualizaDados:String;cds:TClientDataSet;
-                    FormManutencao:String;campos:String;tabela:string;sql:string);
+                    FormManutencao:String;campos:String;tabela:string;sql:string;identificador:string);
   end;
 
   TfrmVizualizaDados = class(TForm)
@@ -172,12 +172,13 @@ End;
 { TVizualizaDadoDAO }
 
 procedure TVizualizaDadoDAO.showForm(lblVizualizaDados: String;
-  cds: TClientDataSet; FormManutencao: String; campos, tabela, sql: string);
+  cds: TClientDataSet; FormManutencao: String; campos, tabela, sql: string; identificador:string);
 begin
   Vd := TVizualizaDadoDAO.Create(cds);
   vd.FTabela := tabela;
   frmVizualizaDados := TfrmVizualizaDados.Create(Application);
   FormDAO := TFormulario.Create(tabela);
+  FormDAO.Identificador := identificador;
   formDAO.montaGrid();
   frmVizualizaDados.Caption := lblVizualizaDados;
   frmVizualizaDados.lblVizualizaDados.Caption := lblVizualizaDados;
