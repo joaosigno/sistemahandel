@@ -154,19 +154,8 @@ procedure TfrmVizualizaDados.gridTitleClick(Column: TColumn);
 var
     campo:string;
 begin
-    campo:=column.fieldname; // CAMPO RECEBE O NOME DA COLUNA CLICADA,
-    application.processmessages; // para considerar algo que aconteça no dbgrid durante a entrada nesta procedure
-    if vd.FTabela = 'empre' then
-    begin
-      vd.SQL.executaSql(vd.BancoNavegacao,'select * from empre order by '+campo);
-    end else
-    if vd.FTabela = 'banco' then
-    begin
-      vd.SQL.executaSql(vd.BancoNavegacao,'select * from banco order by '+campo);
-    end else
-    begin
-      vd.SQL.executaSQlPorEmp(vd.BancoNavegacao,'*',vd.FTabela,' order by '+ campo);
-    end;
+   campo:=column.fieldname; // CAMPO RECEBE O NOME DA COLUNA CLICADA,
+   f.OrdenaClientDataSet(vd.BancoNavegacao,Column.Field);
 End;
 
 { TVizualizaDadoDAO }
