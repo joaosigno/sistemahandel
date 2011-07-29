@@ -42,7 +42,10 @@ uses
   untSequenciasProdutos in 'untSequenciasProdutos.pas' {frmSequenciaisProdutos},
   untManuGruposCLientes in 'untManuGruposCLientes.pas' {frmManuGruposClientes},
   untAlterarLoteContas in 'untAlterarLoteContas.pas' {frmAlterarLoteContas},
-  untSelecionarContas in 'untSelecionarContas.pas' {frmSelecionarContas};
+  untSelecionarContas in 'untSelecionarContas.pas' {frmSelecionarContas},
+  untRenegociacaoContas in 'untRenegociacaoContas.pas' {frmRenegociacaoContas},
+  untRenegociacaoAux in 'untRenegociacaoAux.pas' {frmRenegociacaoAux},
+  untManuContasReceber in 'untManuContasReceber.pas' {frmManuContasReceber};
 
 {$R *.res}
 

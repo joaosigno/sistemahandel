@@ -185,6 +185,16 @@ begin
         DFC_BUTTON, DrawState);
     end;
   end;
+//  if gdSelected in State then
+    with (Sender as TDBGrid).Canvas do
+    begin
+      Brush.Color:=$000080FF; //aqui é definida a cor de seleção
+      TDbGrid(Sender).Canvas.font.Color:= clwindow; //aqui é definida a cor da fonte com a selecao
+      TDbGrid(Sender).Canvas.Font.Style := (Sender as TDBGrid).Canvas.Font.Style + [FSBOLD]; //aqui é definida a a fonte negrito com a selecao
+      FillRect(Rect);
+    end;
+
+    TDbGrid(Sender).DefaultDrawDataCell(Rect, TDbGrid(Sender).columns[datacol].field, State);
 end;
 
 procedure TfrmManuNaturezaOperacao.dbgrd_naturezaoperacaoKeyPress(

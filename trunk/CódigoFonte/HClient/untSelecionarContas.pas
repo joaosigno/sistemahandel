@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ToolEdit, StdCtrls, Mask, DBCtrls, ExtCtrls, Grids, DBGrids,
-  RXCtrls, wwdblook, Wwdbdlg, SQL, untDeclaracoes, DB, DBClient, Menus;
+  RXCtrls, wwdblook, Wwdbdlg, SQL, untDeclaracoes, DB, DBClient, Menus, clipbrd;
 
 type
   TfrmSelecionarContas = class(TForm)
@@ -46,10 +46,14 @@ type
     PopupMenu: TPopupMenu;
     Marcartodasascontas1: TMenuItem;
     Desmarcartodasascontas1: TMenuItem;
-    cdsContasAUXSELECAO: TStringField;
     cdsContasprocuraCliente: TStringField;
     cdsContasprocuraFornecedor: TStringField;
     Button1: TButton;
+    cdsContassemdup: TStringField;
+    Label10: TLabel;
+    Label1: TLabel;
+    cdsContasAUXSELECAO: TStringField;
+    edtCliente: TwwDBLookupComboDlg;
     procedure FormCreate(Sender: TObject);
     procedure edtFornecedorChange(Sender: TObject);
     procedure edtFornecedorExit(Sender: TObject);
@@ -67,6 +71,8 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure gridContasColExit(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure edtClienteChange(Sender: TObject);
+    procedure edtClienteExit(Sender: TObject);
   private
   SQL : TSQL;
   F : TFuncoes;
@@ -85,20 +91,22 @@ var
 
 implementation
 
-uses untDM;
+uses untDM, untRenegociacaoContas;
 
 {$R *.dfm}
 
 procedure TfrmSelecionarContas.FormCreate(Sender: TObject);
 begin
   dsSelecionaContas.DataSet := cdsContas;
-  
+
   sql.executaSQlPorEmp(dm.cdsFor,'*','forne',' order by nmfant');
+  sql.executaSQlPorEmp(dm.cdsCli,'*','clien',' order by nome');
   edtFornecedor.LookupTable := dm.cdsFor;
-  edtDataInicial.date := date;
-  edtDataFinal.date := date;
+  edtCliente.LookupTable := dm.cdsCli;
   cdsContasprocuraCliente.LookupDataSet := dm.cdsCli;
   cdsContasprocuraFornecedor.LookupDataSet := dm.cdsFor;
+  edtDataInicial.date := date;
+  edtDataFinal.date := date;
 end;
 
 procedure TfrmSelecionarContas.edtFornecedorChange(Sender: TObject);
@@ -155,6 +163,40 @@ begin
       dm.cdsContas.Open;
       close;
     end;
+    2:begin
+      SQL.executaSQlPorEmp(frmRenegociacaoContas.cdsContas,'*','conta',' and tipcon=''P'' and codcon= -1');
+      frmRenegociacaoContas.cdsContas.Close;
+      cdsContas.first;
+      while not cdsContas.eof do
+      begin
+        if cdsContasAUXSELECAO.value = 'S' then
+        begin
+          frmRenegociacaoContas.cdsContas.CommandText :=
+            frmRenegociacaoContas.cdsContas.CommandText + ' or codcon = ' + inttostr(cdsContascodcon.value);
+          frmRenegociacaoContas.edtFornecedor.Text := cdsContascdclfo.Text;
+        end;
+        cdsContas.next;
+      end;
+      frmRenegociacaoContas.cdsContas.CommandText := frmRenegociacaoContas.cdsContas.CommandText + ' order by DTVENC';
+      frmRenegociacaoContas.cdsContas.Open;
+//      frmContasPagarRenegociacao.ProcuraFornecedor;
+      frmRenegociacaoContas.edtTotalContas.Clear;
+      frmRenegociacaoContas.edtTotalJuros.Clear;
+      frmRenegociacaoContas.edtTotalDevido.Clear;
+      while not frmRenegociacaoContas.cdsContas.eof do
+      begin
+        frmRenegociacaoContas.edtTotalJuros.Value := frmRenegociacaoContas.edtTotalJuros.Value +
+          frmRenegociacaoContas.cdsContasJUROSMULTA.value;
+        frmRenegociacaoContas.cdsContas.Next;
+      end;
+//      frmRenegociacaoContas.edtTotalContas.value := frmRenegociacaoContas.cdsContasSOMAVALOR.VAlue;
+      frmRenegociacaoContas.edtTotalDevido.value := frmRenegociacaoContas.edtTotalContas.value + frmRenegociacaoContas.edtTotalJuros.Value;
+      frmRenegociacaoContas.edtValor.Value := frmRenegociacaoContas.edtTotalDevido.value;
+      frmRenegociacaoContas.cdsContas.First;
+      Clipboard.AsText := frmRenegociacaoContas.cdsContas.CommandText;
+      frmRenegociacaoContas.gridContas.DataSource := frmRenegociacaoContas.dsRenegociacao;
+      close;
+    end;
   end;
 
 end;
@@ -193,10 +235,11 @@ begin
     if edtNroDocumento.text <> '' then sql1:=sql1 + ' AND notcon LIKE ' + QuotedStr(edtNroDocumento.text);
     if edtTitulo.text <> '' then sql1:=sql1 + ' AND titulo LIKE ''%'+ edtTitulo.text+'%''';
     if edtFornecedor.text <> '' then sql1:=sql1 + ' AND cdclfo = ' + QuotedStr(edtFornecedor.text);
+    if edtCliente.text <> '' then sql1:=sql1 + ' AND cdclfo = ' + QuotedStr(edtCliente.text);
     if cbTodasDatas.checked = true then sql1:= sql1 + ' AND (DTVENC >= ''' + dataini + ''' AND DTVENC <=''' + datafim + ''')';
-{    case CodigoForm of
-      1,2,4:dts_contapagar.CommandText := dts_contapagar.CommandText + ' AND TOTALPAGO = 0';
-      3:begin
+    case CodigoForm of
+      1,2{,4}:sql1 := sql1 + ' AND valpag = 0';
+      {3:begin
         dts_contapagar.CommandText := dts_contapagar.CommandText + ' AND TOTALPAGO = 0';
         dts_contapagar.CommandText := dts_contapagar.CommandText + ' AND (CDCONTAPAGAR <> -1';
         frmPagamentoContas.cdsFiltroContaPagar.first;
@@ -207,11 +250,14 @@ begin
           frmPagamentoContas.cdsFiltroContaPagar.next;
         end;
         dts_contapagar.CommandText := dts_contapagar.CommandText + ')';
-      end;
+      end;}
     end;
-    dts_contapagar.CommandText := dts_contapagar.CommandText + ' order by DATAVENCIMENTO';}
+    sql1 := sql1 + ' order by DTVENC';
 //    cdsContas.open;
-    SQL.executaSQlPorEmp(cdsContas,'*','conta',' and tipcon=''P'' '+sql1);
+    if Tipo = 'P' then
+      SQL.executaSQlPorEmp(cdsContas,'*','conta',' and tipcon=''P'' '+sql1)
+    else if Tipo = 'R' then
+      SQL.executaSQlPorEmp(cdsContas,'*','conta',' and tipcon=''R'' '+sql1)
   except
 
   end;
@@ -226,11 +272,14 @@ begin
      gridContas.columns[0].Title.Caption := 'Fornecedor';
      lbl_funcionario.Caption := 'Seleção de Contas a Pagar';
      edtFornecedor.Visible := true;
+     lbNomeCliente.Caption := 'Fornecedor';
   end else
   begin
      gridContas.Columns[0].FieldName := 'procuraCliente';
      gridContas.columns[0].Title.Caption := 'Cliente';
      lbl_funcionario.Caption := 'Seleção de Contas a Receber';
+     lbNomeCliente.Caption := 'Cliente';
+     edtCliente.Visible:= true;
   end;
   
   PesquisaContas;
@@ -245,6 +294,23 @@ var
   DrawState: Integer;
   DrawRect: TRect;
 begin
+ TDbGrid(Sender).Canvas.font.Color:= clblack; //aqui é definida a cor da fonte sem a selecao
+  if gdSelected in State then
+    with (Sender as TDBGrid).Canvas do
+    begin
+      Brush.Color:=$000080FF; //aqui é definida a cor de seleção
+      TDbGrid(Sender).Canvas.font.Color:= clwindow; //aqui é definida a cor da fonte com a selecao
+      TDbGrid(Sender).Canvas.Font.Style := (Sender as TDBGrid).Canvas.Font.Style + [FSBOLD]; //aqui é definida a a fonte negrito com a selecao
+      FillRect(Rect);
+    end;
+
+    TDbGrid(Sender).DefaultDrawDataCell(Rect, TDbGrid(Sender).columns[datacol].field, State);
+
+
+  If cdsContassemdup.Value = 'S' then // condição
+    gridContas.Canvas.Brush.Color := $00BCC4FA; 
+  gridContas.DefaultDrawDataCell(Rect, gridContas.columns[datacol].field, State);
+
   if (gdFocused in State) then
   begin
     if (Column.Field.FieldName = dbckbx_baixa.DataField) then
@@ -329,6 +395,26 @@ end;
 procedure TfrmSelecionarContas.Button1Click(Sender: TObject);
 begin
   pesquisaContas;
+end;
+
+procedure TfrmSelecionarContas.edtClienteChange(Sender: TObject);
+begin
+    edtNomePessoa.Text := dm.cdsClinome.AsString;
+end;
+
+procedure TfrmSelecionarContas.edtClienteExit(Sender: TObject);
+begin
+    if edtCliente.Text <> '' then
+    begin
+      SQL.executaSQlPorEmp(dm.cdsAux,'*','clien','and cdclie='+
+      QuotedStr(edtCliente.Text));
+      if dm.cdsAux.RecordCount = 0 then
+      begin
+          edtCliente.Text:= '';
+          edtNomePessoa.Text := '';
+          f.Mensagem(false,'Cliente Não Existe!');
+      end;
+    end;
 end;
 
 end.

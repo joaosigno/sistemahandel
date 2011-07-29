@@ -49,6 +49,7 @@ type
     function checaForm(Form : TForm):Boolean;
     procedure Mensagem(lbl : Boolean; msg : String);
     procedure OrdenaClientDataSet(CDS: TClientDataSet; Campo: TField);
+    function Arredondar(Valor: Double; Dec: Integer): Double;
   published
   protected
   private
@@ -385,6 +386,20 @@ begin
     CDS.First;
   except 
   end;
+end;
+
+function TFuncoes.Arredondar(Valor: Double; Dec: Integer): Double;
+var
+  Valor1,
+  Numero1,
+  Numero2,
+  Numero3: Double;
+begin
+  Valor1:=Exp(Ln(10) * (Dec + 1));
+  Numero1:=System.Int(Valor * Valor1);
+  Numero2:=(Numero1 / 10);
+  Numero3:=Round(Numero2);
+  Result:=(Numero3 / (Exp(Ln(10) * Dec)));
 end;
 
 end.

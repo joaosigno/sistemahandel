@@ -1,11 +1,11 @@
 object frmSelecionarContas: TfrmSelecionarContas
-  Left = 556
-  Top = 132
+  Left = 633
+  Top = 149
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Selecionar Contas'
   ClientHeight = 311
-  ClientWidth = 664
+  ClientWidth = 700
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -322,9 +322,9 @@ object frmSelecionarContas: TfrmSelecionarContas
   PixelsPerInch = 96
   TextHeight = 15
   object Bevel4: TBevel
-    Left = 5
+    Left = 9
     Top = 34
-    Width = 651
+    Width = 684
     Height = 30
     Style = bsRaised
   end
@@ -1186,8 +1186,8 @@ object frmSelecionarContas: TfrmSelecionarContas
       FFFF0000FFFFFFFFFFFF0000}
   end
   object lbNomeCliente: TLabel
-    Left = 277
-    Top = 11
+    Left = 312
+    Top = 10
     Width = 70
     Height = 15
     Alignment = taRightJustify
@@ -1195,7 +1195,7 @@ object frmSelecionarContas: TfrmSelecionarContas
     Transparent = True
   end
   object Label2: TLabel
-    Left = 133
+    Left = 137
     Top = 11
     Width = 42
     Height = 15
@@ -1204,14 +1204,14 @@ object frmSelecionarContas: TfrmSelecionarContas
     Transparent = True
   end
   object Bevel2: TBevel
-    Left = 5
-    Top = 3
-    Width = 651
+    Left = 7
+    Top = 2
+    Width = 687
     Height = 29
     Style = bsRaised
   end
   object Label5: TLabel
-    Left = 8
+    Left = 13
     Top = 11
     Width = 28
     Height = 15
@@ -1235,10 +1235,27 @@ object frmSelecionarContas: TfrmSelecionarContas
     Caption = '0 conta(s) mostrada(s), no total de R$ 0,00'
     Transparent = True
   end
+  object Label10: TLabel
+    Left = 549
+    Top = 266
+    Width = 147
+    Height = 15
+    Caption = 'Contas sem duplicatas'
+  end
+  object Label1: TLabel
+    Left = 502
+    Top = 266
+    Width = 42
+    Height = 15
+    Caption = '      '
+    Color = 12371194
+    ParentColor = False
+    Transparent = False
+  end
   object gridContas: TDBGrid
     Left = 7
     Top = 95
-    Width = 650
+    Width = 690
     Height = 167
     DataSource = dsSelecionaContas
     Font.Charset = ANSI_CHARSET
@@ -1263,7 +1280,7 @@ object frmSelecionarContas: TfrmSelecionarContas
       item
         Expanded = False
         FieldName = 'cdclfo'
-        Width = 183
+        Width = 194
         Visible = True
       end
       item
@@ -1281,11 +1298,13 @@ object frmSelecionarContas: TfrmSelecionarContas
       item
         Expanded = False
         FieldName = 'dtemit'
+        Width = 81
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'dtvenc'
+        Width = 77
         Visible = True
       end
       item
@@ -1304,13 +1323,12 @@ object frmSelecionarContas: TfrmSelecionarContas
       item
         Expanded = False
         FieldName = 'AUXSELECAO'
-        Title.Caption = 'Sele'#231#227'o'
         Visible = True
       end>
   end
   object btnOK: TButton
-    Left = 494
-    Top = 266
+    Left = 534
+    Top = 283
     Width = 79
     Height = 26
     Hint = 
@@ -1321,8 +1339,8 @@ object frmSelecionarContas: TfrmSelecionarContas
     OnClick = btnOKClick
   end
   object btnCancelar: TButton
-    Left = 578
-    Top = 266
+    Left = 618
+    Top = 283
     Width = 79
     Height = 26
     Hint = 'Cancelar|Fecha essa tela e volta para a tela anterior'
@@ -1331,17 +1349,19 @@ object frmSelecionarContas: TfrmSelecionarContas
     OnClick = btnCancelarClick
   end
   object dbckbx_baixa: TDBCheckBox
-    Left = 671
-    Top = 49
+    Left = 627
+    Top = 116
     Width = 17
     Height = 17
     DataField = 'AUXSELECAO'
+    DataSource = dsSelecionaContas
     TabOrder = 3
     ValueChecked = 'S'
     ValueUnchecked = 'N'
+    Visible = False
   end
   object edtNomePessoa: TEdit
-    Left = 449
+    Left = 484
     Top = 6
     Width = 201
     Height = 21
@@ -1357,7 +1377,7 @@ object frmSelecionarContas: TfrmSelecionarContas
     TabOrder = 4
   end
   object edtTitulo: TEdit
-    Left = 178
+    Left = 183
     Top = 7
     Width = 87
     Height = 21
@@ -1368,7 +1388,7 @@ object frmSelecionarContas: TfrmSelecionarContas
     TabOrder = 5
   end
   object edtNroDocumento: TEdit
-    Left = 40
+    Left = 44
     Top = 7
     Width = 89
     Height = 21
@@ -1557,7 +1577,7 @@ object frmSelecionarContas: TfrmSelecionarContas
     TabOrder = 9
   end
   object edtFornecedor: TwwDBLookupComboDlg
-    Left = 351
+    Left = 386
     Top = 6
     Width = 90
     Height = 21
@@ -1584,7 +1604,7 @@ object frmSelecionarContas: TfrmSelecionarContas
     OnExit = edtFornecedorExit
   end
   object Button1: TButton
-    Left = 573
+    Left = 615
     Top = 66
     Width = 79
     Height = 26
@@ -1592,10 +1612,37 @@ object frmSelecionarContas: TfrmSelecionarContas
     TabOrder = 11
     OnClick = Button1Click
   end
+  object edtCliente: TwwDBLookupComboDlg
+    Left = 386
+    Top = 6
+    Width = 90
+    Height = 21
+    Ctl3D = False
+    DisableThemes = False
+    GridOptions = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgPerfectRowFit]
+    GridColor = clWhite
+    GridTitleAlignment = taLeftJustify
+    Caption = 'Lookup'
+    MaxWidth = 0
+    MaxHeight = 209
+    Selected.Strings = (
+      'cdclie'#9'10'#9'C'#243'd.'#9'F'#9
+      'nome'#9'50'#9'Nome'#9'F'#9)
+    LookupTable = dm.cdsCli
+    LookupField = 'cdclie'
+    ParentCtl3D = False
+    TabOrder = 12
+    Visible = False
+    AutoDropDown = False
+    ShowButton = True
+    AllowClearKey = False
+    OnChange = edtClienteChange
+    OnExit = edtClienteExit
+  end
   object tmrVerificaConta: TTimer
     Interval = 100
     OnTimer = tmrVerificaContaTimer
-    Left = 376
+    Left = 375
     Top = 276
   end
   object cdsContas: TClientDataSet
@@ -1659,10 +1706,6 @@ object frmSelecionarContas: TfrmSelecionarContas
       FieldName = 'ATRASO'
       Calculated = True
     end
-    object cdsContasAUXSELECAO: TStringField
-      FieldName = 'AUXSELECAO'
-      Size = 1
-    end
     object cdsContasprocuraCliente: TStringField
       FieldKind = fkLookup
       FieldName = 'procuraCliente'
@@ -1684,6 +1727,16 @@ object frmSelecionarContas: TfrmSelecionarContas
       ReadOnly = True
       Size = 30
       Lookup = True
+    end
+    object cdsContassemdup: TStringField
+      FieldName = 'semdup'
+      Size = 1
+    end
+    object cdsContasAUXSELECAO: TStringField
+      DisplayLabel = 'Sele'#231#227'o'
+      FieldKind = fkInternalCalc
+      FieldName = 'AUXSELECAO'
+      Size = 1
     end
     object cdsContasSOMAVALOR: TAggregateField
       DefaultExpression = 'SUM(VLCONT)'

@@ -1479,14 +1479,11 @@ object RDM: TRDM
       FieldName = 'histor'
       Size = 100
     end
-    object qryContascodusu: TIntegerField
-      FieldName = 'codusu'
-    end
     object qryContasmulpag: TFloatField
       FieldName = 'mulpag'
     end
-    object qryContasAUXSELECAO: TStringField
-      FieldName = 'AUXSELECAO'
+    object qryContassemdup: TStringField
+      FieldName = 'semdup'
       Size = 1
     end
   end

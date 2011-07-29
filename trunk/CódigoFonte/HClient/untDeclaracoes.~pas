@@ -48,6 +48,7 @@ type
     function quantRegistro(lbl: TLabel; cds: TClientDataSet;campos:string;tabela:string;sqlComplementar:String):String;
     function checaForm(Form : TForm):Boolean;
     procedure Mensagem(lbl : Boolean; msg : String);
+    procedure OrdenaClientDataSet(CDS: TClientDataSet; Campo: TField);
   published
   protected
   private
@@ -360,6 +361,30 @@ begin
       ct := 0;
     end;
   result := s*ct;
+end;
+
+procedure TFuncoes.OrdenaClientDataSet(CDS: TClientDataSet; Campo: TField);
+var
+  nomeindice: string;
+  opcoesindice: Tindexoptions;
+begin
+  if CDS.IndexName = copy('ixasc' + Campo.FieldName,1,30) then
+  begin
+    NomeIndice := copy('ixdesc' + Campo.FieldName,1,30);
+    opcoesindice := [ixDescending, ixCaseInsensitive];
+  end else
+  begin
+    NomeIndice := copy('ixasc' + Campo.FieldName,1,30);
+    opcoesindice := [ixCaseInsensitive];
+  end;
+  try
+    if CDS.IndexDefs.IndexOf(NomeIndice) = -1 then
+    CDS.IndexDefs.Add(NomeIndice, Campo.FieldName, Opcoesindice);
+    CDS.IndexName := NomeIndice;
+    CDS.IndexDefs.Update;
+    CDS.First;
+  except 
+  end;
 end;
 
 end.

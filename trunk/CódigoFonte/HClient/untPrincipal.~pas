@@ -86,6 +86,9 @@ type
     acConferenciaEstoque: TAction;
     acGrupoClientes: TAction;
     acAlteracaoEsclusaoLote: TAction;
+    acRenegociacao: TAction;
+    acCOntasReceber: TAction;
+    acAlteracaoLoteRecebder: TAction;
     procedure AcVizualizarFornecedoresExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -128,6 +131,9 @@ type
     procedure acConferenciaEstoqueExecute(Sender: TObject);
     procedure acGrupoClientesExecute(Sender: TObject);
     procedure acAlteracaoEsclusaoLoteExecute(Sender: TObject);
+    procedure acRenegociacaoExecute(Sender: TObject);
+    procedure acCOntasReceberExecute(Sender: TObject);
+    procedure acAlteracaoLoteRecebderExecute(Sender: TObject);
   private
     F : TFuncoes;
     SQL : TSQL;
@@ -153,7 +159,8 @@ uses untDM, untMensagem, untConfBD,
   untManuProdutos, untManuAcertoEstoque, untManuGrades,
   untManuNaturezaOperacao, untManuContasPagar, untManuTransportadoras,
   untConsultaProdutosVencimento, untReajustePreco, untConferenciaEstoque,
-  untManuGruposCLientes, untAlterarLoteContas;
+  untManuGruposCLientes, untAlterarLoteContas, untRenegociacaoContas,
+  untManuContasReceber;
 
 {$R *.dfm}
 
@@ -164,7 +171,7 @@ procedure TfrmPrincipal.AcVizualizarFornecedoresExecute(Sender: TObject);
 begin
    RegisterClass (TfrmManuFornecedores);
    VD.showForm('Fornecedores',dm.cdsFor,'TfrmManuFornecedores',
-                         '*','forne',' order by cdforn');
+                         '*','forne',' order by cdforn','');
 end;
 
 procedure TfrmPrincipal.FormShow(Sender: TObject);
@@ -306,14 +313,14 @@ procedure TfrmPrincipal.acVizualizarEmpresaExecute(Sender: TObject);
 begin
   RegisterClass (TfrmManuEmpresas);
   VD.showForm('Empresas',dm.cdsEmp,'TfrmManuEmpresas',
-                         '*','empre',' order by cdempr');
+                         '*','empre',' order by cdempr','');
 end;
 
 procedure TfrmPrincipal.acGruposExecute(Sender: TObject);
 begin
   RegisterClass (TfrmManuGrupoProdutos);
   VD.showForm('Grupos de Produtos',dm.cdsGRPro,'TfrmManuGrupoProdutos',
-                         '*','grpro',' order by cdgrup');
+                         '*','grpro',' order by cdgrup','');
 end;
 
 procedure TfrmPrincipal.acSairExecute(Sender: TObject);
@@ -346,7 +353,7 @@ procedure TfrmPrincipal.acVizualizarProfissoesExecute(Sender: TObject);
 begin
   RegisterClass (TfrmManuProfissoes);
   VD.showForm('Profissões',dm.cdsProfi,'TfrmManuProfissoes',
-                         '*','profi',' order by cdprof');
+                         '*','profi',' order by cdprof','');
 end;
 
 procedure TfrmPrincipal.FormClose(Sender: TObject;
@@ -397,28 +404,28 @@ procedure TfrmPrincipal.acDepartamentosExecute(Sender: TObject);
 begin
   RegisterClass (TfrmManuDepartamento);
   VD.showForm('Departamentos',dm.cdsDepa,'TfrmManuDepartamento',
-                         '*','depar',' order by cddepa');
+                         '*','depar',' order by cddepa','');
 end;
 
 procedure TfrmPrincipal.acVizualizarFuncionariosExecute(Sender: TObject);
 begin
   RegisterClass (TfrmManuFuncionario);
   VD.showForm('Funcionários',dm.cdsFunc,'TfrmManuFuncionario',
-                         '*','funci',' order by cdfunc');
+                         '*','funci',' order by cdfunc','');
 end;
 
 procedure TfrmPrincipal.acVizualizarClientesExecute(Sender: TObject);
 begin
   RegisterClass (TfrmManuClientes);
   VD.showForm('Clientes',dm.cdsCli,'TfrmManuClientes',
-                         '*','clien',' order by cdclie');
+                         '*','clien',' order by cdclie','');
 end;
 
 procedure TfrmPrincipal.acVizualizarBancoExecute(Sender: TObject);
 begin
   RegisterClass (TfrmManuBanco);
   VD.showForm('Bancos',dm.cdsBanc,'TfrmManuBanco',
-                         '*','banco',' order by cdban');
+                         '*','banco',' order by cdban','');
 end;
 
 procedure TfrmPrincipal.acCadCartoaFidelidadeExecute(
@@ -426,28 +433,28 @@ procedure TfrmPrincipal.acCadCartoaFidelidadeExecute(
 begin
   RegisterClass (TfrmManuCartaoFidelidade);
   VD.showForm('Bancos',dm.cdsCartFid,'TfrmManuCartaoFidelidade',
-                         '*','crfid',' order by nrcart');
+                         '*','crfid',' order by nrcart','');
 end;
 
 procedure TfrmPrincipal.acVendedoresExecute(Sender: TObject);
 begin
  RegisterClass(TfrmManuVendedores);
  VD.showForm('Vendedores',dm.cdsVende,'TfrmManuVendedores',
-                         '*','vende',' order by cdvend');
+                         '*','vende',' order by cdvend','');
 end;
 
 procedure TfrmPrincipal.acVizualizarChequesExecute(Sender: TObject);
 begin
   RegisterClass(TfrmManuCheques);
  VD.showForm('Cheques',dm.cdsCheque,'TfrmManuCheques',
-                         '*','cheqs',' order by cdchq');
+                         '*','cheqs',' order by cdchq','');
 end;
 
 procedure TfrmPrincipal.acMarcaExecute(Sender: TObject);
 begin
   RegisterClass(TfrmManuMarcaProdutos);
  VD.showForm('Marcas',dm.cdsMcPro,'TfrmManuMarcaProdutos',
-                         '*','mcpro',' order by cdmarc');
+                         '*','mcpro',' order by cdmarc','');
 end;
 
 procedure TfrmPrincipal.acDefineEmpresaUsuarioExecute(Sender: TObject);
@@ -465,7 +472,7 @@ procedure TfrmPrincipal.acVizualizarProdutoExecute(Sender: TObject);
 begin
    RegisterClass(TfrmManuProdutos);
  VD.showForm('Produtos',dm.cdsProd,'TfrmManuProdutos',
-                         '*','produ',' order by cdprod');
+                         '*','produ',' order by cdprod','');
 end;
 
 procedure TfrmPrincipal.aePrincipalException(Sender: TObject;
@@ -499,14 +506,14 @@ procedure TfrmPrincipal.acContasPagarExecute(Sender: TObject);
 begin
  RegisterClass(TfrmManuContasPagar);
  VD.showForm('Contas à Pagar',dm.cdsContas,'TfrmManuContasPagar',
-                         '*','conta',' and tipcon=''P'' order by codcon');
+                         '*','conta',' and tipcon=''P'' order by codcon','P');
 end;
 
 procedure TfrmPrincipal.acTransportadoraExecute(Sender: TObject);
 begin
  RegisterClass(TfrmManuTransportadoras);
  VD.showForm('Transportadoras',dm.cdsTrans,'TfrmManuTransportadoras',
-                         '*','trans',' order by cdtran');
+                         '*','trans',' order by cdtran','');
 end;
 
 procedure TfrmPrincipal.acConsultaVEncimentoExecute(Sender: TObject);
@@ -534,14 +541,37 @@ procedure TfrmPrincipal.acGrupoClientesExecute(Sender: TObject);
 begin
  RegisterClass(TfrmManuGruposClientes);
  VD.showForm('Grupo de Clientes',dm.cdsGRCli,'TfrmManuGruposClientes',
-                         '*','grcli',' order by cdgrup');
+                         '*','grcli',' order by cdgrup','');
 end;
 
 procedure TfrmPrincipal.acAlteracaoEsclusaoLoteExecute(Sender: TObject);
 begin
-   SQL.executaSQlPorEmp(dm.cdsContas,'*','conta',' and tipcon=''R'' order by codcon');
+   SQL.executaSQlPorEmp(dm.cdsContas,'*','conta',' and tipcon=''P'' order by codcon');
    frmAlterarLoteContas := TfrmAlterarLoteContas.Create(Application);
    frmAlterarLoteContas.Tipo := 'P';
+   frmAlterarLoteContas.ShowModal;
+   frmAlterarLoteContas.Free;
+end;
+
+procedure TfrmPrincipal.acRenegociacaoExecute(Sender: TObject);
+begin
+   frmRenegociacaoContas := TfrmRenegociacaoContas.Create(Application);
+   frmRenegociacaoContas.ShowModal;
+   frmRenegociacaoContas.Free;
+end;
+
+procedure TfrmPrincipal.acCOntasReceberExecute(Sender: TObject);
+begin
+ RegisterClass(TfrmManuContasReceber);
+ VD.showForm('Contas à Receber',dm.cdsContas,'TfrmManuContasReceber',
+                         '*','conta',' and tipcon=''R'' order by codcon','R');
+end;
+
+procedure TfrmPrincipal.acAlteracaoLoteRecebderExecute(Sender: TObject);
+begin
+  SQL.executaSQlPorEmp(dm.cdsContas,'*','conta',' and tipcon=''R'' order by codcon');
+   frmAlterarLoteContas := TfrmAlterarLoteContas.Create(Application);
+   frmAlterarLoteContas.Tipo := 'R';
    frmAlterarLoteContas.ShowModal;
    frmAlterarLoteContas.Free;
 end;
