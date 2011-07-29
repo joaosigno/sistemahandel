@@ -154,7 +154,9 @@ procedure TfrmVizualizaDados.gridTitleClick(Column: TColumn);
 var
     campo:string;
 begin
-    campo:=column.fieldname; // CAMPO RECEBE O NOME DA COLUNA CLICADA,
+   campo:=column.fieldname; // CAMPO RECEBE O NOME DA COLUNA CLICADA,
+   f.OrdenaClientDataSet(vd.BancoNavegacao,Column.Field);
+{
     application.processmessages; // para considerar algo que aconteça no dbgrid durante a entrada nesta procedure
     if vd.FTabela = 'empre' then
     begin
@@ -166,7 +168,7 @@ begin
     end else
     begin
       vd.SQL.executaSQlPorEmp(vd.BancoNavegacao,'*',vd.FTabela,' order by '+ campo);
-    end;
+    end;}
 End;
 
 { TVizualizaDadoDAO }
@@ -178,6 +180,7 @@ begin
   vd.FTabela := tabela;
   frmVizualizaDados := TfrmVizualizaDados.Create(Application);
   FormDAO := TFormulario.Create(tabela);
+  FormDAO.Identificador := identificador;
   formDAO.montaGrid();
   frmVizualizaDados.Caption := lblVizualizaDados;
   frmVizualizaDados.lblVizualizaDados.Caption := lblVizualizaDados;
