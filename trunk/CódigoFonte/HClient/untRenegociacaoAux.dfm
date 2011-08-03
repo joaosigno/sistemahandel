@@ -318,6 +318,7 @@ object frmRenegociacaoAux: TfrmRenegociacaoAux
   OldCreateOrder = False
   Position = poDesktopCenter
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 15
   object DBGridKI1: TDBGrid
@@ -412,6 +413,7 @@ object frmRenegociacaoAux: TfrmRenegociacaoAux
       LookupKeyFields = 'cdclie'
       LookupResultField = 'nome'
       KeyFields = 'cdclfo'
+      ReadOnly = True
       Size = 30
       Lookup = True
     end
@@ -422,12 +424,74 @@ object frmRenegociacaoAux: TfrmRenegociacaoAux
       LookupKeyFields = 'cdforn'
       LookupResultField = 'nmfant'
       KeyFields = 'cdclfo'
+      ReadOnly = True
       Size = 30
       Lookup = True
     end
     object cdsParcelashistor: TStringField
       FieldName = 'histor'
       Size = 100
+    end
+    object cdsParcelascodcon: TIntegerField
+      FieldName = 'codcon'
+      Required = True
+    end
+    object cdsParcelascdempr: TIntegerField
+      FieldName = 'cdempr'
+      Required = True
+    end
+    object cdsParcelastipcon: TStringField
+      FieldName = 'tipcon'
+      Required = True
+      Size = 1
+    end
+    object cdsParcelastitulo: TStringField
+      FieldName = 'titulo'
+      Required = True
+      Size = 15
+    end
+    object cdsParcelasnotcon: TIntegerField
+      FieldName = 'notcon'
+    end
+    object cdsParcelasdtemit: TDateField
+      FieldName = 'dtemit'
+      Required = True
+    end
+    object cdsParcelasdtpaga: TDateField
+      FieldName = 'dtpaga'
+    end
+    object cdsParcelasvalpag: TFloatField
+      FieldName = 'valpag'
+    end
+    object cdsParcelasjurpag: TFloatField
+      FieldName = 'jurpag'
+    end
+    object cdsParcelasobscon: TStringField
+      FieldName = 'obscon'
+      Size = 200
+    end
+    object cdsParcelasstacon: TStringField
+      FieldName = 'stacon'
+      Required = True
+      Size = 1
+    end
+    object cdsParcelascdvend: TIntegerField
+      FieldName = 'cdvend'
+    end
+    object cdsParcelasconcax: TStringField
+      FieldName = 'concax'
+      Required = True
+      Size = 13
+    end
+    object cdsParcelasdescon: TFloatField
+      FieldName = 'descon'
+    end
+    object cdsParcelasmulpag: TFloatField
+      FieldName = 'mulpag'
+    end
+    object cdsParcelassemdup: TStringField
+      FieldName = 'semdup'
+      Size = 1
     end
   end
   object dsParcelas: TDataSource

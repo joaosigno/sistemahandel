@@ -319,6 +319,7 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
   Position = poDesktopCenter
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 15
   object Label1: TLabel
@@ -331,7 +332,7 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     Transparent = True
   end
   object Label11: TLabel
-    Left = 7
+    Left = 3
     Top = 232
     Width = 35
     Height = 15
@@ -340,21 +341,21 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     Transparent = True
   end
   object Label12: TLabel
-    Left = 157
+    Left = 137
     Top = 232
-    Width = 63
+    Width = 84
     Height = 15
     Alignment = taRightJustify
-    Caption = 'Descontos'
+    Caption = 'Descontos($)'
     Transparent = True
   end
   object Label14: TLabel
-    Left = 337
+    Left = 321
     Top = 233
-    Width = 35
+    Width = 56
     Height = 15
     Alignment = taRightJustify
-    Caption = 'Juros'
+    Caption = 'Juros($)'
     Transparent = True
   end
   object Label15: TLabel
@@ -426,8 +427,8 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     Pen.Style = psClear
   end
   object Image1: TImage
-    Left = 0
-    Top = 360
+    Left = 3
+    Top = 370
     Width = 31
     Height = 31
     Picture.Data = {
@@ -1268,15 +1269,15 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
       FFFF0000FFFFFFFFFFFF0000}
   end
   object lbl_funcionario: TLabel
-    Left = 35
-    Top = 369
+    Left = 38
+    Top = 373
     Width = 245
-    Height = 18
+    Height = 22
     AutoSize = False
     Caption = 'Renegocia'#231#227'o '
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -16
+    Font.Height = -21
     Font.Name = 'Courier New'
     Font.Style = []
     ParentFont = False
@@ -1417,7 +1418,7 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     TabOrder = 4
   end
   object edtTotalContas: TRxCalcEdit
-    Left = 46
+    Left = 39
     Top = 229
     Width = 96
     Height = 22
@@ -1488,7 +1489,7 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     TabOrder = 5
   end
   object edtTotalDescontos: TRxCalcEdit
-    Left = 224
+    Left = 221
     Top = 229
     Width = 96
     Height = 22
@@ -1904,7 +1905,7 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     ParentShowHint = False
     ShowHint = True
     TabOrder = 10
-    Text = '28-07-2011'
+    Text = '11/  /    '
   end
   object gridContas: TDBGrid
     Left = 5
@@ -1939,13 +1940,13 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
       item
         Expanded = False
         FieldName = 'titulo'
-        Width = 84
+        Width = 65
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'notcon'
-        Width = 60
+        Width = 73
         Visible = True
       end
       item
@@ -1998,6 +1999,7 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     LookupField = 'cdforn'
     ParentCtl3D = False
     TabOrder = 13
+    Visible = False
     AutoDropDown = False
     ShowButton = True
     AllowClearKey = False
@@ -2055,12 +2057,14 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     object cdsContastitulo: TStringField
       DisplayLabel = 'Titulo'
       FieldName = 'titulo'
+      ReadOnly = True
       Required = True
       Size = 15
     end
     object cdsContasnotcon: TIntegerField
       DisplayLabel = 'Nota'
       FieldName = 'notcon'
+      ReadOnly = True
     end
     object cdsContasdtemit: TDateField
       DisplayLabel = 'Dt.Emiss'#227'o'
@@ -2070,10 +2074,13 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     object cdsContasvlcont: TFloatField
       DisplayLabel = 'Valor'
       FieldName = 'vlcont'
+      ReadOnly = True
+      DisplayFormat = '#,000.00'
     end
     object cdsContasdtvenc: TDateField
       DisplayLabel = 'Dt.Venc.'
       FieldName = 'dtvenc'
+      ReadOnly = True
       Required = True
     end
     object cdsContasdtpaga: TDateField
@@ -2081,6 +2088,7 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     end
     object cdsContasvalpag: TFloatField
       FieldName = 'valpag'
+      DisplayFormat = '#,000.00'
     end
     object cdsContasjurpag: TFloatField
       FieldName = 'jurpag'
@@ -2137,6 +2145,28 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
       FieldName = 'tipcon'
       Required = True
       Size = 1
+    end
+    object cdsContasprocuraClientes: TStringField
+      DisplayLabel = 'Cliente'
+      FieldKind = fkLookup
+      FieldName = 'procuraClientes'
+      LookupKeyFields = 'cdclie'
+      LookupResultField = 'nome'
+      KeyFields = 'cdclfo'
+      ReadOnly = True
+      Size = 30
+      Lookup = True
+    end
+    object cdsContasprocuraFornecedor: TStringField
+      DisplayLabel = 'Fornecedor'
+      FieldKind = fkLookup
+      FieldName = 'procuraFornecedor'
+      LookupKeyFields = 'cdforn'
+      LookupResultField = 'nmfant'
+      KeyFields = 'cdclfo'
+      ReadOnly = True
+      Size = 30
+      Lookup = True
     end
     object cdsContasSOMAVALOR: TAggregateField
       DefaultExpression = 'SUM(vlcont)'

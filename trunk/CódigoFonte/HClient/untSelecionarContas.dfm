@@ -1,11 +1,11 @@
 object frmSelecionarContas: TfrmSelecionarContas
-  Left = 633
-  Top = 149
+  Left = 395
+  Top = 207
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Selecionar Contas'
   ClientHeight = 311
-  ClientWidth = 700
+  ClientWidth = 699
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -1628,7 +1628,6 @@ object frmSelecionarContas: TfrmSelecionarContas
     Selected.Strings = (
       'cdclie'#9'10'#9'C'#243'd.'#9'F'#9
       'nome'#9'50'#9'Nome'#9'F'#9)
-    LookupTable = dm.cdsCli
     LookupField = 'cdclie'
     ParentCtl3D = False
     TabOrder = 12
@@ -1709,7 +1708,6 @@ object frmSelecionarContas: TfrmSelecionarContas
     object cdsContasprocuraCliente: TStringField
       FieldKind = fkLookup
       FieldName = 'procuraCliente'
-      LookupDataSet = dm.cdsCli
       LookupKeyFields = 'cdclie'
       LookupResultField = 'nome'
       KeyFields = 'cdclfo'
@@ -1720,7 +1718,6 @@ object frmSelecionarContas: TfrmSelecionarContas
     object cdsContasprocuraFornecedor: TStringField
       FieldKind = fkLookup
       FieldName = 'procuraFornecedor'
-      LookupDataSet = dm.cdsFor
       LookupKeyFields = 'cdforn'
       LookupResultField = 'nmfant'
       KeyFields = 'cdclfo'

@@ -45,7 +45,8 @@ uses
   untSelecionarContas in 'untSelecionarContas.pas' {frmSelecionarContas},
   untRenegociacaoContas in 'untRenegociacaoContas.pas' {frmRenegociacaoContas},
   untRenegociacaoAux in 'untRenegociacaoAux.pas' {frmRenegociacaoAux},
-  untManuContasReceber in 'untManuContasReceber.pas' {frmManuContasReceber};
+  untManuContasReceber in 'untManuContasReceber.pas' {frmManuContasReceber},
+  untQuiosqueProdutos in 'untQuiosqueProdutos.pas' {frmQuiosqueProdutos};
 
 {$R *.res}
 
@@ -54,6 +55,6 @@ begin
   Application.Title := 'HClient';
   Application.CreateForm(Tdm, dm);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmManuContasReceber, frmManuContasReceber);
+  Application.CreateForm(TfrmQuiosqueProdutos, frmQuiosqueProdutos);
   Application.Run;
 end.

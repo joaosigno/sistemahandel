@@ -19,10 +19,27 @@ type
     cdsParcelasprocuraCliente: TStringField;
     cdsParcelasprocuraFornecedor: TStringField;
     cdsParcelashistor: TStringField;
+    cdsParcelascodcon: TIntegerField;
+    cdsParcelascdempr: TIntegerField;
+    cdsParcelastipcon: TStringField;
+    cdsParcelastitulo: TStringField;
+    cdsParcelasnotcon: TIntegerField;
+    cdsParcelasdtemit: TDateField;
+    cdsParcelasdtpaga: TDateField;
+    cdsParcelasvalpag: TFloatField;
+    cdsParcelasjurpag: TFloatField;
+    cdsParcelasobscon: TStringField;
+    cdsParcelasstacon: TStringField;
+    cdsParcelascdvend: TIntegerField;
+    cdsParcelasconcax: TStringField;
+    cdsParcelasdescon: TFloatField;
+    cdsParcelasmulpag: TFloatField;
+    cdsParcelassemdup: TStringField;
     procedure FormCreate(Sender: TObject);
     procedure btnOkClick(Sender: TObject);
     procedure cdsParcelasBeforeInsert(DataSet: TDataSet);
     procedure btnCancelarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -105,6 +122,19 @@ end;
 procedure TfrmRenegociacaoAux.btnCancelarClick(Sender: TObject);
 begin
   close;
+end;
+
+procedure TfrmRenegociacaoAux.FormShow(Sender: TObject);
+begin
+  if tipo = 1 then
+  begin
+     DBGridKI1.Columns[0].FieldName := 'procuraFornecedor';
+     DBGridKI1.columns[0].Title.Caption := 'Fornecedor';
+  end else
+  begin
+     DBGridKI1.Columns[0].FieldName := 'procuraCliente';
+     DBGridKI1.columns[0].Title.Caption := 'Cliente';
+  end;
 end;
 
 end.
