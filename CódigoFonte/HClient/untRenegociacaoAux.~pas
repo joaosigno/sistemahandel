@@ -23,6 +23,7 @@ type
     procedure btnOkClick(Sender: TObject);
     procedure cdsParcelasBeforeInsert(DataSet: TDataSet);
     procedure btnCancelarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -105,6 +106,19 @@ end;
 procedure TfrmRenegociacaoAux.btnCancelarClick(Sender: TObject);
 begin
   close;
+end;
+
+procedure TfrmRenegociacaoAux.FormShow(Sender: TObject);
+begin
+  if tipo = 1 then
+  begin
+     DBGridKI1.Columns[0].FieldName := 'procuraFornecedor';
+     DBGridKI1.columns[0].Title.Caption := 'Fornecedor';
+  end else
+  begin
+     DBGridKI1.Columns[0].FieldName := 'procuraCliente';
+     DBGridKI1.columns[0].Title.Caption := 'Cliente';
+  end;
 end;
 
 end.

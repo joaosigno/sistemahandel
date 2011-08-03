@@ -69,6 +69,8 @@ type
     cdsContascodcon: TIntegerField;
     cdsContascdempr: TIntegerField;
     cdsContastipcon: TStringField;
+    cdsContasprocuraClientes: TStringField;
+    cdsContasprocuraFornecedor: TStringField;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure edtFornecedorChange(Sender: TObject);
@@ -85,12 +87,16 @@ type
     procedure SelecionarContas1Click(Sender: TObject);
     procedure tmr_abreselecaoTimer(Sender: TObject);
     procedure tmr_VerificaContasTimer(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
   F : TFuncoes;
   SQl : TSQL;
     { Private declarations }
   public
   InserindoRenegociacao: boolean;
+  tipo : String;
+  //R - Recebidas
+  //P- Pagar
     { Public declarations }
   end;
 
@@ -99,7 +105,7 @@ var
 
 implementation
 
-uses untDM, untRenegociacaoAux, untSelecionarContas;
+uses untDM, untRenegociacaoAux, untSelecionarContas, untPrincipal;
 
 {$R *.dfm}
 
@@ -111,6 +117,9 @@ begin
   edtConta.LookupTable := dm.cdsPlanContas;
   edtFornecedor.LookupTable := dm.cdsFor;
   edtVencimento.Date := incMonth(date);
+  cdsContasprocuraClientes.LookupDataSet := dm.cdsCli;
+  cdsContasprocuraFornecedor.LookupDataSet := dm.cdsFor;
+  edtNomeFornecedor.Text := '';
   InserindoRenegociacao := False;
 end;
 
@@ -154,7 +163,7 @@ procedure TfrmRenegociacaoContas.edtContaExit(Sender: TObject);
 begin
   if edtConta.Text <> '' then
     begin
-      SQL.executaSQlPorEmp(dm.cdsAux,'*','plcon','and cdcont='+
+      SQL.executaSql(dm.cdsAux,'select * from plcon where cdcont='+
       QuotedStr(edtConta.Text));
       if dm.cdsAux.RecordCount = 0 then
       begin
@@ -190,10 +199,15 @@ begin
   frmRenegociacaoAux.cdsParcelas.Open;
   for I := 0 to edtNro.AsInteger - 1 do
   begin
-    frmRenegociacaoAux.cdsParcelas.Insert;
+    frmRenegociacaoAux.cdsParcelas.Append;
     frmRenegociacaoAux.cdsParcelashistor.Value := 'Renegociação de Contas';
-//    frmRenegociacaoAux.cdsParcelasdtvenc.Value := DateTimeToSqlTimeStamp(IncMonth(edtVencimento.Date,I));
+    frmRenegociacaoAux.cdsParcelasdtvenc.Value := date;//DateTimeToSqlTimeStamp(IncMonth(edtVencimento.Date,I));
     frmRenegociacaoAux.cdsParcelasvlcont.Value := F.Arredondar(edtValor.Value / edtNro.Value,2);
+    frmRenegociacaoAux.cdsParcelascdempr.Value := frmPrincipal.Configuracao.EmpresaCodigo;
+    frmRenegociacaoAux.cdsParcelascodcon.Value := StrToInt(sql.proxCod(dm.cdsAux,'codcon','conta'));
+    frmRenegociacaoAux.cdsParcelastipcon.Value := 'P';
+    frmRenegociacaoAux.cdsParcelastitulo.Value := '';
+    frmRenegociacaoAux.cdsParcelasconcax.Value := edtConta.Text;
     frmRenegociacaoAux.cdsParcelas.Post;
   end;
   frmRenegociacaoAux.PodeInserir := False;
@@ -256,6 +270,24 @@ end;
 procedure TfrmRenegociacaoContas.tmr_VerificaContasTimer(Sender: TObject);
 begin
   btnRenegociar.enabled := (cdsContas.active = true) and (cdsContas.recordcount > 0);
+end;
+
+procedure TfrmRenegociacaoContas.FormShow(Sender: TObject);
+begin
+  if tipo = 'P' then
+  begin
+     gridContas.Columns[0].FieldName := 'procuraFornecedor';
+     gridContas.columns[0].Title.Caption := 'Fornecedor';
+     edtFornecedor.Visible := true;
+     Label6.Caption := 'Fornecedor';
+  end else
+  begin
+{     gridContas.Columns[0].FieldName := 'procuraCliente';
+     gridContas.columns[0].Title.Caption := 'Cliente';
+     lbl_funcionario.Caption := 'Seleção de Contas a Receber';
+     lbNomeCliente.Caption := 'Cliente';
+     edtCliente.Visible:= true;
+}  end;
 end;
 
 end.

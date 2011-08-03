@@ -107,6 +107,7 @@ begin
   cdsContasprocuraFornecedor.LookupDataSet := dm.cdsFor;
   edtDataInicial.date := date;
   edtDataFinal.date := date;
+
 end;
 
 procedure TfrmSelecionarContas.edtFornecedorChange(Sender: TObject);
@@ -189,7 +190,7 @@ begin
           frmRenegociacaoContas.cdsContasJUROSMULTA.value;
         frmRenegociacaoContas.cdsContas.Next;
       end;
-//      frmRenegociacaoContas.edtTotalContas.value := frmRenegociacaoContas.cdsContasSOMAVALOR.VAlue;
+      frmRenegociacaoContas.edtTotalContas.value := frmRenegociacaoContas.cdsContasSOMAVALOR.VAlue;
       frmRenegociacaoContas.edtTotalDevido.value := frmRenegociacaoContas.edtTotalContas.value + frmRenegociacaoContas.edtTotalJuros.Value;
       frmRenegociacaoContas.edtValor.Value := frmRenegociacaoContas.edtTotalDevido.value;
       frmRenegociacaoContas.cdsContas.First;
@@ -283,6 +284,11 @@ begin
   end;
   
   PesquisaContas;
+
+  if CodigoForm = 2 then
+  begin
+    cdsContas.Close;
+  end;
 end;
 
 procedure TfrmSelecionarContas.gridContasDrawColumnCell(Sender: TObject;
@@ -394,6 +400,19 @@ end;
 
 procedure TfrmSelecionarContas.Button1Click(Sender: TObject);
 begin
+  if (CodigoForm = 2)  then
+  begin
+     if (edtCliente.Text = '') and (Tipo='R') then
+     begin
+         f.Mensagem(false,'Preencha Cliente!');
+         abort;
+     end;
+     if (edtFornecedor.Text = '') and (Tipo='P') then
+     begin
+         f.Mensagem(false,'Preencha Fornecedor!');
+         abort;
+     end;
+  end;
   pesquisaContas;
 end;
 

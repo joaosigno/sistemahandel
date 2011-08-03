@@ -89,6 +89,7 @@ type
     acRenegociacao: TAction;
     acCOntasReceber: TAction;
     acAlteracaoLoteRecebder: TAction;
+    acQuiosque: TAction;
     procedure AcVizualizarFornecedoresExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -134,6 +135,7 @@ type
     procedure acRenegociacaoExecute(Sender: TObject);
     procedure acCOntasReceberExecute(Sender: TObject);
     procedure acAlteracaoLoteRecebderExecute(Sender: TObject);
+    procedure acQuiosqueExecute(Sender: TObject);
   private
     F : TFuncoes;
     SQL : TSQL;
@@ -160,7 +162,7 @@ uses untDM, untMensagem, untConfBD,
   untManuNaturezaOperacao, untManuContasPagar, untManuTransportadoras,
   untConsultaProdutosVencimento, untReajustePreco, untConferenciaEstoque,
   untManuGruposCLientes, untAlterarLoteContas, untRenegociacaoContas,
-  untManuContasReceber;
+  untManuContasReceber, untQuiosqueProdutos;
 
 {$R *.dfm}
 
@@ -556,6 +558,7 @@ end;
 procedure TfrmPrincipal.acRenegociacaoExecute(Sender: TObject);
 begin
    frmRenegociacaoContas := TfrmRenegociacaoContas.Create(Application);
+   frmRenegociacaoContas.tipo := 'P';
    frmRenegociacaoContas.ShowModal;
    frmRenegociacaoContas.Free;
 end;
@@ -574,6 +577,13 @@ begin
    frmAlterarLoteContas.Tipo := 'R';
    frmAlterarLoteContas.ShowModal;
    frmAlterarLoteContas.Free;
+end;
+
+procedure TfrmPrincipal.acQuiosqueExecute(Sender: TObject);
+begin
+  frmQuiosqueProdutos := TfrmQuiosqueProdutos.Create(Application);
+  frmQuiosqueProdutos.ShowModal;
+  frmQuiosqueProdutos.free;
 end;
 
 end.
