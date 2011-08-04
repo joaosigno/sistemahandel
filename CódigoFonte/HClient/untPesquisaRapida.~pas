@@ -600,10 +600,14 @@ end;
 procedure TfrmPesquisaRapida.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-   case Key of
-      VK_ESCAPE:
-        close;  
-   end;
+  if NString then
+  begin
+    case Key of
+     VK_Return:
+     begin
+
+     end;
+  end;
 end;
 
 procedure TfrmPesquisaRapida.visible(rb1V:Boolean;rb1Nome:String;rb2V:boolean;

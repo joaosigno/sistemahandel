@@ -600,9 +600,9 @@ end;
 procedure TfrmPesquisaRapida.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-   case Key of
+  case Key of
       VK_ESCAPE:
-        close;  
+        close;
    end;
 end;
 
