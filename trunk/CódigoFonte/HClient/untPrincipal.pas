@@ -29,7 +29,6 @@ type
   TfrmPrincipal = class(TForm)
     amPrincipal: TActionManager;
     sbPrincipal: TStatusBar;
-    lblData: TLabel;
     imgtoolbar: TImageList;
     AcVizualizarFornecedores: TAction;
     tmSbPrincipal: TTimer;
@@ -90,6 +89,7 @@ type
     acCOntasReceber: TAction;
     acAlteracaoLoteRecebder: TAction;
     acQuiosque: TAction;
+    lblData: TLabel;
     procedure AcVizualizarFornecedoresExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);

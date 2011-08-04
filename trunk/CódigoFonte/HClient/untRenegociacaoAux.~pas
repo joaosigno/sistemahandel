@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, DB, DBClient, StdCtrls, Grids, DBGrids, SQL;
+  Dialogs, DB, DBClient, StdCtrls, Grids, DBGrids, SQL, untDeclaracoes;
 
 type
   TfrmRenegociacaoAux = class(TForm)
@@ -19,6 +19,22 @@ type
     cdsParcelasprocuraCliente: TStringField;
     cdsParcelasprocuraFornecedor: TStringField;
     cdsParcelashistor: TStringField;
+    cdsParcelascodcon: TIntegerField;
+    cdsParcelascdempr: TIntegerField;
+    cdsParcelastipcon: TStringField;
+    cdsParcelastitulo: TStringField;
+    cdsParcelasnotcon: TIntegerField;
+    cdsParcelasdtemit: TDateField;
+    cdsParcelasdtpaga: TDateField;
+    cdsParcelasvalpag: TFloatField;
+    cdsParcelasjurpag: TFloatField;
+    cdsParcelasobscon: TStringField;
+    cdsParcelasstacon: TStringField;
+    cdsParcelascdvend: TIntegerField;
+    cdsParcelasconcax: TStringField;
+    cdsParcelasdescon: TFloatField;
+    cdsParcelasmulpag: TFloatField;
+    cdsParcelassemdup: TStringField;
     procedure FormCreate(Sender: TObject);
     procedure btnOkClick(Sender: TObject);
     procedure cdsParcelasBeforeInsert(DataSet: TDataSet);
@@ -27,6 +43,7 @@ type
   private
     { Private declarations }
   public
+  F: TFuncoes;
   SQl : TSQL;
   PodeInserir: boolean;
   tipo: integer;
@@ -53,11 +70,13 @@ end;
 
 procedure TfrmRenegociacaoAux.btnOkClick(Sender: TObject);
 var CodigoContasLog,CodigoContasnovasLog: String;
+    cod : integer;
 begin
 case tipo of
     1:begin
         frmRenegociacaoContas.InserindoRenegociacao := True;
         frmRenegociacaoContas.cdsContas.first;
+
         while not frmRenegociacaoContas.cdsContas.eof do
         begin
           if CodigoContasLog = '' then CodigoContasLog := frmRenegociacaoContas.cdsContastitulo.text + ' (V:' + FormatFloat('0.00',frmRenegociacaoContas.cdsContasvlcont.value) + ')'
@@ -65,10 +84,11 @@ case tipo of
           frmRenegociacaoContas.cdsContas.Delete;
         end;
         cdsParcelas.first;
+        cod:= StrToInt(SQl.proxCod(dm.cdsAux,'codcon','conta'));
         while not cdsParcelas.eof do
         begin
           frmRenegociacaoContas.cdsContas.Append;
-          frmRenegociacaoContas.cdsContascodcon.value := StrToInt(SQl.proxCod(frmRenegociacaoContas.cdsContas,'codcon','conta'));
+          frmRenegociacaoContas.cdsContascodcon.value := cod;
 
           if CodigoContasnovasLog = '' then CodigoContasnovasLog := frmRenegociacaoContas.cdsContascodcon.text
           else CodigoContasnovasLog := CodigoContasnovasLog + ',' + frmRenegociacaoContas.cdsContascodcon.text;
@@ -78,12 +98,23 @@ case tipo of
             frmRenegociacaoContas.cdsContascdclfo.value := strtoint(frmRenegociacaoContas.edtFornecedor.Text);
           if frmRenegociacaoContas.edtConta.Text <> '' then
             frmRenegociacaoContas.cdsContasconcax.value := frmRenegociacaoContas.edtConta.Text;
+          frmRenegociacaoContas.cdsContasvlcont.ReadOnly := false;
           frmRenegociacaoContas.cdsContasvlcont.value := cdsParcelasvlcont.Value;
+          frmRenegociacaoContas.cdsContasvlcont.ReadOnly := true;
+          frmRenegociacaoContas.cdsContasdtvenc.ReadOnly := false;
           frmRenegociacaoContas.cdsContasdtvenc.value := cdsParcelasdtvenc.Value;
+          frmRenegociacaoContas.cdsContasdtvenc.ReadOnly := true;
+          frmRenegociacaoContas.cdsContastitulo.ReadOnly := false;
           frmRenegociacaoContas.cdsContastitulo.Value := '0';
+          frmRenegociacaoContas.cdsContastitulo.ReadOnly := true;
           frmRenegociacaoContas.cdsContashistor.Value := 'Renegociação de Contas';
+          frmRenegociacaoContas.cdsContasdtemit.Value := cdsParcelasdtemit.Value;
+          frmRenegociacaoContas.cdsContastipcon.Value := cdsParcelastipcon.Value;
+          frmRenegociacaoContas.cdsContasconcax.Value := cdsParcelasconcax.Value;
+          frmRenegociacaoContas.cdsContasstacon.Value := cdsParcelasstacon.Value;
           frmRenegociacaoContas.cdsContas.Post;
           cdsParcelas.Next;
+          cod:= cod + 1;
         end;
        try
           frmRenegociacaoContas.cdsContas.ApplyUpdates(0);
@@ -92,7 +123,19 @@ case tipo of
        end;
         frmRenegociacaoContas.cdsContas.Close;
         frmRenegociacaoContas.InserindoRenegociacao := False;
+        frmRenegociacaoContas.edtNomeConta.Text := '';
+        frmRenegociacaoContas.edtNomeFornecedor.Text := '';
+        frmRenegociacaoContas.edtNro.Text := '';
+        frmRenegociacaoContas.edtTotalContas.Text := '';
+        frmRenegociacaoContas.edtTotalDescontos.Text := '';
+        frmRenegociacaoContas.edtTotalDevido.Text := '';
+        frmRenegociacaoContas.edtTotalJuros.Text := '';
+        frmRenegociacaoContas.edtValor.Text := '';
+        frmRenegociacaoContas.edtVencimento.Text := '';
+        frmRenegociacaoContas.edtFornecedor.Text := '';
+        frmRenegociacaoContas.edtConta.Text := '';
         Close;
+
     end;
 end;
 end;

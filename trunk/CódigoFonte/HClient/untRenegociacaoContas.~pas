@@ -7,7 +7,7 @@ uses
   Dialogs, Grids, DBGrids, ToolEdit, CurrEdit, StdCtrls, Mask, ExtCtrls,
   wwdblook, Wwdbdlg, DB, untDeclaracoes, DBClient, SQL, Menus,
   RXDBCtrl, DBCtrls, DBTables, FMTBcd, Provider, SqlExpr,
-  dblookup;
+  dblookup, SqlTimSt;
 
 type
   TfrmRenegociacaoContas = class(TForm)
@@ -88,6 +88,8 @@ type
     procedure tmr_abreselecaoTimer(Sender: TObject);
     procedure tmr_VerificaContasTimer(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure edtTotalDescontosExit(Sender: TObject);
+    procedure edtTotalJurosExit(Sender: TObject);
   private
   F : TFuncoes;
   SQl : TSQL;
@@ -105,7 +107,7 @@ var
 
 implementation
 
-uses untDM, untRenegociacaoAux, untSelecionarContas, untPrincipal;
+uses untDM, untRenegociacaoAux, untSelecionarContas, untPrincipal, Math;
 
 {$R *.dfm}
 
@@ -188,29 +190,43 @@ end;
 procedure TfrmRenegociacaoContas.btnRenegociarClick(Sender: TObject);
 var
   I: Integer;
+  cod : integer;
 begin
   if edtNro.Value <= 0 then
   begin
-    MessageDlg('Defina o número de parcelas da renegociação!!', mtError, [mbOK], 0);
+    f.Mensagem(false,'Defina o número de parcelas da renegociação!!');
     edtNro.setfocus;
+    Abort;
+  end;
+  if (edtConta.Value = '0') or (edtConta.Value = '') then
+  begin
+    f.Mensagem(false,'Defina o plano de contas do caixa!!');
+    edtConta.setfocus;
     Abort;
   end;
   frmRenegociacaoAux := TfrmRenegociacaoAux.Create(Application);
   frmRenegociacaoAux.cdsParcelas.Open;
-  for I := 0 to edtNro.AsInteger - 1 do
+  SQl.executaSQlPorEmp(frmRenegociacaoAux.cdsParcelas,'*','conta','and tipcon=''P'' and codcon=00000000');
+  cod := StrToInt(sql.proxCod(dm.cdsAux,'codcon','conta'));
+  for I := 0 to frmRenegociacaoContas.edtNro.AsInteger - 1 do
   begin
-    frmRenegociacaoAux.cdsParcelas.Append;
+    frmRenegociacaoAux.cdsParcelas.Insert;
+    frmRenegociacaoAux.cdsParcelasdtemit.Value := date;
     frmRenegociacaoAux.cdsParcelashistor.Value := 'Renegociação de Contas';
-    frmRenegociacaoAux.cdsParcelasdtvenc.Value := date;//DateTimeToSqlTimeStamp(IncMonth(edtVencimento.Date,I));
-    frmRenegociacaoAux.cdsParcelasvlcont.Value := F.Arredondar(edtValor.Value / edtNro.Value,2);
+    frmRenegociacaoAux.cdsParcelasdtvenc.Value := DateTimeToSqlTimeStamp(IncMonth(edtVencimento.Date,I));
+    frmRenegociacaoAux.cdsParcelasvlcont.Value := F.Arredondar(frmRenegociacaoContas.edtValor.Value / frmRenegociacaoContas.edtNro.Value,2);
     frmRenegociacaoAux.cdsParcelascdempr.Value := frmPrincipal.Configuracao.EmpresaCodigo;
-    frmRenegociacaoAux.cdsParcelascodcon.Value := StrToInt(sql.proxCod(dm.cdsAux,'codcon','contas'));
+    frmRenegociacaoAux.cdsParcelascodcon.Value := cod;
     frmRenegociacaoAux.cdsParcelastipcon.Value := 'P';
-    frmRenegociacaoAux.cdsParcelastitulo.Value := '';
-    frmRenegociacaoAux.cdsParcelasconcax.Value := edtConta.Text;
+    frmRenegociacaoAux.cdsParcelastitulo.Value := 'RENEGOCIADA';
+    frmRenegociacaoAux.cdsParcelasconcax.Value := frmRenegociacaoContas.edtConta.Text;
+    frmRenegociacaoAux.cdsParcelascdclfo.Value := StrToInt(frmRenegociacaoContas.edtFornecedor.text);
+    frmRenegociacaoAux.cdsParcelasstacon.Value := 'A';
     frmRenegociacaoAux.cdsParcelas.Post;
+    cod := cod + 1;
   end;
   frmRenegociacaoAux.PodeInserir := False;
+  frmRenegociacaoAux.cdsParcelasprocuraFornecedor.ReadOnly := true;
   frmRenegociacaoAux.tipo := 1;
   frmRenegociacaoAux.ShowModal;
 end;
@@ -288,6 +304,30 @@ begin
      lbNomeCliente.Caption := 'Cliente';
      edtCliente.Visible:= true;
 }  end;
+end;
+
+procedure TfrmRenegociacaoContas.edtTotalDescontosExit(Sender: TObject);
+var valor : real;
+begin
+  if edtTotalDescontos.Text <> '' then
+  begin
+    valor := 0;
+    valor := (StrtoFloatDef(edtTotalJuros.Text,0)+StrtoFloatDef(edtTotalContas.Text,0))-StrtoFloatDef(edtTotalDescontos.Text,0);
+    edtValor.Text := FloatToStr(valor);
+    edtTotalDevido.Text := FloatToStr(valor);
+  end;
+end;
+
+procedure TfrmRenegociacaoContas.edtTotalJurosExit(Sender: TObject);
+var valor : real;
+begin
+  if edtTotalJuros.Text <> '' then
+  begin
+    valor := 0;
+    valor := (StrtoFloatDef(edtTotalJuros.Text,0)+StrtoFloatDef(edtTotalContas.Text,0))-StrtoFloatDef(edtTotalDescontos.Text,0);
+    edtValor.Text := FloatToStr(valor);
+    edtTotalDevido.Text := FloatToStr(valor);
+  end;
 end;
 
 end.
