@@ -1268,16 +1268,16 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
       00070000FFFFFF00000F0000FFFFFFE000FF0000FFFFFFFFFFFF0000FFFFFFFF
       FFFF0000FFFFFFFFFFFF0000}
   end
-  object lbl_funcionario: TLabel
+  object lbl_renegociacao: TLabel
     Left = 38
     Top = 373
-    Width = 245
+    Width = 334
     Height = 22
     AutoSize = False
     Caption = 'Renegocia'#231#227'o '
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -21
+    Font.Height = -19
     Font.Name = 'Courier New'
     Font.Style = []
     ParentFont = False
@@ -2038,6 +2038,35 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     OnChange = edtContaChange
     OnExit = edtContaExit
     OnKeyPress = edtContaKeyPress
+  end
+  object edtCliente: TwwDBLookupComboDlg
+    Left = 90
+    Top = 282
+    Width = 90
+    Height = 21
+    Ctl3D = False
+    DisableThemes = False
+    GridOptions = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgPerfectRowFit]
+    GridColor = clWhite
+    GridTitleAlignment = taLeftJustify
+    Caption = 'Lookup'
+    MaxWidth = 0
+    MaxHeight = 209
+    Selected.Strings = (
+      'cdclie'#9'10'#9'C'#243'd.'#9'F'#9
+      'nome'#9'50'#9'Nome'#9'F'#9)
+    LookupTable = dm.cdsCli
+    LookupField = 'cdclie'
+    ParentCtl3D = False
+    ReadOnly = True
+    TabOrder = 15
+    Visible = False
+    AutoDropDown = False
+    ShowButton = True
+    AllowClearKey = False
+    OnChange = edtClienteChange
+    OnExit = edtClienteExit
+    OnKeyPress = edtClienteKeyPress
   end
   object dsRenegociacao: TDataSource
     DataSet = cdsContas

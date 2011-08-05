@@ -1,7 +1,7 @@
 object dm: Tdm
   OldCreateOrder = False
-  Left = 713
-  Top = 124
+  Left = 844
+  Top = 111
   Height = 445
   Width = 448
   object cdsUsu: TClientDataSet
@@ -2545,6 +2545,97 @@ object dm: Tdm
       FieldName = 'lincol'
       Required = True
       Size = 1
+    end
+  end
+  object cdsCTBan: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspCTBan'
+    RemoteServer = scHC
+    Left = 288
+    Top = 64
+    object cdsCTBancdcont: TIntegerField
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'cdcont'
+      Required = True
+    end
+    object cdsCTBancdempr: TIntegerField
+      DisplayLabel = 'C[od.Empresa'
+      FieldName = 'cdempr'
+    end
+    object cdsCTBandtcada: TDateField
+      DisplayLabel = 'Dt.Cadastro'
+      FieldName = 'dtcada'
+    end
+    object cdsCTBandtaber: TDateField
+      DisplayLabel = 'Dt.Abert.'
+      FieldName = 'dtaber'
+    end
+    object cdsCTBandescri: TStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'descri'
+      Required = True
+      Size = 50
+    end
+    object cdsCTBanagenci: TStringField
+      DisplayLabel = 'Ag'#234'ncia'
+      FieldName = 'agenci'
+      Required = True
+      Size = 15
+    end
+    object cdsCTBannrcont: TStringField
+      DisplayLabel = 'Conta'
+      FieldName = 'nrcont'
+      Required = True
+      Size = 15
+    end
+    object cdsCTBancdbanc: TIntegerField
+      DisplayLabel = 'C'#243'd.Banco'
+      FieldName = 'cdbanc'
+    end
+    object cdsCTBanprocuraBanco: TStringField
+      DisplayLabel = 'Banco'
+      FieldKind = fkLookup
+      FieldName = 'procuraBanco'
+      LookupDataSet = cdsBanc
+      LookupKeyFields = 'cdban'
+      LookupResultField = 'descri'
+      KeyFields = 'cdbanc'
+      Size = 50
+      Lookup = True
+    end
+    object cdsCTBantelefo: TStringField
+      DisplayLabel = 'Telefone'
+      FieldName = 'telefo'
+      EditMask = '(00)0000-0000;0;'
+    end
+    object cdsCTBanfax: TStringField
+      DisplayLabel = 'Fax'
+      FieldName = 'fax'
+      EditMask = '(00)0000-0000;0;'
+    end
+    object cdsCTBangerent: TStringField
+      DisplayLabel = 'Gerente'
+      FieldName = 'gerent'
+      Size = 50
+    end
+    object cdsCTBanlimite: TFloatField
+      DisplayLabel = 'Limite'
+      FieldName = 'limite'
+    end
+    object cdsCTBandtvenc: TDateField
+      DisplayLabel = 'Dt.Venc.'
+      FieldName = 'dtvenc'
+    end
+    object cdsCTBanemail: TStringField
+      DisplayLabel = 'E-Mail'
+      FieldName = 'email'
+      Size = 50
+    end
+    object cdsCTBanhomepa: TStringField
+      DisplayLabel = 'Home Page'
+      FieldName = 'homepa'
+      Size = 50
     end
   end
 end

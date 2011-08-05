@@ -403,6 +403,23 @@ type
     qryContashistor: TStringField;
     qryContasmulpag: TFloatField;
     qryContassemdup: TStringField;
+    qryCTBanc: TZReadOnlyQuery;
+    dspCTBan: TDataSetProvider;
+    qryCTBanccdcont: TIntegerField;
+    qryCTBanccdempr: TIntegerField;
+    qryCTBancdtcada: TDateField;
+    qryCTBancdtaber: TDateField;
+    qryCTBancdescri: TStringField;
+    qryCTBancagenci: TStringField;
+    qryCTBancnrcont: TStringField;
+    qryCTBanccdbanc: TIntegerField;
+    qryCTBanctelefo: TStringField;
+    qryCTBancfax: TStringField;
+    qryCTBancgerent: TStringField;
+    qryCTBanclimite: TFloatField;
+    qryCTBancdtvenc: TDateField;
+    qryCTBancemail: TStringField;
+    qryCTBanchomepa: TStringField;
     procedure RemoteDataModuleCreate(Sender: TObject);
     procedure RemoteDataModuleDestroy(Sender: TObject);
   private

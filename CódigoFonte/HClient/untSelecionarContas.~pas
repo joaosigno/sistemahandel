@@ -165,38 +165,75 @@ begin
       close;
     end;
     2:begin
-      SQL.executaSQlPorEmp(frmRenegociacaoContas.cdsContas,'*','conta',' and tipcon=''P'' and codcon= -1');
-      frmRenegociacaoContas.cdsContas.Close;
-      cdsContas.first;
-      while not cdsContas.eof do
+      if Tipo = 'P' then
       begin
-        if cdsContasAUXSELECAO.value = 'S' then
+        SQL.executaSQlPorEmp(frmRenegociacaoContas.cdsContas,'*','conta',' and tipcon=''P'' and codcon= -1');
+        frmRenegociacaoContas.cdsContas.Close;
+        cdsContas.first;
+        while not cdsContas.eof do
         begin
-          frmRenegociacaoContas.cdsContas.CommandText :=
+          if cdsContasAUXSELECAO.value = 'S' then
+          begin
+            frmRenegociacaoContas.cdsContas.CommandText :=
             frmRenegociacaoContas.cdsContas.CommandText + ' or codcon = ' + inttostr(cdsContascodcon.value);
-          frmRenegociacaoContas.edtFornecedor.Text := cdsContascdclfo.Text;
+            frmRenegociacaoContas.edtFornecedor.Text := cdsContascdclfo.Text;
+          end;
+          cdsContas.next;
         end;
-        cdsContas.next;
-      end;
-      frmRenegociacaoContas.cdsContas.CommandText := frmRenegociacaoContas.cdsContas.CommandText + ' order by DTVENC';
-      frmRenegociacaoContas.cdsContas.Open;
+        frmRenegociacaoContas.cdsContas.CommandText := frmRenegociacaoContas.cdsContas.CommandText + ' order by DTVENC';
+        frmRenegociacaoContas.cdsContas.Open;
 //      frmContasPagarRenegociacao.ProcuraFornecedor;
-      frmRenegociacaoContas.edtTotalContas.Clear;
-      frmRenegociacaoContas.edtTotalJuros.Clear;
-      frmRenegociacaoContas.edtTotalDevido.Clear;
-      while not frmRenegociacaoContas.cdsContas.eof do
-      begin
-        frmRenegociacaoContas.edtTotalJuros.Value := frmRenegociacaoContas.edtTotalJuros.Value +
+        frmRenegociacaoContas.edtTotalContas.Clear;
+        frmRenegociacaoContas.edtTotalJuros.Clear;
+        frmRenegociacaoContas.edtTotalDevido.Clear;
+        while not frmRenegociacaoContas.cdsContas.eof do
+        begin
+          frmRenegociacaoContas.edtTotalJuros.Value := frmRenegociacaoContas.edtTotalJuros.Value +
           frmRenegociacaoContas.cdsContasJUROSMULTA.value;
-        frmRenegociacaoContas.cdsContas.Next;
+          frmRenegociacaoContas.cdsContas.Next;
+        end;
+        frmRenegociacaoContas.edtTotalContas.value := frmRenegociacaoContas.cdsContasSOMAVALOR.VAlue;
+        frmRenegociacaoContas.edtTotalDevido.value := frmRenegociacaoContas.edtTotalContas.value + frmRenegociacaoContas.edtTotalJuros.Value;
+        frmRenegociacaoContas.edtValor.Value := frmRenegociacaoContas.edtTotalDevido.value;
+        frmRenegociacaoContas.cdsContas.First;
+        Clipboard.AsText := frmRenegociacaoContas.cdsContas.CommandText;
+        frmRenegociacaoContas.gridContas.DataSource := frmRenegociacaoContas.dsRenegociacao;
+        close;
+      end else
+      begin
+        SQL.executaSQlPorEmp(frmRenegociacaoContas.cdsContas,'*','conta',' and tipcon=''R'' and codcon= -1');
+        frmRenegociacaoContas.cdsContas.Close;
+        cdsContas.first;
+        while not cdsContas.eof do
+        begin
+          if cdsContasAUXSELECAO.value = 'S' then
+          begin
+            frmRenegociacaoContas.cdsContas.CommandText :=
+            frmRenegociacaoContas.cdsContas.CommandText + ' or codcon = ' + inttostr(cdsContascodcon.value);
+            frmRenegociacaoContas.edtFornecedor.Text := cdsContascdclfo.Text;
+          end;
+          cdsContas.next;
+        end;
+        frmRenegociacaoContas.cdsContas.CommandText := frmRenegociacaoContas.cdsContas.CommandText + ' order by DTVENC';
+        frmRenegociacaoContas.cdsContas.Open;
+//      frmContasPagarRenegociacao.ProcuraFornecedor;
+        frmRenegociacaoContas.edtTotalContas.Clear;
+        frmRenegociacaoContas.edtTotalJuros.Clear;
+        frmRenegociacaoContas.edtTotalDevido.Clear;
+        while not frmRenegociacaoContas.cdsContas.eof do
+        begin
+          frmRenegociacaoContas.edtTotalJuros.Value := frmRenegociacaoContas.edtTotalJuros.Value +
+          frmRenegociacaoContas.cdsContasJUROSMULTA.value;
+          frmRenegociacaoContas.cdsContas.Next;
+        end;
+        frmRenegociacaoContas.edtTotalContas.value := frmRenegociacaoContas.cdsContasSOMAVALOR.VAlue;
+        frmRenegociacaoContas.edtTotalDevido.value := frmRenegociacaoContas.edtTotalContas.value + frmRenegociacaoContas.edtTotalJuros.Value;
+        frmRenegociacaoContas.edtValor.Value := frmRenegociacaoContas.edtTotalDevido.value;
+        frmRenegociacaoContas.cdsContas.First;
+        Clipboard.AsText := frmRenegociacaoContas.cdsContas.CommandText;
+        frmRenegociacaoContas.gridContas.DataSource := frmRenegociacaoContas.dsRenegociacao;
+        close;
       end;
-      frmRenegociacaoContas.edtTotalContas.value := frmRenegociacaoContas.cdsContasSOMAVALOR.VAlue;
-      frmRenegociacaoContas.edtTotalDevido.value := frmRenegociacaoContas.edtTotalContas.value + frmRenegociacaoContas.edtTotalJuros.Value;
-      frmRenegociacaoContas.edtValor.Value := frmRenegociacaoContas.edtTotalDevido.value;
-      frmRenegociacaoContas.cdsContas.First;
-      Clipboard.AsText := frmRenegociacaoContas.cdsContas.CommandText;
-      frmRenegociacaoContas.gridContas.DataSource := frmRenegociacaoContas.dsRenegociacao;
-      close;
     end;
   end;
 
@@ -402,9 +439,14 @@ procedure TfrmSelecionarContas.Button1Click(Sender: TObject);
 begin
   if (CodigoForm = 2)  then
   begin
-     if (edtCliente.Text = '') and (Tipo='P') then
+     if (edtCliente.Text = '') and (Tipo='R') then
      begin
          f.Mensagem(false,'Preencha Cliente!');
+         abort;
+     end;
+     if (edtFornecedor.Text = '') and (Tipo='P') then
+     begin
+         f.Mensagem(false,'Preencha Fornecedor!');
          abort;
      end;
   end;

@@ -85,11 +85,13 @@ type
     acConferenciaEstoque: TAction;
     acGrupoClientes: TAction;
     acAlteracaoEsclusaoLote: TAction;
-    acRenegociacao: TAction;
+    acRenegociacaoPagar: TAction;
     acCOntasReceber: TAction;
-    acAlteracaoLoteRecebder: TAction;
+    acAlteracaoLoteReceber: TAction;
     acQuiosque: TAction;
     lblData: TLabel;
+    acRenegociacaoReceber: TAction;
+    acContas: TAction;
     procedure AcVizualizarFornecedoresExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -132,10 +134,12 @@ type
     procedure acConferenciaEstoqueExecute(Sender: TObject);
     procedure acGrupoClientesExecute(Sender: TObject);
     procedure acAlteracaoEsclusaoLoteExecute(Sender: TObject);
-    procedure acRenegociacaoExecute(Sender: TObject);
+    procedure acRenegociacaoPagarExecute(Sender: TObject);
     procedure acCOntasReceberExecute(Sender: TObject);
-    procedure acAlteracaoLoteRecebderExecute(Sender: TObject);
+    procedure acAlteracaoLoteReceberExecute(Sender: TObject);
     procedure acQuiosqueExecute(Sender: TObject);
+    procedure acRenegociacaoReceberExecute(Sender: TObject);
+    procedure acContasExecute(Sender: TObject);
   private
     F : TFuncoes;
     SQL : TSQL;
@@ -162,7 +166,7 @@ uses untDM, untMensagem, untConfBD,
   untManuNaturezaOperacao, untManuContasPagar, untManuTransportadoras,
   untConsultaProdutosVencimento, untReajustePreco, untConferenciaEstoque,
   untManuGruposCLientes, untAlterarLoteContas, untRenegociacaoContas,
-  untManuContasReceber, untQuiosqueProdutos;
+  untManuContasReceber, untQuiosqueProdutos, untManuContasBancarias;
 
 {$R *.dfm}
 
@@ -555,7 +559,7 @@ begin
    frmAlterarLoteContas.Free;
 end;
 
-procedure TfrmPrincipal.acRenegociacaoExecute(Sender: TObject);
+procedure TfrmPrincipal.acRenegociacaoPagarExecute(Sender: TObject);
 begin
    frmRenegociacaoContas := TfrmRenegociacaoContas.Create(Application);
    frmRenegociacaoContas.tipo := 'P';
@@ -570,7 +574,7 @@ begin
                          '*','conta',' and tipcon=''R'' order by codcon','R');
 end;
 
-procedure TfrmPrincipal.acAlteracaoLoteRecebderExecute(Sender: TObject);
+procedure TfrmPrincipal.acAlteracaoLoteReceberExecute(Sender: TObject);
 begin
   SQL.executaSQlPorEmp(dm.cdsContas,'*','conta',' and tipcon=''R'' order by codcon');
    frmAlterarLoteContas := TfrmAlterarLoteContas.Create(Application);
@@ -584,6 +588,21 @@ begin
   frmQuiosqueProdutos := TfrmQuiosqueProdutos.Create(Application);
   frmQuiosqueProdutos.ShowModal;
   frmQuiosqueProdutos.free;
+end;
+
+procedure TfrmPrincipal.acRenegociacaoReceberExecute(Sender: TObject);
+begin
+   frmRenegociacaoContas := TfrmRenegociacaoContas.Create(Application);
+   frmRenegociacaoContas.tipo := 'R';
+   frmRenegociacaoContas.ShowModal;
+   frmRenegociacaoContas.Free;
+end;
+
+procedure TfrmPrincipal.acContasExecute(Sender: TObject);
+begin
+  RegisterClass(TfrmManuContasBancarias);
+ VD.showForm('Contas Bancárias',dm.cdsCTBan,'TfrmManuContasBancarias',
+                         '*','ctban',' order by cdcont','');
 end;
 
 end.

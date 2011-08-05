@@ -1669,4 +1669,73 @@ object RDM: TRDM
     Left = 608
     Top = 344
   end
+  object qryCTBanc: TZReadOnlyQuery
+    Connection = con
+    SQL.Strings = (
+      'select * from ctban')
+    Params = <>
+    Left = 520
+    Top = 390
+    object qryCTBanccdcont: TIntegerField
+      FieldName = 'cdcont'
+      Required = True
+    end
+    object qryCTBanccdempr: TIntegerField
+      FieldName = 'cdempr'
+    end
+    object qryCTBancdtcada: TDateField
+      FieldName = 'dtcada'
+    end
+    object qryCTBancdtaber: TDateField
+      FieldName = 'dtaber'
+    end
+    object qryCTBancdescri: TStringField
+      FieldName = 'descri'
+      Required = True
+      Size = 50
+    end
+    object qryCTBancagenci: TStringField
+      FieldName = 'agenci'
+      Required = True
+      Size = 15
+    end
+    object qryCTBancnrcont: TStringField
+      FieldName = 'nrcont'
+      Required = True
+      Size = 15
+    end
+    object qryCTBanccdbanc: TIntegerField
+      FieldName = 'cdbanc'
+    end
+    object qryCTBanctelefo: TStringField
+      FieldName = 'telefo'
+    end
+    object qryCTBancfax: TStringField
+      FieldName = 'fax'
+    end
+    object qryCTBancgerent: TStringField
+      FieldName = 'gerent'
+      Size = 50
+    end
+    object qryCTBanclimite: TFloatField
+      FieldName = 'limite'
+    end
+    object qryCTBancdtvenc: TDateField
+      FieldName = 'dtvenc'
+    end
+    object qryCTBancemail: TStringField
+      FieldName = 'email'
+      Size = 50
+    end
+    object qryCTBanchomepa: TStringField
+      FieldName = 'homepa'
+      Size = 50
+    end
+  end
+  object dspCTBan: TDataSetProvider
+    DataSet = qryCTBanc
+    Options = [poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poAutoRefresh, poAllowCommandText]
+    Left = 608
+    Top = 390
+  end
 end

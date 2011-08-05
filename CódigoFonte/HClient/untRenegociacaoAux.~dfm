@@ -399,7 +399,7 @@ object frmRenegociacaoAux: TfrmRenegociacaoAux
     object cdsParcelasvlcont: TFloatField
       DisplayLabel = 'Valor'
       FieldName = 'vlcont'
-      DisplayFormat = '#,000.00'
+      DisplayFormat = '#.00'
     end
     object cdsParcelasdtvenc: TDateField
       DisplayLabel = 'Vencimento'

@@ -46,7 +46,8 @@ uses
   untRenegociacaoContas in 'untRenegociacaoContas.pas' {frmRenegociacaoContas},
   untRenegociacaoAux in 'untRenegociacaoAux.pas' {frmRenegociacaoAux},
   untManuContasReceber in 'untManuContasReceber.pas' {frmManuContasReceber},
-  untQuiosqueProdutos in 'untQuiosqueProdutos.pas' {frmQuiosqueProdutos};
+  untQuiosqueProdutos in 'untQuiosqueProdutos.pas' {frmQuiosqueProdutos},
+  untManuContasBancarias in 'untManuContasBancarias.pas' {frmManuContasBancarias};
 
 {$R *.res}
 
