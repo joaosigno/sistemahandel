@@ -1486,10 +1486,6 @@ object RDM: TRDM
       FieldName = 'semdup'
       Size = 1
     end
-    object qryContasAUXSELECAO: TStringField
-      FieldName = 'AUXSELECAO'
-      Size = 1
-    end
   end
   object dspContas: TDataSetProvider
     DataSet = qryContas

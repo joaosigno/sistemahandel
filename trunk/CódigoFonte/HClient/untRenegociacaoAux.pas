@@ -69,11 +69,12 @@ begin
 end;
 
 procedure TfrmRenegociacaoAux.btnOkClick(Sender: TObject);
-var CodigoContasLog,CodigoContasnovasLog: String;
+var CodigoContasLog,CodigoContasnovasLog, hist: String;
     cod : integer;
 begin
-case tipo of
+    case tipo of
     1:begin
+        hist := 'Títulos: ';
         frmRenegociacaoContas.InserindoRenegociacao := True;
         frmRenegociacaoContas.cdsContas.first;
 
@@ -81,6 +82,7 @@ case tipo of
         begin
           if CodigoContasLog = '' then CodigoContasLog := frmRenegociacaoContas.cdsContastitulo.text + ' (V:' + FormatFloat('0.00',frmRenegociacaoContas.cdsContasvlcont.value) + ')'
           else CodigoContasLog := CodigoContasLog + ', ' + frmRenegociacaoContas.cdsContastitulo.Text + ' (V:' + FormatFloat('0.00',frmRenegociacaoContas.cdsContasvlcont.value) + ')';
+          hist := hist + ' / ' + frmRenegociacaoContas.cdsContastitulo.AsString;
           frmRenegociacaoContas.cdsContas.Delete;
         end;
         cdsParcelas.first;
@@ -105,9 +107,9 @@ case tipo of
           frmRenegociacaoContas.cdsContasdtvenc.value := cdsParcelasdtvenc.Value;
           frmRenegociacaoContas.cdsContasdtvenc.ReadOnly := true;
           frmRenegociacaoContas.cdsContastitulo.ReadOnly := false;
-          frmRenegociacaoContas.cdsContastitulo.Value := '0';
+          frmRenegociacaoContas.cdsContastitulo.Value := 'RP'+IntToStr(cod);
           frmRenegociacaoContas.cdsContastitulo.ReadOnly := true;
-          frmRenegociacaoContas.cdsContashistor.Value := 'Renegociação de Contas';
+          frmRenegociacaoContas.cdsContashistor.Value := 'Renegociação de Contas. ' + hist;
           frmRenegociacaoContas.cdsContasdtemit.Value := cdsParcelasdtemit.Value;
           frmRenegociacaoContas.cdsContastipcon.Value := cdsParcelastipcon.Value;
           frmRenegociacaoContas.cdsContasconcax.Value := cdsParcelasconcax.Value;
@@ -134,10 +136,74 @@ case tipo of
         frmRenegociacaoContas.edtVencimento.Text := '';
         frmRenegociacaoContas.edtFornecedor.Text := '';
         frmRenegociacaoContas.edtConta.Text := '';
-        Close;
-
     end;
-end;
+    2: begin
+       hist := 'Títulos: ';
+       frmRenegociacaoContas.InserindoRenegociacao := True;
+        frmRenegociacaoContas.cdsContas.first;
+
+        while not frmRenegociacaoContas.cdsContas.eof do
+        begin
+          if CodigoContasLog = '' then CodigoContasLog := frmRenegociacaoContas.cdsContastitulo.text + ' (V:' + FormatFloat('0.00',frmRenegociacaoContas.cdsContasvlcont.value) + ')'
+          else CodigoContasLog := CodigoContasLog + ', ' + frmRenegociacaoContas.cdsContastitulo.Text + ' (V:' + FormatFloat('0.00',frmRenegociacaoContas.cdsContasvlcont.value) + ')';
+          hist := hist + ' / ' + frmRenegociacaoContas.cdsContastitulo.AsString;
+          frmRenegociacaoContas.cdsContas.Delete;
+        end;
+        cdsParcelas.first;
+        cod:= StrToInt(SQl.proxCod(dm.cdsAux,'codcon','conta'));
+        while not cdsParcelas.eof do
+        begin
+          frmRenegociacaoContas.cdsContas.Append;
+          frmRenegociacaoContas.cdsContascodcon.value := cod;
+
+          if CodigoContasnovasLog = '' then CodigoContasnovasLog := frmRenegociacaoContas.cdsContascodcon.text
+          else CodigoContasnovasLog := CodigoContasnovasLog + ',' + frmRenegociacaoContas.cdsContascodcon.text;
+
+          frmRenegociacaoContas.cdsContascdempr.Value := frmprincipal.Configuracao.EmpresaCodigo;
+          if frmRenegociacaoContas.edtCliente.Text <> '' then
+            frmRenegociacaoContas.cdsContascdclfo.value := strtoint(frmRenegociacaoContas.edtCliente.Text);
+          if frmRenegociacaoContas.edtConta.Text <> '' then
+            frmRenegociacaoContas.cdsContasconcax.value := frmRenegociacaoContas.edtConta.Text;
+          frmRenegociacaoContas.cdsContasvlcont.ReadOnly := false;
+          frmRenegociacaoContas.cdsContasvlcont.value := cdsParcelasvlcont.Value;
+          frmRenegociacaoContas.cdsContasvlcont.ReadOnly := true;
+          frmRenegociacaoContas.cdsContasdtvenc.ReadOnly := false;
+          frmRenegociacaoContas.cdsContasdtvenc.value := cdsParcelasdtvenc.Value;
+          frmRenegociacaoContas.cdsContasdtvenc.ReadOnly := true;
+          frmRenegociacaoContas.cdsContastitulo.ReadOnly := false;
+          frmRenegociacaoContas.cdsContastitulo.Value := 'RR'+IntToStr(cod);
+          frmRenegociacaoContas.cdsContastitulo.ReadOnly := true;
+          frmRenegociacaoContas.cdsContashistor.Value := 'Renegociação de Contas. ' + hist;
+          frmRenegociacaoContas.cdsContasdtemit.Value := cdsParcelasdtemit.Value;
+          frmRenegociacaoContas.cdsContastipcon.Value := cdsParcelastipcon.Value;
+          frmRenegociacaoContas.cdsContasconcax.Value := cdsParcelasconcax.Value;
+          frmRenegociacaoContas.cdsContasstacon.Value := cdsParcelasstacon.Value;
+          frmRenegociacaoContas.cdsContas.Post;
+          cdsParcelas.Next;
+          cod:= cod + 1;
+        end;
+       try
+          frmRenegociacaoContas.cdsContas.ApplyUpdates(0);
+       except
+
+       end;
+        frmRenegociacaoContas.cdsContas.Close;
+        frmRenegociacaoContas.InserindoRenegociacao := False;
+        frmRenegociacaoContas.edtNomeConta.Text := '';
+        frmRenegociacaoContas.edtNomeFornecedor.Text := '';
+        frmRenegociacaoContas.edtNro.Text := '';
+        frmRenegociacaoContas.edtTotalContas.Text := '';
+        frmRenegociacaoContas.edtTotalDescontos.Text := '';
+        frmRenegociacaoContas.edtTotalDevido.Text := '';
+        frmRenegociacaoContas.edtTotalJuros.Text := '';
+        frmRenegociacaoContas.edtValor.Text := '';
+        frmRenegociacaoContas.edtVencimento.Text := '';
+        frmRenegociacaoContas.edtCliente.Text := '';
+        frmRenegociacaoContas.edtConta.Text := '';
+    end;
+  end;
+  hist := '';
+  Close;
 end;
 
 procedure TfrmRenegociacaoAux.cdsParcelasBeforeInsert(DataSet: TDataSet);
@@ -157,7 +223,8 @@ begin
   begin
      DBGridKI1.Columns[0].FieldName := 'procuraFornecedor';
      DBGridKI1.columns[0].Title.Caption := 'Fornecedor';
-  end else
+  end;
+  if tipo = 2 then
   begin
      DBGridKI1.Columns[0].FieldName := 'procuraCliente';
      DBGridKI1.columns[0].Title.Caption := 'Cliente';

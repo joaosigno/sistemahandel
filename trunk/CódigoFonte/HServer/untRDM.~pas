@@ -403,7 +403,6 @@ type
     qryContashistor: TStringField;
     qryContasmulpag: TFloatField;
     qryContassemdup: TStringField;
-    qryContasAUXSELECAO: TStringField;
     procedure RemoteDataModuleCreate(Sender: TObject);
     procedure RemoteDataModuleDestroy(Sender: TObject);
   private

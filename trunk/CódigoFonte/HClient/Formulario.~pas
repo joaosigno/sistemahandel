@@ -450,7 +450,7 @@ begin
           grid.Columns.Add;
           grid.Columns[1].FieldName := 'procuraCliente';
           grid.Columns[1].Width := 300;
-        end else if dm.cdsContastipcon.AsString = 'P' then
+        end else if Identificador = 'P' then
         begin
           grid.Columns.Add;
           grid.Columns[1].FieldName := 'procuraFornecedor';
@@ -553,7 +553,50 @@ begin
         grid.Columns[2].FieldName := 'grbloq';
         grid.Columns[2].Width := 150;
       end;
-    end;
+    end
+
+    else if FTabela = 'ctban' then
+   begin
+      with frmVizualizaDados do
+      begin
+        grid.Columns.Add;
+        grid.Columns[0].FieldName := 'cdcont';
+        grid.Columns[0].Width := 80;
+
+        grid.Columns.Add;
+        grid.Columns[1].FieldName := 'dtaber';
+        grid.Columns[1].Width := 80;
+
+        grid.Columns.Add;
+        grid.Columns[2].FieldName := 'descri';
+        grid.Columns[2].Width := 270;
+
+        grid.Columns.Add;
+        grid.Columns[3].FieldName := 'agenci';
+        grid.Columns[3].Width := 100;
+
+        grid.Columns.Add;
+        grid.Columns[4].FieldName := 'nrcont';
+        grid.Columns[4].Width := 100;
+
+        grid.Columns.Add;
+        grid.Columns[5].FieldName := 'procuraBanco';
+        grid.Columns[5].Width :=  200;
+
+        grid.Columns.Add;
+        grid.Columns[6].FieldName := 'gerent';
+        grid.Columns[6].Width :=  270;
+
+        grid.Columns.Add;
+        grid.Columns[7].FieldName := 'limite';
+        grid.Columns[7].Width :=  90;
+
+        grid.Columns.Add;
+        grid.Columns[8].FieldName := 'dtvenc';
+        grid.Columns[8].Width :=  80;
+
+      end;
+   end;
 
    with frmVizualizaDados do
    begin
