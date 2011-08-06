@@ -72,6 +72,7 @@ type
     cdsContasprocuraClientes: TStringField;
     cdsContasprocuraFornecedor: TStringField;
     edtCliente: TwwDBLookupComboDlg;
+    Label4: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure edtFornecedorChange(Sender: TObject);

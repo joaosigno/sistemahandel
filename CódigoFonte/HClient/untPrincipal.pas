@@ -92,6 +92,7 @@ type
     lblData: TLabel;
     acRenegociacaoReceber: TAction;
     acContas: TAction;
+    acPLContas: TAction;
     procedure AcVizualizarFornecedoresExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -140,6 +141,7 @@ type
     procedure acQuiosqueExecute(Sender: TObject);
     procedure acRenegociacaoReceberExecute(Sender: TObject);
     procedure acContasExecute(Sender: TObject);
+    procedure acPLContasExecute(Sender: TObject);
   private
     F : TFuncoes;
     SQL : TSQL;
@@ -166,7 +168,8 @@ uses untDM, untMensagem, untConfBD,
   untManuNaturezaOperacao, untManuContasPagar, untManuTransportadoras,
   untConsultaProdutosVencimento, untReajustePreco, untConferenciaEstoque,
   untManuGruposCLientes, untAlterarLoteContas, untRenegociacaoContas,
-  untManuContasReceber, untQuiosqueProdutos, untManuContasBancarias;
+  untManuContasReceber, untQuiosqueProdutos, untManuContasBancarias,
+  untPlanoContas;
 
 {$R *.dfm}
 
@@ -603,6 +606,13 @@ begin
   RegisterClass(TfrmManuContasBancarias);
  VD.showForm('Contas Bancárias',dm.cdsCTBan,'TfrmManuContasBancarias',
                          '*','ctban',' order by cdcont','');
+end;
+
+procedure TfrmPrincipal.acPLContasExecute(Sender: TObject);
+begin
+   frmPlContas := TfrmPlContas.Create(Application);
+   frmPlContas.ShowModal;
+   frmPlContas.Free;
 end;
 
 end.

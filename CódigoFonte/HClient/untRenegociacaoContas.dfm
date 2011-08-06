@@ -4,12 +4,12 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Renegocia'#231#227'o de Contas '
-  ClientHeight = 402
-  ClientWidth = 675
+  ClientHeight = 463
+  ClientWidth = 765
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
-  Font.Height = -12
+  Font.Height = -15
   Font.Name = 'Courier New'
   Font.Style = []
   Icon.Data = {
@@ -320,117 +320,117 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  PixelsPerInch = 96
-  TextHeight = 15
+  PixelsPerInch = 120
+  TextHeight = 17
   object Label1: TLabel
-    Left = 14
-    Top = 309
-    Width = 105
-    Height = 15
+    Left = 0
+    Top = 350
+    Width = 135
+    Height = 17
     Alignment = taRightJustify
     Caption = 'Nro de Parcelas'
     Transparent = True
   end
   object Label11: TLabel
-    Left = 3
-    Top = 232
-    Width = 35
-    Height = 15
+    Left = -2
+    Top = 263
+    Width = 45
+    Height = 17
     Alignment = taRightJustify
     Caption = 'Total'
     Transparent = True
   end
   object Label12: TLabel
-    Left = 137
-    Top = 232
-    Width = 84
-    Height = 15
+    Left = 142
+    Top = 263
+    Width = 108
+    Height = 17
     Alignment = taRightJustify
     Caption = 'Descontos($)'
     Transparent = True
   end
   object Label14: TLabel
-    Left = 321
-    Top = 233
-    Width = 56
-    Height = 15
+    Left = 355
+    Top = 264
+    Width = 72
+    Height = 17
     Alignment = taRightJustify
     Caption = 'Juros($)'
     Transparent = True
   end
   object Label15: TLabel
-    Left = 484
-    Top = 232
-    Width = 84
-    Height = 15
+    Left = 536
+    Top = 263
+    Width = 108
+    Height = 17
     Alignment = taRightJustify
     Caption = 'Total Devido'
     Transparent = True
   end
   object Label2: TLabel
-    Left = 457
-    Top = 309
-    Width = 105
-    Height = 15
+    Left = 502
+    Top = 350
+    Width = 135
+    Height = 17
     Alignment = taRightJustify
     Caption = 'Data Vencimento'
     Transparent = True
   end
   object Label3: TLabel
-    Left = 282
-    Top = 309
-    Width = 70
-    Height = 15
+    Left = 309
+    Top = 350
+    Width = 90
+    Height = 17
     Alignment = taRightJustify
     Caption = 'Novo Total'
     Transparent = True
   end
   object Label5: TLabel
-    Left = 8
-    Top = 262
-    Width = 118
-    Height = 14
+    Left = 9
+    Top = 297
+    Width = 141
+    Height = 16
     Caption = 'Dados da Renegocia'#231#227'o'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -11
+    Font.Height = -13
     Font.Name = 'Arial'
     Font.Style = [fsUnderline]
     ParentFont = False
     Transparent = True
   end
   object Label6: TLabel
-    Left = 15
-    Top = 284
-    Width = 70
-    Height = 15
+    Left = 6
+    Top = 322
+    Width = 90
+    Height = 17
     Alignment = taRightJustify
     Caption = 'Fornecedor'
     Transparent = True
   end
   object Label9: TLabel
-    Left = 10
-    Top = 334
-    Width = 77
-    Height = 15
+    Left = 0
+    Top = 379
+    Width = 99
+    Height = 17
     Alignment = taRightJustify
     Caption = 'Conta Caixa'
     Transparent = True
   end
   object Shape4: TShape
-    Left = 11
-    Top = 10
-    Width = 656
-    Height = 213
+    Left = 12
+    Top = 11
+    Width = 744
+    Height = 242
     Brush.Color = 7368816
     Pen.Color = clSilver
     Pen.Style = psClear
   end
   object Image1: TImage
     Left = 3
-    Top = 370
-    Width = 31
-    Height = 31
+    Top = 419
+    Width = 36
+    Height = 35
     Picture.Data = {
       055449636F6E0000010008001010000001000800680500008600000010100000
       0100200068040000EE0500001818000001000800C8060000560A000018180000
@@ -1269,25 +1269,32 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
       FFFF0000FFFFFFFFFFFF0000}
   end
   object lbl_renegociacao: TLabel
-    Left = 38
-    Top = 373
-    Width = 334
-    Height = 22
+    Left = 43
+    Top = 423
+    Width = 379
+    Height = 25
     AutoSize = False
     Caption = 'Renegocia'#231#227'o '
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -19
+    Font.Height = -20
     Font.Name = 'Courier New'
     Font.Style = []
     ParentFont = False
     Transparent = True
   end
+  object Label4: TLabel
+    Left = 210
+    Top = 441
+    Width = 549
+    Height = 17
+    Caption = '* Ao conlcuir esta opera'#231#227'o as contas antigas ser'#227'o exclu'#237'das'
+  end
   object btnSelecionaContas: TButton
-    Left = 330
-    Top = 363
-    Width = 131
-    Height = 26
+    Left = 361
+    Top = 411
+    Width = 160
+    Height = 30
     Hint = 
       'Selecionar|Abre uma janela para a sele'#231#227'o das contas que dever'#227'o' +
       ' ser renegociadas'
@@ -1298,10 +1305,10 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     OnClick = btnSelecionaContasClick
   end
   object btnRenegociar: TButton
-    Left = 466
-    Top = 363
-    Width = 117
-    Height = 26
+    Left = 528
+    Top = 411
+    Width = 133
+    Height = 30
     Hint = 'Renegociar|Grava os dados da renegocia'#231#227'o'
     Caption = '&Renegociar'
     ParentShowHint = False
@@ -1310,9 +1317,9 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     OnClick = btnRenegociarClick
   end
   object edtNomeConta: TEdit
-    Left = 183
-    Top = 332
-    Width = 479
+    Left = 207
+    Top = 376
+    Width = 543
     Height = 21
     TabStop = False
     Color = 13425885
@@ -1322,9 +1329,9 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     TabOrder = 2
   end
   object edtNomeFornecedor: TEdit
-    Left = 182
-    Top = 282
-    Width = 481
+    Left = 206
+    Top = 320
+    Width = 545
     Height = 21
     TabStop = False
     Color = 13425885
@@ -1334,10 +1341,10 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     TabOrder = 3
   end
   object edtNro: TRxCalcEdit
-    Left = 124
-    Top = 306
-    Width = 64
-    Height = 22
+    Left = 141
+    Top = 347
+    Width = 72
+    Height = 25
     Hint = '|Nro de Parcela(s) da Renegocia'#231#227'o'
     AutoSize = False
     Ctl3D = False
@@ -1411,6 +1418,7 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00}
+    ButtonWidth = 23
     NumGlyphs = 2
     ParentCtl3D = False
     ParentShowHint = False
@@ -1418,10 +1426,10 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     TabOrder = 4
   end
   object edtTotalContas: TRxCalcEdit
-    Left = 39
-    Top = 229
-    Width = 96
-    Height = 22
+    Left = 44
+    Top = 260
+    Width = 109
+    Height = 24
     Hint = '|Valor total da(s) conta(s)'
     TabStop = False
     AutoSize = False
@@ -1481,6 +1489,7 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+    ButtonWidth = 23
     NumGlyphs = 2
     ParentCtl3D = False
     ParentShowHint = False
@@ -1489,10 +1498,10 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     TabOrder = 5
   end
   object edtTotalDescontos: TRxCalcEdit
-    Left = 221
-    Top = 229
-    Width = 96
-    Height = 22
+    Left = 250
+    Top = 260
+    Width = 109
+    Height = 24
     Hint = '|Valor dos descontos para esta(s) conta(s)'
     TabStop = False
     AutoSize = False
@@ -1568,6 +1577,7 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00}
+    ButtonWidth = 23
     NumGlyphs = 2
     ParentCtl3D = False
     ParentShowHint = False
@@ -1576,10 +1586,10 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     OnExit = edtTotalDescontosExit
   end
   object edtTotalDevido: TRxCalcEdit
-    Left = 572
-    Top = 229
-    Width = 94
-    Height = 22
+    Left = 648
+    Top = 260
+    Width = 107
+    Height = 24
     Hint = '|Valor total desta(s) conta(s) a receber'
     TabStop = False
     AutoSize = False
@@ -1655,6 +1665,7 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00}
+    ButtonWidth = 23
     NumGlyphs = 2
     ParentCtl3D = False
     ParentShowHint = False
@@ -1663,10 +1674,10 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     TabOrder = 7
   end
   object edtTotalJuros: TRxCalcEdit
-    Left = 377
-    Top = 229
-    Width = 96
-    Height = 22
+    Left = 427
+    Top = 260
+    Width = 109
+    Height = 24
     Hint = '|Valor dos juros para esta(s) conta(s)'
     TabStop = False
     AutoSize = False
@@ -1742,6 +1753,7 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00}
+    ButtonWidth = 23
     NumGlyphs = 2
     ParentCtl3D = False
     ParentShowHint = False
@@ -1750,10 +1762,10 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     OnExit = edtTotalJurosExit
   end
   object edtValor: TRxCalcEdit
-    Left = 356
-    Top = 306
-    Width = 96
-    Height = 22
+    Left = 403
+    Top = 347
+    Width = 109
+    Height = 25
     Hint = '|Novo valor total para a(s) nova(s) conta(s)'
     AutoSize = False
     Color = 13425885
@@ -1828,6 +1840,7 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00}
+    ButtonWidth = 23
     NumGlyphs = 2
     ParentCtl3D = False
     ParentShowHint = False
@@ -1836,10 +1849,10 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     TabOrder = 9
   end
   object edtVencimento: TDateEdit
-    Left = 566
-    Top = 306
-    Width = 98
-    Height = 22
+    Left = 641
+    Top = 347
+    Width = 112
+    Height = 25
     Hint = '|Digite ou escolha a data inicial da(s) nova(s) conta(s)'
     ButtonHint = 'Clique para escolher a data de cadastro'
     CalendarHints.Strings = (
@@ -1902,6 +1915,7 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+    ButtonWidth = 24
     NumGlyphs = 2
     ParentCtl3D = False
     ParentShowHint = False
@@ -1910,14 +1924,14 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     Text = '11/  /    '
   end
   object gridContas: TDBGrid
-    Left = 5
-    Top = 5
-    Width = 660
-    Height = 215
+    Left = 6
+    Top = 6
+    Width = 748
+    Height = 243
     DataSource = dsRenegociacao
     Font.Charset = ANSI_CHARSET
     Font.Color = clBlack
-    Font.Height = -11
+    Font.Height = -13
     Font.Name = 'Courier New'
     Font.Style = []
     Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
@@ -1954,7 +1968,6 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
       item
         Expanded = False
         FieldName = 'dtemit'
-        Width = 84
         Visible = True
       end
       item
@@ -1970,10 +1983,10 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
       end>
   end
   object btnFechar: TButton
-    Left = 588
-    Top = 363
-    Width = 80
-    Height = 26
+    Left = 666
+    Top = 411
+    Width = 91
+    Height = 30
     Hint = 'Fechar|Fecha essa tela e volta para a tela anterior'
     Caption = '&Fechar'
     ParentShowHint = False
@@ -1982,9 +1995,9 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     OnClick = btnFecharClick
   end
   object edtFornecedor: TwwDBLookupComboDlg
-    Left = 90
-    Top = 282
-    Width = 90
+    Left = 102
+    Top = 320
+    Width = 102
     Height = 21
     Ctl3D = False
     DisableThemes = False
@@ -2011,9 +2024,9 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     OnKeyPress = edtFornecedorKeyPress
   end
   object edtConta: TwwDBLookupComboDlg
-    Left = 91
-    Top = 332
-    Width = 89
+    Left = 103
+    Top = 376
+    Width = 101
     Height = 21
     BiDiMode = bdLeftToRight
     ParentBiDiMode = False
@@ -2040,9 +2053,9 @@ object frmRenegociacaoContas: TfrmRenegociacaoContas
     OnKeyPress = edtContaKeyPress
   end
   object edtCliente: TwwDBLookupComboDlg
-    Left = 90
-    Top = 282
-    Width = 90
+    Left = 102
+    Top = 320
+    Width = 102
     Height = 21
     Ctl3D = False
     DisableThemes = False

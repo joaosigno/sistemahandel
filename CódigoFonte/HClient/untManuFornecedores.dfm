@@ -1,17 +1,17 @@
 inherited frmManuFornecedores: TfrmManuFornecedores
-  Left = 847
-  Top = 86
+  Left = 594
+  Top = 95
   Caption = 'Manuten'#231#227'o de Fornecedores'
-  ClientHeight = 429
-  ClientWidth = 506
+  ClientHeight = 521
+  ClientWidth = 614
   OldCreateOrder = True
   OnCreate = FormCreate
   OnShow = FormShow
-  PixelsPerInch = 96
-  TextHeight = 14
+  PixelsPerInch = 120
+  TextHeight = 17
   inherited tbManutencao: TToolBar
-    Top = 369
-    Width = 506
+    Top = 461
+    Width = 614
     inherited ToolButton1: TToolButton
       Width = 25
     end
@@ -46,8 +46,8 @@ inherited frmManuFornecedores: TfrmManuFornecedores
   object pgFornecedor: TPageControl [1]
     Left = 0
     Top = 0
-    Width = 506
-    Height = 369
+    Width = 614
+    Height = 461
     ActivePage = tsFornecedor
     Align = alClient
     TabOrder = 1
@@ -55,132 +55,132 @@ inherited frmManuFornecedores: TfrmManuFornecedores
       Caption = 'In'#237'cio'
       object Label1: TLabel
         Left = 0
-        Top = 56
-        Width = 105
-        Height = 14
+        Top = 68
+        Width = 120
+        Height = 17
         Caption = 'C'#243'digo........:'
         FocusControl = dbeCod
         Transparent = True
       end
       object Label2: TLabel
-        Left = 270
-        Top = 58
-        Width = 105
-        Height = 14
+        Left = 328
+        Top = 70
+        Width = 120
+        Height = 17
         Caption = 'Data Cadastro.:'
         Transparent = True
       end
       object lblnomefantasia: TLabel
         Left = 0
-        Top = 81
-        Width = 105
-        Height = 14
+        Top = 98
+        Width = 120
+        Height = 17
         Caption = 'Nome Fantasia.:'
         FocusControl = dbeNomEFantasia
         Transparent = True
       end
       object lblrazaosocial: TLabel
         Left = 0
-        Top = 104
-        Width = 105
-        Height = 14
+        Top = 126
+        Width = 120
+        Height = 17
         Caption = 'Raz'#227'o Social..:'
         FocusControl = dbeRazaoSocial
         Transparent = True
       end
       object lblRgeIe: TLabel
         Left = 0
-        Top = 128
-        Width = 105
-        Height = 14
+        Top = 155
+        Width = 120
+        Height = 17
         Caption = 'Insc.Estadual.:'
         FocusControl = dbeInscEstadual
         Transparent = True
       end
       object lblCGCeCPF: TLabel
-        Left = 288
-        Top = 128
-        Width = 42
-        Height = 14
+        Left = 350
+        Top = 155
+        Width = 48
+        Height = 17
         Caption = 'CNPJ.:'
         Transparent = True
       end
       object Label8: TLabel
         Left = 0
-        Top = 152
-        Width = 105
-        Height = 14
+        Top = 185
+        Width = 120
+        Height = 17
         Caption = 'CEP...........:'
         FocusControl = dbeCep
         Transparent = True
       end
       object Label9: TLabel
         Left = 0
-        Top = 176
-        Width = 105
-        Height = 14
+        Top = 214
+        Width = 120
+        Height = 17
         Caption = 'Endere'#231'o......:'
         FocusControl = dbeEndereco
         Transparent = True
       end
       object Label10: TLabel
         Left = 0
-        Top = 200
-        Width = 105
-        Height = 14
+        Top = 243
+        Width = 120
+        Height = 17
         Caption = 'Bairro........:'
         FocusControl = dbeBairro
         Transparent = True
       end
       object Label11: TLabel
         Left = 0
-        Top = 224
-        Width = 105
-        Height = 14
+        Top = 272
+        Width = 120
+        Height = 17
         Caption = 'Cidade........:'
         FocusControl = dbeCidade
         Transparent = True
       end
       object Label12: TLabel
-        Left = 400
-        Top = 176
-        Width = 35
-        Height = 14
+        Left = 486
+        Top = 214
+        Width = 40
+        Height = 17
         Caption = 'Num.:'
         FocusControl = dbeNum
         Transparent = True
       end
       object Label13: TLabel
-        Left = 408
-        Top = 225
-        Width = 28
-        Height = 14
+        Left = 495
+        Top = 273
+        Width = 32
+        Height = 17
         Caption = 'UF.:'
         Transparent = True
       end
       object Label14: TLabel
         Left = 0
-        Top = 248
-        Width = 105
-        Height = 14
+        Top = 301
+        Width = 120
+        Height = 17
         Caption = 'Telefone......:'
         FocusControl = dbeTelefone
         Transparent = True
       end
       object Label15: TLabel
-        Left = 288
-        Top = 248
-        Width = 35
-        Height = 14
+        Left = 350
+        Top = 301
+        Width = 40
+        Height = 17
         Caption = 'Fax.:'
         FocusControl = dbeFax
         Transparent = True
       end
       object dbeCod: TDBEdit
-        Left = 104
-        Top = 56
-        Width = 89
-        Height = 20
+        Left = 126
+        Top = 68
+        Width = 108
+        Height = 23
         Color = 13425885
         Ctl3D = False
         DataField = 'cdforn'
@@ -191,10 +191,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         OnKeyPress = dbeCodKeyPress
       end
       object dbeNomEFantasia: TDBEdit
-        Left = 104
-        Top = 80
-        Width = 385
-        Height = 20
+        Left = 126
+        Top = 97
+        Width = 468
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'nmfant'
@@ -204,10 +204,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         OnExit = dbeNomEFantasiaExit
       end
       object dbeRazaoSocial: TDBEdit
-        Left = 104
-        Top = 104
-        Width = 385
-        Height = 20
+        Left = 126
+        Top = 126
+        Width = 468
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'rzsoci'
@@ -217,10 +217,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         OnExit = dbeRazaoSocialExit
       end
       object dbeInscEstadual: TDBEdit
-        Left = 104
-        Top = 128
-        Width = 161
-        Height = 20
+        Left = 126
+        Top = 155
+        Width = 196
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'insest'
@@ -229,10 +229,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 5
       end
       object dbeCep: TDBEdit
-        Left = 104
-        Top = 152
-        Width = 161
-        Height = 20
+        Left = 126
+        Top = 185
+        Width = 196
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'CEP'
@@ -241,10 +241,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 7
       end
       object dbeEndereco: TDBEdit
-        Left = 104
-        Top = 176
-        Width = 289
-        Height = 20
+        Left = 126
+        Top = 214
+        Width = 351
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'endere'
@@ -253,10 +253,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 8
       end
       object dbeBairro: TDBEdit
-        Left = 104
-        Top = 200
-        Width = 289
-        Height = 20
+        Left = 126
+        Top = 243
+        Width = 351
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'bairro'
@@ -265,10 +265,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 10
       end
       object dbeCidade: TDBEdit
-        Left = 104
-        Top = 224
-        Width = 289
-        Height = 20
+        Left = 126
+        Top = 272
+        Width = 351
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'cidade'
@@ -277,10 +277,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 11
       end
       object dbeNum: TDBEdit
-        Left = 440
-        Top = 176
-        Width = 50
-        Height = 20
+        Left = 534
+        Top = 214
+        Width = 61
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'numero'
@@ -289,10 +289,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 9
       end
       object dbeTelefone: TDBEdit
-        Left = 104
-        Top = 248
-        Width = 161
-        Height = 20
+        Left = 126
+        Top = 301
+        Width = 196
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'telefo'
@@ -302,10 +302,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         OnKeyPress = dbeCodKeyPress
       end
       object dbeFax: TDBEdit
-        Left = 328
-        Top = 248
-        Width = 161
-        Height = 20
+        Left = 398
+        Top = 301
+        Width = 196
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'fax'
@@ -315,10 +315,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         OnKeyPress = dbeCodKeyPress
       end
       object dbdateedtdatacadastro: TDBDateEdit
-        Left = 376
-        Top = 56
-        Width = 112
-        Height = 21
+        Left = 457
+        Top = 68
+        Width = 136
+        Height = 26
         DataField = 'dtcada'
         DataSource = DataSource
         ButtonHint = 'Clique para abrir o calend'#225'rio'
@@ -376,6 +376,7 @@ inherited frmManuFornecedores: TfrmManuFornecedores
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+        ButtonWidth = 26
         NumGlyphs = 2
         ParentCtl3D = False
         ParentShowHint = False
@@ -384,10 +385,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         OnKeyPress = dbeCodKeyPress
       end
       object dbcbxPessoafisica: TDBCheckBox
-        Left = 101
-        Top = 28
-        Width = 116
-        Height = 17
+        Left = 123
+        Top = 34
+        Width = 141
+        Height = 21
         Caption = 'Pessoa F'#237'sica'
         Ctl3D = False
         DataField = 'pesfis'
@@ -401,17 +402,17 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         OnExit = dbcbxPessoafisicaExit
       end
       object dbcbuf: TDBComboBox
-        Left = 435
-        Top = 223
-        Width = 53
-        Height = 22
+        Left = 528
+        Top = 271
+        Width = 65
+        Height = 25
         Hint = 'Escolha a UF do fornecedor'
         Style = csDropDownList
         CharCase = ecUpperCase
         Ctl3D = True
         DataField = 'uf'
         DataSource = DataSource
-        ItemHeight = 14
+        ItemHeight = 17
         Items.Strings = (
           'AC'
           'AL'
@@ -446,10 +447,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 12
       end
       object dbeCNPJ: TRxDBComboEdit
-        Left = 336
-        Top = 128
-        Width = 153
-        Height = 21
+        Left = 408
+        Top = 155
+        Width = 186
+        Height = 26
         Hint = 'cadastro/Pesquisa CNPJ/CPF'
         ButtonHint = 'Clique para entrar na home-page do fornecedor'
         CharCase = ecUpperCase
@@ -458,7 +459,7 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         DataSource = DataSource
         Font.Charset = ANSI_CHARSET
         Font.Color = clBlack
-        Font.Height = -12
+        Font.Height = -15
         Font.Name = 'Courier New'
         Font.Style = []
         Glyph.Data = {
@@ -488,6 +489,7 @@ inherited frmManuFornecedores: TfrmManuFornecedores
           FF00FFFF00FF0C1C750F42A71C5EC5133083081556FF00FFFF00FFFF00FFFF00
           FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
           00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
+        ButtonWidth = 26
         NumGlyphs = 1
         ParentCtl3D = False
         ParentFont = False
@@ -504,76 +506,76 @@ inherited frmManuFornecedores: TfrmManuFornecedores
       ImageIndex = 1
       object Label3: TLabel
         Left = 0
-        Top = 67
-        Width = 112
-        Height = 14
+        Top = 81
+        Width = 128
+        Height = 17
         Caption = 'Banco..........:'
         Transparent = True
       end
       object Label16: TLabel
         Left = 0
-        Top = 20
-        Width = 112
-        Height = 14
+        Top = 24
+        Width = 128
+        Height = 17
         Caption = 'Data Funda'#231#227'o..:'
         Transparent = True
       end
       object Label17: TLabel
         Left = 0
-        Top = 43
-        Width = 112
-        Height = 14
+        Top = 52
+        Width = 128
+        Height = 17
         Caption = 'Ramo Atividade.:'
         FocusControl = dbeRamoatividade
         Transparent = True
       end
       object Label18: TLabel
         Left = 0
-        Top = 90
-        Width = 112
-        Height = 14
+        Top = 109
+        Width = 128
+        Height = 17
         Caption = 'Ag'#234'ncia........:'
         FocusControl = dbeagencia
         Transparent = True
       end
       object Label19: TLabel
-        Left = 256
-        Top = 88
-        Width = 112
-        Height = 14
+        Left = 311
+        Top = 107
+        Width = 128
+        Height = 17
         Caption = 'Conta Corrente.:'
         FocusControl = dbecontacorrente
         Transparent = True
       end
       object Label20: TLabel
         Left = -1
-        Top = 112
-        Width = 112
-        Height = 14
+        Top = 136
+        Width = 128
+        Height = 17
         Caption = 'E-mail.........:'
         Transparent = True
       end
       object Label21: TLabel
         Left = -1
-        Top = 136
-        Width = 112
-        Height = 14
+        Top = 165
+        Width = 128
+        Height = 17
         Caption = 'Home Page......:'
         Transparent = True
       end
       object Label22: TLabel
         Left = 0
-        Top = 160
-        Width = 112
-        Height = 14
+        Top = 194
+        Width = 128
+        Height = 17
         Caption = 'Obs............:'
         Transparent = True
       end
       object dbeRamoatividade: TDBEdit
-        Left = 112
-        Top = 43
-        Width = 369
-        Height = 20
+        Left = 136
+        Top = 52
+        Width = 448
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'rmativ'
@@ -582,10 +584,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 1
       end
       object dbeagencia: TDBEdit
-        Left = 112
-        Top = 89
-        Width = 113
-        Height = 20
+        Left = 136
+        Top = 108
+        Width = 137
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'agenci'
@@ -594,10 +596,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 4
       end
       object dbecontacorrente: TDBEdit
-        Left = 368
-        Top = 89
-        Width = 113
-        Height = 20
+        Left = 447
+        Top = 108
+        Width = 137
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'conta'
@@ -606,10 +608,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 5
       end
       object dbeObs: TDBMemo
-        Left = 112
-        Top = 160
-        Width = 369
-        Height = 97
+        Left = 136
+        Top = 194
+        Width = 448
+        Height = 118
         Ctl3D = False
         DataField = 'observ'
         DataSource = DataSource
@@ -617,10 +619,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 8
       end
       object dbdateedtdatafundacao: TDBDateEdit
-        Left = 112
-        Top = 20
-        Width = 105
-        Height = 21
+        Left = 136
+        Top = 24
+        Width = 128
+        Height = 26
         DataField = 'dtfund'
         DataSource = DataSource
         ButtonHint = 'Clique para abrir o calend'#225'rio'
@@ -693,16 +695,17 @@ inherited frmManuFornecedores: TfrmManuFornecedores
           FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
           FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
           FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00}
+        ButtonWidth = 26
         NumGlyphs = 2
         ParentCtl3D = False
         TabOrder = 0
         OnKeyPress = dbeCodKeyPress
       end
       object dbcdedtemailfornecedor: TRxDBComboEdit
-        Left = 112
-        Top = 113
-        Width = 369
-        Height = 21
+        Left = 136
+        Top = 137
+        Width = 448
+        Height = 26
         ButtonHint = 'Clique para enviar e-mail para o fornecedor'
         CharCase = ecLowerCase
         Ctl3D = True
@@ -710,7 +713,7 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         DataSource = DataSource
         Font.Charset = ANSI_CHARSET
         Font.Color = clBlue
-        Font.Height = -11
+        Font.Height = -15
         Font.Name = 'Arial'
         Font.Style = [fsUnderline]
         Glyph.Data = {
@@ -740,16 +743,17 @@ inherited frmManuFornecedores: TfrmManuFornecedores
           FFFFFFD5E6EA8EBED676CBE292EAF47AD1E764A8C79EBAC8CFDFE2FFFFFFFFFF
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF96C4D96CB9D488
           B5CCC6D7DBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+        ButtonWidth = 26
         NumGlyphs = 1
         ParentCtl3D = False
         ParentFont = False
         TabOrder = 6
       end
       object dbcdedthomepagefornecedor: TRxDBComboEdit
-        Left = 112
-        Top = 138
-        Width = 369
-        Height = 21
+        Left = 136
+        Top = 168
+        Width = 448
+        Height = 25
         ButtonHint = 'Clique para entrar na home-page do fornecedor'
         CharCase = ecLowerCase
         Ctl3D = True
@@ -757,7 +761,7 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         DataSource = DataSource
         Font.Charset = ANSI_CHARSET
         Font.Color = clBlue
-        Font.Height = -11
+        Font.Height = -15
         Font.Name = 'Arial'
         Font.Style = [fsUnderline]
         Glyph.Data = {
@@ -787,6 +791,7 @@ inherited frmManuFornecedores: TfrmManuFornecedores
           FF00FFFF00FF0C1C750F42A71C5EC5133083081556FF00FFFF00FFFF00FFFF00
           FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
           00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
+        ButtonWidth = 26
         NumGlyphs = 1
         ParentCtl3D = False
         ParentFont = False
@@ -794,10 +799,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         OnButtonClick = dbcdedthomepagefornecedorButtonClick
       end
       object dblcbBanco: TDBLookupComboBox
-        Left = 200
-        Top = 65
-        Width = 282
-        Height = 20
+        Left = 243
+        Top = 79
+        Width = 342
+        Height = 23
         Ctl3D = False
         DataField = 'procurabanco'
         DataSource = DataSource
@@ -805,10 +810,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 3
       end
       object dbeCodBanco: TDBEdit
-        Left = 113
-        Top = 65
-        Width = 82
-        Height = 20
+        Left = 137
+        Top = 79
+        Width = 100
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'cdbanco'
@@ -823,153 +828,153 @@ inherited frmManuFornecedores: TfrmManuFornecedores
       ImageIndex = 2
       object Label23: TLabel
         Left = 0
-        Top = 8
-        Width = 105
-        Height = 14
+        Top = 10
+        Width = 120
+        Height = 17
         Caption = 'Representante.:'
         FocusControl = debRep1
         Transparent = True
       end
       object Label24: TLabel
         Left = 0
-        Top = 32
-        Width = 105
-        Height = 14
+        Top = 39
+        Width = 120
+        Height = 17
         Caption = 'Contato.......:'
         FocusControl = dbeCont1
         Transparent = True
       end
       object Label25: TLabel
         Left = 0
-        Top = 56
-        Width = 105
-        Height = 14
+        Top = 68
+        Width = 120
+        Height = 17
         Caption = 'Telefone......:'
         FocusControl = dbeTelefon1
         Transparent = True
       end
       object Label26: TLabel
-        Left = 280
-        Top = 56
-        Width = 35
-        Height = 14
+        Left = 340
+        Top = 68
+        Width = 40
+        Height = 17
         Caption = 'Fax.:'
         FocusControl = dbefax1
         Transparent = True
       end
       object Label28: TLabel
         Left = 0
-        Top = 80
-        Width = 105
-        Height = 14
+        Top = 97
+        Width = 120
+        Height = 17
         Caption = 'E-mail........:'
         Transparent = True
       end
       object Bevel2: TBevel
         Left = 1
-        Top = 107
-        Width = 496
-        Height = 3
+        Top = 130
+        Width = 603
+        Height = 4
       end
       object Label27: TLabel
         Left = 0
-        Top = 120
-        Width = 105
-        Height = 14
+        Top = 146
+        Width = 120
+        Height = 17
         Caption = 'Representante.:'
         FocusControl = dbeRep2
         Transparent = True
       end
       object Label29: TLabel
         Left = 0
-        Top = 144
-        Width = 105
-        Height = 14
+        Top = 175
+        Width = 120
+        Height = 17
         Caption = 'Contato.......:'
         FocusControl = dbeCont2
         Transparent = True
       end
       object Label30: TLabel
         Left = 0
-        Top = 168
-        Width = 105
-        Height = 14
+        Top = 204
+        Width = 120
+        Height = 17
         Caption = 'Telefone......:'
         FocusControl = dbeTelefone2
         Transparent = True
       end
       object Label31: TLabel
         Left = 0
-        Top = 192
-        Width = 105
-        Height = 14
+        Top = 233
+        Width = 120
+        Height = 17
         Caption = 'E-mail........:'
         Transparent = True
       end
       object Label32: TLabel
-        Left = 280
-        Top = 168
-        Width = 35
-        Height = 14
+        Left = 340
+        Top = 204
+        Width = 40
+        Height = 17
         Caption = 'Fax.:'
         FocusControl = dbeFax2
         Transparent = True
       end
       object Bevel1: TBevel
-        Left = -7
-        Top = 219
-        Width = 504
-        Height = 3
+        Left = -9
+        Top = 266
+        Width = 613
+        Height = 4
       end
       object Label33: TLabel
         Left = 0
-        Top = 232
-        Width = 105
-        Height = 14
+        Top = 282
+        Width = 120
+        Height = 17
         Caption = 'Representante.:'
         FocusControl = dbeRep3
         Transparent = True
       end
       object Label34: TLabel
         Left = 0
-        Top = 256
-        Width = 105
-        Height = 14
+        Top = 311
+        Width = 120
+        Height = 17
         Caption = 'Contato.......:'
         FocusControl = dbeCont3
         Transparent = True
       end
       object Label35: TLabel
         Left = 0
-        Top = 281
-        Width = 105
-        Height = 14
+        Top = 341
+        Width = 120
+        Height = 17
         Caption = 'Telefone......:'
         FocusControl = dbeTelefone3
         Transparent = True
       end
       object Label36: TLabel
         Left = 0
-        Top = 305
-        Width = 105
-        Height = 14
+        Top = 370
+        Width = 120
+        Height = 17
         Caption = 'E-mail........:'
         Transparent = True
       end
       object Label37: TLabel
-        Left = 280
-        Top = 280
-        Width = 35
-        Height = 14
+        Left = 340
+        Top = 340
+        Width = 40
+        Height = 17
         Caption = 'Fax.:'
         FocusControl = dbeFax3
         Transparent = True
       end
       object debRep1: TDBEdit
-        Left = 104
-        Top = 8
-        Width = 377
-        Height = 20
+        Left = 126
+        Top = 10
+        Width = 458
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'repre1'
@@ -978,10 +983,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 0
       end
       object dbeCont1: TDBEdit
-        Left = 104
-        Top = 32
-        Width = 377
-        Height = 20
+        Left = 126
+        Top = 39
+        Width = 458
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'rpcon1'
@@ -990,10 +995,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 1
       end
       object dbeTelefon1: TDBEdit
-        Left = 104
-        Top = 56
-        Width = 161
-        Height = 20
+        Left = 126
+        Top = 68
+        Width = 196
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'rptel1'
@@ -1003,10 +1008,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         OnKeyPress = dbeCodKeyPress
       end
       object dbefax1: TDBEdit
-        Left = 320
-        Top = 56
-        Width = 161
-        Height = 20
+        Left = 389
+        Top = 68
+        Width = 195
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'rpfax1'
@@ -1016,10 +1021,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         OnKeyPress = dbeCodKeyPress
       end
       object dbcdedtemailrepresentante1: TRxDBComboEdit
-        Left = 106
-        Top = 81
-        Width = 376
-        Height = 21
+        Left = 129
+        Top = 98
+        Width = 456
+        Height = 26
         ButtonHint = 'Clique para enviar um e-mail'
         CharCase = ecLowerCase
         Ctl3D = True
@@ -1027,7 +1032,7 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         DataSource = DataSource
         Font.Charset = ANSI_CHARSET
         Font.Color = clBlue
-        Font.Height = -11
+        Font.Height = -15
         Font.Name = 'Arial'
         Font.Style = [fsUnderline]
         Glyph.Data = {
@@ -1065,16 +1070,17 @@ inherited frmManuFornecedores: TfrmManuFornecedores
           C800CFDFE200FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
           FF00FFFFFF00FFFFFF00FFFFFF0096C4D9006CB9D40088B5CC00C6D7DB00FFFF
           FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00}
+        ButtonWidth = 26
         NumGlyphs = 1
         ParentCtl3D = False
         ParentFont = False
         TabOrder = 4
       end
       object dbcdedtemailrepresentante2: TRxDBComboEdit
-        Left = 105
-        Top = 193
-        Width = 376
-        Height = 21
+        Left = 128
+        Top = 234
+        Width = 456
+        Height = 26
         ButtonHint = 'Clique para enviar um e-mail'
         CharCase = ecLowerCase
         Ctl3D = True
@@ -1082,7 +1088,7 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         DataSource = DataSource
         Font.Charset = ANSI_CHARSET
         Font.Color = clBlue
-        Font.Height = -11
+        Font.Height = -15
         Font.Name = 'Arial'
         Font.Style = [fsUnderline]
         Glyph.Data = {
@@ -1120,16 +1126,17 @@ inherited frmManuFornecedores: TfrmManuFornecedores
           C800CFDFE200FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
           FF00FFFFFF00FFFFFF00FFFFFF0096C4D9006CB9D40088B5CC00C6D7DB00FFFF
           FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00}
+        ButtonWidth = 26
         NumGlyphs = 1
         ParentCtl3D = False
         ParentFont = False
         TabOrder = 9
       end
       object dbeTelefone2: TDBEdit
-        Left = 104
-        Top = 168
-        Width = 161
-        Height = 20
+        Left = 126
+        Top = 204
+        Width = 196
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'rptel2'
@@ -1139,10 +1146,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         OnKeyPress = dbeCodKeyPress
       end
       object dbeCont2: TDBEdit
-        Left = 104
-        Top = 144
-        Width = 377
-        Height = 20
+        Left = 126
+        Top = 175
+        Width = 458
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'rpcon2'
@@ -1151,10 +1158,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 6
       end
       object dbeRep2: TDBEdit
-        Left = 104
-        Top = 120
-        Width = 377
-        Height = 20
+        Left = 126
+        Top = 146
+        Width = 458
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'repre2'
@@ -1163,10 +1170,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 5
       end
       object dbeFax2: TDBEdit
-        Left = 320
-        Top = 168
-        Width = 161
-        Height = 20
+        Left = 389
+        Top = 204
+        Width = 195
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'rpfax2'
@@ -1176,10 +1183,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         OnKeyPress = dbeCodKeyPress
       end
       object dbcdedtemailrepresentante3: TRxDBComboEdit
-        Left = 108
-        Top = 305
-        Width = 376
-        Height = 21
+        Left = 131
+        Top = 370
+        Width = 457
+        Height = 26
         ButtonHint = 'Clique para enviar um e-mail'
         CharCase = ecLowerCase
         Ctl3D = True
@@ -1187,7 +1194,7 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         DataSource = DataSource
         Font.Charset = ANSI_CHARSET
         Font.Color = clBlue
-        Font.Height = -11
+        Font.Height = -15
         Font.Name = 'Arial'
         Font.Style = [fsUnderline]
         Glyph.Data = {
@@ -1225,16 +1232,17 @@ inherited frmManuFornecedores: TfrmManuFornecedores
           C800CFDFE200FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
           FF00FFFFFF00FFFFFF00FFFFFF0096C4D9006CB9D40088B5CC00C6D7DB00FFFF
           FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00}
+        ButtonWidth = 26
         NumGlyphs = 1
         ParentCtl3D = False
         ParentFont = False
         TabOrder = 14
       end
       object dbeTelefone3: TDBEdit
-        Left = 104
-        Top = 280
-        Width = 161
-        Height = 20
+        Left = 126
+        Top = 340
+        Width = 196
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'rptel3'
@@ -1244,10 +1252,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         OnKeyPress = dbeCodKeyPress
       end
       object dbeFax3: TDBEdit
-        Left = 320
-        Top = 280
-        Width = 161
-        Height = 20
+        Left = 389
+        Top = 340
+        Width = 195
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'rpfax3'
@@ -1257,10 +1265,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         OnKeyPress = dbeCodKeyPress
       end
       object dbeCont3: TDBEdit
-        Left = 104
-        Top = 256
-        Width = 377
-        Height = 20
+        Left = 126
+        Top = 311
+        Width = 458
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'rpcon3'
@@ -1269,10 +1277,10 @@ inherited frmManuFornecedores: TfrmManuFornecedores
         TabOrder = 11
       end
       object dbeRep3: TDBEdit
-        Left = 104
-        Top = 232
-        Width = 377
-        Height = 20
+        Left = 126
+        Top = 282
+        Width = 458
+        Height = 23
         CharCase = ecUpperCase
         Ctl3D = False
         DataField = 'rpema3'

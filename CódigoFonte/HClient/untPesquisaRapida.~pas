@@ -78,6 +78,7 @@ uses untDM, untPrincipal;
 //12.Transportadoras
 //13.Produtos
 //14.GruposClientes
+//15.ContasBancarias
 
 procedure TfrmPesquisaRapida.pesquisar;
 var
@@ -278,6 +279,21 @@ begin
                '  and descri like'+ QuotedStr('%'+edtPesquisa.Text+'%')+' order by descri ');
 
   end;
+  15:
+   begin
+        if (rb1.Checked) and (edtpesquisa.text <> '') then
+          SQL.executaSQlPorEmp(cdsProcuraRapida,'cdcont,nrcont,agenci,descri',' ctban ',
+                '  and nrcont like '+ QuotedStr('%'+edtPesquisa.Text+'%')+' order by nrcont ');
+
+       if (rb2.Checked) and (edtpesquisa.text <> '') then
+          SQL.executaSQlPorEmp(cdsProcuraRapida,'cdcont,nrcont,agenci,descri',' ctban ',
+               '  and agenci like '+ QuotedStr('%'+edtPesquisa.Text+'%')+' order by agenci ');
+
+        if (rb3.Checked) and (edtpesquisa.text <> '') then
+          SQL.executaSQlPorEmp(cdsProcuraRapida,'cdcont,nrcont,agenci,descri',' ctban ',
+               '  and descri like '+ QuotedStr('%'+edtPesquisa.Text+'%')+' order by descri ');
+
+  end;
 
   end;
   atualizaGrid;
@@ -293,7 +309,7 @@ procedure TfrmPesquisaRapida.edtPesquisaKeyPress(Sender: TObject; var Key: Char)
   Se rb1 for selecionado só deixa digitar números
 }
 begin
-   if rb1.Checked then
+   if rb1.Checked and pesq <> 'ctban'  then
   begin
     If not( key in['0'..'9',#8] ) then key := #0;
   end;
@@ -356,7 +372,8 @@ begin
                       'trans',' order by cdtran');
       13: visible(true,'Código',true,'Cód.Fab.',true,'Referência',true,'Descrição',
                                'cdprod,codfab,refere,descri','produ',' order by cdprod');
-      14: visible(true,'Código',true,'Descrição',false,'',false,'','cdgrup,descri','grcli','order by cdgrup');                               
+      14: visible(true,'Código',true,'Descrição',false,'',false,'','cdgrup,descri','grcli','order by cdgrup');
+      15: visible(true,'Conta',true,'Agencia',true,'Descrição',false,'','cdcont,nrcont,agenci,descri','ctban','order by cdcont');
 
     end;
     atualizaGrid;  
@@ -458,6 +475,10 @@ begin
       14:
       begin
           dm.cdsGRCli.Locate('CDGRUP', VarArrayOf([IntToStr(cdsProcuraRapida.Fields[0].AsInteger)]), [loPartialKey]);
+      end;
+      15:
+      begin
+          dm.cdsCTBan.Locate('CDCONT', VarArrayOf([IntToStr(cdsProcuraRapida.Fields[0].AsInteger)]), [loPartialKey]);
       end;
     end;
     sql.Destroy;
@@ -594,20 +615,27 @@ begin
           gridPesquisa.Columns.Items[1].Title.Caption := 'Descrição';
           gridPesquisa.Columns.Items[1].Width := 300;
       end;
+      15:
+      begin
+          gridPesquisa.Columns.Items[0].Title.Caption := 'Código';
+          gridPesquisa.Columns.Items[0].Width := 80;
+          gridPesquisa.Columns.Items[1].Title.Caption := 'Conta';
+          gridPesquisa.Columns.Items[1].Width := 80;
+          gridPesquisa.Columns.Items[2].Title.Caption := 'Agencia';
+          gridPesquisa.Columns.Items[2].Width := 80;
+          gridPesquisa.Columns.Items[3].Title.Caption := 'Descrição';
+          gridPesquisa.Columns.Items[3].Width := 300;
+      end;
     end;  
 end;
 
 procedure TfrmPesquisaRapida.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-  if NString then
-  begin
-    case Key of
-     VK_Return:
-     begin
-
-     end;
-  end;
+  case Key of
+      VK_ESCAPE:
+        close;
+   end;
 end;
 
 procedure TfrmPesquisaRapida.visible(rb1V:Boolean;rb1Nome:String;rb2V:boolean;
@@ -674,7 +702,8 @@ begin
     c:=13;
   if pesq = 'grcli' then
     c:=14;
-
+  if pesq = 'ctban' then
+    c:=15;         
 end;
 
 procedure TfrmPesquisaRapida.FormCreate(Sender: TObject);

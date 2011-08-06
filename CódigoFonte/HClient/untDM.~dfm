@@ -1,7 +1,7 @@
 object dm: Tdm
   OldCreateOrder = False
-  Left = 844
-  Top = 111
+  Left = 911
+  Top = 115
   Height = 445
   Width = 448
   object cdsUsu: TClientDataSet
@@ -2607,10 +2607,12 @@ object dm: Tdm
     object cdsCTBantelefo: TStringField
       DisplayLabel = 'Telefone'
       FieldName = 'telefo'
+      EditMask = '(00)0000-0000;0;'
     end
     object cdsCTBanfax: TStringField
       DisplayLabel = 'Fax'
       FieldName = 'fax'
+      EditMask = '(00)0000-0000;0;'
     end
     object cdsCTBangerent: TStringField
       DisplayLabel = 'Gerente'

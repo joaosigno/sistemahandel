@@ -569,7 +569,7 @@ begin
 
         grid.Columns.Add;
         grid.Columns[2].FieldName := 'descri';
-        grid.Columns[2].Width := 270;
+        grid.Columns[2].Width := 280;
 
         grid.Columns.Add;
         grid.Columns[3].FieldName := 'agenci';
@@ -585,7 +585,7 @@ begin
 
         grid.Columns.Add;
         grid.Columns[6].FieldName := 'gerent';
-        grid.Columns[6].Width :=  270;
+        grid.Columns[6].Width :=  280;
 
         grid.Columns.Add;
         grid.Columns[7].FieldName := 'limite';
