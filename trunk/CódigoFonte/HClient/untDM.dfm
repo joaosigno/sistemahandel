@@ -1,7 +1,7 @@
 object dm: Tdm
   OldCreateOrder = False
-  Left = 844
-  Top = 111
+  Left = 911
+  Top = 115
   Height = 445
   Width = 448
   object cdsUsu: TClientDataSet
@@ -2066,7 +2066,6 @@ object dm: Tdm
     end
   end
   object cdsPlanContas: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspPlanContas'

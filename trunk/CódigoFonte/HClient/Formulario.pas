@@ -565,7 +565,7 @@ begin
 
         grid.Columns.Add;
         grid.Columns[1].FieldName := 'dtaber';
-        grid.Columns[1].Width := 80;
+        grid.Columns[1].Width := 100;
 
         grid.Columns.Add;
         grid.Columns[2].FieldName := 'descri';
@@ -593,7 +593,7 @@ begin
 
         grid.Columns.Add;
         grid.Columns[8].FieldName := 'dtvenc';
-        grid.Columns[8].Width :=  80;
+        grid.Columns[8].Width :=  100;
 
       end;
    end;
