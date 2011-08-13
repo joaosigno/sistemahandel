@@ -322,6 +322,13 @@ object frmSequenciaisProdutos: TfrmSequenciaisProdutos
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 14
+  object Label4: TLabel
+    Left = 6
+    Top = 302
+    Width = 343
+    Height = 14
+    Caption = '* Servi'#231'os N'#227'o Aparecem Na Confer'#234'ncia de Estoque'
+  end
   object AdvancedPanel2: TPanel
     Left = 4
     Top = 5
