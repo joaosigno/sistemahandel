@@ -39,7 +39,6 @@ type
     cdsSequenciaisestatu: TFloatField;
     cdsSequenciaisauxili: TFloatField;
     cdsSequenciaisSOMAAUXILIAR: TAggregateField;
-    Label4: TLabel;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure cdsSequenciaisCalcFields(DataSet: TDataSet);
