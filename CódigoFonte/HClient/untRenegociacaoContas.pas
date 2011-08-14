@@ -38,7 +38,6 @@ type
     gridContas: TDBGrid;
     btnFechar: TButton;
     edtFornecedor: TwwDBLookupComboDlg;
-    edtConta: TwwDBLookupComboDlg;
     dsRenegociacao: TDataSource;
     cdsContas: TClientDataSet;
     cdsContascdclfo: TIntegerField;
@@ -73,15 +72,13 @@ type
     cdsContasprocuraFornecedor: TStringField;
     edtCliente: TwwDBLookupComboDlg;
     Label4: TLabel;
+    edtConta: TComboEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure edtFornecedorChange(Sender: TObject);
-    procedure edtContaChange(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
     procedure edtFornecedorExit(Sender: TObject);
-    procedure edtContaExit(Sender: TObject);
     procedure edtFornecedorKeyPress(Sender: TObject; var Key: Char);
-    procedure edtContaKeyPress(Sender: TObject; var Key: Char);
     procedure btnRenegociarClick(Sender: TObject);
     procedure btnSelecionaContasClick(Sender: TObject);
     procedure cdsContasCalcFields(DataSet: TDataSet);
@@ -95,6 +92,9 @@ type
     procedure edtClienteChange(Sender: TObject);
     procedure edtClienteExit(Sender: TObject);
     procedure edtClienteKeyPress(Sender: TObject; var Key: Char);
+    procedure edtContaButtonClick(Sender: TObject);
+    procedure edtContaChange(Sender: TObject);
+    procedure edtContaExit(Sender: TObject);
   private
   F : TFuncoes;
   SQl : TSQL;
@@ -112,7 +112,8 @@ var
 
 implementation
 
-uses untDM, untRenegociacaoAux, untSelecionarContas, untPrincipal, Math;
+uses untDM, untRenegociacaoAux, untSelecionarContas, untPrincipal, Math,
+  untPlanoContas;
 
 {$R *.dfm}
 
@@ -121,7 +122,7 @@ begin
   dm.cdsPlanContas.Open;
   dm.cdsFor.Open;
   dsRenegociacao.DataSet := cdsContas;
-  edtConta.LookupTable := dm.cdsPlanContas;
+//  edtConta.LookupTable := dm.cdsPlanContas;
   edtFornecedor.LookupTable := dm.cdsFor;
   edtCliente.LookupTable := dm.cdsCli;
   edtVencimento.Date := incMonth(date);
@@ -143,11 +144,6 @@ begin
     edtNomeFornecedor.Text := dm.cdsFornmfant.AsString;
 end;
 
-procedure TfrmRenegociacaoContas.edtContaChange(Sender: TObject);
-begin
-    edtNomeConta.Text := dm.cdsPlanContasdescri.AsString;
-end;
-
 procedure TfrmRenegociacaoContas.btnFecharClick(Sender: TObject);
 begin
   close
@@ -167,30 +163,10 @@ begin
     end;
 end;
 
-procedure TfrmRenegociacaoContas.edtContaExit(Sender: TObject);
-begin
-  if edtConta.Text <> '' then
-    begin
-      SQL.executaSql(dm.cdsAux,'select * from plcon where cdcont='+
-      QuotedStr(edtConta.Text));
-      if dm.cdsAux.RecordCount = 0 then
-      begin
-          edtConta.Text:= '';
-          f.Mensagem(false,'Codigo de Caixa Não Existe!');
-      end;
-    end; 
-end;
-
 procedure TfrmRenegociacaoContas.edtFornecedorKeyPress(Sender: TObject;
   var Key: Char);
 begin
       If not( key in['0'..'9',#8] ) then key := #0;
-end;
-
-procedure TfrmRenegociacaoContas.edtContaKeyPress(Sender: TObject;
-  var Key: Char);
-begin
-   If not( key in['0'..'9',#8] ) then key := #0;
 end;
 
 procedure TfrmRenegociacaoContas.btnRenegociarClick(Sender: TObject);
@@ -204,7 +180,7 @@ begin
       edtNro.setfocus;
       Abort;
     end;
-    if (edtConta.Value = '0') or (edtConta.Value = '') then
+    if  (edtConta.Text = '') then
     begin
       f.Mensagem(false,'Defina o plano de contas do caixa!!');
       edtConta.setfocus;
@@ -390,6 +366,34 @@ procedure TfrmRenegociacaoContas.edtClienteKeyPress(Sender: TObject;
   var Key: Char);
 begin
      If not( key in['0'..'9',#8] ) then key := #0;
+end;
+
+procedure TfrmRenegociacaoContas.edtContaButtonClick(Sender: TObject);
+begin
+  frmPlContas := TfrmPlContas.Create(Application);
+  frmPlContas.codForm := 1;
+  frmPlContas.ShowModal;
+  edtConta.Text := frmPlContas.nod;
+  frmPlContas.Free;
+end;
+
+procedure TfrmRenegociacaoContas.edtContaChange(Sender: TObject);
+begin
+    edtNomeConta.Text := dm.cdsPlanContasdescri.AsString;
+end;
+
+procedure TfrmRenegociacaoContas.edtContaExit(Sender: TObject);
+begin
+  if edtConta.Text <> '' then
+    begin
+      SQL.executaSql(dm.cdsAux,'select * from plcon where cdcont='+
+      QuotedStr(edtConta.Text));
+      if dm.cdsAux.RecordCount = 0 then
+      begin
+          edtConta.Text:= '';
+          f.Mensagem(false,'Codigo de Caixa Não Existe!');
+      end;
+    end; 
 end;
 
 end.

@@ -1,6 +1,6 @@
 object frmPrincipal: TfrmPrincipal
-  Left = 519
-  Top = 148
+  Left = 294
+  Top = 150
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'HChat'

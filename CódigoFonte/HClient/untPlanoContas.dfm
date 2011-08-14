@@ -1,15 +1,15 @@
 object frmPlContas: TfrmPlContas
-  Left = 220
-  Top = 140
+  Left = 423
+  Top = 66
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Plano de Contas do Caixa'
-  ClientHeight = 466
-  ClientWidth = 386
+  ClientHeight = 530
+  ClientWidth = 446
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
-  Font.Height = -13
+  Font.Height = -10
   Font.Name = 'Courier New'
   Font.Style = []
   Icon.Data = {
@@ -320,13 +320,13 @@ object frmPlContas: TfrmPlContas
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  PixelsPerInch = 120
-  TextHeight = 16
+  PixelsPerInch = 96
+  TextHeight = 12
   object dbTVPlContas: TJvDBTreeView
-    Left = 10
-    Top = 5
-    Width = 365
-    Height = 273
+    Left = 8
+    Top = 4
+    Width = 427
+    Height = 373
     DataSource = dsPlContas
     MasterField = 'cdcont'
     DetailField = 'cdcoma'
@@ -336,22 +336,35 @@ object frmPlContas: TfrmPlContas
     PersistentNode = False
     BorderStyle = bsNone
     Indent = 19
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Courier New'
+    Font.Style = []
     TabOrder = 0
     OnClick = dbTVPlContasClick
+    OnDblClick = dbTVPlContasDblClick
     PopupMenu = ppmPlContasCaixa
+    ParentFont = False
     Images = imglst_treecaixa
     Mirror = False
   end
   object gbPlContas: TGroupBox
-    Left = 8
-    Top = 304
-    Width = 369
-    Height = 153
+    Left = 10
+    Top = 392
+    Width = 426
+    Height = 129
     Caption = 'gbPlContas'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Courier New'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 1
     object Label1: TLabel
-      Left = 8
-      Top = 25
+      Left = 6
+      Top = 19
       Width = 80
       Height = 16
       Caption = 'C'#243'digo...:'
@@ -359,43 +372,43 @@ object frmPlContas: TfrmPlContas
       Transparent = True
     end
     object Label2: TLabel
-      Left = 8
-      Top = 53
+      Left = 6
+      Top = 44
       Width = 80
       Height = 16
       Caption = 'Descri'#231#227'o:'
       FocusControl = dbeNome
     end
     object Label3: TLabel
-      Left = 8
-      Top = 79
+      Left = 6
+      Top = 66
       Width = 80
       Height = 16
       Caption = 'C'#243'd.M'#227'e..:'
       FocusControl = dbeCodMae
     end
     object btnOK: TButton
-      Left = 192
-      Top = 112
-      Width = 75
-      Height = 25
+      Left = 254
+      Top = 94
+      Width = 80
+      Height = 24
       Caption = '&OK'
       TabOrder = 0
       OnClick = btnOKClick
     end
     object btnCancel: TButton
-      Left = 280
-      Top = 112
-      Width = 75
-      Height = 25
+      Left = 340
+      Top = 93
+      Width = 79
+      Height = 26
       Caption = '&Cancelar'
       TabOrder = 1
       OnClick = btnCancelClick
     end
     object dbeCod: TDBEdit
       Left = 90
-      Top = 22
-      Width = 108
+      Top = 17
+      Width = 114
       Height = 22
       Color = 13425885
       Ctl3D = False
@@ -406,10 +419,11 @@ object frmPlContas: TfrmPlContas
       TabOrder = 2
     end
     object dbeNome: TDBEdit
-      Left = 90
-      Top = 50
-      Width = 271
+      Left = 89
+      Top = 41
+      Width = 330
       Height = 22
+      CharCase = ecUpperCase
       Ctl3D = False
       DataField = 'descri'
       DataSource = dsPlContas
@@ -417,9 +431,9 @@ object frmPlContas: TfrmPlContas
       TabOrder = 3
     end
     object dbeCodMae: TDBEdit
-      Left = 91
-      Top = 77
-      Width = 110
+      Left = 90
+      Top = 65
+      Width = 114
       Height = 22
       Color = 13425885
       Ctl3D = False
@@ -725,6 +739,7 @@ object frmPlContas: TfrmPlContas
     end
     object Excluir1: TMenuItem
       Caption = '&Excluir...'
+      OnClick = Excluir1Click
     end
   end
 end

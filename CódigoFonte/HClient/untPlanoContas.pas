@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, JvExComCtrls, JvDBTreeView, DB, ImgList, Menus,
-  StdCtrls, Mask, DBCtrls;
+  StdCtrls, Mask, DBCtrls, SQL, untDeclaracoes;
 
 type
   TfrmPlContas = class(TForm)
@@ -34,9 +34,16 @@ type
     procedure Alterar1Click(Sender: TObject);
     procedure dbTVPlContasClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Excluir1Click(Sender: TObject);
+    procedure dbTVPlContasDblClick(Sender: TObject);
   private
+  SQL : TSQL;
+  F : TFuncoes;
     { Private declarations }
   public
+  nod : string; // diz o codigo nod esta selecionado
+  codForm : integer;
+  //1. vizualização
     { Public declarations }
   end;
 
@@ -53,12 +60,33 @@ procedure TfrmPlContas.FormCreate(Sender: TObject);
 begin
   dsPlContas.DataSet := dm.cdsPlanContas;
   dm.cdsPlanContas.Open;
-{  dbTVPlContas.PopupMenu := nil;
-  dbTVPlContas.PopupMenu := ppmPlContasCaixa;}
 end;
 
 procedure TfrmPlContas.btnOKClick(Sender: TObject);
+var cod, str, cod2 : string;
+    codInc, tamanho : integer;
 begin
+  str := '';
+  if dsPlContas.State in [dsInsert] then
+  begin
+    {
+      insere um codigo no plano de contas de acordo com sua conta mãe
+    }
+    sql.executaSql(dm.cdsAux,'select max(cdcont) as codigo from plcon where cdcoma= '+QuotedStr(dbeCodMae.Text));
+    str := dm.cdsAux.FieldByName('codigo').Value;
+    if str <> '' then
+    begin
+      cod := Copy (str, Length(str)-1, 2);
+      codInc := StrTOInt(cod) + 1;
+      tamanho := Length(str)-2;
+      dbeCod.Text := Copy (str, 1, tamanho) + IntToSTr(codInc);
+    end else
+    begin
+      dbeCod.Text := dbeCodMae.Text + '.01';
+    end;
+  end;
+  dm.cdsPlanContas.Post;
+  dm.cdsPlanContas.ApplyUpdates(0);
   frmPlContas.Height := dbTVPlContas.Height + 50;
 end;
 
@@ -75,12 +103,18 @@ end;
 
 procedure TfrmPlContas.btnCancelClick(Sender: TObject);
 begin
+    dm.cdsPlanContas.Cancel;
+    dm.cdsPlanContas.ApplyUpdates(0);
     frmPlContas.Height := dbTVPlContas.Height + 50;
 end;
 
 procedure TfrmPlContas.FormShow(Sender: TObject);
 begin
-    frmPlContas.Height := dbTVPlContas.Height + 50;
+  frmPlContas.Height := dbTVPlContas.Height + 50;
+  if codForm = 1 then
+  begin
+    dbTVPlContas.PopupMenu := nil;
+  end;
 end;
 
 procedure TfrmPlContas.Alterar1Click(Sender: TObject);
@@ -93,8 +127,7 @@ end;
 
 procedure TfrmPlContas.dbTVPlContasClick(Sender: TObject);
 begin
-  dm.cdsPlanContas.Cancel;
-  dbTVPlContas.Refresh;
+  nod := dm.cdsPlanContascdcont.Value;
   frmPlContas.Height := dbTVPlContas.Height + 50;
 end;
 
@@ -102,6 +135,30 @@ procedure TfrmPlContas.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   dm.cdsPlanContas.Cancel;
+end;
+
+procedure TfrmPlContas.Excluir1Click(Sender: TObject);
+begin
+  if MessageDlg('Deseja Excluir a COnta Selecionada?',mtConfirmation,
+            [mbYes,mbNo],0) = mryes then
+  begin
+    sql.executaSql(dm.cdsAux,'select * from plcon where cdcoma='+
+                    QuotedStr(dm.cdsPlanContascdcont.Value));
+    if dm.cdsAux.RecordCount = 0 then
+    begin
+        dm.cdsPlanContas.Delete;
+        dm.cdsPlanContas.ApplyUpdates(0);
+    end else
+    begin
+        f.Mensagem(false,'Impossível de Escluir, Existem Filhos dessa Conta!');
+    end;
+  end;                  
+end;
+
+procedure TfrmPlContas.dbTVPlContasDblClick(Sender: TObject);
+begin
+  if codForm = 1 then
+    close;
 end;
 
 end.

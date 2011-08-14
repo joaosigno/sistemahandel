@@ -1,7 +1,7 @@
 object dm: Tdm
   OldCreateOrder = False
-  Left = 192
-  Top = 124
+  Left = 193
+  Top = 125
   Height = 276
   Width = 320
   object scHC: TSocketConnection
