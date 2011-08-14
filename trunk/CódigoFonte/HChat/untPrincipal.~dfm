@@ -1382,7 +1382,7 @@ object frmPrincipal: TfrmPrincipal
     MaxLineAction = maException
     ReadTimeout = 0
     OnDisconnected = IdTCPClient1Disconnected
-    Host = '192.168.1.1'
+    Host = 'localhost'
     OnConnected = IdTCPClient1Connected
     Port = 1024
     Left = 296
